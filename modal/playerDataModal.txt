@@ -1,0 +1,39 @@
+{
+    "controlbar": [
+        {
+            "image": "playButton.png",
+            "type": "Button",
+            "action": "playAction",
+            "dim": [
+                20,
+                20
+            ],
+            "bgColor": "black",
+            "border": "1",
+            "borderColor": "yellow",
+            "order": 0
+        },
+        {
+            "type": "Slider",
+            "action": "sliderChangeValueAction",
+            "dim": [
+                20,
+                100
+            ],
+            "bgColor": "black",
+            "border": "1",
+            "borderColor": "yellow",
+            "order": 1,
+            "railBgImage": "rail.png",
+            "railColor": "red",
+            "cueBgImage": "cue.png",
+            "cueColor": "yellow.png",
+            "bufferBgImage": "buffer.png",
+            "bufferColor": "cyan",
+            "progressBgImage": "progress.png",
+            "progressColor": "black"
+        }
+    ],
+    "dock": [],
+    "display": []
+}

@@ -1,0 +1,36 @@
+Skin Example:
+
+A) Video Overlay Container (View) 
+	
+	COMPONENTS
+	--------------------------
+	
+	1. ControlBar (View) (SubProperty: ArrayList)
+	
+		1. Play/Pause Button (ToggleButton)
+		2. Time Slider Control/Progressive (Slider custom component)
+		3. Time remaining (Label)
+		4. Current Time (Label)
+		5. Fullscreen/Normal Mode (Button)
+		6. Airplay (Button)
+		7. Rewind (Button)
+		8. Settings (Button) 
+		9. Sound level (Slider - Vertical)
+		10. Quality Area (Custom View - Tooltip, SubProperty: ArrayList)
+		11. Divider (View)
+		
+		
+	2. Dock (View) (SubProperty: ArrayList)
+		
+		1. Like (Button)
+		2. Comment (Button)
+		3. Share This Video (Button)
+		4. Add Favorites (Button)
+		5. More (Button)
+		
+	3. 	Display (View)
+		
+		1. Replay (Button)
+		2. Play (Button)
+		3. Pause (Button)
+	
