@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3A9AEDE1B048B5600D0C842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */; };
+		C3A9AEE01B048B5600D0C842 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEDF1B048B5600D0C842 /* PlayerViewController.swift */; };
+		C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A9AEE61B048B5600D0C842 /* LaunchScreen.xib */; };
+		C3A9AEF41B048B5700D0C842 /* MovielalaPlayerExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEF31B048B5700D0C842 /* MovielalaPlayerExampleTests.swift */; };
+		C3A9AF031B0491B500D0C842 /* MovielalaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework */; };
+		C3A9AF041B0491B500D0C842 /* MovielalaPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C3A9AF0C1B0497FA00D0C842 /* Skin.json in Resources */ = {isa = PBXBuildFile; fileRef = C3A9AF0B1B0497FA00D0C842 /* Skin.json */; };
+		C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3A9AF0D1B049A4D00D0C842 /* Images.xcassets */; };
+		C3A9AF111B04C8BB00D0C842 /* MPSkinParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AF101B04C8BB00D0C842 /* MPSkinParser.swift */; };
 		CE554D551AFE6CCD00DAC7E9 /* MovielalaPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = CE554D541AFE6CCD00DAC7E9 /* MovielalaPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE554D5B1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework */; };
 		CE554D621AFE6CCD00DAC7E9 /* MovielalaPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D611AFE6CCD00DAC7E9 /* MovielalaPlayerTests.swift */; };
@@ -19,6 +28,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C3A9AEEE1B048B5700D0C842 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE554D461AFE6CCD00DAC7E9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3A9AED81B048B5600D0C842;
+			remoteInfo = MovielalaPlayerExample;
+		};
+		C3A9AF051B0491B500D0C842 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE554D461AFE6CCD00DAC7E9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE554D4E1AFE6CCD00DAC7E9;
+			remoteInfo = MovielalaPlayer;
+		};
 		CE554D5C1AFE6CCD00DAC7E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CE554D461AFE6CCD00DAC7E9 /* Project object */;
@@ -28,7 +51,32 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C3A9AF071B0491B500D0C842 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C3A9AF041B0491B500D0C842 /* MovielalaPlayer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		C3A9AED91B048B5600D0C842 /* MovielalaPlayerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovielalaPlayerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3A9AEDC1B048B5600D0C842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C3A9AEDF1B048B5600D0C842 /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		C3A9AEE71B048B5600D0C842 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C3A9AEED1B048B5700D0C842 /* MovielalaPlayerExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovielalaPlayerExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3A9AEF21B048B5700D0C842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3A9AEF31B048B5700D0C842 /* MovielalaPlayerExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovielalaPlayerExampleTests.swift; sourceTree = "<group>"; };
+		C3A9AF0B1B0497FA00D0C842 /* Skin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Skin.json; path = Skin/Skin.json; sourceTree = "<group>"; };
+		C3A9AF0D1B049A4D00D0C842 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C3A9AF101B04C8BB00D0C842 /* MPSkinParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MPSkinParser.swift; path = Parser/MPSkinParser.swift; sourceTree = "<group>"; };
 		CE554D4F1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MovielalaPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE554D531AFE6CCD00DAC7E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE554D541AFE6CCD00DAC7E9 /* MovielalaPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovielalaPlayer.h; sourceTree = "<group>"; };
@@ -44,6 +92,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C3A9AED61B048B5600D0C842 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3A9AF031B0491B500D0C842 /* MovielalaPlayer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3A9AEEA1B048B5700D0C842 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE554D4B1AFE6CCD00DAC7E9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -62,11 +125,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C3A9AEDA1B048B5600D0C842 /* MovielalaPlayerExample */ = {
+			isa = PBXGroup;
+			children = (
+				C3A9AF0A1B0497BE00D0C842 /* Skin */,
+				C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */,
+				C3A9AEDF1B048B5600D0C842 /* PlayerViewController.swift */,
+				C3A9AEE61B048B5600D0C842 /* LaunchScreen.xib */,
+				C3A9AEDB1B048B5600D0C842 /* Supporting Files */,
+			);
+			path = MovielalaPlayerExample;
+			sourceTree = "<group>";
+		};
+		C3A9AEDB1B048B5600D0C842 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C3A9AEDC1B048B5600D0C842 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C3A9AEF01B048B5700D0C842 /* MovielalaPlayerExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				C3A9AEF31B048B5700D0C842 /* MovielalaPlayerExampleTests.swift */,
+				C3A9AEF11B048B5700D0C842 /* Supporting Files */,
+			);
+			path = MovielalaPlayerExampleTests;
+			sourceTree = "<group>";
+		};
+		C3A9AEF11B048B5700D0C842 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C3A9AEF21B048B5700D0C842 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C3A9AF0A1B0497BE00D0C842 /* Skin */ = {
+			isa = PBXGroup;
+			children = (
+				C3A9AF0B1B0497FA00D0C842 /* Skin.json */,
+				C3A9AF0D1B049A4D00D0C842 /* Images.xcassets */,
+			);
+			name = Skin;
+			sourceTree = "<group>";
+		};
+		C3A9AF0F1B04C89D00D0C842 /* Parser */ = {
+			isa = PBXGroup;
+			children = (
+				C3A9AF101B04C8BB00D0C842 /* MPSkinParser.swift */,
+			);
+			name = Parser;
+			sourceTree = "<group>";
+		};
 		CE554D451AFE6CCD00DAC7E9 = {
 			isa = PBXGroup;
 			children = (
 				CE554D511AFE6CCD00DAC7E9 /* MovielalaPlayer */,
 				CE554D5E1AFE6CCD00DAC7E9 /* MovielalaPlayerTests */,
+				C3A9AEDA1B048B5600D0C842 /* MovielalaPlayerExample */,
+				C3A9AEF01B048B5700D0C842 /* MovielalaPlayerExampleTests */,
 				CE554D501AFE6CCD00DAC7E9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -76,6 +195,8 @@
 			children = (
 				CE554D4F1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework */,
 				CE554D5A1AFE6CCD00DAC7E9 /* MovielalaPlayerTests.xctest */,
+				C3A9AED91B048B5600D0C842 /* MovielalaPlayerExample.app */,
+				C3A9AEED1B048B5700D0C842 /* MovielalaPlayerExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +204,7 @@
 		CE554D511AFE6CCD00DAC7E9 /* MovielalaPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				C3A9AF0F1B04C89D00D0C842 /* Parser */,
 				CE554D541AFE6CCD00DAC7E9 /* MovielalaPlayer.h */,
 				CE554D6B1AFE6EBB00DAC7E9 /* CGRect+LayoutHelper.swift */,
 				CE554D6C1AFE6EBB00DAC7E9 /* MovielalaPlayerConfig.swift */,
@@ -134,6 +256,43 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		C3A9AED81B048B5600D0C842 /* MovielalaPlayerExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3A9AEF51B048B5700D0C842 /* Build configuration list for PBXNativeTarget "MovielalaPlayerExample" */;
+			buildPhases = (
+				C3A9AED51B048B5600D0C842 /* Sources */,
+				C3A9AED61B048B5600D0C842 /* Frameworks */,
+				C3A9AED71B048B5600D0C842 /* Resources */,
+				C3A9AF071B0491B500D0C842 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C3A9AF061B0491B500D0C842 /* PBXTargetDependency */,
+			);
+			name = MovielalaPlayerExample;
+			productName = MovielalaPlayerExample;
+			productReference = C3A9AED91B048B5600D0C842 /* MovielalaPlayerExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C3A9AEEC1B048B5700D0C842 /* MovielalaPlayerExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3A9AEF81B048B5700D0C842 /* Build configuration list for PBXNativeTarget "MovielalaPlayerExampleTests" */;
+			buildPhases = (
+				C3A9AEE91B048B5700D0C842 /* Sources */,
+				C3A9AEEA1B048B5700D0C842 /* Frameworks */,
+				C3A9AEEB1B048B5700D0C842 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C3A9AEEF1B048B5700D0C842 /* PBXTargetDependency */,
+			);
+			name = MovielalaPlayerExampleTests;
+			productName = MovielalaPlayerExampleTests;
+			productReference = C3A9AEED1B048B5700D0C842 /* MovielalaPlayerExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CE554D4E1AFE6CCD00DAC7E9 /* MovielalaPlayer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE554D651AFE6CCD00DAC7E9 /* Build configuration list for PBXNativeTarget "MovielalaPlayer" */;
@@ -179,6 +338,13 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = MovieLaLa;
 				TargetAttributes = {
+					C3A9AED81B048B5600D0C842 = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
+					C3A9AEEC1B048B5700D0C842 = {
+						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = C3A9AED81B048B5600D0C842;
+					};
 					CE554D4E1AFE6CCD00DAC7E9 = {
 						CreatedOnToolsVersion = 6.3.1;
 					};
@@ -193,6 +359,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = CE554D451AFE6CCD00DAC7E9;
 			productRefGroup = CE554D501AFE6CCD00DAC7E9 /* Products */;
@@ -201,11 +368,30 @@
 			targets = (
 				CE554D4E1AFE6CCD00DAC7E9 /* MovielalaPlayer */,
 				CE554D591AFE6CCD00DAC7E9 /* MovielalaPlayerTests */,
+				C3A9AED81B048B5600D0C842 /* MovielalaPlayerExample */,
+				C3A9AEEC1B048B5700D0C842 /* MovielalaPlayerExampleTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C3A9AED71B048B5600D0C842 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */,
+				C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */,
+				C3A9AF0C1B0497FA00D0C842 /* Skin.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3A9AEEB1B048B5700D0C842 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE554D4D1AFE6CCD00DAC7E9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -224,6 +410,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C3A9AED51B048B5600D0C842 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3A9AEE01B048B5600D0C842 /* PlayerViewController.swift in Sources */,
+				C3A9AEDE1B048B5600D0C842 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3A9AEE91B048B5700D0C842 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3A9AEF41B048B5700D0C842 /* MovielalaPlayerExampleTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE554D4A1AFE6CCD00DAC7E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -232,6 +435,7 @@
 				CE554D731AFE6EBB00DAC7E9 /* MovielalaPlayerOverlayViewController.swift in Sources */,
 				CE554D741AFE6EBB00DAC7E9 /* MovielalaPlayerViewController.swift in Sources */,
 				CE554D711AFE6EBB00DAC7E9 /* MovielalaPlayerConfig.swift in Sources */,
+				C3A9AF111B04C8BB00D0C842 /* MPSkinParser.swift in Sources */,
 				CE554D721AFE6EBB00DAC7E9 /* MovielalaPlayerControlsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -247,6 +451,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C3A9AEEF1B048B5700D0C842 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C3A9AED81B048B5600D0C842 /* MovielalaPlayerExample */;
+			targetProxy = C3A9AEEE1B048B5700D0C842 /* PBXContainerItemProxy */;
+		};
+		C3A9AF061B0491B500D0C842 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE554D4E1AFE6CCD00DAC7E9 /* MovielalaPlayer */;
+			targetProxy = C3A9AF051B0491B500D0C842 /* PBXContainerItemProxy */;
+		};
 		CE554D5D1AFE6CCD00DAC7E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CE554D4E1AFE6CCD00DAC7E9 /* MovielalaPlayer */;
@@ -254,7 +468,76 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		C3A9AEE61B048B5600D0C842 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3A9AEE71B048B5600D0C842 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		C3A9AEF61B048B5700D0C842 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MovielalaPlayerExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C3A9AEF71B048B5700D0C842 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = MovielalaPlayerExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C3A9AEF91B048B5700D0C842 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MovielalaPlayerExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovielalaPlayerExample.app/MovielalaPlayerExample";
+			};
+			name = Debug;
+		};
+		C3A9AEFA1B048B5700D0C842 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MovielalaPlayerExampleTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovielalaPlayerExample.app/MovielalaPlayerExample";
+			};
+			name = Release;
+		};
 		CE554D631AFE6CCD00DAC7E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -348,6 +631,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -366,6 +650,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -412,6 +697,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C3A9AEF51B048B5700D0C842 /* Build configuration list for PBXNativeTarget "MovielalaPlayerExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3A9AEF61B048B5700D0C842 /* Debug */,
+				C3A9AEF71B048B5700D0C842 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C3A9AEF81B048B5700D0C842 /* Build configuration list for PBXNativeTarget "MovielalaPlayerExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3A9AEF91B048B5700D0C842 /* Debug */,
+				C3A9AEFA1B048B5700D0C842 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		CE554D491AFE6CCD00DAC7E9 /* Build configuration list for PBXProject "MovielalaPlayer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
