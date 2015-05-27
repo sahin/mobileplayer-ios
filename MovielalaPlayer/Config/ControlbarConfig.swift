@@ -10,7 +10,6 @@ import Foundation
 
 
 public struct ControlbarConfig {
-  
   var playButtonImage = MovielalaPlayerConfig.loadImage(named: "MLPlayButton")
   var playButtonTintColor = UIColor.whiteColor()
   var pauseButtonImage = MovielalaPlayerConfig.loadImage(named: "MLPauseButton")
@@ -21,7 +20,6 @@ public struct ControlbarConfig {
   public init() {}
   
   public init(dictionary: [String: AnyObject]) {
-   
     // Play Button
     if let playButtonConfig = dictionary["playButton"] as? [String:AnyObject] {
       if let playButtonImage = playButtonConfig["image"] as? String {
@@ -31,7 +29,6 @@ public struct ControlbarConfig {
         self.playButtonTintColor = UIColor(rgba: playButtonTintColor)
       }
     }
-    
     // Pause Button
     if let pauseButtonConfig = dictionary["pauseButton"] as? [String:AnyObject] {
       if let pauseButtonImage = pauseButtonConfig["image"] as? String {
@@ -41,7 +38,6 @@ public struct ControlbarConfig {
         self.pauseButtonTintColor = UIColor(rgba: pauseButtonTintColor)
       }
     }
-    
     // Time
     if let timeConfig = dictionary["time"] as? [String:AnyObject] {
       if let timeTextFont = timeConfig["textFont"] as? String {
@@ -53,11 +49,7 @@ public struct ControlbarConfig {
         self.timeTextColor = UIColor(rgba: timeTextColor)
       }
     }
-    
     // Time Slider
     // TODO: Add Time Slider Component value 
-    
-    
   }
-  
 }
