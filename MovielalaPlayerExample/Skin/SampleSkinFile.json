@@ -1,0 +1,40 @@
+{
+  "controlbar": {
+    "playButton": {
+      "image": "MPSPlayButton.png",
+      "tintColor": "#000000"
+    },
+    "pauseButton": {
+      "image": "MPSPauseButton.png",
+      "tintColor": "#000000"
+    },
+    "time": {
+      "textFont": "HelveticaNeue",
+      "textFontSize": 14,
+      "textColor": "#ffffff"
+    },
+    "timeSlider": {
+      "railImage": "rail.png",
+      "railTintColor": "#ffffff",
+      "bufferColor": "#555555",
+      "progressImage": "progress.png",
+      "progressTintColor": "#000000",
+      "thumbImage": "thumb.png",
+      "thumbTintColor": "#000000"
+    }
+  },
+  "share": {
+    "image": "Share.png",
+    "tintColor": "#000000"
+  },
+  "title": {
+    "titleTextFont": "HelveticaNeue",
+    "titleTextSize": 14,
+    "titleTextColor": "#ffffff",
+    "titleBackgroundColor": "#000000"
+  },
+  "closeButton": {
+    "image": "MPSCloseButton.png",
+    "tintColor": "#000000"
+  }
+}
