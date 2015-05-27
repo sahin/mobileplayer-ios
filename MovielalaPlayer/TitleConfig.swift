@@ -10,8 +10,8 @@ import Foundation
 
 public struct TitleConfig {
   var titleTextFont = UIFont.systemFontOfSize(14)
-  var titleTextColor = UIColor(rgba: "#ffffff")
-  var titleBackgroundColor = UIColor(rgba: "#000000")
+  var titleTextColor = UIColor(hexString: "#ffffff")
+  var titleBackgroundColor = UIColor(hexString: "#000000")
   
   public init() {}
   
@@ -23,7 +23,7 @@ public struct TitleConfig {
         }
       }
       if let titleBackgroundColor = titleConfig["titleBackgroundColor"] as? String {
-        self.titleBackgroundColor = UIColor(rgba: titleBackgroundColor)
+        self.titleBackgroundColor = UIColor(hexString: titleBackgroundColor)
       }
     }
   }

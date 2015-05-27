@@ -15,11 +15,11 @@ public struct CloseButtonConfig {
   public init() {}
   
   public init(dictionary: [String: AnyObject]) {
-    if let closeButtonImage = dictionary["image"] as? String {
-      self.closeButtonImage = MovielalaPlayerConfig.loadImage(named: closeButtonImage)
+    if let closeButtonImageName = dictionary["image"] as? String {
+      closeButtonImage = MovielalaPlayerConfig.loadImage(named: closeButtonImageName)
     }
-    if let closeButtonTintColor = dictionary["tintColor"] as? String {
-      self.closeButtonTintColor = UIColor(rgba: closeButtonTintColor)
+    if let closeButtonTintColorHex = dictionary["tintColor"] as? String {
+      closeButtonTintColor = UIColor(hexString: closeButtonTintColorHex)
     }
   }
 }

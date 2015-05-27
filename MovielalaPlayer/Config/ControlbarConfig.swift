@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public struct ControlbarConfig {
   var playButtonImage = MovielalaPlayerConfig.loadImage(named: "MLPlayButton")
   var playButtonTintColor = UIColor.whiteColor()
@@ -26,7 +25,7 @@ public struct ControlbarConfig {
         self.playButtonImage = MovielalaPlayerConfig.loadImage(named: playButtonImage)
       }
       if let playButtonTintColor = playButtonConfig["tintColor"] as? String {
-        self.playButtonTintColor = UIColor(rgba: playButtonTintColor)
+        self.playButtonTintColor = UIColor(hexString: playButtonTintColor)
       }
     }
     // Pause Button
@@ -35,7 +34,7 @@ public struct ControlbarConfig {
         self.pauseButtonImage = MovielalaPlayerConfig.loadImage(named: pauseButtonImage)
       }
       if let pauseButtonTintColor = pauseButtonConfig["tintColor"] as? String {
-        self.pauseButtonTintColor = UIColor(rgba: pauseButtonTintColor)
+        self.pauseButtonTintColor = UIColor(hexString: pauseButtonTintColor)
       }
     }
     // Time
@@ -46,7 +45,7 @@ public struct ControlbarConfig {
         }
       }
       if let timeTextColor = timeConfig["textColor"] as? String {
-        self.timeTextColor = UIColor(rgba: timeTextColor)
+        self.timeTextColor = UIColor(hexString: timeTextColor)
       }
     }
     // Time Slider
