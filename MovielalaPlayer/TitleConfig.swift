@@ -9,9 +9,6 @@
 import Foundation
 
 public struct TitleConfig {
-  
-  // MARK: - Title
-  
   var titleTextFont = UIFont.systemFontOfSize(14)
   var titleTextColor = UIColor(rgba: "#ffffff")
   var titleBackgroundColor = UIColor(rgba: "#000000")
@@ -29,7 +26,5 @@ public struct TitleConfig {
         self.titleBackgroundColor = UIColor(rgba: titleBackgroundColor)
       }
     }
-    
   }
-  
 }

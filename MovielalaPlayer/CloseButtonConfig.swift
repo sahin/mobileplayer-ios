@@ -9,9 +9,6 @@
 import Foundation
 
 public struct CloseButtonConfig {
-  
-  // MARK: - Title
-  
   var closeButtonImage = MovielalaPlayerConfig.loadImage(named: "MLCloseButton")
   var closeButtonTintColor = UIColor.whiteColor()
   
@@ -25,5 +22,4 @@ public struct CloseButtonConfig {
       self.closeButtonTintColor = UIColor(rgba: closeButtonTintColor)
     }
   }
-  
 }

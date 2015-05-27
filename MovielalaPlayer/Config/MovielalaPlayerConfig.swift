@@ -53,31 +53,26 @@ public struct MovielalaPlayerConfig {
   }
   
   public init(dictionary: [String: AnyObject]) {
-    
     if let controlbarConfigDictionary = dictionary["controlbar"] as? [String: AnyObject] {
       controlbarConfig = ControlbarConfig(dictionary: controlbarConfigDictionary)
     } else {
       controlbarConfig = ControlbarConfig()
     }
-    
     if let shareConfigDictionary = dictionary["share"] as? [String: AnyObject] {
       shareConfig = ShareButtonConfig(dictionary: shareConfigDictionary)
     } else {
       shareConfig = ShareButtonConfig()
     }
-    
     if let titleConfigDictionary = dictionary["title"] as? [String: AnyObject] {
       titleConfig = TitleConfig(dictionary: titleConfigDictionary)
     } else {
       titleConfig = TitleConfig()
     }
-    
-    if let closeButtonDictionary = dictionary["close_button"] as? [String: AnyObject] {
-      closeConfig = CloseButtonConfig(dictionary: closeButtonDictionary)
+    if let closeButtonConfigDictionary = dictionary["close_button"] as? [String: AnyObject] {
+      closeConfig = CloseButtonConfig(dictionary: closeButtonConfigDictionary)
     } else {
       closeConfig = CloseButtonConfig()
     }
-    
   }
 
   /// Loads an image from the player's resource bundle.
@@ -87,5 +82,4 @@ public struct MovielalaPlayerConfig {
       inBundle: NSBundle(forClass: MovielalaPlayerViewController.self),
       compatibleWithTraitCollection: nil)!
   }
-  
 }
