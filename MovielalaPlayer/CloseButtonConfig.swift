@@ -1,5 +1,5 @@
 //
-//  CloseConfig.swift
+//  CloseButtonConfig.swift
 //  MovielalaPlayer
 //
 //  Created by Toygar Dündaralp on 27/05/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CloseConfig {
+public struct CloseButtonConfig {
   
   // MARK: - Title
   
@@ -18,16 +18,12 @@ public struct CloseConfig {
   public init() {}
   
   public init(dictionary: [String: AnyObject]) {
-    // Close Button
-    if let closeButtonConfig = dictionary["closeButton"] as? [String:AnyObject] {
-      if let closeButtonImage = closeButtonConfig["image"] as? String {
-        self.closeButtonImage = MovielalaPlayerConfig.loadImage(named: closeButtonImage)
-      }
-      if let closeButtonTintColor = closeButtonConfig["tintColor"] as? String {
-        self.closeButtonTintColor = UIColor(rgba: closeButtonTintColor)
-      }
+    if let closeButtonImage = dictionary["image"] as? String {
+      self.closeButtonImage = MovielalaPlayerConfig.loadImage(named: closeButtonImage)
     }
-    
+    if let closeButtonTintColor = dictionary["tintColor"] as? String {
+      self.closeButtonTintColor = UIColor(rgba: closeButtonTintColor)
+    }
   }
   
 }

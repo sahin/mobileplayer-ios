@@ -55,7 +55,7 @@ public struct ControlbarConfig {
     }
     
     // Time Slider
-    // TODO: Add Time Slider Component value 
+    // TODO: Add Time Slider Component value
     
     
   }

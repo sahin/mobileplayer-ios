@@ -12,8 +12,8 @@ public struct MovielalaPlayerConfig {
 
   // MARK: - ControlBar Skin 
   let controlbarConfig: ControlbarConfig
-  let shareConfig: ShareConfig
-  let closeConfig: CloseConfig
+  let shareConfig: ShareButtonConfig
+  let closeConfig: CloseButtonConfig
   let titleConfig: TitleConfig
   
   // MARK: - Theming
@@ -47,37 +47,36 @@ public struct MovielalaPlayerConfig {
 
   public init() {
     controlbarConfig = ControlbarConfig()
-    shareConfig = ShareConfig()
-    closeConfig = CloseConfig()
+    shareConfig = ShareButtonConfig()
+    closeConfig = CloseButtonConfig()
     titleConfig = TitleConfig()
   }
   
   public init(dictionary: [String: AnyObject]) {
     
-    if let controlbarObject = dictionary["controlbar"] as? [String: AnyObject] {
-      controlbarConfig = ControlbarConfig(dictionary: controlbarObject)
+    if let controlbarConfigDictionary = dictionary["controlbar"] as? [String: AnyObject] {
+      controlbarConfig = ControlbarConfig(dictionary: controlbarConfigDictionary)
     } else {
       controlbarConfig = ControlbarConfig()
     }
     
-    if let shareObject = dictionary["share"] as? [String: AnyObject] {
-      shareConfig = ShareConfig(dictionary: shareObject)
+    if let shareConfigDictionary = dictionary["share"] as? [String: AnyObject] {
+      shareConfig = ShareButtonConfig(dictionary: shareConfigDictionary)
     } else {
-      shareConfig = ShareConfig()
+      shareConfig = ShareButtonConfig()
     }
     
-    if let titleObject = dictionary["title"] as? [String: AnyObject] {
-      titleConfig = TitleConfig(dictionary: titleObject)
+    if let titleConfigDictionary = dictionary["title"] as? [String: AnyObject] {
+      titleConfig = TitleConfig(dictionary: titleConfigDictionary)
     } else {
       titleConfig = TitleConfig()
     }
     
-    if let closeObject = dictionary["close"] as? [String: AnyObject] {
-      closeConfig = CloseConfig(dictionary: closeObject)
+    if let closeButtonDictionary = dictionary["close_button"] as? [String: AnyObject] {
+      closeConfig = CloseButtonConfig(dictionary: closeButtonDictionary)
     } else {
-      closeConfig = CloseConfig()
+      closeConfig = CloseButtonConfig()
     }
-    
     
   }
 

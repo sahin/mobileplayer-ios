@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ShareConfig {
+public struct ShareButtonConfig {
 
   // MARK: - Special Callbacks
   var shareCallback: ((playerVC: MovielalaPlayerViewController) -> Void)? = nil
@@ -20,17 +20,11 @@ public struct ShareConfig {
   public init() {}
   
   public init(dictionary: [String: AnyObject]) {
-    
-    // Play Button
-    if let shareButtonConfig = dictionary["share"] as? [String:AnyObject] {
-      if let shareButtonImage = shareButtonConfig["image"] as? String {
+      if let shareButtonImage = dictionary["image"] as? String {
         self.shareButtonImage = MovielalaPlayerConfig.loadImage(named: shareButtonImage)
       }
-      if let shareButtonTintColor = shareButtonConfig["tintColor"] as? String {
+      if let shareButtonTintColor = dictionary["tintColor"] as? String {
         self.shareButtonTintColor = UIColor(rgba: shareButtonTintColor)
       }
-    }
-    
   }
-
 }

@@ -45,7 +45,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     super.init(contentURL: contentURL)
     initializeMovielalaPlayerViewController()
     
-    //var parser:SkinParser = SkinParser(fileName: "SampleSkinFile", extensionName: "json")
+    // var parser:SkinParser = SkinParser(fileName: "SampleSkinFile", extensionName: "json")
     
   }
   

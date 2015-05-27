@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		C308B3BB1B14FAE300CB1515 /* ControlbarConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */; };
 		C308B3C01B150F7600CB1515 /* MovielalaPlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MovielalaPlayerConfig.swift */; };
-		C308B3C11B150F7600CB1515 /* ShareConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BF1B150F7600CB1515 /* ShareConfig.swift */; };
+		C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */; };
 		C3A9AEDE1B048B5600D0C842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */; };
 		C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A9AEE61B048B5600D0C842 /* LaunchScreen.xib */; };
 		C3A9AEF41B048B5700D0C842 /* MovielalaPlayerExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEF31B048B5700D0C842 /* MovielalaPlayerExampleTests.swift */; };
@@ -20,7 +20,7 @@
 		C3A9AF111B04C8BB00D0C842 /* SkinParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AF101B04C8BB00D0C842 /* SkinParser.swift */; };
 		C3E643B01B166D270017DBE6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643AF1B166D270017DBE6 /* UIColor+Extension.swift */; };
 		C3E643B21B16751B0017DBE6 /* TitleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643B11B16751B0017DBE6 /* TitleConfig.swift */; };
-		C3E643B41B16798A0017DBE6 /* CloseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643B31B16798A0017DBE6 /* CloseConfig.swift */; };
+		C3E643B41B16798A0017DBE6 /* CloseButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */; };
 		CE554D551AFE6CCD00DAC7E9 /* MovielalaPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = CE554D541AFE6CCD00DAC7E9 /* MovielalaPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE554D5B1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework */; };
 		CE554D621AFE6CCD00DAC7E9 /* MovielalaPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D611AFE6CCD00DAC7E9 /* MovielalaPlayerTests.swift */; };
@@ -72,7 +72,7 @@
 /* Begin PBXFileReference section */
 		C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ControlbarConfig.swift; path = Config/ControlbarConfig.swift; sourceTree = "<group>"; };
 		C308B3BE1B150F7600CB1515 /* MovielalaPlayerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovielalaPlayerConfig.swift; path = Config/MovielalaPlayerConfig.swift; sourceTree = "<group>"; };
-		C308B3BF1B150F7600CB1515 /* ShareConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareConfig.swift; path = Config/ShareConfig.swift; sourceTree = "<group>"; };
+		C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareButtonConfig.swift; path = Config/ShareButtonConfig.swift; sourceTree = "<group>"; };
 		C3A9AED91B048B5600D0C842 /* MovielalaPlayerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovielalaPlayerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A9AEDC1B048B5600D0C842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 		C3A9AF101B04C8BB00D0C842 /* SkinParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SkinParser.swift; path = Parser/SkinParser.swift; sourceTree = "<group>"; };
 		C3E643AF1B166D270017DBE6 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		C3E643B11B16751B0017DBE6 /* TitleConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleConfig.swift; sourceTree = "<group>"; };
-		C3E643B31B16798A0017DBE6 /* CloseConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseConfig.swift; sourceTree = "<group>"; };
+		C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseButtonConfig.swift; sourceTree = "<group>"; };
 		CE554D4F1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MovielalaPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE554D531AFE6CCD00DAC7E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE554D541AFE6CCD00DAC7E9 /* MovielalaPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovielalaPlayer.h; sourceTree = "<group>"; };
@@ -138,9 +138,9 @@
 			children = (
 				C308B3BE1B150F7600CB1515 /* MovielalaPlayerConfig.swift */,
 				C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */,
-				C308B3BF1B150F7600CB1515 /* ShareConfig.swift */,
+				C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */,
 				C3E643B11B16751B0017DBE6 /* TitleConfig.swift */,
-				C3E643B31B16798A0017DBE6 /* CloseConfig.swift */,
+				C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */,
 			);
 			name = Config;
 			sourceTree = "<group>";
@@ -457,9 +457,9 @@
 				C3E643B01B166D270017DBE6 /* UIColor+Extension.swift in Sources */,
 				CE554D731AFE6EBB00DAC7E9 /* MovielalaPlayerOverlayViewController.swift in Sources */,
 				CE554D741AFE6EBB00DAC7E9 /* MovielalaPlayerViewController.swift in Sources */,
-				C308B3C11B150F7600CB1515 /* ShareConfig.swift in Sources */,
+				C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */,
 				C3A9AF111B04C8BB00D0C842 /* SkinParser.swift in Sources */,
-				C3E643B41B16798A0017DBE6 /* CloseConfig.swift in Sources */,
+				C3E643B41B16798A0017DBE6 /* CloseButtonConfig.swift in Sources */,
 				CE554D721AFE6EBB00DAC7E9 /* MovielalaPlayerControlsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
