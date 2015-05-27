@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MovielalaPlayer
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,12 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
-    var playerVC: PlayerViewController = PlayerViewController()
+    let playerVC = MovielalaPlayerViewController(contentURL: NSURL(string: "http://jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v")!)
+    playerVC.title = "Terminator Genisys Trailer 2015"
+    
     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
     self.window!.rootViewController = playerVC
     self.window!.backgroundColor = UIColor.whiteColor()
     self.window!.makeKeyAndVisible()
-    
     
     return true
   }

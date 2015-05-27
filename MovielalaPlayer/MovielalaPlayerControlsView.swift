@@ -20,6 +20,7 @@ final class MovielalaPlayerControlsView: UIView {
       }
     }
   }
+  
   let headerView = UIView(frame: CGRectZero)
   let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
   let overlayContainerView = UIView(frame: CGRectZero)
@@ -46,7 +47,7 @@ final class MovielalaPlayerControlsView: UIView {
   required init(coder aDecoder: NSCoder) {
     fatalError("storyboards are incompatible with truth and beauty")
   }
-
+  
   private func initializeHeaderViews() {
     headerView.backgroundColor = config.headerBackgroundColor
     addSubview(headerView)
@@ -56,8 +57,8 @@ final class MovielalaPlayerControlsView: UIView {
     titleLabel.font = config.titleFont
     titleLabel.textColor = config.titleColor
     headerView.addSubview(titleLabel)
-    shareButton.setImage(config.shareButtonImage, forState: .Normal)
-    shareButton.tintColor = config.shareButtonTintColor
+    shareButton.setImage(config.shareConfig.shareButtonImage, forState: .Normal)
+    shareButton.tintColor = config.shareConfig.shareButtonTintColor
     headerView.addSubview(shareButton)
     headerBorderView.backgroundColor = config.headerBorderColor
     headerView.addSubview(headerBorderView)
@@ -75,19 +76,19 @@ final class MovielalaPlayerControlsView: UIView {
   private func initializeFooterViews() {
     footerView.backgroundColor = config.footerBackgroundColor
     addSubview(footerView)
-    playButton.setImage(config.playButtonImage, forState: .Normal)
-    playButton.tintColor = config.playButtonTintColor
+    playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
+    playButton.tintColor = config.controlbarConfig.playButtonTintColor
     footerView.addSubview(playButton)
     playbackTimeLabel.text = "-:-"
     playbackTimeLabel.textAlignment = .Center
-    playbackTimeLabel.font = config.timeTextFont
-    playbackTimeLabel.textColor = config.timeTextColor
+    playbackTimeLabel.font = config.controlbarConfig.timeTextFont
+    playbackTimeLabel.textColor = config.controlbarConfig.timeTextColor
     footerView.addSubview(playbackTimeLabel)
     footerView.addSubview(timeSlider)
     durationLabel.text = "-:-"
     durationLabel.textAlignment = .Center
-    durationLabel.font = config.timeTextFont
-    durationLabel.textColor = config.timeTextColor
+    durationLabel.font = config.controlbarConfig.timeTextFont
+    durationLabel.textColor = config.controlbarConfig.timeTextColor
     footerView.addSubview(durationLabel)
     footerBorderView.backgroundColor = config.footerBorderColor
     footerView.addSubview(footerBorderView)

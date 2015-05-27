@@ -13,7 +13,8 @@ private var globalConfiguration = MovielalaPlayerConfig()
 
 public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   public class var globalConfig: MovielalaPlayerConfig { return globalConfiguration }
-  public var config = MovielalaPlayerConfig()
+  public var config: MovielalaPlayerConfig
+  
   // controller title |> player title
   public override var title: String? {
     didSet {
@@ -32,18 +33,34 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
 
   // MARK: - Initialization
 
-  public init(contentURL: NSURL, config: MovielalaPlayerConfig) {
+  struct controlbar {
+    let image: String?
+    let tintColor: UIColor?
+    
+  }
+  
+  public init(contentURL: NSURL, config: MovielalaPlayerConfig = globalConfiguration) {
     self.config = config
     controlsView = MovielalaPlayerControlsView(config: config)
     super.init(contentURL: contentURL)
     initializeMovielalaPlayerViewController()
+    
+    //var parser:SkinParser = SkinParser(fileName: "SampleSkinFile", extensionName: "json")
+    
   }
-
-  public override init(contentURL: NSURL) {
+  
+  public init(contentURL: NSURL, configFileURL: NSURL) {
+    // TODO: Parse file at configFileURL, generate a Dictionary.
+    
+    config = SkinParser.parseConfigFromURL(NSURL(fileURLWithPath: "SampleSkinFile.json")!)!
+    
+    //config = MovielalaPlayerConfig(dictionary: configDictionary)
+    config = globalConfiguration
     controlsView = MovielalaPlayerControlsView(config: config)
     super.init(contentURL: contentURL)
     initializeMovielalaPlayerViewController()
   }
+  
 
   public required init(coder aDecoder: NSCoder) {
     fatalError("storyboards are incompatible with truth and beauty")
@@ -125,7 +142,6 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   }
 
   // MARK: - Overridden Methods
-
   public override func prefersStatusBarHidden() -> Bool {
     return true
   }
@@ -171,7 +187,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     updatePlaybackTimeInterface()
     if state == .Playing || state == .Interrupted {
       doFirstPlaySetupIfNeeded()
-      controlsView.playButton.setImage(config.pauseButtonImage, forState: .Normal)
+      controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage, forState: .Normal)
       if !controlsView.controlsHidden {
         resetHideControlsTimer()
       }
@@ -179,7 +195,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
         dismissMovielalaPlayerOverlay(pauseViewController)
       }
     } else {
-      controlsView.playButton.setImage(config.playButtonImage, forState: .Normal)
+      controlsView.playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
       hideControlsTimer.invalidate()
       controlsView.controlsHidden = false
       if let pauseViewController = config.pauseViewController {
@@ -253,7 +269,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
 
   public final func shareContent() {
     // TODO: Smarter sharing.
-    if let shareCallback = config.shareCallback {
+    if let shareCallback = config.shareConfig.shareCallback {
       moviePlayer.pause()
       shareCallback(playerVC: self)
     }
@@ -335,3 +351,4 @@ extension MovielalaPlayerViewController: MovielalaPlayerOverlayViewControllerDel
     }
   }
 }
+
