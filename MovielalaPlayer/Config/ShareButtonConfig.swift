@@ -20,7 +20,6 @@ public struct ShareConfig {
   public init() {}
   
   public init(dictionary: [String: AnyObject]) {
-    
     // Play Button
     if let shareButtonConfig = dictionary["share"] as? [String:AnyObject] {
       if let shareButtonImage = shareButtonConfig["image"] as? String {
@@ -30,7 +29,5 @@ public struct ShareConfig {
         self.shareButtonTintColor = UIColor(rgba: shareButtonTintColor)
       }
     }
-    
   }
-
 }
