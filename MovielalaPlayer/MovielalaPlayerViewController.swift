@@ -332,7 +332,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     var playerEvent:MPMovieAccessLogEvent = MPMovieAccessLogEvent()
     var movieAccessLog:MPMovieAccessLog = moviePlayer.accessLog
     var arrEvents = movieAccessLog.events
-    for (var i=0;i<arrEvents.count;i++) {
+    for i in 0..<arrEvents.count {
       playerEvent = arrEvents[i] as! MPMovieAccessLogEvent
     }
     return playerEvent.segmentsDownloadedDuration
