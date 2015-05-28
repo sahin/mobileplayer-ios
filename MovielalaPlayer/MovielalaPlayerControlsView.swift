@@ -103,20 +103,21 @@ final class MovielalaPlayerControlsView: UIView {
     videoPercentRaito = width/total*100
     var screenPercent:CGFloat = videoPercentRaito * bounds.size.width / 100
     screenPercentRaito = screenPercent
-    //TODO : Remove this line -> 107
-    //println(NSString(format:"yuzde %0.2f",videoPercentRaito))
     layoutSubviews()
   }
   
   override func layoutSubviews() {
     let size = bounds.size
-    
-    bufferView.frame = CGRect(
-      x: 0.0,
-      y: controlsHidden ? -config.headerHeight : 40,
-      width: screenPercentRaito,
-      height: 2.0)
-    
+    if self.screenPercentRaito.isNaN {
+      screenPercentRaito = 0.0
+    }
+    UIView.animateWithDuration(0.2, animations: { () -> Void in
+      self.bufferView.frame = CGRect(
+        x: 0.0,
+        y: self.controlsHidden ? -self.config.headerHeight : 40,
+        width: self.screenPercentRaito,
+        height: 2.0)
+    })
     headerView.frame = CGRect(
       x: 0,
       y: controlsHidden ? -config.headerHeight : 0,

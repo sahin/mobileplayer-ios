@@ -44,17 +44,10 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     controlsView = MovielalaPlayerControlsView(config: config)
     super.init(contentURL: contentURL)
     initializeMovielalaPlayerViewController()
-    
-    // var parser:SkinParser = SkinParser(fileName: "SampleSkinFile", extensionName: "json")
-    
   }
   
   public init(contentURL: NSURL, configFileURL: NSURL) {
-    // TODO: Parse file at configFileURL, generate a Dictionary.
-    
     config = SkinParser.parseConfigFromURL(NSURL(fileURLWithPath: "SampleSkinFile.json")!)!
-    
-    //config = MovielalaPlayerConfig(dictionary: configDictionary)
     config = globalConfiguration
     controlsView = MovielalaPlayerControlsView(config: config)
     super.init(contentURL: contentURL)
@@ -210,7 +203,8 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   final func hideControlsIfPlaying() {
     let state = moviePlayer.playbackState
     if state == .Playing || state == .Interrupted {
-      controlsView.controlsHidden = true
+      //TODO: Remember open controlsHidden = true
+      //controlsView.controlsHidden = true
     }
   }
 
@@ -330,10 +324,11 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   
   final func progressBarBufferPercentWithMoviePlayer(player:MPMoviePlayerController) -> NSTimeInterval {
     var playerEvent:MPMovieAccessLogEvent = MPMovieAccessLogEvent()
-    var movieAccessLog:MPMovieAccessLog = moviePlayer.accessLog
+    if var movieAccessLog:MPMovieAccessLog = moviePlayer.accessLog {
     var arrEvents = movieAccessLog.events
     for i in 0..<arrEvents.count {
       playerEvent = arrEvents[i] as! MPMovieAccessLogEvent
+      }
     }
     return playerEvent.segmentsDownloadedDuration
   }
