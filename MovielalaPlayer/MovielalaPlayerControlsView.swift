@@ -21,6 +21,9 @@ final class MovielalaPlayerControlsView: UIView {
     }
   }
   
+  var videoPercentRaito:CGFloat = 0.0
+  var screenPercentRaito:CGFloat = 0.0
+  let bufferView = UIView(frame: CGRectZero)
   let headerView = UIView(frame: CGRectZero)
   let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
   let overlayContainerView = UIView(frame: CGRectZero)
@@ -49,6 +52,8 @@ final class MovielalaPlayerControlsView: UIView {
   }
   
   private func initializeHeaderViews() {
+    bufferView.backgroundColor = UIColor.redColor()
+    addSubview(bufferView)
     headerView.backgroundColor = config.headerBackgroundColor
     addSubview(headerView)
     closeButton.setImage(config.closeButtonImage, forState: .Normal)
@@ -94,8 +99,24 @@ final class MovielalaPlayerControlsView: UIView {
     footerView.addSubview(footerBorderView)
   }
 
+  func refreshBufferPercentRaito(bufferRaito width:CGFloat,totalDuration total:CGFloat) {
+    videoPercentRaito = width/total*100
+    var screenPercent:CGFloat = videoPercentRaito * bounds.size.width / 100
+    screenPercentRaito = screenPercent
+    //TODO : Remove this line -> 107
+    //println(NSString(format:"yuzde %0.2f",videoPercentRaito))
+    layoutSubviews()
+  }
+  
   override func layoutSubviews() {
     let size = bounds.size
+    
+    bufferView.frame = CGRect(
+      x: 0.0,
+      y: controlsHidden ? -config.headerHeight : 40,
+      width: screenPercentRaito,
+      height: 2.0)
+    
     headerView.frame = CGRect(
       x: 0,
       y: controlsHidden ? -config.headerHeight : 0,
