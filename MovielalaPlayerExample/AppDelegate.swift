@@ -18,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let playerVC = MovielalaPlayerViewController(contentURL: NSURL(string: "http://jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v")!)
     playerVC.title = "Terminator Genisys Trailer 2015"
-    
     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
     self.window!.rootViewController = playerVC
     self.window!.backgroundColor = UIColor.whiteColor()
