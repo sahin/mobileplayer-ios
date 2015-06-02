@@ -16,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
+    // Video Test URLs
+    // http://ia700409.us.archive.org/15/items/END.CIV-DVDrip/ENDCIV.m4v // Long Video
+    // http://jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v // Short Video
+    
     let playerVC = MovielalaPlayerViewController(contentURL: NSURL(string: "http://jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v")!)
     playerVC.title = "Terminator Genisys Trailer 2015"
     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)

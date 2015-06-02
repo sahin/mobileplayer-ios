@@ -31,8 +31,6 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   private var playbackTimeInterfaceUpdateTimer = NSTimer()
   private var hideControlsTimer = NSTimer()
   
-  private var dragStartPositionRelativeToCenter : CGPoint?
-  
   // MARK: - Initialization
   
   struct controlbar {
@@ -45,13 +43,6 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     controlsView = MovielalaPlayerControlsView(config: config)
     super.init(contentURL: contentURL)
     initializeMovielalaPlayerViewController()
-    
-    controlsView.customTimeSliderThumbView.addGestureRecognizer(
-      UIPanGestureRecognizer(
-        target: self,
-        action: "handlePan:"
-      )
-    )
   }
   
   public init(contentURL: NSURL, configFileURL: NSURL) {
@@ -60,26 +51,6 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     controlsView = MovielalaPlayerControlsView(config: config)
     super.init(contentURL: contentURL)
     initializeMovielalaPlayerViewController()
-  }
-  
-  func handlePan(recognizer: UIPanGestureRecognizer!) {
-    
-    moviePlayer.pause()
-    
-    let locationInView = recognizer.locationInView(self.view)
-    let sliderX:Int = Int(self.controlsView.customTimeSliderThumbView.center.x)
-    let railX:Int = Int(self.controlsView.customTimeSliderRailView.center.x)
-    
-    if recognizer.state == .Began {
-      dragStartPositionRelativeToCenter = CGPoint(x: locationInView.x, y: 20.0)
-      return
-    }
-    
-    if self.dragStartPositionRelativeToCenter!.x < 0 {
-      println("\(locationInView.x)")
-    }
-    
-    self.controlsView.customTimeSliderThumbView.center = CGPoint(x: locationInView.x - self.dragStartPositionRelativeToCenter!.x, y: 20.0)
   }
   
   public required init(coder aDecoder: NSCoder) {
@@ -102,6 +73,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       name: MPMoviePlayerPlaybackStateDidChangeNotification,
       object: moviePlayer)
     // Override playback completion handling.
+    
     notificationCenter.removeObserver(
       self,
       name: MPMoviePlayerPlaybackDidFinishNotification,
@@ -111,6 +83,36 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       selector: "showPostrollOrDismissAtVideoEnd",
       name: MPMoviePlayerPlaybackDidFinishNotification,
       object: moviePlayer)
+    
+    notificationCenter.removeObserver(
+      self,
+      name: "playVideoPlayer",
+      object: nil)
+    notificationCenter.addObserver(
+      self,
+      selector: "playVideoPlayer",
+      name: "playVideoPlayer",
+      object: nil)
+    
+    notificationCenter.removeObserver(
+      self,
+      name: "pauseVideoPlayer",
+      object: nil)
+    notificationCenter.addObserver(
+      self,
+      selector: "pauseVideoPlayer",
+      name: "pauseVideoPlayer",
+      object: nil)
+    
+    notificationCenter.removeObserver(
+      self,
+      name: "goToCustomTimeSliderWithTime",
+      object: nil)
+    notificationCenter.addObserver(
+      self,
+      selector: "goToCustomTimeSliderWithTime:",
+      name: "goToCustomTimeSliderWithTime",
+      object: nil)
   }
   
   private func initializeControlsView() {
@@ -169,6 +171,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   public override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(controlsView)
+    
     NSTimer.scheduledTimerWithTimeInterval(
       0.1,
       target: self,
@@ -205,6 +208,14 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     } else {
       moviePlayer.play()
     }
+  }
+  
+  func pauseVideoPlayer() {
+    moviePlayer.pause()
+  }
+  
+  func playVideoPlayer() {
+    moviePlayer.play()
   }
   
   final func handleMoviePlayerPlaybackStateDidChangeNotification() {
@@ -258,7 +269,16 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   }
   
   final func goToTimeSliderTime() {
+    var timeVal = controlsView.timeSlider.value
     moviePlayer.currentPlaybackTime = NSTimeInterval(controlsView.timeSlider.value)
+  }
+  
+  final func goToCustomTimeSliderWithTime(notification:NSNotification) {
+    let userInfo:Dictionary<String,NSTimeInterval!> = notification.userInfo as! Dictionary<String,NSTimeInterval!>
+    let messageString:NSTimeInterval = userInfo["time"]!
+    var playbackTime:NSTimeInterval = messageString
+    moviePlayer.currentPlaybackTime = playbackTime
+    moviePlayer.play()
   }
   
   final func timeShiftDidEnd() {
@@ -284,6 +304,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     var videoRatio:CGFloat = CGFloat(moviePlayer.currentPlaybackTime)
     controlsView.refreshBufferPercentRatio(bufferRatio: bufferRatio, totalDuration: totalDuration)
     controlsView.refreshVideoProgressPercentRaito(videoRaito: videoRatio, totalDuration: totalDuration)
+    controlsView.refreshCustomTimeSliderPercentRatio()
   }
   
   public final func updatePlaybackTimeInterface() {
@@ -327,7 +348,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       controlsView.activityIndicatorView.stopAnimating()
       updateTimeLabel(controlsView.durationLabel, time: moviePlayer.duration)
       playbackTimeInterfaceUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(
-        1,
+        0.0,
         target: self,
         selector: "updatePlaybackTimeInterface",
         userInfo: nil,
