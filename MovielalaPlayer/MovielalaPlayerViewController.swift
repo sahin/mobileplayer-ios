@@ -46,8 +46,8 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   }
   
   public init(contentURL: NSURL, configFileURL: NSURL) {
-    config = SkinParser.parseConfigFromURL(NSURL(fileURLWithPath: "SampleSkinFile.json")!)!
-    config = globalConfiguration
+    let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
+    self.config = config
     controlsView = MovielalaPlayerControlsView(config: config)
     super.init(contentURL: contentURL)
     initializeMovielalaPlayerViewController()
@@ -128,15 +128,15 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       self,
       action: "togglePlay",
       forControlEvents: .TouchUpInside)
-    controlsView.timeSlider.addTarget(
+    controlsView.customTimeSliderView.timeSlider.addTarget(
       self,
       action: "timeShiftDidBegin",
       forControlEvents: .TouchDown)
-    controlsView.timeSlider.addTarget(
+    controlsView.customTimeSliderView.timeSlider.addTarget(
       self,
       action: "goToTimeSliderTime",
       forControlEvents: .ValueChanged)
-    controlsView.timeSlider.addTarget(
+    controlsView.customTimeSliderView.timeSlider.addTarget(
       self,
       action: "timeShiftDidEnd",
       forControlEvents: .TouchUpInside | .TouchUpOutside | .TouchCancel)
@@ -269,8 +269,8 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   }
   
   final func goToTimeSliderTime() {
-    var timeVal = controlsView.timeSlider.value
-    moviePlayer.currentPlaybackTime = NSTimeInterval(controlsView.timeSlider.value)
+    var timeVal = controlsView.customTimeSliderView.getValue()
+    moviePlayer.currentPlaybackTime = NSTimeInterval(controlsView.customTimeSliderView.getValue())
   }
   
   final func goToCustomTimeSliderWithTime(notification:NSNotification) {
@@ -302,9 +302,9 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     var bufferRatio:CGFloat = CGFloat(d)
     var totalDuration:CGFloat = CGFloat(moviePlayer.duration)
     var videoRatio:CGFloat = CGFloat(moviePlayer.currentPlaybackTime)
-    controlsView.refreshBufferPercentRatio(bufferRatio: bufferRatio, totalDuration: totalDuration)
-    controlsView.refreshVideoProgressPercentRaito(videoRaito: videoRatio, totalDuration: totalDuration)
-    controlsView.refreshCustomTimeSliderPercentRatio()
+    controlsView.customTimeSliderView.refreshBufferPercentRatio(bufferRatio: bufferRatio, totalDuration: totalDuration)
+    controlsView.customTimeSliderView.refreshVideoProgressPercentRaito(videoRaito: videoRatio, totalDuration: totalDuration)
+    controlsView.customTimeSliderView.refreshCustomTimeSliderPercentRatio()
   }
   
   public final func updatePlaybackTimeInterface() {
@@ -361,8 +361,8 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   }
   
   private func updateTimeSlider() {
-    controlsView.timeSlider.maximumValue = Float(moviePlayer.duration)
-    controlsView.timeSlider.value = Float(moviePlayer.currentPlaybackTime)
+    controlsView.customTimeSliderView.setMaximumValue(Float(moviePlayer.duration))
+    controlsView.customTimeSliderView.setValue(Float(moviePlayer.currentPlaybackTime))
   }
   
   private func updateTimeLabel(label: UILabel, time: NSTimeInterval) {
@@ -388,8 +388,6 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
         for i in 0..<arrEvents.count {
           playerEvent = arrEvents[i] as! MPMovieAccessLogEvent
         }
-      }else{
-        println("video cannot play")
       }
     }
     return playerEvent.segmentsDownloadedDuration

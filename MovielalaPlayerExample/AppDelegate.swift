@@ -20,7 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // http://ia700409.us.archive.org/15/items/END.CIV-DVDrip/ENDCIV.m4v // Long Video
     // http://jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v // Short Video
     
-    let playerVC = MovielalaPlayerViewController(contentURL: NSURL(string: "http://player.vimeo.com/external/129470313.m3u8?p=high,standard,mobile&s=87cf536853be9d543e30f9e227285906")!)
+    //let playerVC = MovielalaPlayerViewController(contentURL: NSURL(string: "http://player.vimeo.com/external/129470313.m3u8?p=high,standard,mobile&s=87cf536853be9d543e30f9e227285906")!)
+    
+    let playerVC = MovielalaPlayerViewController(
+      contentURL: NSURL(string: "http://player.vimeo.com/external/129470313.m3u8?p=high,standard,mobile&s=87cf536853be9d543e30f9e227285906")!,
+      configFileURL: NSURL(string: "SampleSkinFile")!
+    )
     playerVC.title = "Jurrasic World"
     self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
     self.window!.rootViewController = playerVC
