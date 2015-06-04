@@ -246,8 +246,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   final func hideControlsIfPlaying() {
     let state = moviePlayer.playbackState
     if state == .Playing || state == .Interrupted {
-      //TODO: Remember open controlsHidden = true
-      //controlsView.controlsHidden = true
+      controlsView.controlsHidden = true
     }
   }
   
