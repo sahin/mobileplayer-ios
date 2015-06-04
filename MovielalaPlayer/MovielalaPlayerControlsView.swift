@@ -21,13 +21,15 @@ final class MovielalaPlayerControlsView: UIView {
     }
   }
   
+  var userInteraction:Bool = false
+  var userInteractionLocation:CGFloat = 0.0
   var customTimeSliderView = UIView(frame: CGRectZero)
   var customTimeSliderRailView = UIView(frame: CGRectZero)// Rail Area
   var customTimeSliderBufferView = UIView(frame: CGRectZero)
   var customTimeSliderProgressView = UIView(frame: CGRectZero)
   var customTimeSliderThumbView = UIView(frame: CGRectZero)
   var videoPercentRatio:CGFloat = 0.0
-  var screenPercentRatio:CGFloat = 0.0
+  var bufferPercentRatio:CGFloat = 0.0
   var customTimeSliderProgressValue:CGFloat = 0.0
   var customTimeSliderThumbValue:CGFloat = 0.0
   let headerView = UIView(frame: CGRectZero)
@@ -51,14 +53,12 @@ final class MovielalaPlayerControlsView: UIView {
     initializeHeaderViews()
     initializeOverlayViews()
     initializeFooterViews()
-    
     customTimeSliderThumbView.addGestureRecognizer(
       UIPanGestureRecognizer(
         target: self,
-        action: "didTapCustomTimeSliderThumbView:"
+        action: "didTapSliderAction:"
       )
     )
-    
   }
   
   required init(coder aDecoder: NSCoder) {
@@ -124,21 +124,27 @@ final class MovielalaPlayerControlsView: UIView {
     
   }
   
-  func didTapCustomTimeSliderThumbView(recognizer: UIPanGestureRecognizer!) {
-    NSNotificationCenter.defaultCenter().postNotificationName("pauseVideoPlayer", object: nil)
+  func didTapSliderAction(recognizer: UIPanGestureRecognizer!) {
+    userInteraction = true
     let locationInView = recognizer.locationInView(customTimeSliderRailView)
     let thumbViewWidth = customTimeSliderThumbView.frame.size.width
     let railViewWidth = customTimeSliderRailView.frame.size.width
-    if recognizer.state == UIGestureRecognizerState.Changed {
+    if recognizer.state == .Began {
+      NSNotificationCenter.defaultCenter().postNotificationName("pauseVideoPlayer", object: nil)
+    }
+    if recognizer.state == .Changed {
       if locationInView.x < 0 {
-        customTimeSliderThumbValue = 0.0
-      } else if locationInView.x >= railViewWidth {
-        customTimeSliderThumbValue = railViewWidth - thumbViewWidth
+        customTimeSliderThumbValue = -thumbViewWidth/2
+      } else if locationInView.x + thumbViewWidth/2 >= railViewWidth {
+        customTimeSliderThumbValue = railViewWidth - thumbViewWidth/2
       } else {
         customTimeSliderThumbValue = locationInView.x
+        customTimeSliderProgressValue = locationInView.x + thumbViewWidth/2
+        userInteractionLocation = locationInView.x
+        bufferPercentRatio = locationInView.x
       }
     }
-    if recognizer.state == UIGestureRecognizerState.Ended {
+    if recognizer.state == .Ended {
       var currentPercent = CGFloat(locationInView.x / railViewWidth * 100)
       var videoPercent = CGFloat(currentPercent * CGFloat(timeSlider.maximumValue)) / 100
       var time:NSTimeInterval = NSTimeInterval(Float(videoPercent))
@@ -147,64 +153,68 @@ final class MovielalaPlayerControlsView: UIView {
         object: self,
         userInfo: ["time":time]
       )
+      userInteraction = false
     }
   }
   
   // Buffer Percent
   func refreshBufferPercentRatio(bufferRatio width:CGFloat,totalDuration total:CGFloat) {
     if width.isNaN || total.isNaN {
-      return screenPercentRatio = 0.0
+      return bufferPercentRatio = 0.0
     }
     videoPercentRatio = CGFloat(width / total * 100)
-    var screenPercent:CGFloat = videoPercentRatio * customTimeSliderView.bounds.size.width / 100
-    screenPercentRatio = screenPercent
+    var bufferPercent:CGFloat = videoPercentRatio * customTimeSliderView.bounds.size.width / 100
+    bufferPercentRatio = bufferPercent
     layoutSubviews()
   }
   
   // Video Percent
   func refreshVideoProgressPercentRaito(videoRaito ratio:CGFloat, totalDuration total:CGFloat) {
-    if ratio.isNaN || total.isNaN || (ratio / total * 100).isNaN {
+    if !userInteraction {
+      if ratio.isNaN || total.isNaN || (ratio / total * 100).isNaN {
       customTimeSliderProgressValue = 0.0
-    } else {
-      customTimeSliderProgressValue = CGFloat(ratio / total * 100)
+      } else {
+        customTimeSliderProgressValue = CGFloat(ratio / total * 100)
+      }
+      customTimeSliderProgressValue = customTimeSliderProgressValue * customTimeSliderView.bounds.size.width / 100
+    }else{
+      customTimeSliderProgressValue = userInteractionLocation
     }
-    var videoPercent:CGFloat = customTimeSliderProgressValue * customTimeSliderView.bounds.size.width / 100
-    //TODO: Bug -> Line 172
-    //customTimeSliderThumbValue = videoPercent - self.customTimeSliderThumbView.frame.width/2
-    customTimeSliderProgressValue = videoPercent - self.customTimeSliderThumbView.frame.width/2
     layoutSubviews()
+    
   }
   
   func refreshCustomTimeSliderPercentRatio() {
-    customTimeSliderThumbValue = customTimeSliderProgressView.frame.size.width
+    if userInteraction {
+      customTimeSliderThumbValue = userInteractionLocation
+    } else {
+      customTimeSliderThumbValue = customTimeSliderProgressView.frame.size.width - customTimeSliderThumbView.frame.size.width/2
+    }
   }
   
   override func layoutSubviews() {
     let size = bounds.size
-    if self.screenPercentRatio.isNaN {
-      screenPercentRatio = 0.0
+    if self.bufferPercentRatio.isNaN {
+      bufferPercentRatio = 0.0
     }
-    
     // Buffer View
-    UIView.animateWithDuration(0.0, animations: {
+    UIView.animateWithDuration(0.1, animations: {
       self.customTimeSliderBufferView.frame = CGRect(
         x: 0.0,
         y: 18.0,
-        width: self.screenPercentRatio,
+        width: self.bufferPercentRatio,
         height: 4.0)
       //self.customTimeSliderBufferView.layer.cornerRadius = 5.0
       //self.customTimeSliderBufferView.layer.masksToBounds = true
     })
-    
     // Rail View
     self.customTimeSliderRailView.frame = CGRect(
       x: 0.0,
       y: 18.0,
       width: customTimeSliderView.frame.width - 2.0,
       height: 4.0)
-     //self.customTimeSliderRailView.layer.cornerRadius = 5.0
-     //self.customTimeSliderRailView.layer.masksToBounds = true
-    
+    //self.customTimeSliderRailView.layer.cornerRadius = 5.0
+    //self.customTimeSliderRailView.layer.masksToBounds = true
     // Progress View
     UIView.animateWithDuration(0.0, animations: {
       self.customTimeSliderProgressView.frame = CGRect(
@@ -215,20 +225,22 @@ final class MovielalaPlayerControlsView: UIView {
       //self.customTimeSliderProgressView.layer.cornerRadius = 5.0
       //self.customTimeSliderProgressView.layer.masksToBounds = true
     })
-    
     // Thumb View
-    UIView.animateWithDuration(0.0, animations: {
-      self.customTimeSliderThumbView.frame = CGRect(
-        x: self.customTimeSliderThumbValue,
-        y: 8.0,
-        width: 22.0,
-        height: 22.0)
-      self.customTimeSliderThumbView.layer.cornerRadius = 11.0
-      self.customTimeSliderThumbView.layer.masksToBounds = true
-      self.customTimeSliderThumbView.layer.borderColor = UIColor.grayColor().CGColor
-      self.customTimeSliderThumbView.layer.borderWidth = 1.0
-    })
-    
+    UIView.animateWithDuration(
+      0.0,
+      delay: 0.0,
+      options: .AllowUserInteraction,
+      animations: { () -> Void in
+        self.customTimeSliderThumbView.frame = CGRect(
+          x: self.customTimeSliderThumbValue,
+          y: 8.0,
+          width: 22.0,
+          height: 22.0)
+        self.customTimeSliderThumbView.layer.cornerRadius = 11.0
+        self.customTimeSliderThumbView.layer.masksToBounds = true
+        self.customTimeSliderThumbView.layer.borderColor = UIColor.grayColor().CGColor
+        self.customTimeSliderThumbView.layer.borderWidth = 1.0
+      }) { (Bool) -> Void in}
     headerView.frame = CGRect(
       x: 0,
       y: controlsHidden ? -config.headerHeight : 0,
@@ -283,7 +295,6 @@ final class MovielalaPlayerControlsView: UIView {
   
   private func layoutFooterSubviews() {
     let size = footerView.bounds.size
-    
     customTimeSliderView.sizeToFit()
     let customTimeSliderSize = CGSize(
       width: size.width - playButton.bounds.width - playbackTimeLabel.bounds.width - durationLabel.bounds.width - 20,
@@ -291,7 +302,6 @@ final class MovielalaPlayerControlsView: UIView {
     customTimeSliderView.frame = CGRect(
       origin: CGPoint(x: playButton.bounds.width + playbackTimeLabel.bounds.width + 10, y: 0),
       size: customTimeSliderSize)
-    
     playButton.sizeToFit()
     let playButtonSize = CGSize(
       width: config.footerHeight * playButton.bounds.aspectRatio + 16,

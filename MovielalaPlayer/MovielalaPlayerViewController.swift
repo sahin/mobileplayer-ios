@@ -173,7 +173,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     view.addSubview(controlsView)
     
     NSTimer.scheduledTimerWithTimeInterval(
-      0.1,
+      0.0,
       target: self,
       selector: "updateBufferInterface",
       userInfo: nil, repeats: true)
@@ -384,8 +384,12 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     var playerEvent:MPMovieAccessLogEvent = MPMovieAccessLogEvent()
     if var movieAccessLog:MPMovieAccessLog = moviePlayer.accessLog {
       var arrEvents = movieAccessLog.events
-      for i in 0..<arrEvents.count {
-        playerEvent = arrEvents[i] as! MPMovieAccessLogEvent
+      if arrEvents != nil {
+        for i in 0..<arrEvents.count {
+          playerEvent = arrEvents[i] as! MPMovieAccessLogEvent
+        }
+      }else{
+        println("video cannot play")
       }
     }
     return playerEvent.segmentsDownloadedDuration
