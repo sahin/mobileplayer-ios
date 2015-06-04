@@ -25,16 +25,16 @@
   },
   "share": {
     "image": "MLShareButton.png",
-    "tintColor": "#000000"
+    "tintColor": "#ffff00"
   },
   "title": {
     "titleTextFont": "HelveticaNeue",
     "titleTextSize": 14,
-    "titleTextColor": "#ffffff",
+    "titleTextColor": "#f0ff0f",
     "titleBackgroundColor": "#000000"
   },
   "closeButton": {
     "image": "MLCloseButton.png",
-    "tintColor": "#000000"
+    "tintColor": "#ff0000"
   }
 }

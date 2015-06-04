@@ -51,10 +51,10 @@ final class MovielalaPlayerControlsView: UIView {
   private func initializeHeaderViews() {
     headerView.backgroundColor = config.headerBackgroundColor
     addSubview(headerView)
-    closeButton.setImage(config.closeButtonImage, forState: .Normal)
-    closeButton.tintColor = config.closeButtonTintColor
+    closeButton.setImage(config.closeConfig.closeButtonImage, forState: .Normal)
+    closeButton.tintColor = config.closeConfig.closeButtonTintColor
     headerView.addSubview(closeButton)
-    titleLabel.font = config.titleFont
+    titleLabel.font = config.titleConfig.titleTextFont
     titleLabel.textColor = config.titleColor
     headerView.addSubview(titleLabel)
     shareButton.setImage(config.shareConfig.shareButtonImage, forState: .Normal)

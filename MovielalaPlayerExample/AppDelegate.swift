@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var skinFile:NSURL = NSURL(
       fileURLWithPath: NSBundle.mainBundle().pathForResource(
         "SampleSkinFile",
-        ofType: "json")!
+        ofType: "json"
+        )!
       )!
     let playerVC = MovielalaPlayerViewController(
       contentURL: NSURL(string: "http://player.vimeo.com/external/129470313.m3u8?p=high,standard,mobile&s=87cf536853be9d543e30f9e227285906")!,

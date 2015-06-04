@@ -9,9 +9,9 @@
 import Foundation
 
 public struct ControlbarConfig {
-  var playButtonImage = MovielalaPlayerConfig.loadImage(named: "MLPlayButton")
+  var playButtonImage = MovielalaPlayerConfig.loadImage(named: "MLPlayButton.png")
   var playButtonTintColor = UIColor.whiteColor()
-  var pauseButtonImage = MovielalaPlayerConfig.loadImage(named: "MLPauseButton")
+  var pauseButtonImage = MovielalaPlayerConfig.loadImage(named: "MLPauseButton.png")
   var pauseButtonTintColor = UIColor.whiteColor()
   var timeTextFont = UIFont.systemFontOfSize(14)
   var timeTextColor = UIColor.whiteColor()
