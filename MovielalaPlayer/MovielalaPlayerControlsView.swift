@@ -14,13 +14,14 @@ final class MovielalaPlayerControlsView: UIView {
     // Hide/show controls animated.
     didSet(oldValue) {
       if oldValue != controlsHidden {
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animateWithDuration(0.0, animations: {
           self.layoutSubviews()
         })
       }
     }
   }
   
+  var customTimeSliderView = CustomTimeSliderView(frame: CGRectZero)
   let headerView = UIView(frame: CGRectZero)
   let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
   let overlayContainerView = UIView(frame: CGRectZero)
@@ -31,11 +32,10 @@ final class MovielalaPlayerControlsView: UIView {
   let headerBorderView = UIView(frame: CGRectZero)
   let playButton = UIButton(frame: CGRectZero)
   let playbackTimeLabel = UILabel(frame: CGRectZero)
-  let timeSlider = UISlider(frame: CGRectZero)
   let durationLabel = UILabel(frame: CGRectZero)
   let footerBorderView = UIView(frame: CGRectZero)
   private let config: MovielalaPlayerConfig
-
+  
   init(config: MovielalaPlayerConfig) {
     self.config = config
     super.init(frame: CGRectZero)
@@ -43,7 +43,7 @@ final class MovielalaPlayerControlsView: UIView {
     initializeOverlayViews()
     initializeFooterViews()
   }
-
+  
   required init(coder aDecoder: NSCoder) {
     fatalError("storyboards are incompatible with truth and beauty")
   }
@@ -51,10 +51,10 @@ final class MovielalaPlayerControlsView: UIView {
   private func initializeHeaderViews() {
     headerView.backgroundColor = config.headerBackgroundColor
     addSubview(headerView)
-    closeButton.setImage(config.closeButtonImage, forState: .Normal)
-    closeButton.tintColor = config.closeButtonTintColor
+    closeButton.setImage(config.closeConfig.closeButtonImage, forState: .Normal)
+    closeButton.tintColor = config.closeConfig.closeButtonTintColor
     headerView.addSubview(closeButton)
-    titleLabel.font = config.titleFont
+    titleLabel.font = config.titleConfig.titleTextFont
     titleLabel.textColor = config.titleColor
     headerView.addSubview(titleLabel)
     shareButton.setImage(config.shareConfig.shareButtonImage, forState: .Normal)
@@ -63,7 +63,7 @@ final class MovielalaPlayerControlsView: UIView {
     headerBorderView.backgroundColor = config.headerBorderColor
     headerView.addSubview(headerBorderView)
   }
-
+  
   private func initializeOverlayViews() {
     activityIndicatorView.hidesWhenStopped = true
     addSubview(activityIndicatorView)
@@ -72,7 +72,7 @@ final class MovielalaPlayerControlsView: UIView {
     overlayContainerView.setTranslatesAutoresizingMaskIntoConstraints(false)
     addSubview(overlayContainerView)
   }
-
+  
   private func initializeFooterViews() {
     footerView.backgroundColor = config.footerBackgroundColor
     addSubview(footerView)
@@ -84,7 +84,6 @@ final class MovielalaPlayerControlsView: UIView {
     playbackTimeLabel.font = config.controlbarConfig.timeTextFont
     playbackTimeLabel.textColor = config.controlbarConfig.timeTextColor
     footerView.addSubview(playbackTimeLabel)
-    footerView.addSubview(timeSlider)
     durationLabel.text = "-:-"
     durationLabel.textAlignment = .Center
     durationLabel.font = config.controlbarConfig.timeTextFont
@@ -92,8 +91,12 @@ final class MovielalaPlayerControlsView: UIView {
     footerView.addSubview(durationLabel)
     footerBorderView.backgroundColor = config.footerBorderColor
     footerView.addSubview(footerBorderView)
+    
+    customTimeSliderView.backgroundColor = UIColor.clearColor()
+    footerView.addSubview(customTimeSliderView)
+    
   }
-
+  
   override func layoutSubviews() {
     let size = bounds.size
     headerView.frame = CGRect(
@@ -121,7 +124,7 @@ final class MovielalaPlayerControlsView: UIView {
     layoutHeaderSubviews()
     layoutFooterSubviews()
   }
-
+  
   private func layoutHeaderSubviews() {
     let size = headerView.bounds.size
     closeButton.sizeToFit()
@@ -147,9 +150,16 @@ final class MovielalaPlayerControlsView: UIView {
       width: size.width,
       height: config.headerBorderHeight)
   }
-
+  
   private func layoutFooterSubviews() {
     let size = footerView.bounds.size
+    customTimeSliderView.sizeToFit()
+    let customTimeSliderSize = CGSize(
+      width: size.width - playButton.bounds.width - playbackTimeLabel.bounds.width - durationLabel.bounds.width - 20,
+      height: config.footerHeight)
+    customTimeSliderView.frame = CGRect(
+      origin: CGPoint(x: playButton.bounds.width + playbackTimeLabel.bounds.width + 10, y: 0),
+      size: customTimeSliderSize)
     playButton.sizeToFit()
     let playButtonSize = CGSize(
       width: config.footerHeight * playButton.bounds.aspectRatio + 16,
@@ -169,11 +179,11 @@ final class MovielalaPlayerControlsView: UIView {
     durationLabel.frame = CGRect(
       origin: CGPoint(x: size.width - durationLabelSize.width, y: 0),
       size: durationLabelSize)
-    timeSlider.sizeToFit()
+    self.customTimeSliderView.timeSlider.sizeToFit()
     let timeSliderSize = CGSize(
       width: size.width - playButton.bounds.width - playbackTimeLabel.bounds.width - durationLabel.bounds.width,
       height: config.footerHeight)
-    timeSlider.frame = CGRect(
+    self.customTimeSliderView.timeSlider.frame = CGRect(
       origin: CGPoint(x: playButton.bounds.width + playbackTimeLabel.bounds.width, y: 0),
       size: timeSliderSize)
     footerBorderView.frame = CGRect(
@@ -182,4 +192,7 @@ final class MovielalaPlayerControlsView: UIView {
       width: size.width,
       height: config.footerBorderHeight)
   }
+  
+  
+  
 }
