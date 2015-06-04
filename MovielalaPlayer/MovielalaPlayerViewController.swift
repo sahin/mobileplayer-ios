@@ -269,8 +269,8 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   }
   
   final func goToTimeSliderTime() {
-    var timeVal = controlsView.customTimeSliderView.getValue()
-    moviePlayer.currentPlaybackTime = NSTimeInterval(controlsView.customTimeSliderView.getValue())
+    var timeVal = controlsView.customTimeSliderView.value
+    moviePlayer.currentPlaybackTime = NSTimeInterval(controlsView.customTimeSliderView.value)
   }
   
   final func goToCustomTimeSliderWithTime(notification:NSNotification) {
@@ -361,8 +361,8 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   }
   
   private func updateTimeSlider() {
-    controlsView.customTimeSliderView.setMaximumValue(Float(moviePlayer.duration))
-    controlsView.customTimeSliderView.setValue(Float(moviePlayer.currentPlaybackTime))
+    controlsView.customTimeSliderView.maximumValue = Float(moviePlayer.duration)
+    controlsView.customTimeSliderView.value = Float(moviePlayer.currentPlaybackTime)
   }
   
   private func updateTimeLabel(label: UILabel, time: NSTimeInterval) {

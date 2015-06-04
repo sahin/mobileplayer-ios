@@ -99,53 +99,6 @@ final class MovielalaPlayerControlsView: UIView {
   
   override func layoutSubviews() {
     let size = bounds.size
-    if customTimeSliderView.bufferPercentRatio.isNaN {
-      self.customTimeSliderView.bufferPercentRatio = 0.0
-    }
-    // Buffer View
-    UIView.animateWithDuration(0.1, animations: {
-      self.customTimeSliderView.bufferView.frame = CGRect(
-        x: 0.0,
-        y: 18.0,
-        width: self.customTimeSliderView.bufferPercentRatio,
-        height: 4.0)
-      //self.customTimeSliderBufferView.layer.cornerRadius = 5.0
-      //self.customTimeSliderBufferView.layer.masksToBounds = true
-    })
-    // Rail View
-    customTimeSliderView.railView.frame = CGRect(
-      x: 0.0,
-      y: 18.0,
-      width: customTimeSliderView.frame.width - 2.0,
-      height: 4.0)
-    //self.customTimeSliderRailView.layer.cornerRadius = 5.0
-    //self.customTimeSliderRailView.layer.masksToBounds = true
-    // Progress View
-    UIView.animateWithDuration(0.0, animations: {
-      self.customTimeSliderView.progressView.frame = CGRect(
-        x: 0.0,
-        y: 18.0,
-        width: self.customTimeSliderView.customTimeSliderProgressValue,
-        height: 4.0)
-      //self.customTimeSliderProgressView.layer.cornerRadius = 5.0
-      //self.customTimeSliderProgressView.layer.masksToBounds = true
-    })
-    // Thumb View
-    UIView.animateWithDuration(
-      0.0,
-      delay: 0.0,
-      options: .AllowUserInteraction,
-      animations: { () -> Void in
-        self.customTimeSliderView.thumbView.frame = CGRect(
-          x: self.customTimeSliderView.customTimeSliderThumbValue,
-          y: 8.0,
-          width: 22.0,
-          height: 22.0)
-        self.customTimeSliderView.thumbView.layer.cornerRadius = 11.0
-        self.customTimeSliderView.thumbView.layer.masksToBounds = true
-        self.customTimeSliderView.thumbView.layer.borderColor = UIColor.grayColor().CGColor
-        self.customTimeSliderView.thumbView.layer.borderWidth = 1.0
-      }) { (Bool) -> Void in}
     headerView.frame = CGRect(
       x: 0,
       y: controlsHidden ? -config.headerHeight : 0,

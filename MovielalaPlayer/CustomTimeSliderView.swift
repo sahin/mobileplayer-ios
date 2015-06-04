@@ -10,17 +10,43 @@ import UIKit
 
 class CustomTimeSliderView: UIView {
   
-  var userInteraction:Bool = false
-  var userInteractionLocation:CGFloat = 0.0
-  var videoPercentRatio:CGFloat = 0.0
-  var bufferPercentRatio:CGFloat = 0.0
-  var customTimeSliderProgressValue:CGFloat = 0.0
-  var customTimeSliderThumbValue:CGFloat = 0.0
+  var maximumValue: Float {
+    set{
+      timeSlider.maximumValue = newValue
+    }
+    get {
+      return timeSlider.maximumValue
+    }
+  }
   
-  var railView = UIView(frame: CGRectZero)
-  var bufferView = UIView(frame: CGRectZero)
-  var progressView = UIView(frame: CGRectZero)
-  var thumbView = UIView(frame: CGRectZero)
+  var minimumValue: Float {
+    set{
+      timeSlider.minimumValue = newValue
+    }
+    get {
+      return timeSlider.minimumValue
+    }
+  }
+  
+  var value: Float {
+    set {
+      timeSlider.value = newValue
+    }
+    get{
+      return timeSlider.value
+    }
+  }
+  
+  private var userInteraction:Bool = false
+  private var userInteractionLocation:CGFloat = 0.0
+  private var videoPercentRatio:CGFloat = 0.0
+  private var bufferPercentRatio:CGFloat = 0.0
+  private var customTimeSliderProgressValue:CGFloat = 0.0
+  private var customTimeSliderThumbValue:CGFloat = 0.0
+  private var railView = UIView(frame: CGRectZero)
+  private var bufferView = UIView(frame: CGRectZero)
+  private var progressView = UIView(frame: CGRectZero)
+  private var thumbView = UIView(frame: CGRectZero)
   let timeSlider = UISlider(frame: CGRectZero)
   
   override init(frame: CGRect) {
@@ -114,31 +140,56 @@ class CustomTimeSliderView: UIView {
   }
   
   override func layoutSubviews() {
-    
+    let size = bounds.size
+    if bufferPercentRatio.isNaN {
+      self.bufferPercentRatio = 0.0
+    }
+    if self.bufferPercentRatio.isNaN {
+      self.bufferPercentRatio = 0.0
+    }
+    // Rail View
+    self.railView.frame = CGRect(
+      x: 0.0,
+      y: 18.0,
+      width: self.frame.width - 2.0,
+      height: 4.0)
+    //self.customTimeSliderRailView.layer.cornerRadius = 5.0
+    //self.customTimeSliderRailView.layer.masksToBounds = true
+    // Progress View
+    UIView.animateWithDuration(0.0, animations: {
+      self.progressView.frame = CGRect(
+        x: 0.0,
+        y: 18.0,
+        width: self.customTimeSliderProgressValue,
+        height: 4.0)
+      //self.customTimeSliderProgressView.layer.cornerRadius = 5.0
+      //self.customTimeSliderProgressView.layer.masksToBounds = true
+    })
+    // Thumb View
+    UIView.animateWithDuration(
+      0.0,
+      delay: 0.0,
+      options: .AllowUserInteraction,
+      animations: { () -> Void in
+        self.thumbView.frame = CGRect(
+          x: self.customTimeSliderThumbValue,
+          y: 8.0,
+          width: 22.0,
+          height: 22.0)
+        self.thumbView.layer.cornerRadius = 11.0
+        self.thumbView.layer.masksToBounds = true
+        self.thumbView.layer.borderColor = UIColor.grayColor().CGColor
+        self.thumbView.layer.borderWidth = 1.0
+      }) { (Bool) -> Void in}
+    // Buffer View
+    UIView.animateWithDuration(0.1, animations: {
+      self.bufferView.frame = CGRect(
+        x: 0.0,
+        y: 18.0,
+        width: self.bufferPercentRatio,
+        height: 4.0)
+      //self.customTimeSliderBufferView.layer.cornerRadius = 5.0
+      //self.customTimeSliderBufferView.layer.masksToBounds = true
+    })
   }
-  
-  func getMaximumValue() -> Float {
-    return timeSlider.maximumValue
-  }
-  
-  func setMaximumValue(value:Float) {
-    timeSlider.maximumValue = value
-  }
-  
-  func getMinimumValue() -> Float {
-    return timeSlider.minimumValue
-  }
-  
-  func setMinimumValue(value:Float) {
-    timeSlider.minimumValue = value
-  }
-  
-  func setValue(value:Float) {
-    timeSlider.value = value
-  }
-  
-  func getValue() -> Float {
-    return timeSlider.value
-  }
-  
 }
