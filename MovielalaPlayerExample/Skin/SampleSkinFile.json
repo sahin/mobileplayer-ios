@@ -1,12 +1,12 @@
 {
   "controlbar": {
     "playButton": {
-      "image": "MPSPlayButton.png",
-      "tintColor": "#000000"
+      "image": "MLPlayButton.png",
+      "tintColor": "#0000ff"
     },
     "pauseButton": {
-      "image": "MPSPauseButton.png",
-      "tintColor": "#000000"
+      "image": "MLPauseButton.png",
+      "tintColor": "#00ff00"
     },
     "time": {
       "textFont": "HelveticaNeue",
@@ -24,7 +24,7 @@
     }
   },
   "share": {
-    "image": "Share.png",
+    "image": "MLShareButton.png",
     "tintColor": "#000000"
   },
   "title": {
@@ -34,7 +34,7 @@
     "titleBackgroundColor": "#000000"
   },
   "closeButton": {
-    "image": "MPSCloseButton.png",
+    "image": "MLCloseButton.png",
     "tintColor": "#000000"
   }
 }
