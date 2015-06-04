@@ -320,6 +320,22 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     if hours > 0 {
       label.text = NSString(format: "%02lu:%@", hours, label.text!) as String
     }
+    var d:NSTimeInterval = progressBarBufferPercentWithMoviePlayer(moviePlayer)
+    var bufferRaito:CGFloat = CGFloat(d)
+    var totalDuration:CGFloat = CGFloat(moviePlayer.duration)
+    controlsView.refreshBufferPercentRaito(bufferRaito: bufferRaito, totalDuration: totalDuration)
+  }
+  
+  // MARK: - MPMovieAccessLogEvent Bitrate Calculate
+  
+  final func progressBarBufferPercentWithMoviePlayer(player:MPMoviePlayerController) -> NSTimeInterval {
+    var playerEvent:MPMovieAccessLogEvent = MPMovieAccessLogEvent()
+    var movieAccessLog:MPMovieAccessLog = moviePlayer.accessLog
+    var arrEvents = movieAccessLog.events
+    for (var i=0;i<arrEvents.count;i++) {
+      playerEvent = arrEvents[i] as! MPMovieAccessLogEvent
+    }
+    return playerEvent.segmentsDownloadedDuration
   }
 
   private func resetHideControlsTimer() {
@@ -351,4 +367,8 @@ extension MovielalaPlayerViewController: MovielalaPlayerOverlayViewControllerDel
     }
   }
 }
+
+
+
+
 
