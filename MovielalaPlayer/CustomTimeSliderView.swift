@@ -54,11 +54,12 @@ class CustomTimeSliderView: UIView {
     railView.backgroundColor = UIColor.lightGrayColor()
     addSubview(self.railView)
     bufferView.backgroundColor = UIColor.darkGrayColor()
-    addSubview(bufferView)
+    railView.addSubview(bufferView)
     progressView.backgroundColor = UIColor.blueColor()
-    addSubview(progressView)
+    railView.addSubview(progressView)
     thumbView.backgroundColor = UIColor.lightGrayColor()
     addSubview(thumbView)
+    railView.layer.masksToBounds = true
     
     thumbView.addGestureRecognizer(
       UIPanGestureRecognizer(
@@ -159,7 +160,7 @@ class CustomTimeSliderView: UIView {
     UIView.animateWithDuration(0.0, animations: {
       self.progressView.frame = CGRect(
         x: 0.0,
-        y: 18.0,
+        y: 0.0,
         width: self.customTimeSliderProgressValue,
         height: 4.0)
       //self.customTimeSliderProgressView.layer.cornerRadius = 5.0
@@ -185,7 +186,7 @@ class CustomTimeSliderView: UIView {
     UIView.animateWithDuration(0.1, animations: {
       self.bufferView.frame = CGRect(
         x: 0.0,
-        y: 18.0,
+        y: 0.0,
         width: self.bufferPercentRatio,
         height: 4.0)
       //self.customTimeSliderBufferView.layer.cornerRadius = 5.0

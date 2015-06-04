@@ -233,9 +233,9 @@
 				C305DED51B20DC8300DD9632 /* CustomTimeSliderView.swift */,
 				CE554D6F1AFE6EBB00DAC7E9 /* MovielalaPlayerViewController.swift */,
 				CE554D6E1AFE6EBB00DAC7E9 /* MovielalaPlayerOverlayViewController.swift */,
+				C3E643AF1B166D270017DBE6 /* UIColor+Extension.swift */,
 				CE554D751AFE6EE400DAC7E9 /* Images.xcassets */,
 				CE554D521AFE6CCD00DAC7E9 /* Supporting Files */,
-				C3E643AF1B166D270017DBE6 /* UIColor+Extension.swift */,
 			);
 			path = MovielalaPlayer;
 			sourceTree = "<group>";
