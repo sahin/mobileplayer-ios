@@ -9,22 +9,23 @@
 import Foundation
 
 public struct TitleConfig {
-  var titleTextFont = UIFont.systemFontOfSize(14)
-  var titleTextColor = UIColor(hexString: "#ffffff")
-  var titleBackgroundColor = UIColor(hexString: "#000000")
+  var textFont = UIFont.systemFontOfSize(14)
+  var textColor = UIColor(hexString: "#ffffff")
+  var backgroundColor = UIColor.clearColor()
   
-  public init() {}
+  public init() { }
   
   public init(dictionary: [String: AnyObject]) {
-    if let titleConfig = dictionary["title"] as? [String:AnyObject] {
-      if let titleTextFont = titleConfig["titleTextFont"] as? String {
-        if let titleTextSize = titleConfig["titleTextSize"] as? CGFloat {
-          self.titleTextFont = UIFont(name: titleTextFont, size: titleTextSize)!
-        }
+    if let textFont = dictionary["textFont"] as? String {
+      if let textSize = dictionary["textSize"] as? CGFloat {
+        self.textFont = UIFont(name: textFont, size: textSize)!
       }
-      if let titleBackgroundColor = titleConfig["titleBackgroundColor"] as? String {
-        self.titleBackgroundColor = UIColor(hexString: titleBackgroundColor)
-      }
+    }
+    if let backgroundColor = dictionary["backgroundColor"] as? String {
+      self.backgroundColor = UIColor(hexString: backgroundColor)
+    }
+    if let textColor = dictionary["textColor"] as? String {
+      self.textColor = UIColor(hexString: textColor)
     }
   }
 }

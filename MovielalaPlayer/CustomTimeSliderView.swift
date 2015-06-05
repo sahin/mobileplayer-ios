@@ -43,10 +43,10 @@ class CustomTimeSliderView: UIView {
   private var bufferPercentRatio:CGFloat = 0.0
   private var customTimeSliderProgressValue:CGFloat = 0.0
   private var customTimeSliderThumbValue:CGFloat = 0.0
-  private var railView = UIView(frame: CGRectZero)
-  private var bufferView = UIView(frame: CGRectZero)
-  private var progressView = UIView(frame: CGRectZero)
-  private var thumbView = UIView(frame: CGRectZero)
+  var railView = UIView(frame: CGRectZero)
+  var bufferView = UIView(frame: CGRectZero)
+  var progressView = UIView(frame: CGRectZero)
+  var thumbView = UIView(frame: CGRectZero)
   let timeSlider = UISlider(frame: CGRectZero)
   
   override init(frame: CGRect) {
@@ -60,7 +60,6 @@ class CustomTimeSliderView: UIView {
     thumbView.backgroundColor = UIColor.lightGrayColor()
     addSubview(thumbView)
     railView.layer.masksToBounds = true
-    
     thumbView.addGestureRecognizer(
       UIPanGestureRecognizer(
         target: self,
@@ -106,7 +105,7 @@ class CustomTimeSliderView: UIView {
     }
   }
   
-  // Buffer Percent
+  //Buffer Percent
   func refreshBufferPercentRatio(bufferRatio width:CGFloat,totalDuration total:CGFloat) {
     if width.isNaN || total.isNaN {
       return bufferPercentRatio = 0.0
@@ -116,8 +115,8 @@ class CustomTimeSliderView: UIView {
     bufferPercentRatio = bufferPercent
     layoutSubviews()
   }
-  
-  // Video Percent
+
+  //Video Percent
   func refreshVideoProgressPercentRaito(videoRaito ratio:CGFloat, totalDuration total:CGFloat) {
     if !userInteraction {
       if ratio.isNaN || total.isNaN || (ratio / total * 100).isNaN {
@@ -156,7 +155,7 @@ class CustomTimeSliderView: UIView {
       height: 4.0)
     //self.customTimeSliderRailView.layer.cornerRadius = 5.0
     //self.customTimeSliderRailView.layer.masksToBounds = true
-    // Progress View
+    //Progress View
     UIView.animateWithDuration(0.0, animations: {
       self.progressView.frame = CGRect(
         x: 0.0,
@@ -166,7 +165,7 @@ class CustomTimeSliderView: UIView {
       //self.customTimeSliderProgressView.layer.cornerRadius = 5.0
       //self.customTimeSliderProgressView.layer.masksToBounds = true
     })
-    // Thumb View
+    //Thumb View
     UIView.animateWithDuration(
       0.0,
       delay: 0.0,
@@ -182,7 +181,7 @@ class CustomTimeSliderView: UIView {
         self.thumbView.layer.borderColor = UIColor.grayColor().CGColor
         self.thumbView.layer.borderWidth = 1.0
       }) { (Bool) -> Void in}
-    // Buffer View
+    //Buffer View
     UIView.animateWithDuration(0.1, animations: {
       self.bufferView.frame = CGRect(
         x: 0.0,

@@ -377,14 +377,14 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       label.text = NSString(format: "%02lu:%@", hours, label.text!) as String
     }
   }
-
+  
   private func checkTimeLabelText(text:NSString) -> String {
     if text.length > 8 {
       return String("00:00")
     }
     return String(text)
   }
-
+  
   // MARK: - MPMovieAccessLogEvent Bitrate Calculate
   
   final func progressBarBufferPercentWithMoviePlayer(player:MPMoviePlayerController) -> NSTimeInterval {

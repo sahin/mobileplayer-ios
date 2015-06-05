@@ -9,17 +9,21 @@
 import Foundation
 
 public struct CloseButtonConfig {
-  var closeButtonImage = MovielalaPlayerConfig.loadImage(named: "MLCloseButton.png")
-  var closeButtonTintColor = UIColor.whiteColor()
+  var imageName = MovielalaPlayerConfig.loadImage(named: "MLCloseButton.png")
+  var tintColor = UIColor.whiteColor()
+  var backgroundColor = UIColor.clearColor()
   
   public init() {}
   
   public init(dictionary: [String: AnyObject]) {
-    if let closeButtonImageName = dictionary["image"] as? String {
-      closeButtonImage = MovielalaPlayerConfig.loadImage(named: closeButtonImageName)
+    if let imageName = dictionary["image"] as? String {
+      self.imageName = MovielalaPlayerConfig.loadImage(named: imageName)
     }
-    if let closeButtonTintColorHex = dictionary["tintColor"] as? String {
-      closeButtonTintColor = UIColor(hexString: closeButtonTintColorHex)
+    if let tintColorHex = dictionary["tintColor"] as? String {
+      self.tintColor = UIColor(hexString: tintColorHex)
+    }
+    if let backgroundColorHex = dictionary["backgroundColor"] as? String {
+      self.backgroundColor = UIColor(hexString: backgroundColorHex)
     }
   }
 }

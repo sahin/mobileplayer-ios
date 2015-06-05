@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var skinFile:NSURL = NSURL(
       fileURLWithPath: NSBundle.mainBundle().pathForResource(
-        "SampleSkinFile",
+        "BarbieSkin",
         ofType: "json"
         )!
       )!

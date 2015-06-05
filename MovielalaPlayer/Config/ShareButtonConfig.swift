@@ -14,17 +14,23 @@ public struct ShareButtonConfig {
   var shareCallback: ((playerVC: MovielalaPlayerViewController) -> Void)? = nil
   
   // MARK: - Theming
-  var shareButtonImage = MovielalaPlayerConfig.loadImage(named: "MLShareButton.png")
-  var shareButtonTintColor = UIColor.whiteColor()
+  var imageName = MovielalaPlayerConfig.loadImage(named: "MLShareButton.png")
+  var tintColor = UIColor.whiteColor()
+  var backgroundColor = UIColor.clearColor()
   
   public init() {}
   
   public init(dictionary: [String: AnyObject]) {
-    if let shareButtonImageName = dictionary["image"] as? String {
-      self.shareButtonImage = MovielalaPlayerConfig.loadImage(named: shareButtonImageName)
+    if let imageName = dictionary["image"] as? String {
+      self.imageName = MovielalaPlayerConfig.loadImage(named: imageName)
     }
-    if let shareButtonTintColor = dictionary["tintColor"] as? String {
-      self.shareButtonTintColor = UIColor(hexString: shareButtonTintColor)
+    if let tintColor = dictionary["tintColor"] as? String {
+      self.tintColor = UIColor(hexString: tintColor)
     }
+    if let backgroundColor = dictionary["backgroundColor"] as? String {
+      self.backgroundColor = UIColor(hexString: backgroundColor)
+    }
+    
+    
   }
 }

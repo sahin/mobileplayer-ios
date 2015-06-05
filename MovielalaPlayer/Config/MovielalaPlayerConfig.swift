@@ -25,10 +25,6 @@ public struct MovielalaPlayerConfig {
   var footerBorderHeight = CGFloat(1)
   var footerBackgroundColor = UIColor(white: 0, alpha: 0.7)
   var footerBorderColor = UIColor(white: 1, alpha: 0.2)
-  //var closeButtonImage = MovielalaPlayerConfig.loadImage(named: "MLCloseButton.png")
-  //var closeButtonTintColor = UIColor.whiteColor()
-  //var titleFont = UIFont.systemFontOfSize(16)
-  var titleColor = UIColor.whiteColor()
   
   // MARK: - General Callbacks
   var playCallback: ((playerVC: MovielalaPlayerViewController) -> Void)? = nil
@@ -44,7 +40,6 @@ public struct MovielalaPlayerConfig {
   var firstPlayCallback: ((playerVC: MovielalaPlayerViewController) -> Void)? = nil
   
   // MARK: - Not Configuration Related
-
   public init() {
     controlbarConfig = ControlbarConfig()
     shareConfig = ShareButtonConfig()

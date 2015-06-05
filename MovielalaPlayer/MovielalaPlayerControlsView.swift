@@ -51,14 +51,17 @@ final class MovielalaPlayerControlsView: UIView {
   private func initializeHeaderViews() {
     headerView.backgroundColor = config.headerBackgroundColor
     addSubview(headerView)
-    closeButton.setImage(config.closeConfig.closeButtonImage, forState: .Normal)
-    closeButton.tintColor = config.closeConfig.closeButtonTintColor
+    closeButton.setImage(config.closeConfig.imageName, forState: .Normal)
+    closeButton.tintColor = config.closeConfig.tintColor
+    closeButton.backgroundColor = config.closeConfig.backgroundColor
     headerView.addSubview(closeButton)
-    titleLabel.font = config.titleConfig.titleTextFont
-    titleLabel.textColor = config.titleColor
+    titleLabel.font = config.titleConfig.textFont
+    titleLabel.textColor = config.titleConfig.textColor
+    titleLabel.backgroundColor = config.titleConfig.backgroundColor
     headerView.addSubview(titleLabel)
-    shareButton.setImage(config.shareConfig.shareButtonImage, forState: .Normal)
-    shareButton.tintColor = config.shareConfig.shareButtonTintColor
+    shareButton.setImage(config.shareConfig.imageName, forState: .Normal)
+    shareButton.tintColor = config.shareConfig.tintColor
+    shareButton.backgroundColor = config.shareConfig.backgroundColor
     headerView.addSubview(shareButton)
     headerBorderView.backgroundColor = config.headerBorderColor
     headerView.addSubview(headerBorderView)
@@ -74,27 +77,32 @@ final class MovielalaPlayerControlsView: UIView {
   }
   
   private func initializeFooterViews() {
-    footerView.backgroundColor = config.footerBackgroundColor
+    footerView.backgroundColor = config.controlbarConfig.backgroundColor
     addSubview(footerView)
     playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
     playButton.tintColor = config.controlbarConfig.playButtonTintColor
+    playButton.backgroundColor = config.controlbarConfig.playButtonBackgroundColor
     footerView.addSubview(playButton)
     playbackTimeLabel.text = "-:-"
     playbackTimeLabel.textAlignment = .Center
     playbackTimeLabel.font = config.controlbarConfig.timeTextFont
     playbackTimeLabel.textColor = config.controlbarConfig.timeTextColor
+    playbackTimeLabel.backgroundColor = config.controlbarConfig.timeBackgroundColor
     footerView.addSubview(playbackTimeLabel)
     durationLabel.text = "-:-"
     durationLabel.textAlignment = .Center
     durationLabel.font = config.controlbarConfig.timeTextFont
     durationLabel.textColor = config.controlbarConfig.timeTextColor
+    durationLabel.backgroundColor = config.controlbarConfig.timeBackgroundColor
     footerView.addSubview(durationLabel)
     footerBorderView.backgroundColor = config.footerBorderColor
     footerView.addSubview(footerBorderView)
-    
-    customTimeSliderView.backgroundColor = UIColor.clearColor()
+    customTimeSliderView.backgroundColor = config.controlbarConfig.timeSliderBackgroundColor
+    customTimeSliderView.railView.backgroundColor = config.controlbarConfig.timeSliderRailTintColor
+    customTimeSliderView.bufferView.backgroundColor = config.controlbarConfig.timeSliderBufferTintColor
+    customTimeSliderView.progressView.backgroundColor = config.controlbarConfig.timeSliderProgressTintColor
+    customTimeSliderView.thumbView.backgroundColor = config.controlbarConfig.timeSliderThumbTintColor
     footerView.addSubview(customTimeSliderView)
-    
   }
   
   override func layoutSubviews() {
@@ -192,7 +200,4 @@ final class MovielalaPlayerControlsView: UIView {
       width: size.width,
       height: config.footerBorderHeight)
   }
-  
-  
-  
 }

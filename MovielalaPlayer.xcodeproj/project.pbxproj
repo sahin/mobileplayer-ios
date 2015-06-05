@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C305DED61B20DC8300DD9632 /* CustomTimeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305DED51B20DC8300DD9632 /* CustomTimeSliderView.swift */; };
-		C305DED81B21068700DD9632 /* SampleSkinFile.json in Resources */ = {isa = PBXBuildFile; fileRef = C305DED71B21068700DD9632 /* SampleSkinFile.json */; };
+		C305DED81B21068700DD9632 /* BarbieSkin.json in Resources */ = {isa = PBXBuildFile; fileRef = C305DED71B21068700DD9632 /* BarbieSkin.json */; };
 		C305DEDA1B21069500DD9632 /* SkinParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305DED91B21069500DD9632 /* SkinParser.swift */; };
 		C308B3BB1B14FAE300CB1515 /* ControlbarConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */; };
 		C308B3C01B150F7600CB1515 /* MovielalaPlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MovielalaPlayerConfig.swift */; };
@@ -72,7 +72,7 @@
 
 /* Begin PBXFileReference section */
 		C305DED51B20DC8300DD9632 /* CustomTimeSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeSliderView.swift; sourceTree = "<group>"; };
-		C305DED71B21068700DD9632 /* SampleSkinFile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = SampleSkinFile.json; path = Skin/SampleSkinFile.json; sourceTree = "<group>"; };
+		C305DED71B21068700DD9632 /* BarbieSkin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = BarbieSkin.json; path = Skin/BarbieSkin.json; sourceTree = "<group>"; };
 		C305DED91B21069500DD9632 /* SkinParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SkinParser.swift; path = Parser/SkinParser.swift; sourceTree = "<group>"; };
 		C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ControlbarConfig.swift; path = Config/ControlbarConfig.swift; sourceTree = "<group>"; };
 		C308B3BE1B150F7600CB1515 /* MovielalaPlayerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovielalaPlayerConfig.swift; path = Config/MovielalaPlayerConfig.swift; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 		C3A9AF0A1B0497BE00D0C842 /* Skin */ = {
 			isa = PBXGroup;
 			children = (
-				C305DED71B21068700DD9632 /* SampleSkinFile.json */,
+				C305DED71B21068700DD9632 /* BarbieSkin.json */,
 			);
 			name = Skin;
 			sourceTree = "<group>";
@@ -403,7 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */,
-				C305DED81B21068700DD9632 /* SampleSkinFile.json in Resources */,
+				C305DED81B21068700DD9632 /* BarbieSkin.json in Resources */,
 				C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
