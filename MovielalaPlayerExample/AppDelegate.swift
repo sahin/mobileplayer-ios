@@ -16,21 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
-    var skinFile:NSURL = NSURL(
-      fileURLWithPath: NSBundle.mainBundle().pathForResource(
-        "BarbieSkin",
-        ofType: "json"
-        )!
-      )!
-    let playerVC = MovielalaPlayerViewController(
+    if let fileUrl = NSBundle.mainBundle().URLForResource("BarbieSkin", withExtension: "json") {
+      let playerVC = MovielalaPlayerViewController(
       contentURL: NSURL(string: "http://player.vimeo.com/external/129470313.m3u8?p=high,standard,mobile&s=87cf536853be9d543e30f9e227285906")!,
-      configFileURL: skinFile
-    )
-    playerVC.title = "Jurrasic World"
-    self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-    self.window!.rootViewController = playerVC
-    self.window!.backgroundColor = UIColor.whiteColor()
-    self.window!.makeKeyAndVisible()
+      configFileURL: fileUrl
+      )
+      playerVC.title = "Jurrasic World"
+      self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+      self.window!.rootViewController = playerVC
+      self.window!.backgroundColor = UIColor.whiteColor()
+      self.window!.makeKeyAndVisible()
+    } else {
+      println("MovielalaPlayer: Skin file not found")
+    }
     
     return true
   }

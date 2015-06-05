@@ -19,7 +19,7 @@
     "timeSlider": {
       "railTintColor": "#ffff00",
       "bufferTintColor": "#555555",
-      "progressTintColor": "#0000ff",
+      "progressTintColor": "#ff0000",
       "thumbTintColor": "#ffffff",
       "backgroundColor": "#ff00ff"
     }
