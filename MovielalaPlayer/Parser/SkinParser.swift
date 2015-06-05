@@ -17,6 +17,8 @@ public struct SkinParser {
       dictionary = NSJSONSerialization.JSONObjectWithData(
         jsonData, options: nil, error: nil) as? [String: AnyObject] {
           return MovielalaPlayerConfig(dictionary: dictionary)
+    } else {
+      println("MovielalaPlayer: Skin File Error! - Please check json validation")
     }
     return nil
   }
