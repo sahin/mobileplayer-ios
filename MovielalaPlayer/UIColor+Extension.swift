@@ -8,9 +8,9 @@
 
 import Foundation
 
-public extension UIColor {
+extension UIColor {
   
-  public convenience init(hexString: String) {
+  convenience init(hexString: String) {
     var red:   CGFloat = 0.0
     var green: CGFloat = 0.0
     var blue:  CGFloat = 0.0
