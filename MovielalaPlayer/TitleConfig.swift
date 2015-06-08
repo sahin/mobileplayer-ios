@@ -9,9 +9,9 @@
 import Foundation
 
 public struct TitleConfig {
-  var textFont = UIFont.systemFontOfSize(14)
-  var textColor = UIColor(hexString: "#ffffff")
-  var backgroundColor = UIColor.clearColor()
+  public var textFont = UIFont.systemFontOfSize(14)
+  public var textColor = UIColor(hexString: "#ffffff")
+  public var backgroundColor = UIColor.clearColor()
   
   public init() { }
   
