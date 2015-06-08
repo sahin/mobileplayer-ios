@@ -11,10 +11,10 @@ import Foundation
 public struct MovielalaPlayerConfig {
 
   // MARK: - ControlBar Skin 
-  let controlbarConfig: ControlbarConfig
-  let shareConfig: ShareButtonConfig
-  let closeConfig: CloseButtonConfig
-  let titleConfig: TitleConfig
+  public let controlbarConfig: ControlbarConfig
+  public let shareConfig: ShareButtonConfig
+  public let closeConfig: CloseButtonConfig
+  public let titleConfig: TitleConfig
   
   // MARK: - Theming
   var headerHeight = CGFloat(40)

@@ -9,20 +9,20 @@
 import Foundation
 
 public struct ControlbarConfig {
-  var playButtonImage = MovielalaPlayerConfig.loadImage(named: "MLPlayButton.png")
-  var playButtonTintColor = UIColor.whiteColor()
-  var playButtonBackgroundColor = UIColor.clearColor()
-  var pauseButtonImage = MovielalaPlayerConfig.loadImage(named: "MLPauseButton.png")
-  var pauseButtonTintColor = UIColor.whiteColor()
-  var timeTextFont = UIFont.systemFontOfSize(14)
-  var timeTextColor = UIColor.whiteColor()
-  var timeBackgroundColor = UIColor.clearColor()
-  var timeSliderRailTintColor = UIColor.lightGrayColor()
-  var timeSliderBufferTintColor = UIColor.grayColor()
-  var timeSliderProgressTintColor = UIColor.blueColor()
-  var timeSliderThumbTintColor = UIColor.whiteColor()
-  var timeSliderBackgroundColor = UIColor.clearColor()
-  var backgroundColor = UIColor.clearColor()
+  public var playButtonImage = MovielalaPlayerConfig.loadImage(named: "MLPlayButton.png")
+  public var playButtonTintColor = UIColor.whiteColor()
+  public var playButtonBackgroundColor = UIColor.clearColor()
+  public var pauseButtonImage = MovielalaPlayerConfig.loadImage(named: "MLPauseButton.png")
+  public var pauseButtonTintColor = UIColor.whiteColor()
+  public var timeTextFont = UIFont.systemFontOfSize(14)
+  public var timeTextColor = UIColor.whiteColor()
+  public var timeBackgroundColor = UIColor.clearColor()
+  public var timeSliderRailTintColor = UIColor.lightGrayColor()
+  public var timeSliderBufferTintColor = UIColor.grayColor()
+  public var timeSliderProgressTintColor = UIColor.blueColor()
+  public var timeSliderThumbTintColor = UIColor.whiteColor()
+  public var timeSliderBackgroundColor = UIColor.clearColor()
+  public var backgroundColor = UIColor.clearColor()
   
   public init() {}
   
