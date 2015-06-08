@@ -9,9 +9,9 @@
 import Foundation
 
 public struct CloseButtonConfig {
-  var imageName = MovielalaPlayerConfig.loadImage(named: "MLCloseButton.png")
-  var tintColor = UIColor.whiteColor()
-  var backgroundColor = UIColor.clearColor()
+  public var imageName = MovielalaPlayerConfig.loadImage(named: "MLCloseButton.png")
+  public var tintColor = UIColor.whiteColor()
+  public var backgroundColor = UIColor.clearColor()
   
   public init() {}
   

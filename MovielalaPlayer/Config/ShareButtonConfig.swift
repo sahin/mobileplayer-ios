@@ -14,9 +14,9 @@ public struct ShareButtonConfig {
   var shareCallback: ((playerVC: MovielalaPlayerViewController) -> Void)? = nil
   
   // MARK: - Theming
-  var imageName = MovielalaPlayerConfig.loadImage(named: "MLShareButton.png")
-  var tintColor = UIColor.whiteColor()
-  var backgroundColor = UIColor.clearColor()
+  public var imageName = MovielalaPlayerConfig.loadImage(named: "MLShareButton.png")
+  public var tintColor = UIColor.whiteColor()
+  public var backgroundColor = UIColor.clearColor()
   
   public init() {}
   
