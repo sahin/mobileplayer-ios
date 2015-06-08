@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 MovieLaLa. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension UIColor {
   
