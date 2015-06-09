@@ -4,4 +4,4 @@ machine:
 
 test:
   override:
-    xcodebuild -scheme MovielalaPlayer -sdk iphonesimulator -destination 'name=iPhone 6' test
+    - xcodebuild -scheme MovielalaPlayer -sdk iphonesimulator -destination 'name=iPhone 6' test
