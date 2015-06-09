@@ -260,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				C38833C61B26596E00918C94 /* SkinParserTests.swift */,
+				C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */,
 				CE554D5F1AFE6CCD00DAC7E9 /* Supporting Files */,
 			);
 			path = MovielalaPlayerTests;
