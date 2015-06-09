@@ -11,15 +11,14 @@ import XCTest
 import MovielalaPlayer
 
 class SkinParserTests: XCTestCase {
-  
-  var fileURL = NSBundle(forClass: SkinParserTests.self).URLForResource("BarbieSkin", withExtension:"json")
+  let fileURL = NSBundle(forClass: SkinParserTests.self).URLForResource("TestSkin", withExtension:"json")!
   
   override func setUp() {
     super.setUp()
   }
   
   func testControlbarConfig() {
-    if (fileURL != nil), var config:MovielalaPlayerConfig = SkinParser.parseConfigFromURL(fileURL!) {
+     if var config:MovielalaPlayerConfig = SkinParser.parseConfigFromURL(fileURL) {
         XCTAssertEqual(config.controlbarConfig.playButtonTintColor, UIColor(hexString:"#ffff00"), "playButton tint color not equal")
         XCTAssertEqual(config.controlbarConfig.playButtonBackgroundColor, UIColor(hexString:"#ff00ff"), "playButton background color not equal")
         XCTAssertEqual(config.controlbarConfig.pauseButtonTintColor, UIColor(hexString:"#ffff00"), "pauseButton tint color not equal")
@@ -50,7 +49,7 @@ class SkinParserTests: XCTestCase {
   }
   
   func testShareConfig() {
-    if (fileURL != nil), var config:MovielalaPlayerConfig = SkinParser.parseConfigFromURL(fileURL!) {
+    if var config:MovielalaPlayerConfig = SkinParser.parseConfigFromURL(fileURL) {
         XCTAssertEqual(config.shareConfig.tintColor, UIColor(hexString:"#ffff00"), "Share tint color not equal")
         XCTAssertEqual(config.shareConfig.backgroundColor, UIColor(hexString:"#ff00ff"), "Share background color not equal")
         XCTAssertEqual(
@@ -65,14 +64,14 @@ class SkinParserTests: XCTestCase {
   }
   
   func testTitleConfig() {
-    if (fileURL != nil), var config:MovielalaPlayerConfig = SkinParser.parseConfigFromURL(fileURL!) {
+    if var config:MovielalaPlayerConfig = SkinParser.parseConfigFromURL(fileURL) {
         XCTAssertEqual(config.titleConfig.backgroundColor, UIColor(hexString:"#ff00ff"), "Title background color not equal")
         XCTAssertEqual(config.titleConfig.textColor, UIColor(hexString:"#ffff00"), "Title text color not equal")
     }
   }
   
   func testCloseButton() {
-    if (fileURL != nil), var config:MovielalaPlayerConfig = SkinParser.parseConfigFromURL(fileURL!) {
+    if var config:MovielalaPlayerConfig = SkinParser.parseConfigFromURL(fileURL) {
         XCTAssertEqual(config.closeConfig.tintColor, UIColor(hexString:"#ffff00"), "Close Button tint color not equal")
         XCTAssertEqual(config.closeConfig.backgroundColor, UIColor(hexString:"#ff00ff"), "Close Button background color not equal")
         XCTAssertEqual(
