@@ -517,6 +517,7 @@
 		C3A9AEF61B048B5700D0C842 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -532,6 +533,7 @@
 		C3A9AEF71B048B5700D0C842 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MovielalaPlayerExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
