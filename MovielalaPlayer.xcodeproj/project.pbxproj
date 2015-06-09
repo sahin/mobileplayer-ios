@@ -155,6 +155,23 @@
 			name = Config;
 			sourceTree = "<group>";
 		};
+		C3A406971B27700400D1833D /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				C3A4069A1B27709900D1833D /* Youtube.swift */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		C3A4069C1B278A4900D1833D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C3A406AE1B27AA8C00D1833D /* UIColor+Extension.swift */,
+				C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */,
+			);
+			name = Extensions;
+			sourceTree = "<group>";
+		};
 		C3A9AEDA1B048B5600D0C842 /* MovielalaPlayerExample */ = {
 			isa = PBXGroup;
 			children = (
