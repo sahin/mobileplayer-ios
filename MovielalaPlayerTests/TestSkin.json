@@ -1,0 +1,43 @@
+{
+  "controlbar": {
+    "backgroundColor":"#ff00ff",
+    "playButton": {
+      "image": "MLPlayButton.png",
+      "tintColor": "#ffff00",
+      "backgroundColor": "#ff00ff"
+    },
+    "pauseButton": {
+      "image": "MLPauseButton.png",
+      "tintColor": "#ffff00"
+    },
+    "time": {
+      "textFont": "HelveticaNeue",
+      "textFontSize": 14,
+      "textColor": "#ffff00",
+      "backgroundColor": "#ff00ff"
+    },
+    "timeSlider": {
+      "railTintColor": "#ffff00",
+      "bufferTintColor": "#555555",
+      "progressTintColor": "#ff0000",
+      "thumbTintColor": "#ffffff",
+      "backgroundColor": "#ff00ff"
+    }
+  },
+  "share": {
+    "image": "MLShareButton.png",
+    "tintColor": "#ffff00",
+    "backgroundColor": "#ff00ff"
+  },
+  "title": {
+    "textFont": "HelveticaNeue",
+    "textSize": 22,
+    "textColor": "#ffff00",
+    "backgroundColor": "#ff00ff"
+  },
+  "closeButton": {
+    "image": "MLCloseButton.png",
+    "tintColor": "#ffff00",
+    "backgroundColor": "#ff00ff"
+  }
+}

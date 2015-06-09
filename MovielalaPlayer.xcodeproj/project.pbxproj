@@ -14,6 +14,8 @@
 		C308B3C01B150F7600CB1515 /* MovielalaPlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MovielalaPlayerConfig.swift */; };
 		C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */; };
 		C36A056B1B26538800891445 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643AF1B166D270017DBE6 /* UIColor+Extension.swift */; };
+		C38833C71B26596E00918C94 /* SkinParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38833C61B26596E00918C94 /* SkinParserTests.swift */; };
+		C38833C91B266C2500918C94 /* TestSkin.json in Resources */ = {isa = PBXBuildFile; fileRef = C38833C81B266C2500918C94 /* TestSkin.json */; };
 		C3A9AEDE1B048B5600D0C842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */; };
 		C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A9AEE61B048B5600D0C842 /* LaunchScreen.xib */; };
 		C3A9AEF41B048B5700D0C842 /* MovielalaPlayerExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEF31B048B5700D0C842 /* MovielalaPlayerExampleTests.swift */; };
@@ -25,7 +27,6 @@
 		C3E643B41B16798A0017DBE6 /* CloseButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */; };
 		CE554D551AFE6CCD00DAC7E9 /* MovielalaPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = CE554D541AFE6CCD00DAC7E9 /* MovielalaPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE554D5B1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework */; };
-		CE554D621AFE6CCD00DAC7E9 /* MovielalaPlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D611AFE6CCD00DAC7E9 /* MovielalaPlayerTests.swift */; };
 		CE554D701AFE6EBB00DAC7E9 /* CGRect+LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6B1AFE6EBB00DAC7E9 /* CGRect+LayoutHelper.swift */; };
 		CE554D721AFE6EBB00DAC7E9 /* MovielalaPlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6D1AFE6EBB00DAC7E9 /* MovielalaPlayerControlsView.swift */; };
 		CE554D731AFE6EBB00DAC7E9 /* MovielalaPlayerOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6E1AFE6EBB00DAC7E9 /* MovielalaPlayerOverlayViewController.swift */; };
@@ -78,6 +79,8 @@
 		C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ControlbarConfig.swift; path = Config/ControlbarConfig.swift; sourceTree = "<group>"; };
 		C308B3BE1B150F7600CB1515 /* MovielalaPlayerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MovielalaPlayerConfig.swift; path = Config/MovielalaPlayerConfig.swift; sourceTree = "<group>"; };
 		C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareButtonConfig.swift; path = Config/ShareButtonConfig.swift; sourceTree = "<group>"; };
+		C38833C61B26596E00918C94 /* SkinParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinParserTests.swift; sourceTree = "<group>"; };
+		C38833C81B266C2500918C94 /* TestSkin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestSkin.json; sourceTree = "<group>"; };
 		C3A9AED91B048B5600D0C842 /* MovielalaPlayerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovielalaPlayerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A9AEDC1B048B5600D0C842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -94,7 +97,6 @@
 		CE554D541AFE6CCD00DAC7E9 /* MovielalaPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovielalaPlayer.h; sourceTree = "<group>"; };
 		CE554D5A1AFE6CCD00DAC7E9 /* MovielalaPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovielalaPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE554D601AFE6CCD00DAC7E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE554D611AFE6CCD00DAC7E9 /* MovielalaPlayerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovielalaPlayerTests.swift; sourceTree = "<group>"; };
 		CE554D6B1AFE6EBB00DAC7E9 /* CGRect+LayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+LayoutHelper.swift"; sourceTree = "<group>"; };
 		CE554D6D1AFE6EBB00DAC7E9 /* MovielalaPlayerControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovielalaPlayerControlsView.swift; sourceTree = "<group>"; };
 		CE554D6E1AFE6EBB00DAC7E9 /* MovielalaPlayerOverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovielalaPlayerOverlayViewController.swift; sourceTree = "<group>"; };
@@ -252,7 +254,7 @@
 		CE554D5E1AFE6CCD00DAC7E9 /* MovielalaPlayerTests */ = {
 			isa = PBXGroup;
 			children = (
-				CE554D611AFE6CCD00DAC7E9 /* MovielalaPlayerTests.swift */,
+				C38833C61B26596E00918C94 /* SkinParserTests.swift */,
 				CE554D5F1AFE6CCD00DAC7E9 /* Supporting Files */,
 			);
 			path = MovielalaPlayerTests;
@@ -262,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				CE554D601AFE6CCD00DAC7E9 /* Info.plist */,
+				C38833C81B266C2500918C94 /* TestSkin.json */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C38833C91B266C2500918C94 /* TestSkin.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -473,8 +477,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE554D621AFE6CCD00DAC7E9 /* MovielalaPlayerTests.swift in Sources */,
 				C36A056B1B26538800891445 /* UIColor+Extension.swift in Sources */,
+				C38833C71B26596E00918C94 /* SkinParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,17 +665,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MovielalaPlayer/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				PRODUCT_NAME = MovielalaPlayer;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -680,17 +681,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = MovielalaPlayer/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
+				PRODUCT_NAME = MovielalaPlayer;
 			};
 			name = Release;
 		};
