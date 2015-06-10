@@ -35,4 +35,15 @@ class YoutubeTests: XCTestCase {
     XCTAssertEqual(youTube.youtubeIDFromYoutubeURL(sampleLink), "1hZ98an9wjo", "Youtube ID not matching")
   }
   
+  func testH264videosWithYoutubeURL() {
+    let youTube = Youtube()
+    let sampleLink:NSURL = NSURL(string: "http://www.youtube.com/watch?v=1hZ98an9wjo")!
+    var videoComponents = youTube.h264videosWithYoutubeID("1hZ98an9wjo")
+    XCTAssertNotNil(videoComponents.objectForKey("fallback_host"), "video component fallback_host is nil")
+    XCTAssertNotNil(videoComponents.objectForKey("itag"), "video component itag is nil")
+    XCTAssertNotNil(videoComponents.objectForKey("quality"), "video component quality is nil")
+    XCTAssertNotNil(videoComponents.objectForKey("type"), "video component type is nil")
+    XCTAssertNotNil(videoComponents.objectForKey("url"), "video component url is nil")
+  }
+  
 }

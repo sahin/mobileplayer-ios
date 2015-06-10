@@ -64,4 +64,43 @@ public class Youtube: NSObject {
     }
     return youtubeID
   }
+  
+  public func h264videosWithYoutubeID(youtubeID:NSString) -> NSDictionary {
+    var videoDictionary:NSDictionary = NSDictionary()
+    if youtubeID != "" {
+      let urlString:String = String(format: "%@%@", infoURL, youtubeID) as String
+      let url:NSURL = NSURL(string: urlString)!
+      let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+      request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+      request.HTTPMethod = "GET"
+      var response: NSURLResponse?
+      var error: NSError?
+      let responseData = NSURLConnection.sendSynchronousRequest(request, returningResponse: &response, error: &error)
+      if (error == nil) {
+        let responseString:NSString = NSString(data: responseData!, encoding: NSUTF8StringEncoding)!
+        let parts:NSMutableDictionary = responseString.dictionaryFromQueryStringComponents()
+        if parts.count > 0 {
+          var fmtStreamMapString:AnyObject = parts.objectForKey("url_encoded_fmt_stream_map")!
+          if fmtStreamMapString.length > 0 {
+            let fmtStreamMapArray:NSArray = fmtStreamMapString.componentsSeparatedByString(",")
+            for videoEncodedString in fmtStreamMapArray {
+              var videoComponents = videoEncodedString.dictionaryFromQueryStringComponents()
+              var type:NSString = videoComponents.objectForKey("type") as! NSString
+              videoDictionary = videoComponents
+            }
+          }
+        }
+      }
+    }
+    return videoDictionary
+  }
+  
+  public func h264videosWithYoutubeURL(youtubeURL:NSURL) -> NSDictionary {
+    let youtubeID = self.youtubeIDFromYoutubeURL(youtubeURL)
+    return self.h264videosWithYoutubeID(youtubeID)
+  }
+  
+  
+  
+  
 }
