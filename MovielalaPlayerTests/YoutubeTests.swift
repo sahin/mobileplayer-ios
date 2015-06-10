@@ -17,18 +17,22 @@ class YoutubeTests: XCTestCase {
   }
   
   func testStringByDecodingURLFormat() {
-    let youtube = Youtube()
     let originalString = "https://www.youtube.com/watch?v=XUFpdwbfqqQ+XUFpdwbfqqQ"
     let testString = "https://www.youtube.com/watch?v=XUFpdwbfqqQ XUFpdwbfqqQ"
-    let comparsionString:String = youtube.stringByDecodingURLFormat(originalString)
+    let comparsionString:String = originalString.stringByDecodingURLFormat()
     XCTAssertEqual(comparsionString, testString, "String decoding failed")
   }
   
   func testDictionaryFromQueryStringComponents() {
-    let youtube = Youtube()
     let sampleLink = "https://www.youtube.com/watch?v=o0jJiB2Ygpg&list=RDo0jJiB2Ygpg"
-    let dictionary:NSDictionary? = youtube.dictionaryFromQueryStringComponents(sampleLink)
+    let dictionary:NSDictionary? = sampleLink.dictionaryFromQueryStringComponents()
     XCTAssertNotNil(dictionary, "url dictionary parse error")
+  }
+  
+  func testYoutubeIDFromYoutubeURL() {
+    let youTube = Youtube()
+    let sampleLink:NSURL = NSURL(string: "http://www.youtube.com/watch?v=1hZ98an9wjo")!
+    XCTAssertEqual(youTube.youtubeIDFromYoutubeURL(sampleLink), "1hZ98an9wjo", "Youtube ID not matching")
   }
   
 }
