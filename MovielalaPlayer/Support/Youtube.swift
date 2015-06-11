@@ -65,8 +65,7 @@ public class Youtube: NSObject {
     return youtubeID
   }
   
-  public func h264videosWithYoutubeID(youtubeID:NSString) -> NSDictionary {
-    var videoDictionary:NSDictionary = NSDictionary()
+  public func h264videosWithYoutubeID(youtubeID:NSString) -> NSDictionary? {
     if youtubeID != "" {
       let urlString:String = String(format: "%@%@", infoURL, youtubeID) as String
       let url:NSURL = NSURL(string: urlString)!
@@ -82,25 +81,31 @@ public class Youtube: NSObject {
         if parts.count > 0 {
           var fmtStreamMapString:AnyObject = parts.objectForKey("url_encoded_fmt_stream_map")!
           if fmtStreamMapString.length > 0 {
+            var videoDictionary = NSMutableDictionary()
             let fmtStreamMapArray:NSArray = fmtStreamMapString.componentsSeparatedByString(",")
             for videoEncodedString in fmtStreamMapArray {
               var videoComponents = videoEncodedString.dictionaryFromQueryStringComponents()
-              var type:NSString = videoComponents.objectForKey("type") as! NSString
-              videoDictionary = videoComponents
+              return videoComponents
             }
           }
         }
       }
     }
-    return videoDictionary
+    return nil
   }
   
   public func h264videosWithYoutubeURL(youtubeURL:NSURL) -> NSDictionary {
     let youtubeID = self.youtubeIDFromYoutubeURL(youtubeURL)
-    return self.h264videosWithYoutubeID(youtubeID)
+    return self.h264videosWithYoutubeID(youtubeID)!
   }
   
-  
-  
-  
+  public func h264videosWithYoutubeURL(youtubeURL: NSURL, completion: (videoDictionary: NSDictionary?, error: NSError?) -> Void) {
+    var youtubeID:NSString = self.youtubeIDFromYoutubeURL(youtubeURL)
+    if youtubeID != "" {
+      var dict: NSDictionary = self.h264videosWithYoutubeID(youtubeID)!
+      completion(videoDictionary: dict, error: nil)
+    } else {
+      completion(videoDictionary: nil, error: NSError(domain: "com.mobileplayer.yt.backgroundqueue", code: 1001, userInfo: ["error":"Invalid YouTube URL"]))
+    }
+  }
 }
