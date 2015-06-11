@@ -17,10 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
     if let fileUrl = NSBundle.mainBundle().URLForResource("BarbieSkin", withExtension: "json") {
+//      let playerVC = MovielalaPlayerViewController(
+//      contentURL: NSURL(string: "http://player.vimeo.com/external/129470313.m3u8?p=high,standard,mobile&s=87cf536853be9d543e30f9e227285906")!,
+//      configFileURL: fileUrl
+//      )
+
+      let youtubeURL:NSURL = NSURL(string: "http://www.youtube.com/watch?v=1hZ98an9wjo")!
+      let youtubeLiveURL:NSURL = NSURL(string: "https://www.youtube.com/watch?v=rxGoGg7n77A")!
+      
       let playerVC = MovielalaPlayerViewController(
-      contentURL: NSURL(string: "http://player.vimeo.com/external/129470313.m3u8?p=high,standard,mobile&s=87cf536853be9d543e30f9e227285906")!,
-      configFileURL: fileUrl
+        youTubeURL: youtubeLiveURL,
+        configFileURL: fileUrl
       )
+      
       playerVC.title = "Jurrasic World"
       self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
       self.window!.rootViewController = playerVC

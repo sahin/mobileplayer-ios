@@ -53,6 +53,22 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     initializeMovielalaPlayerViewController()
   }
   
+  public init(youTubeURL: NSURL, configFileURL: NSURL) {
+    let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
+    self.config = config
+    controlsView = MovielalaPlayerControlsView(config: config)
+    super.init(contentURL: NSURL())
+    let youtube = Youtube()
+    youtube.h264videosWithYoutubeURL(youTubeURL, completion: { videoDictionary, error in
+      if let
+        videoURLString = videoDictionary?["url"] as? String,
+        videoURL = NSURL(string: videoURLString) {
+          self.moviePlayer.contentURL = videoURL
+      }
+    })
+    initializeMovielalaPlayerViewController()
+  }
+  
   public required init(coder aDecoder: NSCoder) {
     fatalError("storyboards are incompatible with truth and beauty")
   }
