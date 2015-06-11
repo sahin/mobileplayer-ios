@@ -35,7 +35,6 @@ class YoutubeTests: XCTestCase {
     XCTAssertEqual(youTube.youtubeIDFromYoutubeURL(sampleLink), "1hZ98an9wjo", "Youtube ID not matching")
   }
   
-  
   func testH264videosWithYoutubeURL() {
     let youTube = Youtube()
     let sampleLink:NSURL = NSURL(string: "http://www.youtube.com/watch?v=1hZ98an9wjo")!
@@ -50,9 +49,12 @@ class YoutubeTests: XCTestCase {
   func testh264videosWithYoutubeURLBlock() {
     let youTube = Youtube()
     let videoURL:NSURL = NSURL(string: "http://www.youtube.com/watch?v=1hZ98an9wjo")!
+    let liveVideoURL:NSURL = NSURL(string: "https://www.youtube.com/watch?v=rxGoGg7n77A")!
     youTube.h264videosWithYoutubeURL(videoURL, completion: { (videoDictionary, error) -> Void in
         XCTAssertNotNil(videoDictionary, "video dictionary is nil")
     })
+    youTube.h264videosWithYoutubeURL(liveVideoURL, completion: { (videoDictionary, error) -> Void in
+        XCTAssertNotNil(videoDictionary, "video dictionary is nil")
+    })
   }
-  
 }

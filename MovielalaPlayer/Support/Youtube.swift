@@ -80,6 +80,11 @@ public class Youtube: NSObject {
         let parts:NSMutableDictionary = responseString.dictionaryFromQueryStringComponents()
         if parts.count > 0 {
           var fmtStreamMapString:AnyObject = parts.objectForKey("url_encoded_fmt_stream_map")!
+          var isLivePlayback: AnyObject? = parts.objectForKey("live_playback")
+          if (isLivePlayback != nil) {
+            let hlsp: AnyObject? = parts.objectForKey("hlsvp")
+            return ["url":"\(hlsp)"]
+          }
           if fmtStreamMapString.length > 0 {
             var videoDictionary = NSMutableDictionary()
             let fmtStreamMapArray:NSArray = fmtStreamMapString.componentsSeparatedByString(",")
