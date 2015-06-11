@@ -77,18 +77,19 @@ public class Youtube: NSObject {
         responseString = NSString(data: responseData, encoding: NSUTF8StringEncoding) {
           let parts = responseString.dictionaryFromQueryStringComponents()
           if parts.count > 0 {
-            var fmtStreamMapString:AnyObject = parts["url_encoded_fmt_stream_map"]!
-            var isLivePlayback: AnyObject? = parts["live_playback"]
-            if (isLivePlayback != nil) {
-              let hlsp: AnyObject? = parts["hlsvp"]
-              return ["url": "\(hlsp)"]
-            }
-            if fmtStreamMapString.length > 0 {
-              var videoDictionary = NSMutableDictionary()
-              let fmtStreamMapArray:NSArray = fmtStreamMapString.componentsSeparatedByString(",")
-              for videoEncodedString in fmtStreamMapArray {
-                var videoComponents = videoEncodedString.dictionaryFromQueryStringComponents()
-                return videoComponents as [String: AnyObject]
+            if let fmtStreamMapString: AnyObject = parts["url_encoded_fmt_stream_map"] {
+              if let isLivePlayback: AnyObject = parts["live_playback"]{
+                if let hlsvp: AnyObject? = parts["hlsvp"] {
+                  return ["url": "\(hlsvp)"]
+                }
+              }
+              if fmtStreamMapString.length > 0 {
+                var videoDictionary = NSMutableDictionary()
+                let fmtStreamMapArray:NSArray = fmtStreamMapString.componentsSeparatedByString(",")
+                for videoEncodedString in fmtStreamMapArray {
+                  var videoComponents = videoEncodedString.dictionaryFromQueryStringComponents()
+                  return videoComponents as [String: AnyObject]
+                }
               }
             }
           }
