@@ -14,7 +14,7 @@ private var globalConfiguration = MovielalaPlayerConfig()
 public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   public class var globalConfig: MovielalaPlayerConfig { return globalConfiguration }
   public var config: MovielalaPlayerConfig
-  
+
   // controller title |> player title
   public override var title: String? {
     didSet {
@@ -30,21 +30,16 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   private var wasPlayingBeforeTimeShift = false
   private var playbackTimeInterfaceUpdateTimer = NSTimer()
   private var hideControlsTimer = NSTimer()
-  
+
   // MARK: - Initialization
-  
-  struct controlbar {
-    let image: String?
-    let tintColor: UIColor?
-  }
-  
+
   public init(contentURL: NSURL, config: MovielalaPlayerConfig = globalConfiguration) {
     self.config = config
     controlsView = MovielalaPlayerControlsView(config: config)
     super.init(contentURL: contentURL)
     initializeMovielalaPlayerViewController()
   }
-  
+
   public init(contentURL: NSURL, configFileURL: NSURL) {
     let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
     self.config = config
@@ -52,7 +47,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     super.init(contentURL: contentURL)
     initializeMovielalaPlayerViewController()
   }
-  
+
   public init(youTubeURL: NSURL, configFileURL: NSURL) {
     let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
     self.config = config
@@ -63,16 +58,92 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       if let
         videoURLString = videoInfo?["url"] as? String,
         videoURL = NSURL(string: videoURLString) {
-        self.moviePlayer.contentURL = videoURL
+          self.moviePlayer.contentURL = videoURL
       }
     })
     initializeMovielalaPlayerViewController()
   }
-  
+
   public required init(coder aDecoder: NSCoder) {
     fatalError("storyboards are incompatible with truth and beauty")
   }
-  
+
+  deinit {
+    playbackTimeInterfaceUpdateTimer.invalidate()
+    hideControlsTimer.invalidate()
+    NSNotificationCenter.defaultCenter().removeObserver(self)
+  }
+
+  // MARK: - Overridden Methods
+  public override func prefersStatusBarHidden() -> Bool {
+    return true
+  }
+
+  public override func viewDidLoad() {
+    super.viewDidLoad()
+    view.addSubview(controlsView)
+    NSTimer.scheduledTimerWithTimeInterval(
+      0.0,
+      target: self,
+      selector: "updateBufferInterface",
+      userInfo: nil, repeats: true)
+  }
+
+  public override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    // Force hide status bar.
+    previousStatusBarHiddenValue = UIApplication.sharedApplication().statusBarHidden
+    UIApplication.sharedApplication().statusBarHidden = true
+    setNeedsStatusBarAppearanceUpdate()
+  }
+
+  public override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews()
+    controlsView.frame = view.bounds
+  }
+
+  public override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    UIApplication.sharedApplication().statusBarHidden = previousStatusBarHiddenValue
+    setNeedsStatusBarAppearanceUpdate()
+  }
+
+  // MARK: - MPMovieAccessLogEvent Bitrate Calculate
+
+  final func progressBarBufferPercentWithMoviePlayer(
+    player: MPMoviePlayerController) -> NSTimeInterval {
+      var playerEvent = MPMovieAccessLogEvent()
+      if var movieAccessLog = moviePlayer.accessLog {
+        var arrEvents = movieAccessLog.events
+        if arrEvents != nil {
+          for i in 0..<arrEvents.count {
+            playerEvent = (arrEvents[i] as? MPMovieAccessLogEvent)!
+          }
+        }
+      }
+      return playerEvent.segmentsDownloadedDuration
+  }
+
+  private func resetHideControlsTimer() {
+    hideControlsTimer.invalidate()
+    hideControlsTimer = NSTimer.scheduledTimerWithTimeInterval(
+      2,
+      target: self,
+      selector: "hideControlsIfPlaying",
+      userInfo: nil,
+      repeats: false)
+  }
+
+  private func showOverlayViewController(overlayVC: MovielalaPlayerOverlayViewController) {
+    addChildViewController(overlayVC)
+    overlayVC.view.clipsToBounds = true
+    controlsView.overlayContainerView.addSubview(overlayVC.view)
+    overlayVC.didMoveToParentViewController(self)
+  }
+}
+
+public extension MovielalaPlayerViewController {
+
   private func initializeMovielalaPlayerViewController() {
     edgesForExtendedLayout = .None
     moviePlayer.scalingMode = .AspectFit
@@ -80,7 +151,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     initializeNotificationObservers()
     initializeControlsView()
   }
-  
+
   private func initializeNotificationObservers() {
     let notificationCenter = NSNotificationCenter.defaultCenter()
     notificationCenter.addObserver(
@@ -88,8 +159,6 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       selector: "handleMoviePlayerPlaybackStateDidChangeNotification",
       name: MPMoviePlayerPlaybackStateDidChangeNotification,
       object: moviePlayer)
-    // Override playback completion handling.
-    
     notificationCenter.removeObserver(
       self,
       name: MPMoviePlayerPlaybackDidFinishNotification,
@@ -99,27 +168,6 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       selector: "showPostrollOrDismissAtVideoEnd",
       name: MPMoviePlayerPlaybackDidFinishNotification,
       object: moviePlayer)
-    
-    notificationCenter.removeObserver(
-      self,
-      name: "playVideoPlayer",
-      object: nil)
-    notificationCenter.addObserver(
-      self,
-      selector: "playVideoPlayer",
-      name: "playVideoPlayer",
-      object: nil)
-    
-    notificationCenter.removeObserver(
-      self,
-      name: "pauseVideoPlayer",
-      object: nil)
-    notificationCenter.addObserver(
-      self,
-      selector: "pauseVideoPlayer",
-      name: "pauseVideoPlayer",
-      object: nil)
-    
     notificationCenter.removeObserver(
       self,
       name: "goToCustomTimeSliderWithTime",
@@ -129,8 +177,30 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       selector: "goToCustomTimeSliderWithTime:",
       name: "goToCustomTimeSliderWithTime",
       object: nil)
+    initializeButtonNotificationObservers(notificationCenter)
   }
-  
+
+  private func initializeButtonNotificationObservers(notificationCenter: NSNotificationCenter) {
+    notificationCenter.removeObserver(
+      self,
+      name: "playVideoPlayer",
+      object: nil)
+    notificationCenter.addObserver(
+      self,
+      selector: "playVideoPlayer",
+      name: "playVideoPlayer",
+      object: nil)
+    notificationCenter.removeObserver(
+      self,
+      name: "pauseVideoPlayer",
+      object: nil)
+    notificationCenter.addObserver(
+      self,
+      selector: "pauseVideoPlayer",
+      name: "pauseVideoPlayer",
+      object: nil)
+  }
+
   private func initializeControlsView() {
     controlsView.closeButton.addTarget(
       self,
@@ -158,7 +228,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       forControlEvents: .TouchUpInside | .TouchUpOutside | .TouchCancel)
     initializeControlsViewTapRecognizers()
   }
-  
+
   private func initializeControlsViewTapRecognizers() {
     let singleTapRecognizer = UITapGestureRecognizer(
       target: self,
@@ -172,51 +242,9 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     controlsView.addGestureRecognizer(doubleTapRecognizer)
     singleTapRecognizer.requireGestureRecognizerToFail(doubleTapRecognizer)
   }
-  
-  deinit {
-    playbackTimeInterfaceUpdateTimer.invalidate()
-    hideControlsTimer.invalidate()
-    NSNotificationCenter.defaultCenter().removeObserver(self)
-  }
-  
-  // MARK: - Overridden Methods
-  public override func prefersStatusBarHidden() -> Bool {
-    return true
-  }
-  
-  public override func viewDidLoad() {
-    super.viewDidLoad()
-    view.addSubview(controlsView)
-    
-    NSTimer.scheduledTimerWithTimeInterval(
-      0.0,
-      target: self,
-      selector: "updateBufferInterface",
-      userInfo: nil, repeats: true)
-  }
-  
-  public override func viewWillAppear(animated: Bool) {
-    super.viewWillAppear(animated)
-    // Force hide status bar.
-    previousStatusBarHiddenValue = UIApplication.sharedApplication().statusBarHidden
-    UIApplication.sharedApplication().statusBarHidden = true
-    setNeedsStatusBarAppearanceUpdate()
-  }
-  
-  public override func viewWillLayoutSubviews() {
-    super.viewWillLayoutSubviews()
-    controlsView.frame = view.bounds
-  }
-  
-  public override func viewWillDisappear(animated: Bool) {
-    super.viewWillDisappear(animated)
-    // Restore status bar appearance.
-    UIApplication.sharedApplication().statusBarHidden = previousStatusBarHiddenValue
-    setNeedsStatusBarAppearanceUpdate()
-  }
-  
+
   // MARK: - Event Handling
-  
+
   func togglePlay() {
     let state = moviePlayer.playbackState
     if state == .Playing || state == .Interrupted {
@@ -225,15 +253,15 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       moviePlayer.play()
     }
   }
-  
+
   func pauseVideoPlayer() {
     moviePlayer.pause()
   }
-  
+
   func playVideoPlayer() {
     moviePlayer.play()
   }
-  
+
   final func handleMoviePlayerPlaybackStateDidChangeNotification() {
     let state = moviePlayer.playbackState
     updatePlaybackTimeInterface()
@@ -258,14 +286,14 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       }
     }
   }
-  
+
   final func hideControlsIfPlaying() {
     let state = moviePlayer.playbackState
     if state == .Playing || state == .Interrupted {
       controlsView.controlsHidden = true
     }
   }
-  
+
   final func showPostrollOrDismissAtVideoEnd() {
     if let postrollVC = config.postrollViewController {
       showOverlayViewController(postrollVC)
@@ -276,87 +304,35 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       dismiss()
     }
   }
-  
+
   final func timeShiftDidBegin() {
     let state = moviePlayer.playbackState
     wasPlayingBeforeTimeShift = (state == .Playing || state == .Interrupted)
     moviePlayer.pause()
   }
-  
+
   final func goToTimeSliderTime() {
     var timeVal = controlsView.customTimeSliderView.value
     moviePlayer.currentPlaybackTime = NSTimeInterval(controlsView.customTimeSliderView.value)
   }
-  
-  final func goToCustomTimeSliderWithTime(notification:NSNotification) {
-    let userInfo:Dictionary<String,NSTimeInterval!> = notification.userInfo as! Dictionary<String,NSTimeInterval!>
-    let messageString:NSTimeInterval = userInfo["time"]!
-    var playbackTime:NSTimeInterval = messageString
-    moviePlayer.currentPlaybackTime = playbackTime
-    moviePlayer.play()
+
+  final func goToCustomTimeSliderWithTime(notification: NSNotification) {
+    if let userInfo = notification.userInfo as? [String: NSTimeInterval] {
+      let messageString = userInfo["time"]!
+      var playbackTime = messageString
+      moviePlayer.currentPlaybackTime = playbackTime
+      moviePlayer.play()
+    }
   }
-  
+
   final func timeShiftDidEnd() {
     if wasPlayingBeforeTimeShift {
       moviePlayer.play()
     }
   }
-  
-  // MARK: - Public API
-  
-  public final func toggleVideoScalingMode() {
-    if moviePlayer.scalingMode != .AspectFill {
-      moviePlayer.scalingMode = .AspectFill
-    } else {
-      moviePlayer.scalingMode = .AspectFit
-    }
-  }
-  
-  public final func updateBufferInterface() {
-    var d:NSTimeInterval = progressBarBufferPercentWithMoviePlayer(moviePlayer)
-    var bufferRatio:CGFloat = CGFloat(d)
-    var totalDuration:CGFloat = CGFloat(moviePlayer.duration)
-    var videoRatio:CGFloat = CGFloat(moviePlayer.currentPlaybackTime)
-    controlsView.customTimeSliderView.refreshBufferPercentRatio(bufferRatio: bufferRatio, totalDuration: totalDuration)
-    controlsView.customTimeSliderView.refreshVideoProgressPercentRaito(videoRaito: videoRatio, totalDuration: totalDuration)
-    controlsView.customTimeSliderView.refreshCustomTimeSliderPercentRatio()
-  }
-  
-  public final func updatePlaybackTimeInterface() {
-    updateTimeSlider()
-    updateTimeLabel(controlsView.playbackTimeLabel, time: moviePlayer.currentPlaybackTime)
-    controlsView.setNeedsLayout()
-  }
-  
-  public final func toggleControlVisibility() {
-    if controlsView.controlsHidden {
-      controlsView.controlsHidden = false
-      resetHideControlsTimer()
-    } else {
-      controlsView.controlsHidden = true
-      hideControlsTimer.invalidate()
-    }
-  }
-  
-  public final func shareContent() {
-    // TODO: Smarter sharing.
-    if let shareCallback = config.shareConfig.shareCallback {
-      moviePlayer.pause()
-      shareCallback(playerVC: self)
-    }
-  }
-  
-  public final func dismiss() {
-    moviePlayer.stop()
-    if let nc = navigationController {
-      nc.popViewControllerAnimated(true)
-    } else {
-      dismissViewControllerAnimated(true, completion: nil)
-    }
-  }
-  
+
   // MARK: - Internal Helpers
-  
+
   private func doFirstPlaySetupIfNeeded() {
     if isFirstPlay {
       isFirstPlay = false
@@ -374,12 +350,12 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       }
     }
   }
-  
+
   private func updateTimeSlider() {
     controlsView.customTimeSliderView.maximumValue = Float(moviePlayer.duration)
     controlsView.customTimeSliderView.value = Float(moviePlayer.currentPlaybackTime)
   }
-  
+
   private func updateTimeLabel(label: UILabel, time: NSTimeInterval) {
     if time.isNaN || time == NSTimeInterval.infinity {
       return
@@ -387,56 +363,82 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     let hours = UInt(time / 3600)
     let minutes = UInt((time / 60) % 60)
     let seconds = UInt(time % 60)
-    var timeLabelText:NSString = NSString(format: "%02lu:%02lu", minutes, seconds) as String
+    var timeLabelText = NSString(format: "%02lu:%02lu", minutes, seconds) as String
     label.text = checkTimeLabelText(timeLabelText)
     if hours > 0 {
       label.text = NSString(format: "%02lu:%@", hours, label.text!) as String
     }
   }
-  
-  private func checkTimeLabelText(text:NSString) -> String {
+
+  private func checkTimeLabelText(text: NSString) -> String {
     if text.length > 8 {
       return String("00:00")
     }
     return String(text)
   }
-  
-  // MARK: - MPMovieAccessLogEvent Bitrate Calculate
-  
-  final func progressBarBufferPercentWithMoviePlayer(player:MPMoviePlayerController) -> NSTimeInterval {
-    var playerEvent:MPMovieAccessLogEvent = MPMovieAccessLogEvent()
-    if var movieAccessLog:MPMovieAccessLog = moviePlayer.accessLog {
-      var arrEvents = movieAccessLog.events
-      if arrEvents != nil {
-        for i in 0..<arrEvents.count {
-          playerEvent = arrEvents[i] as! MPMovieAccessLogEvent
-        }
-      }
+
+  // MARK: - Public API
+
+  public final func toggleVideoScalingMode() {
+    if moviePlayer.scalingMode != .AspectFill {
+      moviePlayer.scalingMode = .AspectFill
+    } else {
+      moviePlayer.scalingMode = .AspectFit
     }
-    return playerEvent.segmentsDownloadedDuration
   }
-  
-  private func resetHideControlsTimer() {
-    hideControlsTimer.invalidate()
-    hideControlsTimer = NSTimer.scheduledTimerWithTimeInterval(
-      2,
-      target: self,
-      selector: "hideControlsIfPlaying",
-      userInfo: nil,
-      repeats: false)
+
+  public final func updateBufferInterface() {
+    var d = progressBarBufferPercentWithMoviePlayer(moviePlayer)
+    var bufferRatio = CGFloat(d)
+    var totalDuration = CGFloat(moviePlayer.duration)
+    var videoRatio = CGFloat(moviePlayer.currentPlaybackTime)
+    controlsView.customTimeSliderView.refreshBufferPercentRatio(
+      bufferRatio: bufferRatio,
+      totalDuration: totalDuration
+    )
+    controlsView.customTimeSliderView.refreshVideoProgressPercentRaito(
+      videoRaito: videoRatio,
+      totalDuration: totalDuration
+    )
+    controlsView.customTimeSliderView.refreshCustomTimeSliderPercentRatio()
   }
-  
-  private func showOverlayViewController(overlayVC: MovielalaPlayerOverlayViewController) {
-    addChildViewController(overlayVC)
-    overlayVC.view.clipsToBounds = true
-    controlsView.overlayContainerView.addSubview(overlayVC.view)
-    overlayVC.didMoveToParentViewController(self)
+
+  public final func updatePlaybackTimeInterface() {
+    updateTimeSlider()
+    updateTimeLabel(controlsView.playbackTimeLabel, time: moviePlayer.currentPlaybackTime)
+    controlsView.setNeedsLayout()
+  }
+
+  public final func toggleControlVisibility() {
+    if controlsView.controlsHidden {
+      controlsView.controlsHidden = false
+      resetHideControlsTimer()
+    } else {
+      controlsView.controlsHidden = true
+      hideControlsTimer.invalidate()
+    }
+  }
+
+  public final func shareContent() {
+    if let shareCallback = config.shareConfig.shareCallback {
+      moviePlayer.pause()
+      shareCallback(playerVC: self)
+    }
+  }
+
+  public final func dismiss() {
+    moviePlayer.stop()
+    if let nc = navigationController {
+      nc.popViewControllerAnimated(true)
+    } else {
+      dismissViewControllerAnimated(true, completion: nil)
+    }
   }
 }
 
 // MARK: - MovielalaPlayerOverlayViewControllerDelegate
+
 extension MovielalaPlayerViewController: MovielalaPlayerOverlayViewControllerDelegate {
-  
   func dismissMovielalaPlayerOverlay(overlayVC: MovielalaPlayerOverlayViewController) {
     if overlayVC.view.superview == controlsView.overlayContainerView {
       overlayVC.willMoveToParentViewController(nil)
@@ -445,8 +447,3 @@ extension MovielalaPlayerViewController: MovielalaPlayerOverlayViewControllerDel
     }
   }
 }
-
-
-
-
-

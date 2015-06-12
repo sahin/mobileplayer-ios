@@ -9,7 +9,7 @@
 import UIKit
 
 public struct SkinParser {
-  
+
   public static func parseConfigFromURL(url: NSURL) -> MovielalaPlayerConfig? {
     if let
       jsonString = String(contentsOfURL: url, encoding: NSUTF8StringEncoding),
