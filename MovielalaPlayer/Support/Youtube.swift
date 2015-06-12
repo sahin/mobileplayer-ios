@@ -45,20 +45,22 @@ public class Youtube: NSObject {
   let userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.4 (KHTML, like Gecko) Chrome/22.0.1229.79 Safari/537.4"
   
   public func youtubeIDFromYoutubeURL(youtubeURL: NSURL) -> String? {
-    let youtubeHost:NSString = youtubeURL.host!
-    let youtubePathComponents:Array<String> = youtubeURL.pathComponents as! AnyObject as! Array<String>
-    let youtubeAbsoluteString = youtubeURL.absoluteString
-    if youtubeHost.isEqualToString("youtu.be") {
-      return youtubePathComponents[1]
-    } else if (youtubeAbsoluteString?.rangeOfString("www.youtube.com/embed") != nil) {
-      return youtubePathComponents[2]
-    } else if (youtubeHost.isEqualToString("youtube.googleapis.com") ||
-      youtubeURL.pathComponents!.first!.isEqualToString("www.youtube.com")) {
-        return youtubePathComponents[2]
-    } else if let
-      queryString = youtubeURL.dictionaryForQueryString(),
-      searchParam = queryString["v"] as? String {
-        return searchParam
+    if let
+      youtubeHost = youtubeURL.host,
+      youtubePathComponents = youtubeURL.pathComponents as? [String] {
+        let youtubeAbsoluteString = youtubeURL.absoluteString
+        if youtubeHost == "youtu.be" {
+          return youtubePathComponents[1]
+        } else if youtubeAbsoluteString?.rangeOfString("www.youtube.com/embed") != nil {
+          return youtubePathComponents[2]
+        } else if youtubeHost == "youtube.googleapis.com" ||
+          youtubeURL.pathComponents!.first!.isEqualToString("www.youtube.com") {
+            return youtubePathComponents[2]
+        } else if let
+          queryString = youtubeURL.dictionaryForQueryString(),
+          searchParam = queryString["v"] as? String {
+            return searchParam
+        }
     }
     return nil
   }

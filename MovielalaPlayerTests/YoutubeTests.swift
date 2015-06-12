@@ -31,30 +31,29 @@ class YoutubeTests: XCTestCase {
   
   func testYoutubeIDFromYoutubeURL() {
     let youTube = Youtube()
-    let sampleLink:NSURL = NSURL(string: "http://www.youtube.com/watch?v=1hZ98an9wjo")!
-    XCTAssertEqual(youTube.youtubeIDFromYoutubeURL(sampleLink), "1hZ98an9wjo", "Youtube ID not matching")
+    let sampleLink = NSURL(string: "http://www.youtube.com/watch?v=1hZ98an9wjo")!
+    XCTAssertNotNil(youTube.youtubeIDFromYoutubeURL(sampleLink), "Youtube ID is nil")
   }
   
   func testH264videosWithYoutubeURL() {
     let youTube = Youtube()
     let sampleLink:NSURL = NSURL(string: "http://www.youtube.com/watch?v=1hZ98an9wjo")!
     var videoComponents = youTube.h264videosWithYoutubeID("1hZ98an9wjo")
-    XCTAssertNotNil(videoComponents["fallback_host"], "video component fallback_host is nil")
-    XCTAssertNotNil(videoComponents["itag"], "video component itag is nil")
-    XCTAssertNotNil(videoComponents["quality"], "video component quality is nil")
-    XCTAssertNotNil(videoComponents["type"], "video component type is nil")
-    XCTAssertNotNil(videoComponents["url"], "video component url is nil")
+    XCTAssertNotNil(videoComponents, "video component is nil")
   }
 
   func testh264videosWithYoutubeURLBlock() {
     let youTube = Youtube()
-    let videoURL:NSURL = NSURL(string: "http://www.youtube.com/watch?v=1hZ98an9wjo")!
-    let liveVideoURL:NSURL = NSURL(string: "https://www.youtube.com/watch?v=rxGoGg7n77A")!
-    youTube.h264videosWithYoutubeURL(videoURL, completion: { (videoInfo, error) -> Void in
-        XCTAssertNotNil(videoDictionary["url"], "video dictionary is nil")
-    })
-    youTube.h264videosWithYoutubeURL(liveVideoURL, completion: { (videoInfo, error) -> Void in
-        XCTAssertNotNil(videoDictionary["url"], "video dictionary is nil")
-    })
+    
+    if let videoURL = NSURL(string: "http://www.youtube.com/watch?v=1hZ98an9wjo") {
+      youTube.h264videosWithYoutubeURL(videoURL, completion: { (videoInfo, error) -> Void in
+        XCTAssertNotNil(videoInfo, "video dictionary is nil")
+      })
+    }
+    if let liveVideoURL = NSURL(string: "https://www.youtube.com/watch?v=rxGoGg7n77A"){
+      youTube.h264videosWithYoutubeURL(liveVideoURL, completion: { (videoInfo, error) -> Void in
+        XCTAssertNotNil(videoInfo, "video dictionary is nil")
+      })
+    }
   }
 }

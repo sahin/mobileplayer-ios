@@ -59,11 +59,11 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     controlsView = MovielalaPlayerControlsView(config: config)
     super.init(contentURL: NSURL())
     let youtube = Youtube()
-    youtube.h264videosWithYoutubeURL(youTubeURL, completion: { videoDictionary, error in
+    youtube.h264videosWithYoutubeURL(youTubeURL, completion: { videoInfo, error in
       if let
-        videoURLString = videoDictionary?["url"] as? String,
+        videoURLString = videoInfo?["url"] as? String,
         videoURL = NSURL(string: videoURLString) {
-          self.moviePlayer.contentURL = videoURL
+        self.moviePlayer.contentURL = videoURL
       }
     })
     initializeMovielalaPlayerViewController()
