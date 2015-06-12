@@ -2,6 +2,11 @@ machine:
   xcode:
     version: "6.3.1"
 
+dependencies:
+  pre:
+    - brew update
+    - brew install swiftlint
+
 test:
   override:
     - xcodebuild -scheme MovielalaPlayer -sdk iphonesimulator -destination 'name=iPhone 6' test
