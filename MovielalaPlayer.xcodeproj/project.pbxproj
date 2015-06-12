@@ -287,6 +287,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3A9AEF51B048B5700D0C842 /* Build configuration list for PBXNativeTarget "MovielalaPlayerExample" */;
 			buildPhases = (
+				5F2739FE1B2A8F6000EF50C4 /* Validate Code Style */,
 				C3A9AED51B048B5600D0C842 /* Sources */,
 				C3A9AED61B048B5600D0C842 /* Frameworks */,
 				C3A9AED71B048B5600D0C842 /* Resources */,
@@ -306,6 +307,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3A9AEF81B048B5700D0C842 /* Build configuration list for PBXNativeTarget "MovielalaPlayerExampleTests" */;
 			buildPhases = (
+				5F2739FF1B2A8F7400EF50C4 /* Validate Code Style */,
 				C3A9AEE91B048B5700D0C842 /* Sources */,
 				C3A9AEEA1B048B5700D0C842 /* Frameworks */,
 				C3A9AEEB1B048B5700D0C842 /* Resources */,
@@ -324,6 +326,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE554D651AFE6CCD00DAC7E9 /* Build configuration list for PBXNativeTarget "MovielalaPlayer" */;
 			buildPhases = (
+				5F2739FC1B2A8F3400EF50C4 /* Validate Code Style */,
 				CE554D4A1AFE6CCD00DAC7E9 /* Sources */,
 				CE554D4B1AFE6CCD00DAC7E9 /* Frameworks */,
 				CE554D4C1AFE6CCD00DAC7E9 /* Headers */,
@@ -342,6 +345,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE554D681AFE6CCD00DAC7E9 /* Build configuration list for PBXNativeTarget "MovielalaPlayerTests" */;
 			buildPhases = (
+				5F2739FD1B2A8F5100EF50C4 /* Validate Code Style */,
 				CE554D561AFE6CCD00DAC7E9 /* Sources */,
 				CE554D571AFE6CCD00DAC7E9 /* Frameworks */,
 				CE554D581AFE6CCD00DAC7E9 /* Resources */,
@@ -436,6 +440,65 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5F2739FC1B2A8F3400EF50C4 /* Validate Code Style */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Validate Code Style";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = /usr/local/bin/swiftlint;
+		};
+		5F2739FD1B2A8F5100EF50C4 /* Validate Code Style */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Validate Code Style";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = /usr/local/bin/swiftlint;
+		};
+		5F2739FE1B2A8F6000EF50C4 /* Validate Code Style */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Validate Code Style";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = /usr/local/bin/swiftlint;
+		};
+		5F2739FF1B2A8F7400EF50C4 /* Validate Code Style */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Validate Code Style";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = /usr/local/bin/swiftlint;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C3A9AED51B048B5600D0C842 /* Sources */ = {
