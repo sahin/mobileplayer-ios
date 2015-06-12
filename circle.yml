@@ -5,7 +5,6 @@ machine:
 dependencies:
   pre:
     - brew update
-    - brew install llvm --with-clang
     - brew install swiftlint
 
 test:
