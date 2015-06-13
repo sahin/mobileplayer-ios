@@ -106,10 +106,7 @@ class CustomTimeSliderView: UIView {
   }
 
   //Buffer Percent
-  func refreshBufferPercentRatio(
-    bufferRatio width: CGFloat,
-    totalDuration total: CGFloat
-    ) {
+  func refreshBufferPercentRatio(bufferRatio width: CGFloat, totalDuration total: CGFloat) {
       if width.isNaN || total.isNaN {
         return bufferPercentRatio = 0.0
       }
