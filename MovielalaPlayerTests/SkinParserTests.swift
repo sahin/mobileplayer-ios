@@ -13,8 +13,7 @@ import MovielalaPlayer
 class SkinParserTests: XCTestCase {
   let fileURL = NSBundle(forClass: SkinParserTests.self).URLForResource(
     "TestSkin",
-    withExtension:"json"
-    )!
+    withExtension: "json")!
 
   override func setUp() {
     super.setUp()
