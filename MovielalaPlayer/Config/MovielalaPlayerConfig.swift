@@ -10,12 +10,12 @@ import Foundation
 
 public struct MovielalaPlayerConfig {
 
-  // MARK: - ControlBar Skin 
+  // MARK: - ControlBar Skin
   public let controlbarConfig: ControlbarConfig
   public let shareConfig: ShareButtonConfig
   public let closeConfig: CloseButtonConfig
   public let titleConfig: TitleConfig
-  
+
   // MARK: - Theming
   public var headerHeight = CGFloat(40)
   public var footerHeight = CGFloat(40)
@@ -25,20 +25,20 @@ public struct MovielalaPlayerConfig {
   public var footerBorderHeight = CGFloat(1)
   public var footerBackgroundColor = UIColor(white: 0, alpha: 0.7)
   public var footerBorderColor = UIColor(white: 1, alpha: 0.2)
-  
+
   // MARK: - General Callbacks
   var playCallback: ((playerVC: MovielalaPlayerViewController) -> Void)? = nil
   var pauseCallback: ((playerVC: MovielalaPlayerViewController) -> Void)? = nil
-  
+
   // MARK: - Overlays
   var prerollViewController: MovielalaPlayerOverlayViewController? = nil
   var pauseViewController: MovielalaPlayerOverlayViewController? = nil
   var postrollViewController: MovielalaPlayerOverlayViewController? = nil
   var endCallback: ((playerVC: MovielalaPlayerViewController) -> Void)? = nil
-  
+
   // MARK: - Special Callbacks
   var firstPlayCallback: ((playerVC: MovielalaPlayerViewController) -> Void)? = nil
-  
+
   // MARK: - Not Configuration Related
   public init() {
     controlbarConfig = ControlbarConfig()
@@ -46,7 +46,7 @@ public struct MovielalaPlayerConfig {
     closeConfig = CloseButtonConfig()
     titleConfig = TitleConfig()
   }
-  
+
   public init(dictionary: [String: AnyObject]) {
     if let controlbarConfigDictionary = dictionary["controlbar"] as? [String: AnyObject] {
       controlbarConfig = ControlbarConfig(dictionary: controlbarConfigDictionary)

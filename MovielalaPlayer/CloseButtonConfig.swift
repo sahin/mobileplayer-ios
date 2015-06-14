@@ -12,9 +12,9 @@ public struct CloseButtonConfig {
   public var imageName = MovielalaPlayerConfig.loadImage(named: "MLCloseButton.png")
   public var tintColor = UIColor.whiteColor()
   public var backgroundColor = UIColor.clearColor()
-  
+
   public init() {}
-  
+
   public init(dictionary: [String: AnyObject]) {
     if let imageName = dictionary["image"] as? String {
       self.imageName = MovielalaPlayerConfig.loadImage(named: imageName)

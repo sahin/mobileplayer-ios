@@ -23,9 +23,9 @@ public struct ControlbarConfig {
   public var timeSliderThumbTintColor = UIColor.whiteColor()
   public var timeSliderBackgroundColor = UIColor.clearColor()
   public var backgroundColor = UIColor.clearColor()
-  
+
   public init() {}
-  
+
   public init(dictionary: [String: AnyObject]) {
     // Coltrolbar background
     if let backgroundColor = dictionary["backgroundColor"] as? String {

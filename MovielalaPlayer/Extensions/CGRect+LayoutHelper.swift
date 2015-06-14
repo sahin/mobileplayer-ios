@@ -9,8 +9,8 @@
 import Foundation
 
 extension CGRect {
-  var x: CGFloat { return self.origin.x }
-  var y: CGFloat { return self.origin.y }
+  var rectX: CGFloat { return self.origin.x }
+  var rectY: CGFloat { return self.origin.y }
   var width: CGFloat { return self.size.width }
   var height: CGFloat { return self.size.height }
   var aspectRatio: CGFloat { return self.width / self.height }
