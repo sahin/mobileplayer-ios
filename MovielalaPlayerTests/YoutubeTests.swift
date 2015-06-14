@@ -72,18 +72,17 @@ class YoutubeTests: XCTestCase {
         XCTAssertNotNil(videoInfo, "video dictionary is nil")
         if let info = videoInfo as [String:AnyObject]? {
           if let itag = info["itag"] as? String {
-          XCTAssertEqual(itag, "22", "itag not equal")
+            XCTAssertEqual(itag, "22", "itag not equal")
           }
           if let quality = info["quality"] as? String {
-          XCTAssertEqual(quality, "hd720", "quality not equal")
+            XCTAssertEqual(quality, "hd720", "quality not equal")
           }
           if let fallback_host = info["fallback_host"] as? String {
-          XCTAssertEqual(fallback_host, "tc.v7.cache1.googlevideo.com", "fallback_host not equal")
+            XCTAssertEqual(fallback_host, "tc.v7.cache1.googlevideo.com", "fallback_host not equal")
           }
           if let type = info["type"] as? String {
-          XCTAssertEqual(type, "video/mp4; codecs=\"avc1.64001F, mp4a.40.2\"", "type not equal")
+            XCTAssertEqual(type, "video/mp4; codecs=\"avc1.64001F, mp4a.40.2\"", "type not equal")
           }
-
         }
       })
     }
