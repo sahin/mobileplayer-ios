@@ -36,7 +36,7 @@ class CustomTimeSliderView: UIView {
       return timeSlider.value
     }
   }
-  
+
   private var userInteraction:Bool = false
   private var userInteractionLocation:CGFloat = 0.0
   private var videoPercentRatio:CGFloat = 0.0
@@ -89,7 +89,6 @@ class CustomTimeSliderView: UIView {
         customTimeSliderThumbValue = locationInView.x
         customTimeSliderProgressValue = locationInView.x + thumbViewWidth/2
         userInteractionLocation = locationInView.x
-        bufferPercentRatio = locationInView.x
       }
     }
     if recognizer.state == .Ended {
@@ -125,7 +124,7 @@ class CustomTimeSliderView: UIView {
         customTimeSliderProgressValue = CGFloat(ratio / total * 100)
       }
       customTimeSliderProgressValue = customTimeSliderProgressValue * self.bounds.size.width / 100
-    }else{
+    } else {
       customTimeSliderProgressValue = userInteractionLocation
     }
     layoutSubviews()
@@ -153,8 +152,6 @@ class CustomTimeSliderView: UIView {
       y: 18.0,
       width: self.frame.width - 2.0,
       height: 4.0)
-    //self.customTimeSliderRailView.layer.cornerRadius = 5.0
-    //self.customTimeSliderRailView.layer.masksToBounds = true
     //Progress View
     UIView.animateWithDuration(0.0, animations: {
       self.progressView.frame = CGRect(
@@ -162,8 +159,6 @@ class CustomTimeSliderView: UIView {
         y: 0.0,
         width: self.customTimeSliderProgressValue,
         height: 4.0)
-      //self.customTimeSliderProgressView.layer.cornerRadius = 5.0
-      //self.customTimeSliderProgressView.layer.masksToBounds = true
     })
     //Thumb View
     UIView.animateWithDuration(
@@ -188,8 +183,6 @@ class CustomTimeSliderView: UIView {
         y: 0.0,
         width: self.bufferPercentRatio,
         height: 4.0)
-      //self.customTimeSliderBufferView.layer.cornerRadius = 5.0
-      //self.customTimeSliderBufferView.layer.masksToBounds = true
     })
   }
 }
