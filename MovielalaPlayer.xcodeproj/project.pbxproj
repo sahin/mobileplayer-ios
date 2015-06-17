@@ -13,24 +13,24 @@
 		C308B3BB1B14FAE300CB1515 /* ControlbarConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */; };
 		C308B3C01B150F7600CB1515 /* MovielalaPlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MovielalaPlayerConfig.swift */; };
 		C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */; };
-		C36A056B1B26538800891445 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643AF1B166D270017DBE6 /* UIColor+Extension.swift */; };
-		C38825341B31EA4200B1DC77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
-		C38825351B31EA4800B1DC77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
-		C38825361B31EA4B00B1DC77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
 		C38833C71B26596E00918C94 /* SkinParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38833C61B26596E00918C94 /* SkinParserTests.swift */; };
 		C38833C91B266C2500918C94 /* TestSkin.json in Resources */ = {isa = PBXBuildFile; fileRef = C38833C81B266C2500918C94 /* TestSkin.json */; };
+		C3A4069B1B27709900D1833D /* Youtube.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069A1B27709900D1833D /* Youtube.swift */; };
+		C3A406A21B278B5A00D1833D /* CGRect+LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */; };
+		C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */; };
+		C3A406AF1B27AA8C00D1833D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Extension.swift */; };
+		C3A406B01B27AA9500D1833D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Extension.swift */; };
+		C3A406B11B27AAA700D1833D /* Youtube.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069A1B27709900D1833D /* Youtube.swift */; };
 		C3A9AEDE1B048B5600D0C842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */; };
 		C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A9AEE61B048B5600D0C842 /* LaunchScreen.xib */; };
 		C3A9AEF41B048B5700D0C842 /* MovielalaPlayerExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEF31B048B5700D0C842 /* MovielalaPlayerExampleTests.swift */; };
 		C3A9AF031B0491B500D0C842 /* MovielalaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework */; };
 		C3A9AF041B0491B500D0C842 /* MovielalaPlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3A9AF0D1B049A4D00D0C842 /* Images.xcassets */; };
-		C3E643B01B166D270017DBE6 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643AF1B166D270017DBE6 /* UIColor+Extension.swift */; };
 		C3E643B21B16751B0017DBE6 /* TitleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643B11B16751B0017DBE6 /* TitleConfig.swift */; };
 		C3E643B41B16798A0017DBE6 /* CloseButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */; };
 		CE554D551AFE6CCD00DAC7E9 /* MovielalaPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = CE554D541AFE6CCD00DAC7E9 /* MovielalaPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE554D5B1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework */; };
-		CE554D701AFE6EBB00DAC7E9 /* CGRect+LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6B1AFE6EBB00DAC7E9 /* CGRect+LayoutHelper.swift */; };
 		CE554D721AFE6EBB00DAC7E9 /* MovielalaPlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6D1AFE6EBB00DAC7E9 /* MovielalaPlayerControlsView.swift */; };
 		CE554D731AFE6EBB00DAC7E9 /* MovielalaPlayerOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6E1AFE6EBB00DAC7E9 /* MovielalaPlayerOverlayViewController.swift */; };
 		CE554D741AFE6EBB00DAC7E9 /* MovielalaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6F1AFE6EBB00DAC7E9 /* MovielalaPlayerViewController.swift */; };
@@ -84,6 +84,10 @@
 		C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShareButtonConfig.swift; path = Config/ShareButtonConfig.swift; sourceTree = "<group>"; };
 		C38833C61B26596E00918C94 /* SkinParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinParserTests.swift; sourceTree = "<group>"; };
 		C38833C81B266C2500918C94 /* TestSkin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestSkin.json; sourceTree = "<group>"; };
+		C3A4069A1B27709900D1833D /* Youtube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Youtube.swift; path = Support/Youtube.swift; sourceTree = "<group>"; };
+		C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CGRect+LayoutHelper.swift"; path = "Extensions/CGRect+LayoutHelper.swift"; sourceTree = "<group>"; };
+		C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeTests.swift; sourceTree = "<group>"; };
+		C3A406AE1B27AA8C00D1833D /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIColor+Extension.swift"; path = "Extensions/UIColor+Extension.swift"; sourceTree = "<group>"; };
 		C3A9AED91B048B5600D0C842 /* MovielalaPlayerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovielalaPlayerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A9AEDC1B048B5600D0C842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,7 +96,6 @@
 		C3A9AEF21B048B5700D0C842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3A9AEF31B048B5700D0C842 /* MovielalaPlayerExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovielalaPlayerExampleTests.swift; sourceTree = "<group>"; };
 		C3A9AF0D1B049A4D00D0C842 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C3E643AF1B166D270017DBE6 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		C3E643B11B16751B0017DBE6 /* TitleConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleConfig.swift; sourceTree = "<group>"; };
 		C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseButtonConfig.swift; sourceTree = "<group>"; };
 		CE554D4F1AFE6CCD00DAC7E9 /* MovielalaPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MovielalaPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,7 +103,6 @@
 		CE554D541AFE6CCD00DAC7E9 /* MovielalaPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MovielalaPlayer.h; sourceTree = "<group>"; };
 		CE554D5A1AFE6CCD00DAC7E9 /* MovielalaPlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovielalaPlayerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE554D601AFE6CCD00DAC7E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CE554D6B1AFE6EBB00DAC7E9 /* CGRect+LayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+LayoutHelper.swift"; sourceTree = "<group>"; };
 		CE554D6D1AFE6EBB00DAC7E9 /* MovielalaPlayerControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovielalaPlayerControlsView.swift; sourceTree = "<group>"; };
 		CE554D6E1AFE6EBB00DAC7E9 /* MovielalaPlayerOverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovielalaPlayerOverlayViewController.swift; sourceTree = "<group>"; };
 		CE554D6F1AFE6EBB00DAC7E9 /* MovielalaPlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovielalaPlayerViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +153,23 @@
 				C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */,
 			);
 			name = Config;
+			sourceTree = "<group>";
+		};
+		C3A406971B27700400D1833D /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				C3A4069A1B27709900D1833D /* Youtube.swift */,
+			);
+			name = Support;
+			sourceTree = "<group>";
+		};
+		C3A4069C1B278A4900D1833D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C3A406AE1B27AA8C00D1833D /* UIColor+Extension.swift */,
+				C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		C3A9AEDA1B048B5600D0C842 /* MovielalaPlayerExample */ = {
@@ -231,15 +250,15 @@
 		CE554D511AFE6CCD00DAC7E9 /* MovielalaPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				C3A4069C1B278A4900D1833D /* Extensions */,
+				C3A406971B27700400D1833D /* Support */,
 				C308B3B71B14F98700CB1515 /* Config */,
 				C3A9AF0F1B04C89D00D0C842 /* Parser */,
 				CE554D541AFE6CCD00DAC7E9 /* MovielalaPlayer.h */,
-				CE554D6B1AFE6EBB00DAC7E9 /* CGRect+LayoutHelper.swift */,
 				CE554D6D1AFE6EBB00DAC7E9 /* MovielalaPlayerControlsView.swift */,
 				C305DED51B20DC8300DD9632 /* CustomTimeSliderView.swift */,
 				CE554D6F1AFE6EBB00DAC7E9 /* MovielalaPlayerViewController.swift */,
 				CE554D6E1AFE6EBB00DAC7E9 /* MovielalaPlayerOverlayViewController.swift */,
-				C3E643AF1B166D270017DBE6 /* UIColor+Extension.swift */,
 				CE554D751AFE6EE400DAC7E9 /* Images.xcassets */,
 				CE554D521AFE6CCD00DAC7E9 /* Supporting Files */,
 			);
@@ -258,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				C38833C61B26596E00918C94 /* SkinParserTests.swift */,
+				C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */,
 				CE554D5F1AFE6CCD00DAC7E9 /* Supporting Files */,
 			);
 			path = MovielalaPlayerTests;
@@ -290,11 +310,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3A9AEF51B048B5700D0C842 /* Build configuration list for PBXNativeTarget "MovielalaPlayerExample" */;
 			buildPhases = (
-				5F2739FE1B2A8F6000EF50C4 /* Validate Code Style */,
 				C3A9AED51B048B5600D0C842 /* Sources */,
 				C3A9AED61B048B5600D0C842 /* Frameworks */,
 				C3A9AED71B048B5600D0C842 /* Resources */,
 				C3A9AF071B0491B500D0C842 /* Embed Frameworks */,
+				5F2739FE1B2A8F6000EF50C4 /* Validate Code Style */,
 			);
 			buildRules = (
 			);
@@ -310,10 +330,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3A9AEF81B048B5700D0C842 /* Build configuration list for PBXNativeTarget "MovielalaPlayerExampleTests" */;
 			buildPhases = (
-				5F2739FF1B2A8F7400EF50C4 /* Validate Code Style */,
 				C3A9AEE91B048B5700D0C842 /* Sources */,
 				C3A9AEEA1B048B5700D0C842 /* Frameworks */,
 				C3A9AEEB1B048B5700D0C842 /* Resources */,
+				5F2739FF1B2A8F7400EF50C4 /* Validate Code Style */,
 			);
 			buildRules = (
 			);
@@ -329,11 +349,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE554D651AFE6CCD00DAC7E9 /* Build configuration list for PBXNativeTarget "MovielalaPlayer" */;
 			buildPhases = (
-				5F2739FC1B2A8F3400EF50C4 /* Validate Code Style */,
 				CE554D4A1AFE6CCD00DAC7E9 /* Sources */,
 				CE554D4B1AFE6CCD00DAC7E9 /* Frameworks */,
 				CE554D4C1AFE6CCD00DAC7E9 /* Headers */,
 				CE554D4D1AFE6CCD00DAC7E9 /* Resources */,
+				5F2739FC1B2A8F3400EF50C4 /* Validate Code Style */,
 			);
 			buildRules = (
 			);
@@ -348,10 +368,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE554D681AFE6CCD00DAC7E9 /* Build configuration list for PBXNativeTarget "MovielalaPlayerTests" */;
 			buildPhases = (
-				5F2739FD1B2A8F5100EF50C4 /* Validate Code Style */,
 				CE554D561AFE6CCD00DAC7E9 /* Sources */,
 				CE554D571AFE6CCD00DAC7E9 /* Frameworks */,
 				CE554D581AFE6CCD00DAC7E9 /* Resources */,
+				5F2739FD1B2A8F5100EF50C4 /* Validate Code Style */,
 			);
 			buildRules = (
 			);
@@ -460,7 +480,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = /usr/local/bin/swiftlint;
+			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MovielalaPlayer\nfi\n";
 		};
 		5F2739FD1B2A8F5100EF50C4 /* Validate Code Style */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -474,7 +494,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = /usr/local/bin/swiftlint;
+			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MovielalaPlayerTests\nfi\n";
 		};
 		5F2739FE1B2A8F6000EF50C4 /* Validate Code Style */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -488,7 +508,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = /usr/local/bin/swiftlint;
+			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MovielalaPlayerExample\nfi\n";
 		};
 		5F2739FF1B2A8F7400EF50C4 /* Validate Code Style */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -502,7 +522,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = /usr/local/bin/swiftlint;
+			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MovielalaPlayerExampleTests\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -527,16 +547,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE554D701AFE6EBB00DAC7E9 /* CGRect+LayoutHelper.swift in Sources */,
 				C305DEDA1B21069500DD9632 /* SkinParser.swift in Sources */,
 				C308B3BB1B14FAE300CB1515 /* ControlbarConfig.swift in Sources */,
 				C3E643B21B16751B0017DBE6 /* TitleConfig.swift in Sources */,
 				C308B3C01B150F7600CB1515 /* MovielalaPlayerConfig.swift in Sources */,
-				C3E643B01B166D270017DBE6 /* UIColor+Extension.swift in Sources */,
 				C305DED61B20DC8300DD9632 /* CustomTimeSliderView.swift in Sources */,
 				CE554D731AFE6EBB00DAC7E9 /* MovielalaPlayerOverlayViewController.swift in Sources */,
+				C3A4069B1B27709900D1833D /* Youtube.swift in Sources */,
 				CE554D741AFE6EBB00DAC7E9 /* MovielalaPlayerViewController.swift in Sources */,
 				C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */,
+				C3A406A21B278B5A00D1833D /* CGRect+LayoutHelper.swift in Sources */,
+				C3A406AF1B27AA8C00D1833D /* UIColor+Extension.swift in Sources */,
 				C3E643B41B16798A0017DBE6 /* CloseButtonConfig.swift in Sources */,
 				CE554D721AFE6EBB00DAC7E9 /* MovielalaPlayerControlsView.swift in Sources */,
 			);
@@ -546,8 +567,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C36A056B1B26538800891445 /* UIColor+Extension.swift in Sources */,
+				C3A406B01B27AA9500D1833D /* UIColor+Extension.swift in Sources */,
+				C3A406B11B27AAA700D1833D /* Youtube.swift in Sources */,
 				C38833C71B26596E00918C94 /* SkinParserTests.swift in Sources */,
+				C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

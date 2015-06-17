@@ -37,12 +37,12 @@ class CustomTimeSliderView: UIView {
     }
   }
 
-  private var userInteraction: Bool = false
-  private var userInteractionLocation: CGFloat = 0.0
-  private var videoPercentRatio: CGFloat = 0.0
-  private var bufferPercentRatio: CGFloat = 0.0
-  private var customTimeSliderProgressValue: CGFloat = 0.0
-  private var customTimeSliderThumbValue: CGFloat = 0.0
+  private var userInteraction = false
+  private var userInteractionLocation = 0.0
+  private var videoPercentRatio = 0.0
+  private var bufferPercentRatio = 0.0
+  private var customTimeSliderProgressValue = 0.0
+  private var customTimeSliderThumbValue = 0.0
   var railView = UIView(frame: CGRectZero)
   var bufferView = UIView(frame: CGRectZero)
   var progressView = UIView(frame: CGRectZero)
@@ -94,7 +94,7 @@ class CustomTimeSliderView: UIView {
     if recognizer.state == .Ended {
       var currentPercent = CGFloat(locationInView.x / railViewWidth * 100)
       var videoPercent = CGFloat(currentPercent * CGFloat(timeSlider.maximumValue)) / 100
-      var time: NSTimeInterval = NSTimeInterval(Float(videoPercent))
+      var time = NSTimeInterval(Float(videoPercent))
       NSNotificationCenter.defaultCenter().postNotificationName(
         "goToCustomTimeSliderWithTime",
         object: self,
@@ -105,14 +105,14 @@ class CustomTimeSliderView: UIView {
   }
 
   //Buffer Percent
-  func refreshBufferPercentRatio(bufferRatio width: CGFloat,totalDuration total: CGFloat) {
-    if width.isNaN || total.isNaN {
-      return bufferPercentRatio = 0.0
-    }
-    videoPercentRatio = CGFloat(width / total * 100)
-    var bufferPercent: CGFloat = videoPercentRatio * self.bounds.size.width / 100
-    bufferPercentRatio = bufferPercent
-    layoutSubviews()
+  func refreshBufferPercentRatio(bufferRatio width: CGFloat, totalDuration total: CGFloat) {
+      if width.isNaN || total.isNaN {
+        return bufferPercentRatio = 0.0
+      }
+      videoPercentRatio = Double(width / total * 100)
+      var bufferPercent = Double(videoPercentRatio) * Double(self.bounds.size.width) / 100
+      bufferPercentRatio = bufferPercent
+      layoutSubviews()
   }
 
   //Video Percent
@@ -139,29 +139,25 @@ class CustomTimeSliderView: UIView {
   }
 
   override func layoutSubviews() {
-    let size = bounds.size
     if bufferPercentRatio.isNaN {
       self.bufferPercentRatio = 0.0
     }
     if self.bufferPercentRatio.isNaN {
       self.bufferPercentRatio = 0.0
     }
-    self.railView.frame = CGRect(
-      x: 0.0,
-      y: 18.0,
-      width: self.frame.width - 2.0,
-      height: 4.0)
-    UIView.animateWithDuration(0.0, animations: {
-      self.progressView.frame = CGRect(x: 0.0, y: 0.0,
-        width: self.customTimeSliderProgressValue,
-        height: 4.0)
-    })
+    layoutRailView()
+    layoutThumbView()
+    layoutBufferView()
+    layoutProgressView()
+  }
+  func layoutThumbView() {
     UIView.animateWithDuration(
       0.0,
       delay: 0.0,
       options: .AllowUserInteraction,
       animations: { () -> Void in
-        self.thumbView.frame = CGRect(x: self.customTimeSliderThumbValue,
+        self.thumbView.frame = CGRect(
+          x: self.customTimeSliderThumbValue,
           y: 8.0,
           width: 22.0,
           height: 22.0)
@@ -170,6 +166,9 @@ class CustomTimeSliderView: UIView {
         self.thumbView.layer.borderColor = UIColor.grayColor().CGColor
         self.thumbView.layer.borderWidth = 1.0
       }) { (Bool) -> Void in}
+  }
+
+  func layoutBufferView() {
     UIView.animateWithDuration(0.1, animations: {
       self.bufferView.frame = CGRect(
         x: 0.0,
@@ -177,5 +176,23 @@ class CustomTimeSliderView: UIView {
         width: self.bufferPercentRatio,
         height: 4.0)
     })
+  }
+
+  func layoutProgressView() {
+    UIView.animateWithDuration(0.0, animations: {
+      self.progressView.frame = CGRect(
+        x: 0.0,
+        y: 0.0,
+        width: self.customTimeSliderProgressValue,
+        height: 4.0)
+    })
+  }
+
+  func layoutRailView() {
+    self.railView.frame = CGRect(
+      x: 0.0,
+      y: 18.0,
+      width: self.frame.width - 2.0,
+      height: 4.0)
   }
 }
