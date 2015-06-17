@@ -9,4 +9,4 @@ dependencies:
 
 test:
   override:
-    - xcodebuild -scheme MovielalaPlayer -sdk iphonesimulator -destination 'name=iPhone 6' test
+    - xcodebuild -scheme MobilePlayer -sdk iphonesimulator -destination 'name=iPhone 6' test
