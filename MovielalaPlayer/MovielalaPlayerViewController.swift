@@ -175,93 +175,45 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     singleTapRecognizer.requireGestureRecognizerToFail(doubleTapRecognizer)
   }
 
-  // MARK: - Event Handling
-
-  func togglePlay() {
-    let state = moviePlayer.playbackState
-    if state == .Playing || state == .Interrupted {
-      moviePlayer.pause()
-    } else {
-      moviePlayer.play()
-    }
+  public override func viewDidLoad() {
+    super.viewDidLoad()
+    view.addSubview(controlsView)
+    NSTimer.scheduledTimerWithTimeInterval(
+      0.0,
+      target: self,
+      selector: "updateBufferInterface",
+      userInfo: nil, repeats: true)
+    NSTimer.scheduledTimerWithTimeInterval(
+      0.0,
+      target: self,
+      selector: "updateTimeSliderViewInterface",
+      userInfo: nil, repeats: true)
   }
 
-  func pauseVideoPlayer() {
-    moviePlayer.pause()
+  public override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    // Force hide status bar.
+    previousStatusBarHiddenValue = UIApplication.sharedApplication().statusBarHidden
+    UIApplication.sharedApplication().statusBarHidden = true
+    setNeedsStatusBarAppearanceUpdate()
   }
 
-  func playVideoPlayer() {
-    moviePlayer.play()
+  public override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews()
+    controlsView.frame = view.bounds
   }
 
-  final func handleMoviePlayerPlaybackStateDidChangeNotification() {
-    let state = moviePlayer.playbackState
-    updatePlaybackTimeInterface()
-    if state == .Playing || state == .Interrupted {
-      doFirstPlaySetupIfNeeded()
-      controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage, forState: .Normal)
-      if !controlsView.controlsHidden {
-        resetHideControlsTimer()
-      }
-      if let pauseViewController = config.pauseViewController {
-        dismissMovielalaPlayerOverlay(pauseViewController)
-      }
-    } else {
-      controlsView.playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
-      hideControlsTimer.invalidate()
-      controlsView.controlsHidden = false
-      if let pauseViewController = config.pauseViewController {
-        addChildViewController(pauseViewController)
-        controlsView.overlayContainerView.addSubview(pauseViewController.view)
-        pauseViewController.didMoveToParentViewController(self)
-        pauseViewController.delegate = self
-      }
-    }
+  public override func viewWillDisappear(animated: Bool) {
+    super.viewWillDisappear(animated)
+    // Restore status bar appearance.
+    UIApplication.sharedApplication().statusBarHidden = previousStatusBarHiddenValue
+    setNeedsStatusBarAppearanceUpdate()
   }
 
-  final func hideControlsIfPlaying() {
-    let state = moviePlayer.playbackState
-    if state == .Playing || state == .Interrupted {
-      controlsView.controlsHidden = true
-    }
-  }
-
-  final func showPostrollOrDismissAtVideoEnd() {
-    if let postrollVC = config.postrollViewController {
-      showOverlayViewController(postrollVC)
-      if let endCallback = config.endCallback {
-        endCallback(playerVC: self)
-      }
-    } else {
-      dismiss()
-    }
-  }
-
-  final func timeShiftDidBegin() {
-    let state = moviePlayer.playbackState
-    wasPlayingBeforeTimeShift = (state == .Playing || state == .Interrupted)
-    moviePlayer.pause()
-  }
-
-  final func goToTimeSliderTime() {
-    var timeVal = controlsView.customTimeSliderView.value
-    moviePlayer.currentPlaybackTime = NSTimeInterval(controlsView.customTimeSliderView.value)
-  }
-
-  final func goToCustomTimeSliderWithTime(notification: NSNotification) {
-    if let
-      userInfo = notification.userInfo as? [String: NSTimeInterval],
-      messageString = userInfo["time"] {
-        var playbackTime = messageString
-        moviePlayer.currentPlaybackTime = playbackTime
-        moviePlayer.play()
-    }
-  }
-
-  final func timeShiftDidEnd() {
-    if wasPlayingBeforeTimeShift {
-      moviePlayer.play()
-    }
+  deinit {
+    playbackTimeInterfaceUpdateTimer.invalidate()
+    hideControlsTimer.invalidate()
+    NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 
   // MARK: - Internal Helpers
@@ -370,6 +322,30 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       dismissViewControllerAnimated(true, completion: nil)
     }
   }
+
+  private func resetHideControlsTimer() {
+    hideControlsTimer.invalidate()
+    hideControlsTimer = NSTimer.scheduledTimerWithTimeInterval(
+      2,
+      target: self,
+      selector: "hideControlsIfPlaying",
+      userInfo: nil,
+      repeats: false)
+  }
+
+final func progressBarBufferPercentWithMoviePlayer(
+    player: MPMoviePlayerController) -> AnyObject? {
+      if var movieAccessLog = player.accessLog,
+        var arrEvents = movieAccessLog.events {
+          var totalValue = 0.0;
+          for i in 0..<arrEvents.count {
+            totalValue = totalValue + Double(arrEvents[i].segmentsDownloadedDuration)
+          }
+          return totalValue
+      }
+      return nil
+  }
+
 }
 
 // MARK: - MovielalaPlayerOverlayViewControllerDelegate
@@ -380,6 +356,102 @@ extension MovielalaPlayerViewController: MovielalaPlayerOverlayViewControllerDel
       overlayVC.willMoveToParentViewController(nil)
       overlayVC.view.removeFromSuperview()
       overlayVC.removeFromParentViewController()
+    }
+  }
+
+  // MARK: - Event Handling
+
+  func togglePlay() {
+    let state = moviePlayer.playbackState
+    if state == .Playing || state == .Interrupted {
+      moviePlayer.pause()
+    } else {
+      moviePlayer.play()
+    }
+  }
+
+  func pauseVideoPlayer() {
+    moviePlayer.pause()
+  }
+
+  func playVideoPlayer() {
+    moviePlayer.play()
+  }
+
+  final func handleMoviePlayerPlaybackStateDidChangeNotification() {
+    let state = moviePlayer.playbackState
+    updatePlaybackTimeInterface()
+    if state == .Playing || state == .Interrupted {
+      doFirstPlaySetupIfNeeded()
+      controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage, forState: .Normal)
+      if !controlsView.controlsHidden {
+        resetHideControlsTimer()
+      }
+      if let pauseViewController = config.pauseViewController {
+        dismissMovielalaPlayerOverlay(pauseViewController)
+      }
+    } else {
+      controlsView.playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
+      hideControlsTimer.invalidate()
+      controlsView.controlsHidden = false
+      if let pauseViewController = config.pauseViewController {
+        addChildViewController(pauseViewController)
+        controlsView.overlayContainerView.addSubview(pauseViewController.view)
+        pauseViewController.didMoveToParentViewController(self)
+        pauseViewController.delegate = self
+      }
+    }
+  }
+
+  final func hideControlsIfPlaying() {
+    let state = moviePlayer.playbackState
+    if state == .Playing || state == .Interrupted {
+      controlsView.controlsHidden = true
+    }
+  }
+
+  final func showPostrollOrDismissAtVideoEnd() {
+    if let postrollVC = config.postrollViewController {
+      showOverlayViewController(postrollVC)
+      if let endCallback = config.endCallback {
+        endCallback(playerVC: self)
+      }
+    } else {
+      dismiss()
+    }
+  }
+
+  private func showOverlayViewController(overlayVC: MovielalaPlayerOverlayViewController) {
+    addChildViewController(overlayVC)
+    overlayVC.view.clipsToBounds = true
+    controlsView.overlayContainerView.addSubview(overlayVC.view)
+    overlayVC.didMoveToParentViewController(self)
+  }
+
+  final func timeShiftDidBegin() {
+    let state = moviePlayer.playbackState
+    wasPlayingBeforeTimeShift = (state == .Playing || state == .Interrupted)
+    moviePlayer.pause()
+  }
+
+  final func goToTimeSliderTime() {
+    var timeVal = controlsView.customTimeSliderView.value
+    moviePlayer.currentPlaybackTime = NSTimeInterval(controlsView.customTimeSliderView.value)
+  }
+
+  final func goToCustomTimeSliderWithTime(notification: NSNotification) {
+    if let
+      userInfo = notification.userInfo as? [String: NSTimeInterval],
+      messageString = userInfo["time"] {
+        var playbackTime = messageString
+        moviePlayer.currentPlaybackTime = playbackTime
+        moviePlayer.play()
+    }
+  }
+
+  final func timeShiftDidEnd() {
+    if wasPlayingBeforeTimeShift {
+      moviePlayer.play()
     }
   }
 }
