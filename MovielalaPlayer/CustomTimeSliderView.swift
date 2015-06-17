@@ -82,13 +82,13 @@ class CustomTimeSliderView: UIView {
     }
     if recognizer.state == .Changed {
       if locationInView.x < 0 {
-        customTimeSliderThumbValue = -thumbViewWidth/2
+        customTimeSliderThumbValue = Double(-thumbViewWidth/2)
       } else if locationInView.x + thumbViewWidth/2 >= railViewWidth {
-        customTimeSliderThumbValue = railViewWidth - thumbViewWidth/2
+        customTimeSliderThumbValue = Double(railViewWidth - thumbViewWidth/2)
       } else {
-        customTimeSliderThumbValue = locationInView.x
-        customTimeSliderProgressValue = locationInView.x + thumbViewWidth/2
-        userInteractionLocation = locationInView.x
+        customTimeSliderThumbValue = Double(locationInView.x)
+        customTimeSliderProgressValue = Double(locationInView.x + thumbViewWidth/2)
+        userInteractionLocation = Double(locationInView.x)
       }
     }
     if recognizer.state == .Ended {
@@ -121,9 +121,10 @@ class CustomTimeSliderView: UIView {
       if ratio.isNaN || total.isNaN || (ratio / total * 100).isNaN {
         customTimeSliderProgressValue = 0.0
       } else {
-        customTimeSliderProgressValue = CGFloat(ratio / total * 100)
+        customTimeSliderProgressValue = Double(ratio / total * 100)
       }
-      customTimeSliderProgressValue = customTimeSliderProgressValue * self.bounds.size.width / 100
+      customTimeSliderProgressValue =
+        Double(customTimeSliderProgressValue) * Double(self.bounds.size.width) / 100
     } else {
       customTimeSliderProgressValue = userInteractionLocation
     }
@@ -134,7 +135,8 @@ class CustomTimeSliderView: UIView {
     if userInteraction {
       customTimeSliderThumbValue = userInteractionLocation
     } else {
-      customTimeSliderThumbValue = progressView.frame.size.width - thumbView.frame.size.width/2
+      customTimeSliderThumbValue =
+        Double(progressView.frame.size.width - thumbView.frame.size.width/2)
     }
   }
 
