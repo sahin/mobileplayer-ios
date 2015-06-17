@@ -325,11 +325,12 @@ public extension MovielalaPlayerViewController {
   }
 
   final func goToCustomTimeSliderWithTime(notification: NSNotification) {
-    if let userInfo = notification.userInfo as? [String: NSTimeInterval],
+    if let
+      userInfo = notification.userInfo as? [String: NSTimeInterval],
       messageString = userInfo["time"] {
-      var playbackTime = messageString
-      moviePlayer.currentPlaybackTime = playbackTime
-      moviePlayer.play()
+        var playbackTime = messageString
+        moviePlayer.currentPlaybackTime = playbackTime
+        moviePlayer.play()
     }
   }
 
