@@ -14,6 +14,9 @@
 		C308B3C01B150F7600CB1515 /* MovielalaPlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MovielalaPlayerConfig.swift */; };
 		C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */; };
 		C36A056B1B26538800891445 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643AF1B166D270017DBE6 /* UIColor+Extension.swift */; };
+		C38825341B31EA4200B1DC77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
+		C38825351B31EA4800B1DC77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
+		C38825361B31EA4B00B1DC77 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
 		C38833C71B26596E00918C94 /* SkinParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38833C61B26596E00918C94 /* SkinParserTests.swift */; };
 		C38833C91B266C2500918C94 /* TestSkin.json in Resources */ = {isa = PBXBuildFile; fileRef = C38833C81B266C2500918C94 /* TestSkin.json */; };
 		C3A9AEDE1B048B5600D0C842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */; };
@@ -411,6 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */,
+				C38825351B31EA4800B1DC77 /* Images.xcassets in Resources */,
 				C305DED81B21068700DD9632 /* BarbieSkin.json in Resources */,
 				C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */,
 			);
@@ -420,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C38825361B31EA4B00B1DC77 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C38833C91B266C2500918C94 /* TestSkin.json in Resources */,
+				C38825341B31EA4200B1DC77 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
