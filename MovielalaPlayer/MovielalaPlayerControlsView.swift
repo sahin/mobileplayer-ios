@@ -11,6 +11,7 @@ import MediaPlayer
 
 final class MovielalaPlayerControlsView: UIView {
   var controlsHidden: Bool = false {
+    // Hide/show controls animated.
     didSet(oldValue) {
       if oldValue != controlsHidden {
         UIView.animateWithDuration(0.0, animations: {
@@ -164,9 +165,10 @@ final class MovielalaPlayerControlsView: UIView {
   }
 
   private func layoutFooterSubviews() {
+    let size = footerView.bounds.size
     customTimeSliderView.sizeToFit()
     let customTimeSliderSize = CGSize(
-      width: footerView.bounds.size.width - playButton.bounds.width -
+      width: size.width - playButton.bounds.width -
         playbackTimeLabel.bounds.width -
         durationLabel.bounds.width - 20,
       height: config.footerHeight)
@@ -190,18 +192,17 @@ final class MovielalaPlayerControlsView: UIView {
       width: durationLabel.bounds.width + 16,
       height: config.footerHeight)
     durationLabel.frame = CGRect(
-      origin: CGPoint(x: footerView.bounds.size.width - durationLabelSize.width, y: 0),
+      origin: CGPoint(x: size.width - durationLabelSize.width, y: 0),
       size: durationLabelSize)
     self.customTimeSliderView.timeSlider.sizeToFit()
     let timeSliderSize = CGSize(
-      width: footerView.bounds.size.width - playButton.bounds.width -
-        playbackTimeLabel.bounds.width -
-        durationLabel.bounds.width,
+      width: size.width - playButton.bounds.width -
+        playbackTimeLabel.bounds.width - durationLabel.bounds.width,
       height: config.footerHeight)
     self.customTimeSliderView.timeSlider.frame = CGRect(
       origin: CGPoint(x: playButton.bounds.width + playbackTimeLabel.bounds.width, y: 0),
       size: timeSliderSize)
     footerBorderView.frame = CGRect(x: 0, y: 0,
-      width: footerView.bounds.size.width, height: config.footerBorderHeight)
+      width: size.width, height: config.footerBorderHeight)
   }
 }
