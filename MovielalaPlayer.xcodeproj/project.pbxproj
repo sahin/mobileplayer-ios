@@ -495,7 +495,7 @@
 		};
 		5F2739FE1B2A8F6000EF50C4 /* Validate Code Style */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -505,7 +505,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MovielalaPlayerExample\nfi\n";
+			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MovielalaPlayer\n  /usr/local/bin/swiftlint lint --path MovielalaPlayerExample\nfi\n";
 		};
 		5F2739FF1B2A8F7400EF50C4 /* Validate Code Style */ = {
 			isa = PBXShellScriptBuildPhase;

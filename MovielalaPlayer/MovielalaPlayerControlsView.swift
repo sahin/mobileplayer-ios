@@ -19,9 +19,9 @@ final class MovielalaPlayerControlsView: UIView {
       }
     }
   }
-
   var customTimeSliderView = CustomTimeSliderView(frame: CGRectZero)
   let headerView = UIView(frame: CGRectZero)
+  let backgroundImageView = UIImageView(frame: CGRectZero)
   let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
   let overlayContainerView = UIView(frame: CGRectZero)
   let footerView = UIView(frame: CGRectZero)
@@ -67,6 +67,7 @@ final class MovielalaPlayerControlsView: UIView {
   }
 
   private func initializeOverlayViews() {
+    addSubview(backgroundImageView)
     activityIndicatorView.hidesWhenStopped = true
     addSubview(activityIndicatorView)
     activityIndicatorView.startAnimating()
@@ -109,6 +110,9 @@ final class MovielalaPlayerControlsView: UIView {
 
   override func layoutSubviews() {
     let size = bounds.size
+    backgroundImageView.sizeToFit()
+    backgroundImageView.center = overlayContainerView.center
+    sendSubviewToBack(backgroundImageView)
     headerView.frame = CGRect(
       x: 0,
       y: controlsHidden ? -config.headerHeight : 0,

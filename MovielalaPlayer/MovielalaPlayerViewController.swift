@@ -53,12 +53,20 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     self.config = config
     controlsView = MovielalaPlayerControlsView(config: config)
     super.init(contentURL: NSURL())
-    let youtube = Youtube()
-    youtube.h264videosWithYoutubeURL(youTubeURL, completion: { videoInfo, error in
+    Youtube.h264videosWithYoutubeURL(youTubeURL, completion: { videoInfo, error in
       if let
         videoURLString = videoInfo?["url"] as? String,
-        videoURL = NSURL(string: videoURLString) {
-          self.moviePlayer.contentURL = videoURL
+        videoTitle = videoInfo?["title"] as? String {
+          if let isStream = videoInfo?["isStream"] as? Bool,
+            image = videoInfo?["image"] as? String {
+              if let imageURL = NSURL(string: image),
+                data = NSData(contentsOfURL: imageURL),
+                bgImage = UIImage(data: data) {
+                  self.controlsView.backgroundImageView.image = bgImage
+              }
+          }
+          self.moviePlayer.contentURL = NSURL(string: videoURLString)
+          self.title = videoTitle
       }
     })
     initializeMovielalaPlayerViewController()
@@ -317,8 +325,8 @@ public extension MovielalaPlayerViewController {
   }
 
   final func goToCustomTimeSliderWithTime(notification: NSNotification) {
-    if let userInfo = notification.userInfo as? [String: NSTimeInterval] {
-      let messageString = userInfo["time"]!
+    if let userInfo = notification.userInfo as? [String: NSTimeInterval],
+      messageString = userInfo["time"] {
       var playbackTime = messageString
       moviePlayer.currentPlaybackTime = playbackTime
       moviePlayer.play()
@@ -336,6 +344,7 @@ public extension MovielalaPlayerViewController {
   private func doFirstPlaySetupIfNeeded() {
     if isFirstPlay {
       isFirstPlay = false
+      controlsView.backgroundImageView.removeFromSuperview()
       controlsView.activityIndicatorView.stopAnimating()
       updateTimeLabel(controlsView.durationLabel, time: moviePlayer.duration)
       playbackTimeInterfaceUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(

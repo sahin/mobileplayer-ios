@@ -8,6 +8,7 @@
 
 import UIKit
 import MovielalaPlayer
+import MediaPlayer
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,15 +18,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(
     application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
       if let fileUrl = NSBundle.mainBundle().URLForResource("BarbieSkin", withExtension: "json") {
-        let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=Bt6clk4LNRk")!
+        let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=Kznek1uNVsg")!
         let youtubeLiveURL = NSURL(string: "https://www.youtube.com/watch?v=rxGoGg7n77A")!
         let playerVC = MovielalaPlayerViewController(
           youTubeURL: youtubeURL,
           configFileURL: fileUrl
         )
-        playerVC.title = "Tron Legacy"
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = playerVC
         self.window!.backgroundColor = UIColor.whiteColor()
@@ -33,7 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       } else {
         println("MovielalaPlayer: Skin file not found")
       }
-
       return true
   }
 

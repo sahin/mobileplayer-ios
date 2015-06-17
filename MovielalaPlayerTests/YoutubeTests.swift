@@ -37,18 +37,16 @@ class YoutubeTests: XCTestCase {
   }
 
   func testYoutubeIDFromYoutubeURL() {
-    let youTube = Youtube()
     let sampleLink = NSURL(string: "http://www.youtube.com/watch?v=1hZ98an9wjo")!
-    XCTAssertNotNil(youTube.youtubeIDFromYoutubeURL(sampleLink), "Youtube ID is nil")
-    if let youtubeID = youTube.youtubeIDFromYoutubeURL(sampleLink) {
+    XCTAssertNotNil(Youtube.youtubeIDFromYoutubeURL(sampleLink), "Youtube ID is nil")
+    if let youtubeID = Youtube.youtubeIDFromYoutubeURL(sampleLink) {
       XCTAssertEqual(youtubeID, "1hZ98an9wjo", "Youtube ID not same")
     }
   }
 
   func testH264videosWithYoutubeURL() {
-    let youTube = Youtube()
     let sampleLink = NSURL(string: "http://www.youtube.com/watch?v=1hZ98an9wjo")!
-    if let videoComponents = youTube.h264videosWithYoutubeID("1hZ98an9wjo") {
+    if let videoComponents = Youtube.h264videosWithYoutubeID("1hZ98an9wjo") {
       XCTAssertNotNil(videoComponents, "video component is nil")
       if let itag = videoComponents["itag"] as? String {
         XCTAssertEqual(itag, "22", "itag not equal")
@@ -66,9 +64,8 @@ class YoutubeTests: XCTestCase {
   }
 
   func testh264videosWithYoutubeURLBlock() {
-    let youTube = Youtube()
     if let videoURL = NSURL(string: "http://www.youtube.com/watch?v=1hZ98an9wjo") {
-      youTube.h264videosWithYoutubeURL(videoURL, completion: { (videoInfo, error) -> Void in
+      Youtube.h264videosWithYoutubeURL(videoURL, completion: { (videoInfo, error) -> Void in
         XCTAssertNotNil(videoInfo, "video dictionary is nil")
         if let info = videoInfo as [String:AnyObject]? {
           if let itag = info["itag"] as? String {
@@ -87,7 +84,7 @@ class YoutubeTests: XCTestCase {
       })
     }
     if let liveVideoURL = NSURL(string: "https://www.youtube.com/watch?v=rxGoGg7n77A"){
-      youTube.h264videosWithYoutubeURL(liveVideoURL, completion: { (videoInfo, error) -> Void in
+      Youtube.h264videosWithYoutubeURL(liveVideoURL, completion: { (videoInfo, error) -> Void in
         XCTAssertNotNil(videoInfo, "video dictionary is nil")
         if let info = videoInfo as [String:AnyObject]? {
           XCTAssertNotNil(info["url"], "live stream url is nil")
