@@ -20,7 +20,7 @@ final class MovielalaPlayerControlsView: UIView {
       }
     }
   }
-  
+
   var customTimeSliderView = CustomTimeSliderView(frame: CGRectZero)
   let headerView = UIView(frame: CGRectZero)
   let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
@@ -35,7 +35,7 @@ final class MovielalaPlayerControlsView: UIView {
   let durationLabel = UILabel(frame: CGRectZero)
   let footerBorderView = UIView(frame: CGRectZero)
   private let config: MovielalaPlayerConfig
-  
+
   init(config: MovielalaPlayerConfig) {
     self.config = config
     super.init(frame: CGRectZero)
@@ -43,11 +43,11 @@ final class MovielalaPlayerControlsView: UIView {
     initializeOverlayViews()
     initializeFooterViews()
   }
-  
+
   required init(coder aDecoder: NSCoder) {
     fatalError("storyboards are incompatible with truth and beauty")
   }
-  
+
   private func initializeHeaderViews() {
     headerView.backgroundColor = config.headerBackgroundColor
     addSubview(headerView)
@@ -66,7 +66,7 @@ final class MovielalaPlayerControlsView: UIView {
     headerBorderView.backgroundColor = config.headerBorderColor
     headerView.addSubview(headerBorderView)
   }
-  
+
   private func initializeOverlayViews() {
     activityIndicatorView.hidesWhenStopped = true
     addSubview(activityIndicatorView)
@@ -75,7 +75,7 @@ final class MovielalaPlayerControlsView: UIView {
     overlayContainerView.setTranslatesAutoresizingMaskIntoConstraints(false)
     addSubview(overlayContainerView)
   }
-  
+
   private func initializeFooterViews() {
     footerView.backgroundColor = config.controlbarConfig.backgroundColor
     addSubview(footerView)
@@ -99,12 +99,15 @@ final class MovielalaPlayerControlsView: UIView {
     footerView.addSubview(footerBorderView)
     customTimeSliderView.backgroundColor = config.controlbarConfig.timeSliderBackgroundColor
     customTimeSliderView.railView.backgroundColor = config.controlbarConfig.timeSliderRailTintColor
-    customTimeSliderView.bufferView.backgroundColor = config.controlbarConfig.timeSliderBufferTintColor
-    customTimeSliderView.progressView.backgroundColor = config.controlbarConfig.timeSliderProgressTintColor
-    customTimeSliderView.thumbView.backgroundColor = config.controlbarConfig.timeSliderThumbTintColor
+    customTimeSliderView.bufferView.backgroundColor =
+      config.controlbarConfig.timeSliderBufferTintColor
+    customTimeSliderView.progressView.backgroundColor =
+      config.controlbarConfig.timeSliderProgressTintColor
+    customTimeSliderView.thumbView.backgroundColor =
+      config.controlbarConfig.timeSliderThumbTintColor
     footerView.addSubview(customTimeSliderView)
   }
-  
+
   override func layoutSubviews() {
     let size = bounds.size
     headerView.frame = CGRect(
@@ -117,9 +120,11 @@ final class MovielalaPlayerControlsView: UIView {
       x: 0,
       y: controlsHidden ? 0 : config.headerHeight,
       width: size.width,
-      height: controlsHidden ? size.height : size.height - config.headerHeight - config.footerHeight)
-    for overlayView in overlayContainerView.subviews as! [UIView] {
-      overlayView.frame = overlayContainerView.bounds
+      height: controlsHidden ? size.height: size.height - config.headerHeight - config.footerHeight)
+    if let arrOverlays = overlayContainerView.subviews as? [UIView] {
+      for overlayView in arrOverlays {
+        overlayView.frame = overlayContainerView.bounds
+      }
     }
     footerView.frame = CGRect(
       x: 0,
@@ -132,7 +137,7 @@ final class MovielalaPlayerControlsView: UIView {
     layoutHeaderSubviews()
     layoutFooterSubviews()
   }
-  
+
   private func layoutHeaderSubviews() {
     let size = headerView.bounds.size
     closeButton.sizeToFit()
@@ -158,12 +163,14 @@ final class MovielalaPlayerControlsView: UIView {
       width: size.width,
       height: config.headerBorderHeight)
   }
-  
+
   private func layoutFooterSubviews() {
     let size = footerView.bounds.size
     customTimeSliderView.sizeToFit()
     let customTimeSliderSize = CGSize(
-      width: size.width - playButton.bounds.width - playbackTimeLabel.bounds.width - durationLabel.bounds.width - 20,
+      width: size.width - playButton.bounds.width -
+        playbackTimeLabel.bounds.width -
+        durationLabel.bounds.width - 20,
       height: config.footerHeight)
     customTimeSliderView.frame = CGRect(
       origin: CGPoint(x: playButton.bounds.width + playbackTimeLabel.bounds.width + 10, y: 0),
@@ -189,15 +196,13 @@ final class MovielalaPlayerControlsView: UIView {
       size: durationLabelSize)
     self.customTimeSliderView.timeSlider.sizeToFit()
     let timeSliderSize = CGSize(
-      width: size.width - playButton.bounds.width - playbackTimeLabel.bounds.width - durationLabel.bounds.width,
+      width: size.width - playButton.bounds.width -
+        playbackTimeLabel.bounds.width - durationLabel.bounds.width,
       height: config.footerHeight)
     self.customTimeSliderView.timeSlider.frame = CGRect(
       origin: CGPoint(x: playButton.bounds.width + playbackTimeLabel.bounds.width, y: 0),
       size: timeSliderSize)
-    footerBorderView.frame = CGRect(
-      x: 0,
-      y: 0,
-      width: size.width,
-      height: config.footerBorderHeight)
+    footerBorderView.frame = CGRect(x: 0, y: 0,
+      width: size.width, height: config.footerBorderHeight)
   }
 }

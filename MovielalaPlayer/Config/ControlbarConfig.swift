@@ -23,36 +23,32 @@ public struct ControlbarConfig {
   public var timeSliderThumbTintColor = UIColor.whiteColor()
   public var timeSliderBackgroundColor = UIColor.clearColor()
   public var backgroundColor = UIColor.clearColor()
-  
+
   public init() {}
-  
+
   public init(dictionary: [String: AnyObject]) {
-    // Coltrolbar background
+    if let playButtonConfig = dictionary["playButton"] as? [String:AnyObject] {
+      if let playButtonImageValue = playButtonConfig["image"] as? String {
+        self.playButtonImage = MovielalaPlayerConfig.loadImage(named: playButtonImageValue)
+      }
+      if let playButtonTintColorValue = playButtonConfig["tintColor"] as? String {
+        self.playButtonTintColor = UIColor(hexString: playButtonTintColorValue)
+      }
+      if let playButtonBackgroundColorValue = playButtonConfig["backgroundColor"] as? String {
+        self.playButtonBackgroundColor = UIColor(hexString: playButtonBackgroundColorValue)
+      }
+    }
+    if let pauseButtonConfig = dictionary["pauseButton"] as? [String:AnyObject] {
+      if let pauseButtonImageValue = pauseButtonConfig["image"] as? String {
+        self.pauseButtonImage = MovielalaPlayerConfig.loadImage(named: pauseButtonImageValue)
+      }
+      if let pauseButtonTintColorValue = pauseButtonConfig["tintColor"] as? String {
+        self.pauseButtonTintColor = UIColor(hexString: pauseButtonTintColorValue)
+      }
+    }
     if let backgroundColor = dictionary["backgroundColor"] as? String {
       self.backgroundColor = UIColor(hexString: backgroundColor)
     }
-    // Play Button
-    if let playButtonConfig = dictionary["playButton"] as? [String:AnyObject] {
-      if let playButtonImage = playButtonConfig["image"] as? String {
-        self.playButtonImage = MovielalaPlayerConfig.loadImage(named: playButtonImage)
-      }
-      if let playButtonTintColor = playButtonConfig["tintColor"] as? String {
-        self.playButtonTintColor = UIColor(hexString: playButtonTintColor)
-      }
-      if let playButtonBackgroundColor = playButtonConfig["backgroundColor"] as? String {
-        self.playButtonBackgroundColor = UIColor(hexString: playButtonBackgroundColor)
-      }
-    }
-    // Pause Button
-    if let pauseButtonConfig = dictionary["pauseButton"] as? [String:AnyObject] {
-      if let pauseButtonImage = pauseButtonConfig["image"] as? String {
-        self.pauseButtonImage = MovielalaPlayerConfig.loadImage(named: pauseButtonImage)
-      }
-      if let pauseButtonTintColor = pauseButtonConfig["tintColor"] as? String {
-        self.pauseButtonTintColor = UIColor(hexString: pauseButtonTintColor)
-      }
-    }
-    // Time
     if let timeConfig = dictionary["time"] as? [String:AnyObject] {
       if let timeTextFont = timeConfig["textFont"] as? String {
         if let timeTextSize = timeConfig["textFontSize"] as? CGFloat {
@@ -66,7 +62,6 @@ public struct ControlbarConfig {
         self.timeBackgroundColor = UIColor(hexString: timeBackgroundColor)
       }
     }
-    // Time Slider
     if let timeSliderConfig = dictionary["timeSlider"] as? [String:AnyObject] {
       if let timeSliderRailTintColor = timeSliderConfig["railTintColor"] as? String {
         self.timeSliderRailTintColor = UIColor(hexString: timeSliderRailTintColor)

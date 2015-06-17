@@ -33,11 +33,6 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
 
   // MARK: - Initialization
 
-  struct controlbar {
-    let image: String?
-    let tintColor: UIColor?
-  }
-
   public init(contentURL: NSURL, config: MovielalaPlayerConfig = globalConfiguration) {
     self.config = config
     controlsView = MovielalaPlayerControlsView(config: config)
@@ -67,49 +62,35 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
 
   private func initializeNotificationObservers() {
     let notificationCenter = NSNotificationCenter.defaultCenter()
-    notificationCenter.addObserver(
-      self,
+    notificationCenter.addObserver(self,
       selector: "handleMoviePlayerPlaybackStateDidChangeNotification",
       name: MPMoviePlayerPlaybackStateDidChangeNotification,
       object: moviePlayer)
-    // Override playback completion handling.
-
-    notificationCenter.removeObserver(
-      self,
+    notificationCenter.removeObserver(self,
       name: MPMoviePlayerPlaybackDidFinishNotification,
       object: moviePlayer)
-    notificationCenter.addObserver(
-      self,
+    notificationCenter.addObserver(self,
       selector: "showPostrollOrDismissAtVideoEnd",
       name: MPMoviePlayerPlaybackDidFinishNotification,
       object: moviePlayer)
-
-    notificationCenter.removeObserver(
-      self,
+    notificationCenter.removeObserver(self,
       name: "playVideoPlayer",
       object: nil)
-    notificationCenter.addObserver(
-      self,
+    notificationCenter.addObserver(self,
       selector: "playVideoPlayer",
       name: "playVideoPlayer",
       object: nil)
-
-    notificationCenter.removeObserver(
-      self,
+    notificationCenter.removeObserver(self,
       name: "pauseVideoPlayer",
       object: nil)
-    notificationCenter.addObserver(
-      self,
+    notificationCenter.addObserver(self,
       selector: "pauseVideoPlayer",
       name: "pauseVideoPlayer",
       object: nil)
-
-    notificationCenter.removeObserver(
-      self,
+    notificationCenter.removeObserver(self,
       name: "goToCustomTimeSliderWithTime",
       object: nil)
-    notificationCenter.addObserver(
-      self,
+    notificationCenter.addObserver(self,
       selector: "goToCustomTimeSliderWithTime:",
       name: "goToCustomTimeSliderWithTime",
       object: nil)
@@ -204,7 +185,6 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   }
 
   // MARK: - Event Handling
-
   func togglePlay() {
     let state = moviePlayer.playbackState
     if state == .Playing || state == .Interrupted {
@@ -227,7 +207,10 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     updatePlaybackTimeInterface()
     if state == .Playing || state == .Interrupted {
       doFirstPlaySetupIfNeeded()
-      controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage, forState: .Normal)
+      controlsView.playButton.setImage(
+        config.controlbarConfig.pauseButtonImage,
+        forState: .Normal
+      )
       if !controlsView.controlsHidden {
         resetHideControlsTimer()
       }
@@ -250,8 +233,7 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   final func hideControlsIfPlaying() {
     let state = moviePlayer.playbackState
     if state == .Playing || state == .Interrupted {
-      //TODO: Open this line!
-      //controlsView.controlsHidden = true
+      controlsView.controlsHidden = true
     }
   }
 
@@ -277,16 +259,107 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
     moviePlayer.currentPlaybackTime = NSTimeInterval(controlsView.customTimeSliderView.value)
   }
 
-  final func goToCustomTimeSliderWithTime(notification:NSNotification) {
-    if let userInfo:Dictionary<String,NSTimeInterval!> = notification.userInfo as? Dictionary<String,NSTimeInterval!> {
-      moviePlayer.currentPlaybackTime = NSTimeInterval(userInfo["time"]!)
-      moviePlayer.play()
+  final func goToCustomTimeSliderWithTime(notification: NSNotification) {
+    if let userInfo:Dictionary<String,NSTimeInterval!> =
+      notification.userInfo as? Dictionary<String,NSTimeInterval!> {
+        moviePlayer.currentPlaybackTime = NSTimeInterval(userInfo["time"]!)
+        moviePlayer.play()
     }
   }
 
   final func timeShiftDidEnd() {
     if wasPlayingBeforeTimeShift {
       moviePlayer.play()
+    }
+  }
+
+  // MARK: - Internal Helpers
+
+  private func doFirstPlaySetupIfNeeded() {
+    if isFirstPlay {
+      isFirstPlay = false
+      controlsView.activityIndicatorView.stopAnimating()
+      updateTimeLabel(controlsView.durationLabel, time: moviePlayer.duration)
+      playbackTimeInterfaceUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(
+        0.0,
+        target: self,
+        selector: "updatePlaybackTimeInterface",
+        userInfo: nil,
+        repeats: true)
+      playbackTimeInterfaceUpdateTimer.fire()
+      if let firstPlayCallback = config.firstPlayCallback {
+        firstPlayCallback(playerVC: self)
+      }
+    }
+  }
+
+  private func updateTimeSlider() {
+    controlsView.customTimeSliderView.maximumValue = Float(moviePlayer.duration)
+    controlsView.customTimeSliderView.value = Float(moviePlayer.currentPlaybackTime)
+  }
+
+  private func updateTimeLabel(label: UILabel, time: NSTimeInterval) {
+    if time.isNaN || time == NSTimeInterval.infinity {
+      return
+    }
+    let hours = UInt(time / 3600)
+    let minutes = UInt((time / 60) % 60)
+    let seconds = UInt(time % 60)
+    var timeLabelText: NSString = NSString(format: "%02lu:%02lu", minutes, seconds) as String
+    label.text = checkTimeLabelText(timeLabelText)
+    if hours > 0 {
+      label.text = NSString(format: "%02lu:%@", hours, label.text!) as String
+    }
+  }
+
+  private func checkTimeLabelText(text: NSString) -> String {
+    if text.length > 8 {
+      return String("00:00")
+    }
+    return String(text)
+  }
+
+  private func resetHideControlsTimer() {
+    hideControlsTimer.invalidate()
+    hideControlsTimer = NSTimer.scheduledTimerWithTimeInterval(
+      2,
+      target: self,
+      selector: "hideControlsIfPlaying",
+      userInfo: nil,
+      repeats: false)
+  }
+
+  private func showOverlayViewController(overlayVC: MovielalaPlayerOverlayViewController) {
+    addChildViewController(overlayVC)
+    overlayVC.view.clipsToBounds = true
+    controlsView.overlayContainerView.addSubview(overlayVC.view)
+    overlayVC.didMoveToParentViewController(self)
+  }
+
+  // MARK: - MPMovieAccessLogEvent Bitrate Calculate
+
+  final func progressBarBufferPercentWithMoviePlayer(
+    player: MPMoviePlayerController) -> AnyObject? {
+      if var movieAccessLog = player.accessLog,
+        var arrEvents = movieAccessLog.events {
+          var totalValue = 0.0;
+          for i in 0..<arrEvents.count {
+            totalValue = totalValue + Double(arrEvents[i].segmentsDownloadedDuration)
+          }
+          return totalValue
+      }
+      return nil
+  }
+}
+
+// MARK: - MovielalaPlayerOverlayViewControllerDelegate
+extension MovielalaPlayerViewController: MovielalaPlayerOverlayViewControllerDelegate {
+
+  func dismissMovielalaPlayerOverlay(overlayVC: MovielalaPlayerOverlayViewController) {
+    if overlayVC.view.superview == controlsView.overlayContainerView {
+      overlayVC.willMoveToParentViewController(nil)
+      overlayVC.view.removeFromSuperview()
+      overlayVC.removeFromParentViewController()
     }
   }
 
@@ -335,7 +408,6 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
   }
 
   public final func shareContent() {
-    // TODO: Smarter sharing.
     if let shareCallback = config.shareConfig.shareCallback {
       moviePlayer.pause()
       shareCallback(playerVC: self)
@@ -350,98 +422,4 @@ public class MovielalaPlayerViewController: MPMoviePlayerViewController {
       dismissViewControllerAnimated(true, completion: nil)
     }
   }
-
-  // MARK: - Internal Helpers
-
-  private func doFirstPlaySetupIfNeeded() {
-    if isFirstPlay {
-      isFirstPlay = false
-      controlsView.activityIndicatorView.stopAnimating()
-      updateTimeLabel(controlsView.durationLabel, time: moviePlayer.duration)
-      playbackTimeInterfaceUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(
-        0.0,
-        target: self,
-        selector: "updatePlaybackTimeInterface",
-        userInfo: nil,
-        repeats: true)
-      playbackTimeInterfaceUpdateTimer.fire()
-      if let firstPlayCallback = config.firstPlayCallback {
-        firstPlayCallback(playerVC: self)
-      }
-    }
-  }
-
-  private func updateTimeSlider() {
-    controlsView.customTimeSliderView.maximumValue = Float(moviePlayer.duration)
-    controlsView.customTimeSliderView.value = Float(moviePlayer.currentPlaybackTime)
-  }
-
-  private func updateTimeLabel(label: UILabel, time: NSTimeInterval) {
-    if time.isNaN || time == NSTimeInterval.infinity {
-      return
-    }
-    let hours = UInt(time / 3600)
-    let minutes = UInt((time / 60) % 60)
-    let seconds = UInt(time % 60)
-    var timeLabelText:NSString = NSString(format: "%02lu:%02lu", minutes, seconds) as String
-    label.text = checkTimeLabelText(timeLabelText)
-    if hours > 0 {
-      label.text = NSString(format: "%02lu:%@", hours, label.text!) as String
-    }
-  }
-
-  private func checkTimeLabelText(text:NSString) -> String {
-    if text.length > 8 {
-      return String("00:00")
-    }
-    return String(text)
-  }
-
-  // MARK: - MPMovieAccessLogEvent Bitrate Calculate
-
-  final func progressBarBufferPercentWithMoviePlayer(player:MPMoviePlayerController) -> AnyObject? {
-    if var movieAccessLog = player.accessLog,
-      var arrEvents = movieAccessLog.events {
-        var totalValue = 0.0;
-        for i in 0..<arrEvents.count {
-          totalValue = totalValue + Double(arrEvents[i].segmentsDownloadedDuration)
-        }
-        return totalValue
-    }
-    return nil
-  }
-
-  private func resetHideControlsTimer() {
-    hideControlsTimer.invalidate()
-    hideControlsTimer = NSTimer.scheduledTimerWithTimeInterval(
-      2,
-      target: self,
-      selector: "hideControlsIfPlaying",
-      userInfo: nil,
-      repeats: false)
-  }
-
-  private func showOverlayViewController(overlayVC: MovielalaPlayerOverlayViewController) {
-    addChildViewController(overlayVC)
-    overlayVC.view.clipsToBounds = true
-    controlsView.overlayContainerView.addSubview(overlayVC.view)
-    overlayVC.didMoveToParentViewController(self)
-  }
 }
-
-// MARK: - MovielalaPlayerOverlayViewControllerDelegate
-extension MovielalaPlayerViewController: MovielalaPlayerOverlayViewControllerDelegate {
-
-  func dismissMovielalaPlayerOverlay(overlayVC: MovielalaPlayerOverlayViewController) {
-    if overlayVC.view.superview == controlsView.overlayContainerView {
-      overlayVC.willMoveToParentViewController(nil)
-      overlayVC.view.removeFromSuperview()
-      overlayVC.removeFromParentViewController()
-    }
-  }
-}
-
-
-
-
-

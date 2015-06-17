@@ -444,7 +444,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		5F2739FC1B2A8F3400EF50C4 /* Validate Code Style */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -452,13 +452,13 @@
 			name = "Validate Code Style";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = /usr/local/bin/swiftlint;
 		};
 		5F2739FD1B2A8F5100EF50C4 /* Validate Code Style */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -466,13 +466,13 @@
 			name = "Validate Code Style";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = /usr/local/bin/swiftlint;
 		};
 		5F2739FE1B2A8F6000EF50C4 /* Validate Code Style */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -480,13 +480,13 @@
 			name = "Validate Code Style";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = /usr/local/bin/swiftlint;
 		};
 		5F2739FF1B2A8F7400EF50C4 /* Validate Code Style */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -494,7 +494,7 @@
 			name = "Validate Code Style";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = /usr/local/bin/swiftlint;
 		};

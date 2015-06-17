@@ -9,7 +9,7 @@
 import UIKit
 
 class CustomTimeSliderView: UIView {
-  
+
   var maximumValue: Float {
     set{
       timeSlider.maximumValue = newValue
@@ -18,7 +18,7 @@ class CustomTimeSliderView: UIView {
       return timeSlider.maximumValue
     }
   }
-  
+
   var minimumValue: Float {
     set{
       timeSlider.minimumValue = newValue
@@ -27,7 +27,7 @@ class CustomTimeSliderView: UIView {
       return timeSlider.minimumValue
     }
   }
-  
+
   var value: Float {
     set {
       timeSlider.value = newValue
@@ -37,18 +37,18 @@ class CustomTimeSliderView: UIView {
     }
   }
 
-  private var userInteraction:Bool = false
-  private var userInteractionLocation:CGFloat = 0.0
-  private var videoPercentRatio:CGFloat = 0.0
-  private var bufferPercentRatio:CGFloat = 0.0
-  private var customTimeSliderProgressValue:CGFloat = 0.0
-  private var customTimeSliderThumbValue:CGFloat = 0.0
+  private var userInteraction: Bool = false
+  private var userInteractionLocation: CGFloat = 0.0
+  private var videoPercentRatio: CGFloat = 0.0
+  private var bufferPercentRatio: CGFloat = 0.0
+  private var customTimeSliderProgressValue: CGFloat = 0.0
+  private var customTimeSliderThumbValue: CGFloat = 0.0
   var railView = UIView(frame: CGRectZero)
   var bufferView = UIView(frame: CGRectZero)
   var progressView = UIView(frame: CGRectZero)
   var thumbView = UIView(frame: CGRectZero)
   let timeSlider = UISlider(frame: CGRectZero)
-  
+
   override init(frame: CGRect) {
     super.init(frame: frame)
     railView.backgroundColor = UIColor.lightGrayColor()
@@ -67,11 +67,11 @@ class CustomTimeSliderView: UIView {
       )
     )
   }
-  
+
   required init(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   func didTapSliderAction(recognizer: UIPanGestureRecognizer!) {
     userInteraction = true
     let locationInView = recognizer.locationInView(railView)
@@ -94,7 +94,7 @@ class CustomTimeSliderView: UIView {
     if recognizer.state == .Ended {
       var currentPercent = CGFloat(locationInView.x / railViewWidth * 100)
       var videoPercent = CGFloat(currentPercent * CGFloat(timeSlider.maximumValue)) / 100
-      var time:NSTimeInterval = NSTimeInterval(Float(videoPercent))
+      var time: NSTimeInterval = NSTimeInterval(Float(videoPercent))
       NSNotificationCenter.defaultCenter().postNotificationName(
         "goToCustomTimeSliderWithTime",
         object: self,
@@ -103,20 +103,20 @@ class CustomTimeSliderView: UIView {
       userInteraction = false
     }
   }
-  
+
   //Buffer Percent
-  func refreshBufferPercentRatio(bufferRatio width:CGFloat,totalDuration total:CGFloat) {
+  func refreshBufferPercentRatio(bufferRatio width: CGFloat,totalDuration total: CGFloat) {
     if width.isNaN || total.isNaN {
       return bufferPercentRatio = 0.0
     }
     videoPercentRatio = CGFloat(width / total * 100)
-    var bufferPercent:CGFloat = videoPercentRatio * self.bounds.size.width / 100
+    var bufferPercent: CGFloat = videoPercentRatio * self.bounds.size.width / 100
     bufferPercentRatio = bufferPercent
     layoutSubviews()
   }
 
   //Video Percent
-  func refreshVideoProgressPercentRaito(videoRaito ratio:CGFloat, totalDuration total:CGFloat) {
+  func refreshVideoProgressPercentRaito(videoRaito ratio: CGFloat, totalDuration total: CGFloat) {
     if !userInteraction {
       if ratio.isNaN || total.isNaN || (ratio / total * 100).isNaN {
         customTimeSliderProgressValue = 0.0
@@ -129,7 +129,7 @@ class CustomTimeSliderView: UIView {
     }
     layoutSubviews()
   }
-  
+
   func refreshCustomTimeSliderPercentRatio() {
     if userInteraction {
       customTimeSliderThumbValue = userInteractionLocation
@@ -137,7 +137,7 @@ class CustomTimeSliderView: UIView {
       customTimeSliderThumbValue = progressView.frame.size.width - thumbView.frame.size.width/2
     }
   }
-  
+
   override func layoutSubviews() {
     let size = bounds.size
     if bufferPercentRatio.isNaN {
@@ -146,28 +146,22 @@ class CustomTimeSliderView: UIView {
     if self.bufferPercentRatio.isNaN {
       self.bufferPercentRatio = 0.0
     }
-    // Rail View
     self.railView.frame = CGRect(
       x: 0.0,
       y: 18.0,
       width: self.frame.width - 2.0,
       height: 4.0)
-    //Progress View
     UIView.animateWithDuration(0.0, animations: {
-      self.progressView.frame = CGRect(
-        x: 0.0,
-        y: 0.0,
+      self.progressView.frame = CGRect(x: 0.0, y: 0.0,
         width: self.customTimeSliderProgressValue,
         height: 4.0)
     })
-    //Thumb View
     UIView.animateWithDuration(
       0.0,
       delay: 0.0,
       options: .AllowUserInteraction,
       animations: { () -> Void in
-        self.thumbView.frame = CGRect(
-          x: self.customTimeSliderThumbValue,
+        self.thumbView.frame = CGRect(x: self.customTimeSliderThumbValue,
           y: 8.0,
           width: 22.0,
           height: 22.0)
@@ -176,7 +170,6 @@ class CustomTimeSliderView: UIView {
         self.thumbView.layer.borderColor = UIColor.grayColor().CGColor
         self.thumbView.layer.borderWidth = 1.0
       }) { (Bool) -> Void in}
-    //Buffer View
     UIView.animateWithDuration(0.1, animations: {
       self.bufferView.frame = CGRect(
         x: 0.0,

@@ -12,9 +12,9 @@ public struct TitleConfig {
   public var textFont = UIFont.systemFontOfSize(14)
   public var textColor = UIColor(hexString: "#ffffff")
   public var backgroundColor = UIColor.clearColor()
-  
+
   public init() { }
-  
+
   public init(dictionary: [String: AnyObject]) {
     if let textFont = dictionary["textFont"] as? String {
       if let textSize = dictionary["textSize"] as? CGFloat {

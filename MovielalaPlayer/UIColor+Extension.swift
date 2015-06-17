@@ -9,13 +9,12 @@
 import UIKit
 
 extension UIColor {
-  
+
   convenience init(hexString: String) {
-    var red:   CGFloat = 0.0
+    var red: CGFloat = 0.0
     var green: CGFloat = 0.0
-    var blue:  CGFloat = 0.0
+    var blue: CGFloat = 0.0
     var alpha: CGFloat = 1.0
-    
     if hexString.hasPrefix("#") {
       let index   = advance(hexString.startIndex, 1)
       let hex     = hexString.substringFromIndex(index)
