@@ -8,7 +8,6 @@
 
 import UIKit
 import MobilePlayer
-import MediaPlayer
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,8 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           youTubeURL: youtubeURL,
           configFileURL: fileUrl
         )
-        let preRollVC = PreRollViewController()
-        playerVC.showPreRollViewController(preRollVC)
+        playerVC.config.prerollViewController = PreRollViewController()
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = playerVC
         self.window!.backgroundColor = UIColor.whiteColor()

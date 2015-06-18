@@ -30,8 +30,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var wasPlayingBeforeTimeShift = false
   private var playbackTimeInterfaceUpdateTimer = NSTimer()
   private var hideControlsTimer = NSTimer()
-  private var isPreRollView = false
-  private var preRollViewController = MobilePlayerOverlayViewController()
   // MARK: - Initialization
 
   public init(contentURL: NSURL, config: MobilePlayerConfig = globalConfiguration) {
@@ -189,6 +187,16 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       target: self,
       selector: "updateTimeSliderViewInterface",
       userInfo: nil, repeats: true)
+    if let preRollVC = self.config.prerollViewController {
+      NSTimer.scheduledTimerWithTimeInterval(
+        1.0,
+        target: self,
+        selector: "pauseVideoPlayer",
+        userInfo: nil,
+        repeats: false
+      )
+      showOverlayViewController(preRollVC)
+    }
   }
 
   public override func viewWillAppear(animated: Bool) {
@@ -346,20 +354,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       }
       return nil
   }
-
-  public final func showPreRollViewController(viewController: MobilePlayerOverlayViewController) {
-    isPreRollView = true
-    preRollViewController = viewController
-    NSTimer.scheduledTimerWithTimeInterval(
-      1.0,
-      target: self,
-      selector: "pauseVideoPlayer",
-      userInfo: nil,
-      repeats: false
-    )
-    showOverlayViewController(viewController)
-  }
-
 }
 
 // MARK: - MobilePlayerOverlayViewControllerDelegate
@@ -380,8 +374,8 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
     if state == .Playing || state == .Interrupted {
       moviePlayer.pause()
     } else {
-      if isPreRollView {
-        dismissMobilePlayerOverlay(preRollViewController)
+      if let preRollVC =  self.config.prerollViewController {
+        dismissMobilePlayerOverlay(preRollVC)
       }
       moviePlayer.play()
     }
