@@ -30,6 +30,9 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var wasPlayingBeforeTimeShift = false
   private var playbackTimeInterfaceUpdateTimer = NSTimer()
   private var hideControlsTimer = NSTimer()
+  // OverlayController
+  public var overlayController = MobilePlayerOverlayViewController()
+  public var overlayTimeValues: [String: Int] = [:]
 
   // MARK: - Initialization
 
@@ -188,6 +191,11 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       target: self,
       selector: "updateTimeSliderViewInterface",
       userInfo: nil, repeats: true)
+    NSTimer.scheduledTimerWithTimeInterval(
+      1.0,
+      target: self,
+      selector: "updateTimeLabelInterface",
+      userInfo: nil, repeats: true)
   }
 
   public override func viewWillAppear(animated: Bool) {
@@ -254,6 +262,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     if hours > 0 {
       label.text = NSString(format: "%02lu:%@", hours, label.text!) as String
     }
+    if let startValue = overlayTimeValues["start"],
+    duration = overlayTimeValues["duration"] {
+      self.showBannerWithStartTime(startValue, duration: duration)
+    }
   }
 
   private func checkTimeLabelText(text: NSString) -> String {
@@ -293,6 +305,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   public final func updatePlaybackTimeInterface() {
     updateTimeSlider()
+    controlsView.setNeedsLayout()
+  }
+
+  public final func updateTimeLabelInterface(){
     updateTimeLabel(controlsView.playbackTimeLabel, time: moviePlayer.currentPlaybackTime)
     controlsView.setNeedsLayout()
   }
@@ -333,7 +349,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       repeats: false)
   }
 
-final func progressBarBufferPercentWithMoviePlayer(
+  final func progressBarBufferPercentWithMoviePlayer(
     player: MPMoviePlayerController) -> AnyObject? {
       if var movieAccessLog = player.accessLog,
         var arrEvents = movieAccessLog.events {
@@ -345,7 +361,6 @@ final func progressBarBufferPercentWithMoviePlayer(
       }
       return nil
   }
-
 }
 
 // MARK: - MobilePlayerOverlayViewControllerDelegate
@@ -424,8 +439,10 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
   private func showOverlayViewController(overlayVC: MobilePlayerOverlayViewController) {
     addChildViewController(overlayVC)
     overlayVC.view.clipsToBounds = true
-    controlsView.overlayContainerView.addSubview(overlayVC.view)
-    overlayVC.didMoveToParentViewController(self)
+    UIView.animateWithDuration(0.5, animations: { () -> Void in
+      self.controlsView.overlayContainerView.addSubview(overlayVC.view)
+      overlayVC.didMoveToParentViewController(self)
+    })
   }
 
   final func timeShiftDidBegin() {
@@ -453,5 +470,27 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
     if wasPlayingBeforeTimeShift {
       moviePlayer.play()
     }
+  }
+
+  //ShowOverlayViewController Trigger
+  public func showBannerWithStartTime(
+    startTime: Int,
+    duration: Int
+    ) {
+      let currentVideoTime = Int(moviePlayer.currentPlaybackTime)
+      if startTime == currentVideoTime {
+        self.showOverlayViewController(self.overlayController)
+        NSTimer.scheduledTimerWithTimeInterval(
+          NSTimeInterval(duration),
+          target: self,
+          selector: "dissmisBannerLayout",
+          userInfo: nil,
+          repeats: false
+        )
+      }
+  }
+
+  public func dissmisBannerLayout(){
+    self.dismissMobilePlayerOverlay(overlayController)
   }
 }

@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import MobilePlayer
 import MediaPlayer
+import MobilePlayer
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,9 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=Kznek1uNVsg")!
         let youtubeLiveURL = NSURL(string: "https://www.youtube.com/watch?v=rxGoGg7n77A")!
         let playerVC = MobilePlayerViewController(
-          youTubeURL: youtubeLiveURL,
+          youTubeURL: youtubeURL,
           configFileURL: fileUrl
         )
+        let banner: ADBannerViewController = ADBannerViewController()
+        playerVC.overlayController = banner
+        playerVC.overlayTimeValues = ["start": 2, "duration": 6]
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = playerVC
         self.window!.backgroundColor = UIColor.whiteColor()
