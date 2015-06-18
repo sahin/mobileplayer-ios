@@ -1,6 +1,6 @@
 //
 //  MobilePlayerConfig.swift
-//  MobilePlayerConfig
+//  MobilePlayer
 //
 //  Created by Baris Sencan on 12/02/15.
 //  Copyright (c) 2015 MovieLaLa. All rights reserved.
