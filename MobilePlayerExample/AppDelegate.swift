@@ -22,9 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=Kznek1uNVsg")!
         let youtubeLiveURL = NSURL(string: "https://www.youtube.com/watch?v=rxGoGg7n77A")!
         let playerVC = MobilePlayerViewController(
-          youTubeURL: youtubeLiveURL,
+          youTubeURL: youtubeURL,
           configFileURL: fileUrl
         )
+        let preRollVC = PreRollViewController()
+        playerVC.showPreRollViewController(preRollVC)
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = playerVC
         self.window!.backgroundColor = UIColor.whiteColor()

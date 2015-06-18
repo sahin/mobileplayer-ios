@@ -30,7 +30,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var wasPlayingBeforeTimeShift = false
   private var playbackTimeInterfaceUpdateTimer = NSTimer()
   private var hideControlsTimer = NSTimer()
-
+  private var isPreRollView = false
+  private var preRollViewController = MobilePlayerOverlayViewController()
   // MARK: - Initialization
 
   public init(contentURL: NSURL, config: MobilePlayerConfig = globalConfiguration) {
@@ -333,7 +334,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       repeats: false)
   }
 
-final func progressBarBufferPercentWithMoviePlayer(
+  final func progressBarBufferPercentWithMoviePlayer(
     player: MPMoviePlayerController) -> AnyObject? {
       if var movieAccessLog = player.accessLog,
         var arrEvents = movieAccessLog.events {
@@ -344,6 +345,19 @@ final func progressBarBufferPercentWithMoviePlayer(
           return totalValue
       }
       return nil
+  }
+
+  public final func showPreRollViewController(viewController: MobilePlayerOverlayViewController) {
+    isPreRollView = true
+    preRollViewController = viewController
+    NSTimer.scheduledTimerWithTimeInterval(
+      1.0,
+      target: self,
+      selector: "pauseVideoPlayer",
+      userInfo: nil,
+      repeats: false
+    )
+    showOverlayViewController(viewController)
   }
 
 }
@@ -366,6 +380,9 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
     if state == .Playing || state == .Interrupted {
       moviePlayer.pause()
     } else {
+      if isPreRollView {
+        dismissMobilePlayerOverlay(preRollViewController)
+      }
       moviePlayer.play()
     }
   }
