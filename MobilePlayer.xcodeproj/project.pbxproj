@@ -644,7 +644,7 @@
 				);
 				INFOPLIST_FILE = "MobilePlayerExampleTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = MobilePlayerExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobilePlayerExample.app/MobilePlayerExample";
 			};
 			name = Debug;
@@ -659,7 +659,7 @@
 				);
 				INFOPLIST_FILE = "MobilePlayerExampleTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = MobilePlayerExampleTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobilePlayerExample.app/MobilePlayerExample";
 			};
 			name = Release;
@@ -781,7 +781,7 @@
 				INFOPLIST_FILE = "MobilePlayer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = MobilePlayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -799,7 +799,7 @@
 				);
 				INFOPLIST_FILE = "MobilePlayerTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = MobilePlayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
 		};
@@ -812,7 +812,7 @@
 				);
 				INFOPLIST_FILE = "MobilePlayerTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = MobilePlayerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
