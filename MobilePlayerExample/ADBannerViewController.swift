@@ -11,12 +11,22 @@ import MobilePlayer
 
 class ADBannerViewController: MobilePlayerOverlayViewController {
 
+  private var bgColor = UIColor.clearColor()
+
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = UIColor.redColor()
+    self.view.backgroundColor = getRandomColor()
   }
 
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
+  }
+
+  func getRandomColor() -> UIColor{
+    return UIColor(
+      red: CGFloat(drand48()),
+      green: CGFloat(drand48()),
+      blue: CGFloat(drand48()),
+      alpha: 0.6)
   }
 }
