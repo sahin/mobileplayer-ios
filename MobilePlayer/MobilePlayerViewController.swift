@@ -263,7 +263,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     if hours > 0 {
       label.text = NSString(format: "%02lu:%@", hours, label.text!) as String
     }
-    //TODO:
   }
 
   private func checkTimeLabelText(text: NSString) -> String {
