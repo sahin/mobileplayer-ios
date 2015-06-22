@@ -31,10 +31,10 @@ public struct MobilePlayerConfig {
   var pauseCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
 
   // MARK: - Overlays
-  var prerollViewController: MobilePlayerOverlayViewController? = nil
-  var pauseViewController: MobilePlayerOverlayViewController? = nil
-  var postrollViewController: MobilePlayerOverlayViewController? = nil
-  var endCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
+  public var prerollViewController: MobilePlayerOverlayViewController? = nil
+  public var pauseViewController: MobilePlayerOverlayViewController? = nil
+  public var postrollViewController: MobilePlayerOverlayViewController? = nil
+  public var endCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
 
   // MARK: - Special Callbacks
   var firstPlayCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil

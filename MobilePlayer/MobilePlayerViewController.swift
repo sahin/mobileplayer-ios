@@ -27,10 +27,11 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var previousStatusBarHiddenValue: Bool!
   private var previousStatusBarStyle: UIStatusBarStyle!
   private var isFirstPlay = true
+  private var isFirstPlayPreRoll = true
   private var wasPlayingBeforeTimeShift = false
   private var playbackTimeInterfaceUpdateTimer = NSTimer()
   private var hideControlsTimer = NSTimer()
-
+  private var currentVideoURL = NSURL()
   // MARK: - Initialization
 
   public init(contentURL: NSURL, config: MobilePlayerConfig = globalConfiguration) {
@@ -65,10 +66,15 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
                   self.controlsView.backgroundImageView.image = bgImage
               }
           }
-          self.moviePlayer.contentURL = NSURL(string: videoURLString)
+          if let url = NSURL(string: videoURLString) {
+            self.currentVideoURL = url
+          }
           self.title = videoTitle
       }
     })
+    if self.config.prerollViewController == nil {
+      self.moviePlayer.contentURL = currentVideoURL
+    }
     initializeMobilePlayerViewController()
   }
 
@@ -188,6 +194,9 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       target: self,
       selector: "updateTimeSliderViewInterface",
       userInfo: nil, repeats: true)
+    if let preRollVC = self.config.prerollViewController {
+      showOverlayViewController(preRollVC)
+    }
   }
 
   public override func viewWillAppear(animated: Bool) {
@@ -333,7 +342,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       repeats: false)
   }
 
-final func progressBarBufferPercentWithMoviePlayer(
+  final func progressBarBufferPercentWithMoviePlayer(
     player: MPMoviePlayerController) -> AnyObject? {
       if var movieAccessLog = player.accessLog,
         var arrEvents = movieAccessLog.events {
@@ -345,7 +354,6 @@ final func progressBarBufferPercentWithMoviePlayer(
       }
       return nil
   }
-
 }
 
 // MARK: - MobilePlayerOverlayViewControllerDelegate
@@ -366,6 +374,12 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
     if state == .Playing || state == .Interrupted {
       moviePlayer.pause()
     } else {
+      if isFirstPlayPreRoll {
+        if let preRoll = self.config.prerollViewController {
+          dismissMobilePlayerOverlay(preRoll)
+          isFirstPlayPreRoll = false
+        }
+      }
       moviePlayer.play()
     }
   }
@@ -389,6 +403,15 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
       }
       if let pauseViewController = config.pauseViewController {
         dismissMobilePlayerOverlay(pauseViewController)
+      }
+      if let preRollVC = self.config.prerollViewController {
+        if isFirstPlayPreRoll {
+          pauseVideoPlayer()
+          controlsView.playButton.setImage(
+            config.controlbarConfig.playButtonImage,
+            forState: .Normal
+          )
+        }
       }
     } else {
       controlsView.playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
