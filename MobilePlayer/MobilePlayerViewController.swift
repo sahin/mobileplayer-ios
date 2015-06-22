@@ -374,12 +374,12 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
     if state == .Playing || state == .Interrupted {
       moviePlayer.pause()
     } else {
-        if isFirstPlayPreRoll {
-          if let preRoll = self.config.prerollViewController {
-            dismissMobilePlayerOverlay(preRoll)
-            isFirstPlayPreRoll = false
-          }
+      if isFirstPlayPreRoll {
+        if let preRoll = self.config.prerollViewController {
+          dismissMobilePlayerOverlay(preRoll)
+          isFirstPlayPreRoll = false
         }
+      }
       moviePlayer.play()
     }
   }
