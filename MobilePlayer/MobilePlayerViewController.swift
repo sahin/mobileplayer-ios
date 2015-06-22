@@ -374,7 +374,7 @@ extension MobilePlayerViewController {
   private func showOverlayViewController(overlayVC: MobilePlayerOverlayViewController) {
     addChildViewController(overlayVC)
     overlayVC.view.clipsToBounds = true
-    UIView.animateWithDuration(0.5, animations: { () -> Void in
+    UIView.animateWithDuration(0.5, animations: {
       self.controlsView.overlayContainerView.addSubview(overlayVC.view)
       overlayVC.didMoveToParentViewController(self)
     })
