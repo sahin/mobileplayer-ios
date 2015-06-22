@@ -1,5 +1,5 @@
 //
-//  ShareConfig.swift
+//  ShareButtonConfig.swift
 //  MobilePlayer
 //
 //  Created by Toygar Dündaralp on 26/05/15.
@@ -9,9 +9,6 @@
 import Foundation
 
 public struct ShareButtonConfig {
-
-  // MARK: - Special Callbacks
-  var shareCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
 
   // MARK: - Theming
   public var imageName = MobilePlayerConfig.loadImage(named: "MLShareButton.png")

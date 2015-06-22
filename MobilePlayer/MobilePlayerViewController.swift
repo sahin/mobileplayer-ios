@@ -317,7 +317,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   public final func shareContent() {
-    if let shareCallback = config.shareConfig.shareCallback {
+    if let shareCallback = config.shareCallback {
       moviePlayer.pause()
       shareCallback(playerVC: self)
     }

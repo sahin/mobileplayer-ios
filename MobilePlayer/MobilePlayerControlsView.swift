@@ -51,17 +51,17 @@ final class MobilePlayerControlsView: UIView {
   private func initializeHeaderViews() {
     headerView.backgroundColor = config.headerBackgroundColor
     addSubview(headerView)
-    closeButton.setImage(config.closeConfig.imageName, forState: .Normal)
-    closeButton.tintColor = config.closeConfig.tintColor
-    closeButton.backgroundColor = config.closeConfig.backgroundColor
+    closeButton.setImage(config.closeButtonConfig.imageName, forState: .Normal)
+    closeButton.tintColor = config.closeButtonConfig.tintColor
+    closeButton.backgroundColor = config.closeButtonConfig.backgroundColor
     headerView.addSubview(closeButton)
     titleLabel.font = config.titleConfig.textFont
     titleLabel.textColor = config.titleConfig.textColor
     titleLabel.backgroundColor = config.titleConfig.backgroundColor
     headerView.addSubview(titleLabel)
-    shareButton.setImage(config.shareConfig.imageName, forState: .Normal)
-    shareButton.tintColor = config.shareConfig.tintColor
-    shareButton.backgroundColor = config.shareConfig.backgroundColor
+    shareButton.setImage(config.shareButtonConfig.imageName, forState: .Normal)
+    shareButton.tintColor = config.shareButtonConfig.tintColor
+    shareButton.backgroundColor = config.shareButtonConfig.backgroundColor
     headerView.addSubview(shareButton)
     headerBorderView.backgroundColor = config.headerBorderColor
     headerView.addSubview(headerBorderView)

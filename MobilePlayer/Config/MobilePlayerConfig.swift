@@ -10,13 +10,13 @@ import Foundation
 
 public struct MobilePlayerConfig {
 
-  // MARK: - ControlBar Skin
-  public let controlbarConfig: ControlbarConfig
-  public let shareConfig: ShareButtonConfig
-  public let closeConfig: CloseButtonConfig
+  // MARK: - Appearance
+  public let shareButtonConfig: ShareButtonConfig
+  public let closeButtonConfig: CloseButtonConfig
   public let titleConfig: TitleConfig
+  public let controlbarConfig: ControlbarConfig
 
-  // MARK: - Theming
+  // MARK: - Layout
   public var headerHeight = CGFloat(40)
   public var footerHeight = CGFloat(40)
   public var headerBorderHeight = CGFloat(1)
@@ -34,16 +34,17 @@ public struct MobilePlayerConfig {
   public var prerollViewController: MobilePlayerOverlayViewController? = nil
   public var pauseViewController: MobilePlayerOverlayViewController? = nil
   public var postrollViewController: MobilePlayerOverlayViewController? = nil
-  public var endCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
 
   // MARK: - Special Callbacks
-  var firstPlayCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
+  public var firstPlayCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
+  public var shareCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
+  public var endCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
 
   // MARK: - Not Configuration Related
   public init() {
     controlbarConfig = ControlbarConfig()
-    shareConfig = ShareButtonConfig()
-    closeConfig = CloseButtonConfig()
+    shareButtonConfig = ShareButtonConfig()
+    closeButtonConfig = CloseButtonConfig()
     titleConfig = TitleConfig()
   }
 
@@ -54,9 +55,9 @@ public struct MobilePlayerConfig {
       controlbarConfig = ControlbarConfig()
     }
     if let shareConfigDictionary = dictionary["share"] as? [String: AnyObject] {
-      shareConfig = ShareButtonConfig(dictionary: shareConfigDictionary)
+      shareButtonConfig = ShareButtonConfig(dictionary: shareConfigDictionary)
     } else {
-      shareConfig = ShareButtonConfig()
+      shareButtonConfig = ShareButtonConfig()
     }
     if let titleConfigDictionary = dictionary["title"] as? [String: AnyObject] {
       titleConfig = TitleConfig(dictionary: titleConfigDictionary)
@@ -64,9 +65,9 @@ public struct MobilePlayerConfig {
       titleConfig = TitleConfig()
     }
     if let closeButtonConfigDictionary = dictionary["closeButton"] as? [String: AnyObject] {
-      closeConfig = CloseButtonConfig(dictionary: closeButtonConfigDictionary)
+      closeButtonConfig = CloseButtonConfig(dictionary: closeButtonConfigDictionary)
     } else {
-      closeConfig = CloseButtonConfig()
+      closeButtonConfig = CloseButtonConfig()
     }
   }
 

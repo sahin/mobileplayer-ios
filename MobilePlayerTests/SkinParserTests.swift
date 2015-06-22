@@ -103,17 +103,17 @@ class SkinParserTests: XCTestCase {
     if let config: MobilePlayerConfig =
       SkinParser.parseConfigFromURL(fileURL) {
       XCTAssertEqual(
-        config.shareConfig.tintColor,
+        config.shareButtonConfig.tintColor,
         UIColor(hexString:"#ffff00"),
         "Share tint color not equal"
         )
       XCTAssertEqual(
-        config.shareConfig.backgroundColor,
+        config.shareButtonConfig.backgroundColor,
         UIColor(hexString:"#ff00ff"),
         "Share background color not equal"
         )
       XCTAssertEqual(
-        config.shareConfig.imageName,
+        config.shareButtonConfig.imageName,
         UIImage(
           named: "MLShareButton",
           inBundle: NSBundle(forClass: MobilePlayerViewController.self),
@@ -142,17 +142,17 @@ class SkinParserTests: XCTestCase {
     if let config: MobilePlayerConfig =
       SkinParser.parseConfigFromURL(fileURL) {
       XCTAssertEqual(
-        config.closeConfig.tintColor,
+        config.closeButtonConfig.tintColor,
         UIColor(hexString:"#ffff00"),
         "Close Button tint color not equal"
         )
       XCTAssertEqual(
-        config.closeConfig.backgroundColor,
+        config.closeButtonConfig.backgroundColor,
         UIColor(hexString:"#ff00ff"),
         "Close Button background color not equal"
         )
       XCTAssertEqual(
-        config.closeConfig.imageName,
+        config.closeButtonConfig.imageName,
         UIImage(
           named: "MLCloseButton",
           inBundle: NSBundle(forClass: MobilePlayerViewController.self),
