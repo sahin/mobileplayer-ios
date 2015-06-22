@@ -38,8 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = playerVC
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
-      } else {
-        println("MobilePlayer: Skin file not found")
       }
       return true
   }
