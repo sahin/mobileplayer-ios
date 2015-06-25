@@ -33,7 +33,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   // OverlayController
   public var overlayController = MobilePlayerOverlayViewController()
   public var isShowOverlay = false
-  public var overlayViews = NSMutableArray()
+  public var timedOverlays = [[String: AnyObject]]()
 
   // MARK: - Initialization
 
@@ -479,7 +479,7 @@ extension MobilePlayerViewController {
     startingAtTime: NSTimeInterval,
     forDuration: NSTimeInterval
     ) {
-      overlayViews.addObject([
+      timedOverlays.append([
         "vc": overlayVC,
         "start": startingAtTime,
         "duration": forDuration
@@ -489,7 +489,7 @@ extension MobilePlayerViewController {
   public final func updateTimeLabelInterface(){
     updateTimeLabel(controlsView.playbackTimeLabel, time: moviePlayer.currentPlaybackTime)
     controlsView.setNeedsLayout()
-    for (index,overlay) in enumerate(overlayViews) {
+    for (index,overlay) in enumerate(timedOverlays) {
       if let start = overlay["start"] as? NSTimeInterval,
         duration = overlay["duration"] as? NSTimeInterval {
           var videoTime = Int(self.moviePlayer.currentPlaybackTime)
@@ -512,7 +512,7 @@ extension MobilePlayerViewController {
 
   public func dissmisBannerLayout(notification: NSNotification){
     if let index = notification.userInfo?["val"] as? Int,
-      overlayView = overlayViews.objectAtIndex(index)["vc"] as? MobilePlayerOverlayViewController {
+      overlayView = timedOverlays[index]["vc"] as? MobilePlayerOverlayViewController {
         self.dismissMobilePlayerOverlay(overlayView)
     }
   }
