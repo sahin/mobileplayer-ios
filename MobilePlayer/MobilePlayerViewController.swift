@@ -28,6 +28,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var previousStatusBarStyle: UIStatusBarStyle!
   private var isFirstPlay = true
   private var isFirstPlayPreRoll = true
+  private var bufferValue: NSTimeInterval?
   private var wasPlayingBeforeTimeShift = false
   private var playbackTimeInterfaceUpdateTimer = NSTimer()
   private var hideControlsTimer = NSTimer()
@@ -92,6 +93,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   private func initializeNotificationObservers() {
     let notificationCenter = NSNotificationCenter.defaultCenter()
+    notificationCenter.removeObserver(
+      self,
+      name: MPMoviePlayerPlaybackStateDidChangeNotification,
+      object: moviePlayer)
     notificationCenter.addObserver(
       self,
       selector: "handleMoviePlayerPlaybackStateDidChangeNotification",
@@ -285,6 +290,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   public final func updateBufferInterface() {
     if var bufferCalculate =
       progressBarBufferPercentWithMoviePlayer(moviePlayer) as? NSTimeInterval {
+        bufferValue = bufferCalculate
         controlsView.customTimeSliderView.refreshBufferPercentRatio(
           bufferRatio: CGFloat(bufferCalculate),
           totalDuration: CGFloat(moviePlayer.duration)
@@ -392,8 +398,46 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
     moviePlayer.play()
   }
 
+  private func setPlayerStates(playbackState: MPMoviePlaybackState, loadState: MPMovieLoadState) {
+    switch (playbackState) {
+    case .Stopped:
+      moviePlayerState = .Stopped
+    case .Playing:
+      moviePlayerState = .Playing
+    case .Paused:
+      moviePlayerState = .Pause
+    case .Interrupted:
+      moviePlayerState = .Interrupted
+    case .SeekingForward:
+      moviePlayerState = .SeekingForward
+    case .SeekingBackward:
+      moviePlayerState = .SeekingBackward
+    default:
+      break
+    }
+    switch (loadState) {
+    case MPMovieLoadState.Unknown:
+      moviePlayerState = .Unknown
+    case MPMovieLoadState.Playable:
+      moviePlayerState = .Playable
+    case MPMovieLoadState.PlaythroughOK:
+      moviePlayerState = .PlaythroughOK
+    case MPMovieLoadState.Stalled:
+      moviePlayerState = .Stalled
+    default:
+      break
+    }
+    // Buffering State
+    if let bValue = bufferValue {
+      if Int(bValue) != Int(moviePlayer.duration) {
+        moviePlayerState = .Buffering
+      }
+    }
+  }
+
   final func handleMoviePlayerPlaybackStateDidChangeNotification() {
     let state = moviePlayer.playbackState
+    setPlayerStates(moviePlayer.playbackState, loadState: moviePlayer.loadState)
     updatePlaybackTimeInterface()
     if state == .Playing || state == .Interrupted {
       doFirstPlaySetupIfNeeded()
