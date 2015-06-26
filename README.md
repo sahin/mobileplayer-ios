@@ -1,8 +1,9 @@
 # Mobile Player
 
-[![Build Status](https://circleci.com/gh/movielala/mobileplayer-ios.svg?style=shield&circle-token=0ea3a14dad751e5a914bb117cd7404146052df26)](https://circleci.com/gh/movielala/mobileplayer-ios)
+[![Build Status](https://circleci.com/gh/movielala/mobileplayer-ios.svg?circle-token=d6bb71f7a115ecb36f54744eea175e8e2792f5ad)]()
 [![Stories in Ready](https://badge.waffle.io/movielala/mobileplayer-ios.svg)](http://waffle.io/movielala/mobileplayer-ios)
 
-## Cocoa Touch Framework
+## Contributers
 
-Author: [toygard](https://github.com/toygard)
+[Barış Şencan](https://github.com/isair)
+[Toygar Dündaralp](https://github.com/toygard)
