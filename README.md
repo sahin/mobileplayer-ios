@@ -4,3 +4,11 @@
 [![Stories in Ready](https://badge.waffle.io/movielala/mobileplayer-ios.svg)](http://waffle.io/movielala/mobileplayer-ios)
 
 A powerful and completely customizable media player for iOS.
+
+# Documentation
+
+`// TODO`
+
+# Examples
+
+`// TODO`
