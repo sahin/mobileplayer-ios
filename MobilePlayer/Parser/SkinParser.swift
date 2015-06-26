@@ -17,8 +17,6 @@ public struct SkinParser {
       dictionary = NSJSONSerialization.JSONObjectWithData(
         jsonData, options: nil, error: nil) as? [String: AnyObject] {
           return MobilePlayerConfig(dictionary: dictionary)
-    } else {
-      println("MobilePlayer: Skin File Error! - Please check json validation")
     }
     return nil
   }

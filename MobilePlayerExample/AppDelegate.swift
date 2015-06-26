@@ -25,12 +25,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
           configFileURL: fileUrl
         )
         playerVC.config.prerollViewController = PreRollViewController()
+        playerVC.showOverlayViewController(
+          ADBannerViewController(),
+          startingAtTime: 3,
+          forDuration: 3
+        )
+        playerVC.showOverlayViewController(
+          ADBannerViewController(),
+          startingAtTime: 10,
+          forDuration: 5
+        )
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.rootViewController = playerVC
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
-      } else {
-        println("MobilePlayer: Skin file not found")
       }
       return true
   }
