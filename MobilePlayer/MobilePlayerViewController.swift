@@ -36,6 +36,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   public var overlayController = MobilePlayerOverlayViewController()
   public var isShowOverlay = false
   public var timedOverlays = [[String: AnyObject]]()
+  // Volume View
+  private var volumeView = VolumeControlView()
 
   // MARK: - Initialization
 
@@ -156,6 +158,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     controlsView.playButton.addTarget(
       self,
       action: "togglePlay",
+      forControlEvents: .TouchUpInside)
+    controlsView.volumeButton.addTarget(
+      self,
+      action: "volumeToggle",
       forControlEvents: .TouchUpInside)
     controlsView.customTimeSliderView.timeSlider.addTarget(
       self,
@@ -321,6 +327,10 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
 // MARK: - Event Handling
 extension MobilePlayerViewController {
 
+  func volumeToggle() {
+    controlsView.toggleVolumeView()
+  }
+
   func togglePlay() {
     let state = moviePlayer.playbackState
     if state == .Playing || state == .Interrupted {
@@ -333,6 +343,7 @@ extension MobilePlayerViewController {
         }
       }
       moviePlayer.play()
+      controlsView.volumeViewHidden(true)
     }
   }
 
@@ -471,9 +482,11 @@ extension MobilePlayerViewController {
   public final func toggleControlVisibility() {
     if controlsView.controlsHidden {
       controlsView.controlsHidden = false
+      controlsView.volumeViewHidden(true)
       resetHideControlsTimer()
     } else {
       controlsView.controlsHidden = true
+      controlsView.volumeViewHidden(true)
       hideControlsTimer.invalidate()
     }
   }
@@ -518,6 +531,7 @@ extension MobilePlayerViewController {
     for (index,overlay) in enumerate(timedOverlays) {
       if let start = overlay["start"] as? NSTimeInterval,
         duration = overlay["duration"] as? NSTimeInterval {
+          if !isnan(self.moviePlayer.currentPlaybackTime) {
           var videoTime = Int(self.moviePlayer.currentPlaybackTime)
           if Int(start) == videoTime {
             if let overlayView = overlay["vc"] as? MobilePlayerOverlayViewController {
@@ -530,7 +544,7 @@ extension MobilePlayerViewController {
                 userInfo: vc,
                 repeats: false
               )
-            }
+            }}
           }
       }
     }

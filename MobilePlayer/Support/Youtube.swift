@@ -103,7 +103,7 @@ public class Youtube: NSObject {
                   ]
                 }
               }
-              if fmtStreamMapString.length > 0 {
+              if fmtStreamMapString.length() > 0 {
                 var videoDictionary = NSMutableDictionary()
                 let fmtStreamMapArray = fmtStreamMapString.componentsSeparatedByString(",")
                 for videoEncodedString in fmtStreamMapArray {

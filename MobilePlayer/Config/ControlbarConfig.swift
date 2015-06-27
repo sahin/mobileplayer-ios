@@ -9,6 +9,7 @@
 import Foundation
 
 public struct ControlbarConfig {
+
   public var playButtonImage = MobilePlayerConfig.loadImage(named: "MLPlayButton.png")
   public var playButtonTintColor = UIColor.whiteColor()
   public var playButtonBackgroundColor = UIColor.clearColor()
@@ -22,6 +23,12 @@ public struct ControlbarConfig {
   public var timeSliderProgressTintColor = UIColor.blueColor()
   public var timeSliderThumbTintColor = UIColor.whiteColor()
   public var timeSliderBackgroundColor = UIColor.clearColor()
+  public var volumeButtonImage = MobilePlayerConfig.loadImage(named: "MLVolumeButton.png")
+  public var volumeBackgroundColor = UIColor.clearColor()
+  public var volumeTintColor = UIColor.blackColor()
+  public var volumeProgressTintColor = UIColor.blueColor()
+  public var volumeThumbTintColor = UIColor.grayColor()
+  public var volumeRailTintColor = UIColor.whiteColor()
   public var backgroundColor = UIColor.clearColor()
 
   public init() {}
@@ -77,6 +84,26 @@ public struct ControlbarConfig {
       }
       if let timeSliderBackgroundColor = timeSliderConfig["backgroundColor"] as? String {
         self.timeSliderBackgroundColor = UIColor(hexString: timeSliderBackgroundColor)
+      }
+    }
+    if let volumeSliderConfig = dictionary["volumeSlider"] as? [String:AnyObject] {
+      if let volumeSliderRailTintColorValue = volumeSliderConfig["railTintColor"] as? String {
+        self.volumeRailTintColor = UIColor(hexString: volumeSliderRailTintColorValue)
+      }
+      if let volumeSliderProgressTintColorValue = volumeSliderConfig["progressTintColor"] as? String {
+          self.volumeProgressTintColor = UIColor(hexString: volumeSliderProgressTintColorValue)
+      }
+      if let volumeSliderThumbTintColorValue = volumeSliderConfig["thumbTintColor"] as? String {
+        self.volumeThumbTintColor = UIColor(hexString: volumeSliderThumbTintColorValue)
+      }
+      if let volumeSliderBackgroundColorValue = volumeSliderConfig["backgroundColor"] as? String {
+        self.volumeBackgroundColor = UIColor(hexString: volumeSliderBackgroundColorValue)
+      }
+      if let volumeButtonImageValue = volumeSliderConfig["buttonImage"] as? String {
+        self.volumeButtonImage = MobilePlayerConfig.loadImage(named: volumeButtonImageValue)
+      }
+      if let volumeTintColorValue = volumeSliderConfig["tintColor"] as? String {
+        self.volumeTintColor = UIColor(hexString: volumeTintColorValue)
       }
     }
   }

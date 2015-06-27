@@ -22,6 +22,14 @@
       "progressTintColor": "#ff0000",
       "thumbTintColor": "#ffffff",
       "backgroundColor": "#ff00ff"
+    },
+    "volumeSlider":{
+      "railTintColor": "#cccccc",
+      "progressTintColor": "#0000ff",
+      "thumbTintColor": "#c5c5c5",
+      "tintColor": "#ffff00",
+      "backgroundColor": "#ff00ff",
+      "buttonImage": "MLVolumeButton.png"
     }
   },
   "share": {
