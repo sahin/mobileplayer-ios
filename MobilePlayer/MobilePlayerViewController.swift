@@ -161,7 +161,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       forControlEvents: .TouchUpInside)
     controlsView.volumeButton.addTarget(
       self,
-      action: "volumeToggle",
+      action: "toggleVolumeControl",
       forControlEvents: .TouchUpInside)
     controlsView.customTimeSliderView.timeSlider.addTarget(
       self,
@@ -327,7 +327,7 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
 // MARK: - Event Handling
 extension MobilePlayerViewController {
 
-  func volumeToggle() {
+  func toggleVolumeControl() {
     controlsView.toggleVolumeView()
   }
 
@@ -343,7 +343,7 @@ extension MobilePlayerViewController {
         }
       }
       moviePlayer.play()
-      controlsView.volumeViewHidden(true)
+      controlsView.toggleVolumeView()
     }
   }
 
@@ -482,13 +482,12 @@ extension MobilePlayerViewController {
   public final func toggleControlVisibility() {
     if controlsView.controlsHidden {
       controlsView.controlsHidden = false
-      controlsView.volumeViewHidden(true)
       resetHideControlsTimer()
     } else {
       controlsView.controlsHidden = true
-      controlsView.volumeViewHidden(true)
       hideControlsTimer.invalidate()
     }
+    controlsView.toggleVolumeView()
   }
 
   public final func shareContent() {
@@ -532,19 +531,20 @@ extension MobilePlayerViewController {
       if let start = overlay["start"] as? NSTimeInterval,
         duration = overlay["duration"] as? NSTimeInterval {
           if !isnan(self.moviePlayer.currentPlaybackTime) {
-          var videoTime = Int(self.moviePlayer.currentPlaybackTime)
-          if Int(start) == videoTime {
-            if let overlayView = overlay["vc"] as? MobilePlayerOverlayViewController {
-              self.showOverlayViewController(overlayView)
-              let vc = ["val": index]
-              NSTimer.scheduledTimerWithTimeInterval(
-                duration,
-                target: self,
-                selector: "dissmisBannerLayout:",
-                userInfo: vc,
-                repeats: false
-              )
-            }}
+            var videoTime = Int(self.moviePlayer.currentPlaybackTime)
+            if Int(start) == videoTime {
+              if let overlayView = overlay["vc"] as? MobilePlayerOverlayViewController {
+                self.showOverlayViewController(overlayView)
+                let vc = ["val": index]
+                NSTimer.scheduledTimerWithTimeInterval(
+                  duration,
+                  target: self,
+                  selector: "dissmisBannerLayout:",
+                  userInfo: vc,
+                  repeats: false
+                )
+              }
+            }
           }
       }
     }

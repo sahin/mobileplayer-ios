@@ -16,28 +16,28 @@ class VolumeControlView: UIView {
 
   override init(frame: CGRect) {
     super.init(frame: frame)
-    self.backgroundColor = UIColor.whiteColor()
+    backgroundColor = UIColor.whiteColor()
     volumeSlider.frame = CGRectMake(-22.0, 50.0, 110.0, 50.0)
     volumeSlider.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
     volumeSlider.showsVolumeSlider = true
     volumeSlider.showsRouteButton = false
     addSubview(volumeSlider)
     increaseVolumeImage = UIImageView(frame: CGRectMake(10.0, 0.0, 20.0, 20.0))
-    increaseVolumeImage.image = UIImage(named: "increaseVolumeImage")
+    increaseVolumeImage.image = UIImage(named: "MLIncreaseVolume")
     addSubview(increaseVolumeImage)
     reduceVolumeImage = UIImageView(frame: CGRectMake(10.0, 130.0, 20.0, 20.0))
-    reduceVolumeImage.image = UIImage(named: "reduceVolumeImage")
+    reduceVolumeImage.image = UIImage(named: "MLReduceVolume")
     addSubview(reduceVolumeImage)
   }
 
   required init(coder aDecoder: NSCoder) {
-      fatalError("init(coder:) has not been implemented")
+    fatalError("init(coder:) has not been implemented")
   }
 
   override func layoutSubviews() {
-    self.layer.cornerRadius = 5
-    self.layer.borderColor = UIColor.grayColor().CGColor
-    self.layer.borderWidth = 0.5
-    self.layer.masksToBounds = true
+    layer.cornerRadius = 5
+    layer.borderColor = UIColor.grayColor().CGColor
+    layer.borderWidth = 0.5
+    layer.masksToBounds = true
   }
 }

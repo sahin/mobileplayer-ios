@@ -20,7 +20,7 @@ final class MobilePlayerControlsView: UIView {
       }
     }
   }
-  var volumeView = VolumeControlView(frame: CGRectZero)
+  private var volumeView = VolumeControlView(frame: CGRectZero)
   var volumeButton = UIButton(frame: CGRectZero)
   var customTimeSliderView = CustomTimeSliderView(frame: CGRectZero)
   let headerView = UIView(frame: CGRectZero)
@@ -154,25 +154,16 @@ final class MobilePlayerControlsView: UIView {
     activityIndicatorView.center = overlayContainerView.center
     layoutHeaderSubviews()
     layoutFooterSubviews()
-    volumeView.frame = CGRectMake(
-      volumeButton.frame.origin.x,
-      footerView.frame.origin.y - 155,
-      35,
-      150.0
-    )
+    volumeView.frame = CGRect(
+      x: volumeButton.frame.origin.x,
+      y: footerView.frame.origin.y - 155.0,
+      width: 35.0,
+      height: 150.0)
   }
 
   func toggleVolumeView() {
-    if volumeView.hidden == true {
-      volumeView.hidden = false
-    } else {
-      volumeView.hidden = true
-    }
+    volumeView.hidden = !volumeView.hidden
     layoutSubviews()
-  }
-
-  func volumeViewHidden(state: Bool) {
-    volumeView.hidden = state
   }
 
   private func layoutHeaderSubviews() {

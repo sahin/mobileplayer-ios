@@ -36,74 +36,74 @@ public struct ControlbarConfig {
   public init(dictionary: [String: AnyObject]) {
     if let playButtonConfig = dictionary["playButton"] as? [String:AnyObject] {
       if let playButtonImageValue = playButtonConfig["image"] as? String {
-        self.playButtonImage = MobilePlayerConfig.loadImage(named: playButtonImageValue)
+        playButtonImage = MobilePlayerConfig.loadImage(named: playButtonImageValue)
       }
       if let playButtonTintColorValue = playButtonConfig["tintColor"] as? String {
-        self.playButtonTintColor = UIColor(hexString: playButtonTintColorValue)
+        playButtonTintColor = UIColor(hexString: playButtonTintColorValue)
       }
       if let playButtonBackgroundColorValue = playButtonConfig["backgroundColor"] as? String {
-        self.playButtonBackgroundColor = UIColor(hexString: playButtonBackgroundColorValue)
+        playButtonBackgroundColor = UIColor(hexString: playButtonBackgroundColorValue)
       }
     }
     if let pauseButtonConfig = dictionary["pauseButton"] as? [String:AnyObject] {
       if let pauseButtonImageValue = pauseButtonConfig["image"] as? String {
-        self.pauseButtonImage = MobilePlayerConfig.loadImage(named: pauseButtonImageValue)
+        pauseButtonImage = MobilePlayerConfig.loadImage(named: pauseButtonImageValue)
       }
       if let pauseButtonTintColorValue = pauseButtonConfig["tintColor"] as? String {
-        self.pauseButtonTintColor = UIColor(hexString: pauseButtonTintColorValue)
+        pauseButtonTintColor = UIColor(hexString: pauseButtonTintColorValue)
       }
     }
-    if let backgroundColor = dictionary["backgroundColor"] as? String {
-      self.backgroundColor = UIColor(hexString: backgroundColor)
+    if let backgroundColorValue = dictionary["backgroundColor"] as? String {
+      backgroundColor = UIColor(hexString: backgroundColorValue)
     }
     if let timeConfig = dictionary["time"] as? [String:AnyObject] {
-      if let timeTextFont = timeConfig["textFont"] as? String {
-        if let timeTextSize = timeConfig["textFontSize"] as? CGFloat {
-          self.timeTextFont = UIFont(name: timeTextFont, size: timeTextSize)!
+      if let timeTextFontValue = timeConfig["textFont"] as? String {
+        if let timeTextSizeValue = timeConfig["textFontSize"] as? CGFloat {
+          timeTextFont = UIFont(name: timeTextFontValue, size: timeTextSizeValue)!
         }
       }
-      if let timeTextColor = timeConfig["textColor"] as? String {
-        self.timeTextColor = UIColor(hexString: timeTextColor)
+      if let timeTextColorValue = timeConfig["textColor"] as? String {
+        timeTextColor = UIColor(hexString: timeTextColorValue)
       }
-      if let timeBackgroundColor = timeConfig["backgroundColor"] as? String {
-        self.timeBackgroundColor = UIColor(hexString: timeBackgroundColor)
+      if let timeBackgroundColorValue = timeConfig["backgroundColor"] as? String {
+        timeBackgroundColor = UIColor(hexString: timeBackgroundColorValue)
       }
     }
     if let timeSliderConfig = dictionary["timeSlider"] as? [String:AnyObject] {
-      if let timeSliderRailTintColor = timeSliderConfig["railTintColor"] as? String {
-        self.timeSliderRailTintColor = UIColor(hexString: timeSliderRailTintColor)
+      if let timeSliderRailTintColorValue = timeSliderConfig["railTintColor"] as? String {
+        timeSliderRailTintColor = UIColor(hexString: timeSliderRailTintColorValue)
       }
-      if let timeSliderBufferTintColor = timeSliderConfig["bufferTintColor"] as? String {
-        self.timeSliderBufferTintColor = UIColor(hexString: timeSliderBufferTintColor)
+      if let timeSliderBufferTintColorValue = timeSliderConfig["bufferTintColor"] as? String {
+        timeSliderBufferTintColor = UIColor(hexString: timeSliderBufferTintColorValue)
       }
-      if let timeSliderProgressTintColor = timeSliderConfig["progressTintColor"] as? String {
-        self.timeSliderProgressTintColor = UIColor(hexString: timeSliderProgressTintColor)
+      if let timeSliderProgressTintColorValue = timeSliderConfig["progressTintColor"] as? String {
+        timeSliderProgressTintColor = UIColor(hexString: timeSliderProgressTintColorValue)
       }
-      if let timeSliderThumbTintColor = timeSliderConfig["thumbTintColor"] as? String {
-        self.timeSliderThumbTintColor = UIColor(hexString: timeSliderThumbTintColor)
+      if let timeSliderThumbTintColorValue = timeSliderConfig["thumbTintColor"] as? String {
+        timeSliderThumbTintColor = UIColor(hexString: timeSliderThumbTintColorValue)
       }
-      if let timeSliderBackgroundColor = timeSliderConfig["backgroundColor"] as? String {
-        self.timeSliderBackgroundColor = UIColor(hexString: timeSliderBackgroundColor)
+      if let timeSliderBackgroundColorValue = timeSliderConfig["backgroundColor"] as? String {
+        timeSliderBackgroundColor = UIColor(hexString: timeSliderBackgroundColorValue)
       }
     }
     if let volumeSliderConfig = dictionary["volumeSlider"] as? [String:AnyObject] {
       if let volumeSliderRailTintColorValue = volumeSliderConfig["railTintColor"] as? String {
-        self.volumeRailTintColor = UIColor(hexString: volumeSliderRailTintColorValue)
+        volumeRailTintColor = UIColor(hexString: volumeSliderRailTintColorValue)
       }
       if let volumeSliderProgressTintColorValue = volumeSliderConfig["progressTintColor"] as? String {
-          self.volumeProgressTintColor = UIColor(hexString: volumeSliderProgressTintColorValue)
+        volumeProgressTintColor = UIColor(hexString: volumeSliderProgressTintColorValue)
       }
       if let volumeSliderThumbTintColorValue = volumeSliderConfig["thumbTintColor"] as? String {
-        self.volumeThumbTintColor = UIColor(hexString: volumeSliderThumbTintColorValue)
+        volumeThumbTintColor = UIColor(hexString: volumeSliderThumbTintColorValue)
       }
       if let volumeSliderBackgroundColorValue = volumeSliderConfig["backgroundColor"] as? String {
-        self.volumeBackgroundColor = UIColor(hexString: volumeSliderBackgroundColorValue)
+        volumeBackgroundColor = UIColor(hexString: volumeSliderBackgroundColorValue)
       }
       if let volumeButtonImageValue = volumeSliderConfig["buttonImage"] as? String {
-        self.volumeButtonImage = MobilePlayerConfig.loadImage(named: volumeButtonImageValue)
+        volumeButtonImage = MobilePlayerConfig.loadImage(named: volumeButtonImageValue)
       }
       if let volumeTintColorValue = volumeSliderConfig["tintColor"] as? String {
-        self.volumeTintColor = UIColor(hexString: volumeTintColorValue)
+        volumeTintColor = UIColor(hexString: volumeTintColorValue)
       }
     }
   }
