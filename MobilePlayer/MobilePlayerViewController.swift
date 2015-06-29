@@ -518,18 +518,20 @@ extension MobilePlayerViewController {
     for (index,overlay) in enumerate(timedOverlays) {
       if let start = overlay["start"] as? NSTimeInterval,
         duration = overlay["duration"] as? NSTimeInterval {
-          var videoTime = Int(self.moviePlayer.currentPlaybackTime)
-          if Int(start) == videoTime {
-            if let overlayView = overlay["vc"] as? MobilePlayerOverlayViewController {
-              self.showOverlayViewController(overlayView)
-              let vc = ["val": index]
-              NSTimer.scheduledTimerWithTimeInterval(
-                duration,
-                target: self,
-                selector: "dissmisBannerLayout:",
-                userInfo: vc,
-                repeats: false
-              )
+          if !self.moviePlayer.currentPlaybackTime.isNaN {
+            var videoTime = Int(self.moviePlayer.currentPlaybackTime)
+            if Int(start) == videoTime {
+              if let overlayView = overlay["vc"] as? MobilePlayerOverlayViewController {
+                self.showOverlayViewController(overlayView)
+                let vc = ["val": index]
+                NSTimer.scheduledTimerWithTimeInterval(
+                  duration,
+                  target: self,
+                  selector: "dissmisBannerLayout:",
+                  userInfo: vc,
+                  repeats: false
+                )
+              }
             }
           }
       }
