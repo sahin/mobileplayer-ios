@@ -29,8 +29,11 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var isFirstPlay = true
   private var isFirstPlayPreRoll = true
   private var wasPlayingBeforeTimeShift = false
-  private var playbackTimeInterfaceUpdateTimer = NSTimer()
-  private var hideControlsTimer = NSTimer()
+  private var playbackTimeInterfaceUpdateTimer: NSTimer?
+  private var hideControlsTimer: NSTimer?
+  private var updateBufferInterfaceTimer: NSTimer?
+  private var updateTimeSliderViewInterfaceTimer: NSTimer?
+  private var updateTimeLabelInterfaceTimer: NSTimer?
   private var currentVideoURL = NSURL()
   // OverlayController
   public var overlayController = MobilePlayerOverlayViewController()
@@ -189,17 +192,17 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   public override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(controlsView)
-    NSTimer.scheduledTimerWithTimeInterval(
+    updateBufferInterfaceTimer = NSTimer.scheduledTimerWithTimeInterval(
       0.0,
       target: self,
       selector: "updateBufferInterface",
       userInfo: nil, repeats: true)
-    NSTimer.scheduledTimerWithTimeInterval(
+    updateTimeSliderViewInterfaceTimer = NSTimer.scheduledTimerWithTimeInterval(
       0.0,
       target: self,
       selector: "updateTimeSliderViewInterface",
       userInfo: nil, repeats: true)
-    NSTimer.scheduledTimerWithTimeInterval(
+    updateTimeLabelInterfaceTimer = NSTimer.scheduledTimerWithTimeInterval(
       1.0,
       target: self,
       selector: "updateTimeLabelInterface",
@@ -230,8 +233,11 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   deinit {
-    playbackTimeInterfaceUpdateTimer.invalidate()
-    hideControlsTimer.invalidate()
+    playbackTimeInterfaceUpdateTimer?.invalidate()
+    hideControlsTimer?.invalidate()
+    updateBufferInterfaceTimer?.invalidate()
+    updateTimeSliderViewInterfaceTimer?.invalidate()
+    updateTimeLabelInterfaceTimer?.invalidate()
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 
@@ -243,13 +249,13 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       controlsView.backgroundImageView.removeFromSuperview()
       controlsView.activityIndicatorView.stopAnimating()
       updateTimeLabel(controlsView.durationLabel, time: moviePlayer.duration)
-      playbackTimeInterfaceUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(
+      playbackTimeInterfaceUpdateTimer? = NSTimer.scheduledTimerWithTimeInterval(
         0.0,
         target: self,
         selector: "updatePlaybackTimeInterface",
         userInfo: nil,
         repeats: true)
-      playbackTimeInterfaceUpdateTimer.fire()
+      playbackTimeInterfaceUpdateTimer?.fire()
       if let firstPlayCallback = config.firstPlayCallback {
         firstPlayCallback(playerVC: self)
       }
@@ -283,8 +289,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   private func resetHideControlsTimer() {
-    hideControlsTimer.invalidate()
-    hideControlsTimer = NSTimer.scheduledTimerWithTimeInterval(
+    hideControlsTimer?.invalidate()
+    hideControlsTimer? = NSTimer.scheduledTimerWithTimeInterval(
       2,
       target: self,
       selector: "hideControlsIfPlaying",
@@ -367,7 +373,7 @@ extension MobilePlayerViewController {
       }
     } else {
       controlsView.playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
-      hideControlsTimer.invalidate()
+      hideControlsTimer?.invalidate()
       controlsView.controlsHidden = false
       if let pauseViewController = config.pauseViewController {
         addChildViewController(pauseViewController)
@@ -476,7 +482,7 @@ extension MobilePlayerViewController {
       resetHideControlsTimer()
     } else {
       controlsView.controlsHidden = true
-      hideControlsTimer.invalidate()
+      hideControlsTimer?.invalidate()
     }
   }
 
