@@ -111,7 +111,7 @@ class CustomTimeSliderView: UIView {
     }
     videoPercentRatio = CGFloat(width / total * 100)
     var bufferPercent: CGFloat = videoPercentRatio * self.bounds.size.width / 100
-    bufferPercentRatio = bufferPercent
+    bufferPercentRatio = videoPercentRatio * self.bounds.size.width / 100
     layoutSubviews()
   }
 

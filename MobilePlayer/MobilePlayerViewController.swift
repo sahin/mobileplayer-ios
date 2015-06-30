@@ -448,10 +448,12 @@ extension MobilePlayerViewController {
   public final func updateBufferInterface() {
     if var bufferCalculate =
       progressBarBufferPercentWithMoviePlayer(moviePlayer) as? NSTimeInterval {
-        controlsView.customTimeSliderView.refreshBufferPercentRatio(
-          bufferRatio: CGFloat(bufferCalculate),
-          totalDuration: CGFloat(moviePlayer.duration)
-        )
+        if moviePlayer.duration > 0 {
+          controlsView.customTimeSliderView.refreshBufferPercentRatio(
+            bufferRatio: CGFloat(bufferCalculate),
+            totalDuration: CGFloat(moviePlayer.duration)
+          )
+        }
     }
   }
 
