@@ -31,9 +31,9 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var wasPlayingBeforeTimeShift = false
   private var playbackTimeInterfaceUpdateTimer = NSTimer()
   private var hideControlsTimer = NSTimer()
-  private var updateBufferInterfaceTimer = NSTimer()
-  private var updateTimeSliderViewInterfaceTimer = NSTimer()
-  private var updateTimeLabelInterfaceTimer = NSTimer()
+  private var updateBufferInterfaceTimer: NSTimer?
+  private var updateTimeSliderViewInterfaceTimer: NSTimer?
+  private var updateTimeLabelInterfaceTimer: NSTimer?
   private var currentVideoURL = NSURL()
   // OverlayController
   public var overlayController = MobilePlayerOverlayViewController()
@@ -235,9 +235,9 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   deinit {
     playbackTimeInterfaceUpdateTimer.invalidate()
     hideControlsTimer.invalidate()
-    updateBufferInterfaceTimer.invalidate()
-    updateTimeSliderViewInterfaceTimer.invalidate()
-    updateTimeLabelInterfaceTimer.invalidate()
+    updateBufferInterfaceTimer?.invalidate()
+    updateTimeSliderViewInterfaceTimer?.invalidate()
+    updateTimeLabelInterfaceTimer?.invalidate()
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 
