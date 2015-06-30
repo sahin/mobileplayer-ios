@@ -20,7 +20,7 @@ final class MobilePlayerControlsView: UIView {
       }
     }
   }
-  private var volumeView = VolumeControlView(frame: CGRectZero)
+  var volumeView = VolumeControlView(frame: CGRectZero)
   var volumeButton = UIButton(frame: CGRectZero)
   var customTimeSliderView = CustomTimeSliderView(frame: CGRectZero)
   let headerView = UIView(frame: CGRectZero)

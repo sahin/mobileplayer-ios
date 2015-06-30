@@ -343,7 +343,6 @@ extension MobilePlayerViewController {
         }
       }
       moviePlayer.play()
-      controlsView.toggleVolumeView()
     }
   }
 
@@ -392,7 +391,7 @@ extension MobilePlayerViewController {
   final func hideControlsIfPlaying() {
     let state = moviePlayer.playbackState
     if state == .Playing || state == .Interrupted {
-      controlsView.controlsHidden = true
+        controlsView.controlsHidden = controlsView.volumeView.hidden
     }
   }
 
@@ -485,9 +484,9 @@ extension MobilePlayerViewController {
       resetHideControlsTimer()
     } else {
       controlsView.controlsHidden = true
+      controlsView.volumeView.hidden = true
       hideControlsTimer.invalidate()
     }
-    controlsView.toggleVolumeView()
   }
 
   public final func shareContent() {
