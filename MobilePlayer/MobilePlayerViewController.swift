@@ -32,7 +32,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var wasPlayingBeforeTimeShift = false
   private var playbackTimeInterfaceUpdateTimer = NSTimer()
   private var hideControlsTimer = NSTimer()
-  private var currentVideoURL = NSURL()
+  public var currentVideoURL = NSURL()
   // MARK: - Initialization
 
   public init(contentURL: NSURL, config: MobilePlayerConfig = globalConfiguration) {
