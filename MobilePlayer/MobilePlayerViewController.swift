@@ -29,8 +29,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var isFirstPlay = true
   private var isFirstPlayPreRoll = true
   private var wasPlayingBeforeTimeShift = false
-  private var playbackTimeInterfaceUpdateTimer = NSTimer()
-  private var hideControlsTimer = NSTimer()
+  private var playbackTimeInterfaceUpdateTimer: NSTimer?
+  private var hideControlsTimer: NSTimer?
   private var currentVideoURL = NSURL()
   // OverlayController
   public var overlayController = MobilePlayerOverlayViewController()
@@ -230,8 +230,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   deinit {
-    playbackTimeInterfaceUpdateTimer.invalidate()
-    hideControlsTimer.invalidate()
+    playbackTimeInterfaceUpdateTimer?.invalidate()
+    hideControlsTimer?.invalidate()
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 
