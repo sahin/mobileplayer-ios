@@ -8,7 +8,7 @@
 
 import UIKit
 
-var playerStateHistory: [PlayerState] = []
+public var playerStateHistory: [PlayerState] = []
 
 enum MoviePlayerState: Int {
   // Playback State

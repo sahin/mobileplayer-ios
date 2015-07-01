@@ -9,47 +9,73 @@
 import UIKit
 import XCTest
 import MobilePlayer
+import KIF
 
-class PlayerTests: XCTestCase {
-  let expectationTimeout: NSTimeInterval = 5.0
+class PlayerTests: KIFTestCase {
+  let screenSize: CGRect = UIScreen.mainScreen().bounds
+  var tester: KIFUITestActor {
+    get {
+      return KIFUITestActor(inFile: __FILE__, atLine: __LINE__, delegate: self)
+    }
+  }
   let fileURL = NSBundle(
     forClass: SkinParserTests.self
     ).URLForResource(
       "TestSkin", withExtension:"json"
     )!
 
-  override func setUp() {
-    super.setUp()
-  }
+  override func beforeEach() { }
 
-  func testVideoIsAvailable() {
-    var expectation: XCTestExpectation = expectationWithDescription("")
-    let videoURL = NSURL(string: "https://www.youtube.com/watch?v=Kznek1uNVsg")!
+  override func afterEach() { }
+
+  func testPlayerStatesWithPreroll() {
+    let testURL = NSURL(string: "https://www.youtube.com/watch?v=Kznek1uNVsg")!
+    let expectation: XCTestExpectation = expectationWithDescription("")
+    // Setup test video
     let player = MobilePlayerViewController(
-      youTubeURL: videoURL,
+      youTubeURL: testURL,
       configFileURL: fileURL
     )
-    XCTAssertNotNil(player.currentVideoURL);
+    player.config.prerollViewController = PreRollViewController()
     expectation.fulfill()
-    waitForExpectationsWithTimeout(expectationTimeout, handler: nil)
-  }
-
-  func testVideoHasMetadata() {
-    var expectation: XCTestExpectation = expectationWithDescription("")
-    let videoURL = NSURL(string: "https://www.youtube.com/watch?v=nXL1agXVeuo")!
-    let player = MobilePlayerViewController(
-      youTubeURL: videoURL,
-      configFileURL: fileURL
-    )
-    XCTAssertNotNil(player.currentVideoURL, "video url is nil");
-    if let playerTitle = player.title {
-      XCTAssertEqual(
-        playerTitle,
-        "Star Wars: The Fall of the Galactic Republic",
-        "Player title not same"
-      )
+    waitForExpectationsWithTimeout(2, handler: nil)
+    if player.config.prerollViewController != nil {
+      tester.waitForTimeInterval(2)
+      tester.tapScreenAtPoint(CGPointMake(10.0, screenSize.height - 20))
+      tester.waitForTimeInterval(5)
     }
-    expectation.fulfill()
-    waitForExpectationsWithTimeout(expectationTimeout, handler: nil)
+    // check player state changed
+    if playerStateHistory.count < 2 {
+      XCTFail("Unable to play video")
+    }
+    playerStateCheck()
+  }
+
+  func playerStateCheck() {
+    // Buffering Test
+    if contains(playerStateHistory, PlayerState.Buffering) {
+      // Paused Test
+      if contains(playerStateHistory, PlayerState.Paused) {
+        // Playing Test
+        if contains(playerStateHistory, PlayerState.Playing) {
+          // Idle Test
+          if contains(playerStateHistory, PlayerState.Idle) {
+            // Loading Test
+            if contains(playerStateHistory, PlayerState.Loading) {
+            } else {
+              XCTFail("Player loading state not found")
+            }
+          } else {
+            XCTFail("Player idle state not found")
+          }
+        } else {
+          XCTFail("Player playing state not found")
+        }
+      } else {
+        XCTFail("Player paused state not found")
+      }
+    } else {
+      XCTFail("Player buffering state not found")
+    }
   }
 }

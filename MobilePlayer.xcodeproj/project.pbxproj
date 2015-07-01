@@ -13,6 +13,7 @@
 		C308B3BB1B14FAE300CB1515 /* ControlbarConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */; };
 		C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */; };
 		C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */; };
+		C32CD6DA1B44663F00A05BD8 /* PreRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */; };
 		C38833C71B26596E00918C94 /* SkinParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38833C61B26596E00918C94 /* SkinParserTests.swift */; };
 		C38833C91B266C2500918C94 /* TestSkin.json in Resources */ = {isa = PBXBuildFile; fileRef = C38833C81B266C2500918C94 /* TestSkin.json */; };
 		C38FA6531B33530C00BE17E8 /* PreRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */; };
@@ -38,9 +39,17 @@
 		CE554D731AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6E1AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift */; };
 		CE554D741AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */; };
 		CE554D761AFE6EE400DAC7E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
+		FF8CE36D07C532C4D59FA1B9 /* Pods_MobilePlayerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 678865BD609D58418044E3C6 /* Pods_MobilePlayerTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C35038DE1B43624000F7AFC2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE554D461AFE6CCD00DAC7E9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3A9AED81B048B5600D0C842;
+			remoteInfo = MobilePlayerExample;
+		};
 		C3A9AEEE1B048B5700D0C842 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CE554D461AFE6CCD00DAC7E9 /* Project object */;
@@ -79,6 +88,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		678865BD609D58418044E3C6 /* Pods_MobilePlayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		80B93748C87F84CA02B699EA /* Pods-MobilePlayerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BE9B031A5B59F024AA8CAD9B /* Pods-MobilePlayerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.release.xcconfig"; sourceTree = "<group>"; };
 		C305DED51B20DC8300DD9632 /* CustomTimeSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeSliderView.swift; sourceTree = "<group>"; };
 		C305DED71B21068700DD9632 /* BarbieSkin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BarbieSkin.json; sourceTree = "<group>"; };
 		C305DED91B21069500DD9632 /* SkinParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinParser.swift; sourceTree = "<group>"; };
@@ -143,12 +155,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE554D5B1AFE6CCD00DAC7E9 /* MobilePlayer.framework in Frameworks */,
+				FF8CE36D07C532C4D59FA1B9 /* Pods_MobilePlayerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0625EA202D16F65C1EE61D14 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				80B93748C87F84CA02B699EA /* Pods-MobilePlayerTests.debug.xcconfig */,
+				BE9B031A5B59F024AA8CAD9B /* Pods-MobilePlayerTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		666B351C791EAB6BCF281788 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				678865BD609D58418044E3C6 /* Pods_MobilePlayerTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C308B3B71B14F98700CB1515 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -240,6 +270,8 @@
 				C3A9AEDA1B048B5600D0C842 /* MobilePlayerExample */,
 				C3A9AEF01B048B5700D0C842 /* MobilePlayerExampleTests */,
 				CE554D501AFE6CCD00DAC7E9 /* Products */,
+				0625EA202D16F65C1EE61D14 /* Pods */,
+				666B351C791EAB6BCF281788 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -377,15 +409,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE554D681AFE6CCD00DAC7E9 /* Build configuration list for PBXNativeTarget "MobilePlayerTests" */;
 			buildPhases = (
+				7F93C9542B25E728AA284880 /* Check Pods Manifest.lock */,
 				CE554D561AFE6CCD00DAC7E9 /* Sources */,
 				CE554D571AFE6CCD00DAC7E9 /* Frameworks */,
 				CE554D581AFE6CCD00DAC7E9 /* Resources */,
 				5F2739FD1B2A8F5100EF50C4 /* Validate Code Style */,
+				D11FED5FC63E1BD29FE5AB96 /* Embed Pods Frameworks */,
+				A4504B1BA46914092B13C390 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				CE554D5D1AFE6CCD00DAC7E9 /* PBXTargetDependency */,
+				C35038DF1B43624000F7AFC2 /* PBXTargetDependency */,
 			);
 			name = MobilePlayerTests;
 			productName = MobilePlayerTests;
@@ -413,6 +449,7 @@
 					};
 					CE554D591AFE6CCD00DAC7E9 = {
 						CreatedOnToolsVersion = 6.3.1;
+						TestTargetID = C3A9AED81B048B5600D0C842;
 					};
 				};
 			};
@@ -530,6 +567,51 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MobilePlayerExampleTests\nfi\n";
 		};
+		7F93C9542B25E728AA284880 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A4504B1BA46914092B13C390 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D11FED5FC63E1BD29FE5AB96 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -578,6 +660,7 @@
 				C3DF1A991B41F7180050A2FA /* PlayerTests.swift in Sources */,
 				C3A406B01B27AA9500D1833D /* UIColor+Extension.swift in Sources */,
 				C3A406B11B27AAA700D1833D /* Youtube.swift in Sources */,
+				C32CD6DA1B44663F00A05BD8 /* PreRollViewController.swift in Sources */,
 				C38833C71B26596E00918C94 /* SkinParserTests.swift in Sources */,
 				C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */,
 			);
@@ -586,6 +669,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C35038DF1B43624000F7AFC2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C3A9AED81B048B5600D0C842 /* MobilePlayerExample */;
+			targetProxy = C35038DE1B43624000F7AFC2 /* PBXContainerItemProxy */;
+		};
 		C3A9AEEF1B048B5700D0C842 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C3A9AED81B048B5600D0C842 /* MobilePlayerExample */;
@@ -800,6 +888,7 @@
 		};
 		CE554D691AFE6CCD00DAC7E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 80B93748C87F84CA02B699EA /* Pods-MobilePlayerTests.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -812,11 +901,13 @@
 				INFOPLIST_FILE = "MobilePlayerTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobilePlayerExample.app/MobilePlayerExample";
 			};
 			name = Debug;
 		};
 		CE554D6A1AFE6CCD00DAC7E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE9B031A5B59F024AA8CAD9B /* Pods-MobilePlayerTests.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -825,6 +916,7 @@
 				INFOPLIST_FILE = "MobilePlayerTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobilePlayerExample.app/MobilePlayerExample";
 			};
 			name = Release;
 		};

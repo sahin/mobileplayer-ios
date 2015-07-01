@@ -55,6 +55,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     self.config = config
     controlsView = MobilePlayerControlsView(config: config)
     super.init(contentURL: NSURL())
+    playerState = PlayerState.Loading
     Youtube.h264videosWithYoutubeURL(youTubeURL, completion: { videoInfo, error in
       if let
         videoURLString = videoInfo?["url"] as? String,
