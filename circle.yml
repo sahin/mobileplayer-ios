@@ -9,4 +9,4 @@ dependencies:
 
 test:
   override:
-    - xcodebuild -scheme MobilePlayer -sdk iphonesimulator -destination 'name=iPhone 6' test
+    - xcodebuild -scheme MobilePlayer -workspace MobilePlayer.xcworkspace -sdk iphonesimulator -destination 'name=iPhone 6' test
