@@ -161,4 +161,43 @@ class SkinParserTests: XCTestCase {
         "Close Button image not found")
     }
   }
+
+  func testVolumeSlider() {
+    if let config: MobilePlayerConfig =
+      SkinParser.parseConfigFromURL(fileURL) {
+        XCTAssertEqual(
+          config.controlbarConfig.volumeButtonImage,
+          UIImage(
+            named: "MLVolumeButton",
+            inBundle: NSBundle(forClass: MobilePlayerViewController.self),
+            compatibleWithTraitCollection: nil
+            )!,
+          "Close Button image not found")
+        XCTAssertEqual(
+          config.controlbarConfig.volumeTintColor,
+          UIColor(hexString:"#c5c5c5"),
+          "volume tint color not equal"
+        )
+        XCTAssertEqual(
+          config.controlbarConfig.volumeBackgroundColor,
+          UIColor(hexString:"#ffffff"),
+          "volume background color not equal"
+        )
+        XCTAssertEqual(
+          config.controlbarConfig.volumeProgressTintColor,
+          UIColor(hexString:"#0000ff"),
+          "volume slider progress tint color not equal"
+        )
+        XCTAssertEqual(
+          config.controlbarConfig.volumeRailTintColor,
+          UIColor(hexString:"#cccccc"),
+          "volume slider rail tint color not equal"
+        )
+        XCTAssertEqual(
+          config.controlbarConfig.volumeThumbTintColor,
+          UIColor(hexString:"#c5c5c5"),
+          "volume slider thumb tint colot not equal"
+        )
+    }
+  }
 }

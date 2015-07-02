@@ -39,6 +39,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   public var overlayController = MobilePlayerOverlayViewController()
   public var isShowOverlay = false
   public var timedOverlays = [[String: AnyObject]]()
+  // Volume View
+  private var volumeView = VolumeControlView()
 
   // MARK: - Initialization
 
@@ -160,6 +162,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       self,
       action: "togglePlay",
       forControlEvents: .TouchUpInside)
+    controlsView.volumeButton.addTarget(
+      self,
+      action: "toggleVolumeControl",
+      forControlEvents: .TouchUpInside)
     controlsView.customTimeSliderView.timeSlider.addTarget(
       self,
       action: "timeShiftDidBegin",
@@ -249,7 +255,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       controlsView.backgroundImageView.removeFromSuperview()
       controlsView.activityIndicatorView.stopAnimating()
       updateTimeLabel(controlsView.durationLabel, time: moviePlayer.duration)
-      playbackTimeInterfaceUpdateTimer? = NSTimer.scheduledTimerWithTimeInterval(
+      playbackTimeInterfaceUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(
         0.0,
         target: self,
         selector: "updatePlaybackTimeInterface",
@@ -290,7 +296,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   private func resetHideControlsTimer() {
     hideControlsTimer?.invalidate()
-    hideControlsTimer? = NSTimer.scheduledTimerWithTimeInterval(
+    hideControlsTimer = NSTimer.scheduledTimerWithTimeInterval(
       2,
       target: self,
       selector: "hideControlsIfPlaying",
@@ -326,6 +332,10 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
 
 // MARK: - Event Handling
 extension MobilePlayerViewController {
+
+  func toggleVolumeControl() {
+    controlsView.toggleVolumeView()
+  }
 
   func togglePlay() {
     let state = moviePlayer.playbackState
@@ -387,7 +397,7 @@ extension MobilePlayerViewController {
   final func hideControlsIfPlaying() {
     let state = moviePlayer.playbackState
     if state == .Playing || state == .Interrupted {
-      controlsView.controlsHidden = true
+      controlsView.controlsHidden = controlsView.volumeView.hidden
     }
   }
 
@@ -452,14 +462,12 @@ extension MobilePlayerViewController {
   }
 
   public final func updateBufferInterface() {
-    if var bufferCalculate =
-      progressBarBufferPercentWithMoviePlayer(moviePlayer) as? NSTimeInterval {
-        if moviePlayer.duration > 0 {
-          controlsView.customTimeSliderView.refreshBufferPercentRatio(
-            bufferRatio: CGFloat(bufferCalculate),
-            totalDuration: CGFloat(moviePlayer.duration)
-          )
-        }
+    if let bufferCalculate = progressBarBufferPercentWithMoviePlayer(moviePlayer) as? NSTimeInterval {
+      if moviePlayer.duration > 0 {
+        controlsView.customTimeSliderView.refreshBufferPercentRatio(
+          bufferRatio: CGFloat(bufferCalculate),
+          totalDuration: CGFloat(moviePlayer.duration))
+      }
     }
   }
 
@@ -482,12 +490,12 @@ extension MobilePlayerViewController {
       resetHideControlsTimer()
     } else {
       controlsView.controlsHidden = true
+      controlsView.volumeView.hidden = true
       hideControlsTimer?.invalidate()
     }
   }
 
   public final func shareContent() {
-
     if let shareCallback = config.shareCallback {
       moviePlayer.pause()
       shareCallback(playerVC: self)
@@ -511,20 +519,19 @@ extension MobilePlayerViewController {
   public final func showOverlayViewController(
     overlayVC: MobilePlayerOverlayViewController,
     startingAtTime: NSTimeInterval,
-    forDuration: NSTimeInterval
-    ) {
+    forDuration: NSTimeInterval) {
       timedOverlays.append([
         "vc": overlayVC,
         "start": startingAtTime,
-        "duration": forDuration
-        ])
+        "duration": forDuration])
   }
 
   public final func updateTimeLabelInterface(){
     updateTimeLabel(controlsView.playbackTimeLabel, time: moviePlayer.currentPlaybackTime)
     controlsView.setNeedsLayout()
     for (index,overlay) in enumerate(timedOverlays) {
-      if let start = overlay["start"] as? NSTimeInterval,
+      if let
+        start = overlay["start"] as? NSTimeInterval,
         duration = overlay["duration"] as? NSTimeInterval {
           if !self.moviePlayer.currentPlaybackTime.isNaN {
             var videoTime = Int(self.moviePlayer.currentPlaybackTime)
@@ -537,8 +544,7 @@ extension MobilePlayerViewController {
                   target: self,
                   selector: "dissmisBannerLayout:",
                   userInfo: vc,
-                  repeats: false
-                )
+                  repeats: false)
               }
             }
           }
@@ -546,7 +552,7 @@ extension MobilePlayerViewController {
     }
   }
 
-  public func dissmisBannerLayout(notification: NSNotification){
+  public func dissmisBannerLayout(notification: NSNotification) {
     if let index = notification.userInfo?["val"] as? Int,
       overlayView = timedOverlays[index]["vc"] as? MobilePlayerOverlayViewController {
         self.dismissMobilePlayerOverlay(overlayView)

@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
       if let fileUrl = NSBundle.mainBundle().URLForResource("BarbieSkin", withExtension: "json") {
-        let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=Kznek1uNVsg")!
+        let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=ytDEBDMKNMo")!
         let youtubeLiveURL = NSURL(string: "https://www.youtube.com/watch?v=rxGoGg7n77A")!
         let playerVC = MobilePlayerViewController(
           youTubeURL: youtubeURL,

@@ -20,6 +20,8 @@ final class MobilePlayerControlsView: UIView {
       }
     }
   }
+  var volumeView = VolumeControlView(frame: CGRectZero)
+  var volumeButton = UIButton(frame: CGRectZero)
   var customTimeSliderView = CustomTimeSliderView(frame: CGRectZero)
   let headerView = UIView(frame: CGRectZero)
   let backgroundImageView = UIImageView(frame: CGRectZero)
@@ -80,6 +82,10 @@ final class MobilePlayerControlsView: UIView {
   private func initializeFooterViews() {
     footerView.backgroundColor = config.controlbarConfig.backgroundColor
     addSubview(footerView)
+    volumeButton.setImage(config.controlbarConfig.volumeButtonImage, forState: .Normal)
+    volumeButton.tintColor = config.controlbarConfig.volumeTintColor
+    volumeButton.backgroundColor = config.controlbarConfig.playButtonBackgroundColor
+    footerView.addSubview(volumeButton)
     playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
     playButton.tintColor = config.controlbarConfig.playButtonTintColor
     playButton.backgroundColor = config.controlbarConfig.playButtonBackgroundColor
@@ -107,6 +113,14 @@ final class MobilePlayerControlsView: UIView {
     customTimeSliderView.thumbView.backgroundColor =
       config.controlbarConfig.timeSliderThumbTintColor
     footerView.addSubview(customTimeSliderView)
+    volumeButton.setImage(
+      config.controlbarConfig.volumeButtonImage,
+      forState: .Normal)
+    volumeButton.backgroundColor = config.controlbarConfig.volumeBackgroundColor
+    volumeButton.tintColor = config.controlbarConfig.volumeTintColor
+    footerView.addSubview(volumeButton)
+    volumeView.hidden = true
+    addSubview(volumeView)
   }
 
   override func layoutSubviews() {
@@ -140,6 +154,16 @@ final class MobilePlayerControlsView: UIView {
     activityIndicatorView.center = overlayContainerView.center
     layoutHeaderSubviews()
     layoutFooterSubviews()
+    volumeView.frame = CGRect(
+      x: volumeButton.frame.origin.x,
+      y: footerView.frame.origin.y - 155.0,
+      width: 35.0,
+      height: 150.0)
+  }
+
+  func toggleVolumeView() {
+    volumeView.hidden = !volumeView.hidden
+    layoutSubviews()
   }
 
   private func layoutHeaderSubviews() {
@@ -170,15 +194,6 @@ final class MobilePlayerControlsView: UIView {
 
   private func layoutFooterSubviews() {
     let size = footerView.bounds.size
-    customTimeSliderView.sizeToFit()
-    let customTimeSliderSize = CGSize(
-      width: size.width - playButton.bounds.width -
-        playbackTimeLabel.bounds.width -
-        durationLabel.bounds.width - 20,
-      height: config.footerHeight)
-    customTimeSliderView.frame = CGRect(
-      origin: CGPoint(x: playButton.bounds.width + playbackTimeLabel.bounds.width + 10, y: 0),
-      size: customTimeSliderSize)
     playButton.sizeToFit()
     let playButtonSize = CGSize(
       width: config.footerHeight * playButton.bounds.aspectRatio + 16,
@@ -191,13 +206,15 @@ final class MobilePlayerControlsView: UIView {
     playbackTimeLabel.frame = CGRect(
       origin: CGPoint(x: playButton.bounds.width, y: 0),
       size: playbackTimeLabelSize)
-    durationLabel.sizeToFit()
-    let durationLabelSize = CGSize(
-      width: durationLabel.bounds.width + 16,
+    customTimeSliderView.sizeToFit()
+    let customTimeSliderSize = CGSize(
+      width: size.width - playButton.bounds.width -
+        playbackTimeLabel.bounds.width -
+        durationLabel.bounds.width - volumeButton.bounds.width - 10,
       height: config.footerHeight)
-    durationLabel.frame = CGRect(
-      origin: CGPoint(x: size.width - durationLabelSize.width, y: 0),
-      size: durationLabelSize)
+    customTimeSliderView.frame = CGRect(
+      origin: CGPoint(x: playButton.bounds.width + playbackTimeLabel.bounds.width + 10, y: 0),
+      size: customTimeSliderSize)
     self.customTimeSliderView.timeSlider.sizeToFit()
     let timeSliderSize = CGSize(
       width: size.width - playButton.bounds.width -
@@ -206,6 +223,29 @@ final class MobilePlayerControlsView: UIView {
     self.customTimeSliderView.timeSlider.frame = CGRect(
       origin: CGPoint(x: playButton.bounds.width + playbackTimeLabel.bounds.width, y: 0),
       size: timeSliderSize)
+    durationLabel.sizeToFit()
+    let durationLabelSize = CGSize(
+      width: durationLabel.bounds.width + 16,
+      height: config.footerHeight)
+    durationLabel.frame = CGRect(
+      origin: CGPoint(
+        x: playButton.bounds.width +
+          playbackTimeLabel.bounds.width +
+          customTimeSliderView.bounds.width + 10,
+        y: 0),
+      size: durationLabelSize)
+    volumeButton.sizeToFit()
+    let volumeButtonSize = CGSize(
+      width: config.footerHeight * volumeButton.bounds.aspectRatio + 16,
+      height: config.footerHeight)
+    volumeButton.frame = CGRect(
+      origin: CGPoint(
+        x: playButton.bounds.width +
+          playbackTimeLabel.bounds.width +
+          customTimeSliderView.bounds.width +
+          durationLabel.bounds.width + 10,
+        y: 0),
+      size: volumeButtonSize)
     footerBorderView.frame = CGRect(x: 0, y: 0,
       width: size.width, height: config.footerBorderHeight)
   }

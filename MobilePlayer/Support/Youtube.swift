@@ -65,7 +65,7 @@ public class Youtube: NSObject {
   }
 
   public static func h264videosWithYoutubeID(youtubeID: String) -> [String: AnyObject]? {
-    if youtubeID != "" {
+    if count(youtubeID) > 0 {
       let urlString = String(format: "%@%@", infoURL, youtubeID) as String
       let url = NSURL(string: urlString)!
       let request = NSMutableURLRequest(URL: url)
@@ -92,7 +92,8 @@ public class Youtube: NSObject {
             if let image = parts["iurl"] as? String {
               streamImage = image
             }
-            if let fmtStreamMapString: AnyObject = parts["url_encoded_fmt_stream_map"] {
+            if let fmtStreamMap = parts["url_encoded_fmt_stream_map"] as? String {
+              // Live Stream
               if let isLivePlayback: AnyObject = parts["live_playback"]{
                 if let hlsvp = parts["hlsvp"] as? String {
                   return [
@@ -102,10 +103,9 @@ public class Youtube: NSObject {
                     "isStream": true
                   ]
                 }
-              }
-              if fmtStreamMapString.length > 0 {
-                var videoDictionary = NSMutableDictionary()
-                let fmtStreamMapArray = fmtStreamMapString.componentsSeparatedByString(",")
+              } else {
+                var videoDictionary = []
+                let fmtStreamMapArray = fmtStreamMap.componentsSeparatedByString(",")
                 for videoEncodedString in fmtStreamMapArray {
                   var videoComponents = videoEncodedString.dictionaryFromQueryStringComponents()
                   videoComponents["title"] = videoTitle
