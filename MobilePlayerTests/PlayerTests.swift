@@ -61,10 +61,6 @@ class PlayerTests: KIFTestCase {
     if !checkValue {
       XCTFail("Player buffering state not found")
     }
-    checkValue = contains(stateArray, PlayerState.Idle)
-    if !checkValue {
-      XCTFail("Player idle state not found")
-    }
     checkValue = contains(stateArray, PlayerState.Loading)
     if !checkValue {
       XCTFail("Player loading state not found")
