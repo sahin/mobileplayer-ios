@@ -9,12 +9,84 @@
 import UIKit
 import MediaPlayer
 
+private enum MoviePlayerState: Int {
+  // Playback State
+  case Stopped
+  case Playing
+  case Pause
+  case Interrupted
+  case SeekingForward
+  case SeekingBackward
+  // Load State
+  case Unknown
+  case Playable
+  case PlaythroughOK
+  case Stalled
+  case Buffering
+}
+
+public enum PlayerState: Int {
+  case Buffering
+  case Idle
+  case Complete
+  case Paused
+  case Playing
+  case Error
+  case Loading
+  case Stalled
+  case Unknown
+}
+
+private(set) var playerStateHistory: [PlayerState] = []
+public private(set) var playerState: PlayerState = .Unknown {
+didSet {
+  if playerStateHistory.count > 2 {
+    playerStateHistory.insert(playerState, atIndex: 0)
+  } else {
+    playerStateHistory.append(playerState)
+  }
+}
+}
+private var moviePlayerState: MoviePlayerState = .Unknown {
+didSet{
+  switch (moviePlayerState){
+  case MoviePlayerState.Pause:
+    playerState = PlayerState.Paused
+  case MoviePlayerState.Interrupted:
+    playerState = PlayerState.Error
+  case MoviePlayerState.SeekingForward:
+    playerState = PlayerState.Playing
+  case MoviePlayerState.SeekingBackward:
+    playerState = PlayerState.Playing
+  case MoviePlayerState.Unknown:
+    playerState = PlayerState.Idle
+  case MoviePlayerState.Playable:
+    playerState = PlayerState.Idle
+  case MoviePlayerState.PlaythroughOK:
+    playerState = PlayerState.Idle
+  case MoviePlayerState.Stopped:
+    playerState = PlayerState.Complete
+  case MoviePlayerState.Buffering:
+    playerState = PlayerState.Buffering
+  case MoviePlayerState.Stalled:
+    playerState = PlayerState.Stalled
+  case MoviePlayerState.Playing:
+    playerState = PlayerState.Playing
+  case MoviePlayerState.Unknown:
+    playerState = PlayerState.Unknown
+  case MoviePlayerState.Playing:
+    playerState = PlayerState.Playing
+  default:
+    break
+  }
+}
+}
+
 private var globalConfiguration = MobilePlayerConfig()
 
 public class MobilePlayerViewController: MPMoviePlayerViewController {
   public class var globalConfig: MobilePlayerConfig { return globalConfiguration }
   public var config: MobilePlayerConfig
-
   // controller title |> player title
   public override var title: String? {
     didSet {
@@ -34,7 +106,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var hideControlsTimer = NSTimer()
   public var currentVideoURL = NSURL()
   // MARK: - Initialization
-
   public init(contentURL: NSURL, config: MobilePlayerConfig = globalConfiguration) {
     self.config = config
     controlsView = MobilePlayerControlsView(config: config)
@@ -55,6 +126,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     self.config = config
     controlsView = MobilePlayerControlsView(config: config)
     super.init(contentURL: NSURL())
+
     playerState = PlayerState.Loading
     Youtube.h264videosWithYoutubeURL(youTubeURL, completion: { videoInfo, error in
       if let
@@ -232,7 +304,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   // MARK: - Internal Helpers
-
   private func doFirstPlaySetupIfNeeded() {
     if isFirstPlay {
       isFirstPlay = false
@@ -279,7 +350,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   // MARK: - Public API
-
   public final func toggleVideoScalingMode() {
     if moviePlayer.scalingMode != .AspectFill {
       moviePlayer.scalingMode = .AspectFill
@@ -364,7 +434,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 }
 
 // MARK: - MobilePlayerOverlayViewControllerDelegate
-
 extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate {
   func dismissMobilePlayerOverlay(overlayVC: MobilePlayerOverlayViewController) {
     if overlayVC.view.superview == controlsView.overlayContainerView {
@@ -375,7 +444,6 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
   }
 
   // MARK: - Event Handling
-
   func togglePlay() {
     let state = moviePlayer.playbackState
     if state == .Playing || state == .Interrupted {
@@ -399,8 +467,10 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
     moviePlayer.play()
   }
 
-  private func setPlayerStates(playbackState: MPMoviePlaybackState, loadState: MPMovieLoadState) {
-    switch (playbackState) {
+  private func setPlayerStatesWithMoviePlayer(
+    player: MPMoviePlayerController,
+    bufferValue: NSTimeInterval?) {
+    switch (player.playbackState) {
     case .Stopped:
       moviePlayerState = .Stopped
     case .Playing:
@@ -416,7 +486,7 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
     default:
       break
     }
-    switch (loadState) {
+    switch (player.loadState) {
     case MPMovieLoadState.Unknown:
       moviePlayerState = .Unknown
     case MPMovieLoadState.Playable:
@@ -438,7 +508,7 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
 
   final func handleMoviePlayerPlaybackStateDidChangeNotification() {
     let state = moviePlayer.playbackState
-    setPlayerStates(moviePlayer.playbackState, loadState: moviePlayer.loadState)
+    setPlayerStatesWithMoviePlayer(moviePlayer, bufferValue: bufferValue)
     updatePlaybackTimeInterface()
     if state == .Playing || state == .Interrupted {
       doFirstPlaySetupIfNeeded()
@@ -520,6 +590,18 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
   final func timeShiftDidEnd() {
     if wasPlayingBeforeTimeShift {
       moviePlayer.play()
+    }
+  }
+
+  public func getStateAtHistoryCount() -> Int {
+    return playerStateHistory.count
+  }
+
+  public func getStateAtHistoryIndex(index: Int) -> PlayerState? {
+    if playerStateHistory.count <= index {
+      return nil
+    }else{
+      return playerStateHistory[index]
     }
   }
 }

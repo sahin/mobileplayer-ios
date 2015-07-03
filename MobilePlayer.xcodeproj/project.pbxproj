@@ -29,7 +29,6 @@
 		C3A9AF031B0491B500D0C842 /* MobilePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MobilePlayer.framework */; };
 		C3A9AF041B0491B500D0C842 /* MobilePlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MobilePlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3A9AF0D1B049A4D00D0C842 /* Images.xcassets */; };
-		C3DF1A971B41F1F40050A2FA /* MobilePlayerStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF1A961B41F1F40050A2FA /* MobilePlayerStateManager.swift */; };
 		C3DF1A991B41F7180050A2FA /* PlayerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DF1A981B41F7180050A2FA /* PlayerTests.swift */; };
 		C3E643B21B16751B0017DBE6 /* TitleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643B11B16751B0017DBE6 /* TitleConfig.swift */; };
 		C3E643B41B16798A0017DBE6 /* CloseButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */; };
@@ -112,7 +111,6 @@
 		C3A9AEF21B048B5700D0C842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3A9AEF31B048B5700D0C842 /* MobilePlayerExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobilePlayerExampleTests.swift; sourceTree = "<group>"; };
 		C3A9AF0D1B049A4D00D0C842 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C3DF1A961B41F1F40050A2FA /* MobilePlayerStateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerStateManager.swift; sourceTree = "<group>"; };
 		C3DF1A981B41F7180050A2FA /* PlayerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTests.swift; sourceTree = "<group>"; };
 		C3E643B11B16751B0017DBE6 /* TitleConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleConfig.swift; sourceTree = "<group>"; };
 		C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseButtonConfig.swift; sourceTree = "<group>"; };
@@ -294,7 +292,6 @@
 				C308B3B71B14F98700CB1515 /* Config */,
 				C3A9AF0F1B04C89D00D0C842 /* Parser */,
 				CE554D541AFE6CCD00DAC7E9 /* MobilePlayer.h */,
-				C3DF1A961B41F1F40050A2FA /* MobilePlayerStateManager.swift */,
 				CE554D6D1AFE6EBB00DAC7E9 /* MobilePlayerControlsView.swift */,
 				C305DED51B20DC8300DD9632 /* CustomTimeSliderView.swift */,
 				CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */,
@@ -640,7 +637,6 @@
 				C308B3BB1B14FAE300CB1515 /* ControlbarConfig.swift in Sources */,
 				C3E643B21B16751B0017DBE6 /* TitleConfig.swift in Sources */,
 				C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */,
-				C3DF1A971B41F1F40050A2FA /* MobilePlayerStateManager.swift in Sources */,
 				C305DED61B20DC8300DD9632 /* CustomTimeSliderView.swift in Sources */,
 				CE554D731AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift in Sources */,
 				C3A4069B1B27709900D1833D /* Youtube.swift in Sources */,

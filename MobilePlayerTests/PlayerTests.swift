@@ -28,7 +28,7 @@ class PlayerTests: KIFTestCase {
 
   override func afterEach() { }
 
-  func testPlayerStatesWithPreroll() {
+  func testPlayerStates() {
     let testURL = NSURL(string: "https://www.youtube.com/watch?v=Kznek1uNVsg")!
     let expectation: XCTestExpectation = expectationWithDescription("")
     // Setup test video
@@ -45,37 +45,41 @@ class PlayerTests: KIFTestCase {
       tester.waitForTimeInterval(5)
     }
     // check player state changed
-    if playerStateHistory.count < 2 {
+    if player.getStateAtHistoryIndex(0) == nil &&
+      player.getStateAtHistoryIndex(1) == nil &&
+      player.getStateAtHistoryIndex(2) == nil {
       XCTFail("Unable to play video")
     }
-    playerStateCheck()
-  }
-
-  func playerStateCheck() {
-    // Buffering Test
-    if contains(playerStateHistory, PlayerState.Buffering) {
-      // Paused Test
-      if contains(playerStateHistory, PlayerState.Paused) {
-        // Playing Test
-        if contains(playerStateHistory, PlayerState.Playing) {
-          // Idle Test
-          if contains(playerStateHistory, PlayerState.Idle) {
-            // Loading Test
-            if contains(playerStateHistory, PlayerState.Loading) {
-            } else {
-              XCTFail("Player loading state not found")
-            }
-          } else {
-            XCTFail("Player idle state not found")
-          }
-        } else {
-          XCTFail("Player playing state not found")
-        }
-      } else {
-        XCTFail("Player paused state not found")
+    let stateCount = player.getStateAtHistoryCount()
+    var stateArray = [PlayerState]()
+    for i in 0...stateCount {
+      if let state = player.getStateAtHistoryIndex(i) as PlayerState? {
+        stateArray.append(state)
       }
-    } else {
+    }
+    var checkValue = contains(stateArray, PlayerState.Buffering)
+    if !checkValue {
       XCTFail("Player buffering state not found")
+    }
+    checkValue = contains(stateArray, PlayerState.Idle)
+    if !checkValue {
+      XCTFail("Player idle state not found")
+    }
+    checkValue = contains(stateArray, PlayerState.Loading)
+    if !checkValue {
+      XCTFail("Player loading state not found")
+    }
+    checkValue = contains(stateArray, PlayerState.Paused)
+    if !checkValue {
+      XCTFail("Player paused state not found")
+    }
+    checkValue = contains(stateArray, PlayerState.Playing)
+    if !checkValue {
+      XCTFail("Player playing state not found")
+    }
+    checkValue = contains(stateArray, PlayerState.Error)
+    if checkValue {
+      XCTFail("Player error found")
     }
   }
 }
