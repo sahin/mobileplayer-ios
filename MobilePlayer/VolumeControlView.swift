@@ -22,10 +22,10 @@ class VolumeControlView: UIView {
     volumeSlider.showsVolumeSlider = true
     volumeSlider.showsRouteButton = false
     addSubview(volumeSlider)
-    increaseVolumeImage = UIImageView(frame: CGRectMake(10.0, 0.0, 20.0, 20.0))
+    increaseVolumeImage = UIImageView(frame: CGRectMake(10.0, 3.0, 18.0, 18.0))
     increaseVolumeImage.image = UIImage(named: "MLIncreaseVolume")
     addSubview(increaseVolumeImage)
-    reduceVolumeImage = UIImageView(frame: CGRectMake(10.0, 130.0, 20.0, 20.0))
+    reduceVolumeImage = UIImageView(frame: CGRectMake(10.0, 130.0, 18.0, 18.0))
     reduceVolumeImage.image = UIImage(named: "MLReduceVolume")
     addSubview(reduceVolumeImage)
   }

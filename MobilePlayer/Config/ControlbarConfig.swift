@@ -18,6 +18,9 @@ public struct ControlbarConfig {
   public var timeTextFont = UIFont.systemFontOfSize(14)
   public var timeTextColor = UIColor.whiteColor()
   public var timeBackgroundColor = UIColor.clearColor()
+  public var durationTextFont = UIFont.systemFontOfSize(14)
+  public var durationTextColor = UIColor.whiteColor()
+  public var durationBackgroundColor = UIColor.clearColor()
   public var timeSliderRailTintColor = UIColor.lightGrayColor()
   public var timeSliderBufferTintColor = UIColor.grayColor()
   public var timeSliderProgressTintColor = UIColor.blueColor()
@@ -30,11 +33,17 @@ public struct ControlbarConfig {
   public var volumeThumbTintColor = UIColor.grayColor()
   public var volumeRailTintColor = UIColor.whiteColor()
   public var backgroundColor = UIColor.clearColor()
+  private var components:[String] = []
 
   public init() {}
 
+  public func getComponents() -> [String]?{
+    return components
+  }
+
   public init(dictionary: [String: AnyObject]) {
     if let playButtonConfig = dictionary["playButton"] as? [String:AnyObject] {
+      components.append("playButton")
       if let playButtonImageValue = playButtonConfig["image"] as? String {
         playButtonImage = MobilePlayerConfig.loadImage(named: playButtonImageValue)
       }
@@ -56,7 +65,8 @@ public struct ControlbarConfig {
     if let backgroundColorValue = dictionary["backgroundColor"] as? String {
       backgroundColor = UIColor(hexString: backgroundColorValue)
     }
-    if let timeConfig = dictionary["time"] as? [String:AnyObject] {
+    if let timeConfig = dictionary["timeLabel"] as? [String:AnyObject] {
+      components.append("timeLabel")
       if let timeTextFontValue = timeConfig["textFont"] as? String {
         if let timeTextSizeValue = timeConfig["textFontSize"] as? CGFloat {
           timeTextFont = UIFont(name: timeTextFontValue, size: timeTextSizeValue)!
@@ -69,7 +79,22 @@ public struct ControlbarConfig {
         timeBackgroundColor = UIColor(hexString: timeBackgroundColorValue)
       }
     }
+    if let durationConfig = dictionary["durationLabel"] as? [String:AnyObject] {
+      components.append("durationLabel")
+      if let durationTextFontValue = durationConfig["textFont"] as? String {
+        if let durationTextSizeValue = durationConfig["textFontSize"] as? CGFloat {
+          durationTextFont = UIFont(name: durationTextFontValue, size: durationTextSizeValue)!
+        }
+      }
+      if let durationTextColorValue = durationConfig["textColor"] as? String {
+        durationTextColor = UIColor(hexString: durationTextColorValue)
+      }
+      if let durationBackgroundColorValue = durationConfig["backgroundColor"] as? String {
+        durationBackgroundColor = UIColor(hexString: durationBackgroundColorValue)
+      }
+    }
     if let timeSliderConfig = dictionary["timeSlider"] as? [String:AnyObject] {
+      components.append("timeSlider")
       if let timeSliderRailTintColorValue = timeSliderConfig["railTintColor"] as? String {
         timeSliderRailTintColor = UIColor(hexString: timeSliderRailTintColorValue)
       }
@@ -87,6 +112,7 @@ public struct ControlbarConfig {
       }
     }
     if let volumeSliderConfig = dictionary["volumeSlider"] as? [String:AnyObject] {
+      components.append("volumeSlider")
       if let volumeSliderRailTintColorValue = volumeSliderConfig["railTintColor"] as? String {
         volumeRailTintColor = UIColor(hexString: volumeSliderRailTintColorValue)
       }
