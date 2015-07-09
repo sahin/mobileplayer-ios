@@ -13,6 +13,7 @@
 		C308B3BB1B14FAE300CB1515 /* ControlbarConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */; };
 		C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */; };
 		C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */; };
+		C34CD4C61B4EFC8D000DE96D /* SocialSharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34CD4C51B4EFC8D000DE96D /* SocialSharing.swift */; };
 		C35FDE0E1B3DEA56005C55A6 /* VolumeControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */; };
 		C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
 		C38833C71B26596E00918C94 /* SkinParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38833C61B26596E00918C94 /* SkinParserTests.swift */; };
@@ -86,6 +87,7 @@
 		C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlbarConfig.swift; sourceTree = "<group>"; };
 		C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerConfig.swift; sourceTree = "<group>"; };
 		C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareButtonConfig.swift; sourceTree = "<group>"; };
+		C34CD4C51B4EFC8D000DE96D /* SocialSharing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialSharing.swift; sourceTree = "<group>"; };
 		C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeControlView.swift; sourceTree = "<group>"; };
 		C38833C61B26596E00918C94 /* SkinParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinParserTests.swift; sourceTree = "<group>"; };
 		C38833C81B266C2500918C94 /* TestSkin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestSkin.json; sourceTree = "<group>"; };
@@ -264,6 +266,7 @@
 				C308B3B71B14F98700CB1515 /* Config */,
 				C3A9AF0F1B04C89D00D0C842 /* Parser */,
 				CE554D541AFE6CCD00DAC7E9 /* MobilePlayer.h */,
+				C34CD4C51B4EFC8D000DE96D /* SocialSharing.swift */,
 				C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */,
 				CE554D6D1AFE6EBB00DAC7E9 /* MobilePlayerControlsView.swift */,
 				C305DED51B20DC8300DD9632 /* CustomTimeSliderView.swift */,
@@ -561,6 +564,7 @@
 				C308B3BB1B14FAE300CB1515 /* ControlbarConfig.swift in Sources */,
 				C35FDE0E1B3DEA56005C55A6 /* VolumeControlView.swift in Sources */,
 				C3E643B21B16751B0017DBE6 /* TitleConfig.swift in Sources */,
+				C34CD4C61B4EFC8D000DE96D /* SocialSharing.swift in Sources */,
 				C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */,
 				C305DED61B20DC8300DD9632 /* CustomTimeSliderView.swift in Sources */,
 				CE554D731AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift in Sources */,
