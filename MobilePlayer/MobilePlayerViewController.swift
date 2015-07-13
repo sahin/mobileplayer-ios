@@ -35,6 +35,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var updateTimeSliderViewInterfaceTimer: NSTimer?
   private var updateTimeLabelInterfaceTimer: NSTimer?
   private var currentVideoURL = NSURL()
+  private var youtubeVideoURL = NSURL()
   // OverlayController
   public var overlayController = MobilePlayerOverlayViewController()
   public var isShowOverlay = false
@@ -60,6 +61,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   public init(youTubeURL: NSURL, configFileURL: NSURL) {
+    youtubeVideoURL = youTubeURL
     let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
     self.config = config
     controlsView = MobilePlayerControlsView(config: config)
@@ -496,9 +498,12 @@ extension MobilePlayerViewController {
   }
 
   public final func shareContent() {
-    if let shareCallback = config.shareCallback {
-      moviePlayer.pause()
-      shareCallback(playerVC: self)
+    if let title = title as String? {
+      SocialSharing.showSocialViewWithTitle(
+        title.stringByDecodingURLFormat(),
+        image: nil,
+        url: youtubeVideoURL,
+        viewController: self)
     }
   }
 
