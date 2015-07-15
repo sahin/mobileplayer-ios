@@ -31,11 +31,9 @@ final class MobilePlayerControlsView: UIView {
   let closeButton = UIButton(frame: CGRectZero)
   let titleLabel = UILabel(frame: CGRectZero)
   let shareButton = UIButton(frame: CGRectZero)
-  let headerBorderView = UIView(frame: CGRectZero)
   let playButton = UIButton(frame: CGRectZero)
   let playbackTimeLabel = UILabel(frame: CGRectZero)
   let durationLabel = UILabel(frame: CGRectZero)
-  let footerBorderView = UIView(frame: CGRectZero)
   private let config: MobilePlayerConfig
 
   init(config: MobilePlayerConfig) {
@@ -65,8 +63,6 @@ final class MobilePlayerControlsView: UIView {
     shareButton.tintColor = config.shareButtonConfig.tintColor
     shareButton.backgroundColor = config.shareButtonConfig.backgroundColor
     headerView.addSubview(shareButton)
-    headerBorderView.backgroundColor = config.headerBorderColor
-    headerView.addSubview(headerBorderView)
   }
 
   private func initializeOverlayViews() {
@@ -81,29 +77,19 @@ final class MobilePlayerControlsView: UIView {
 
   private func initializeFooterViews() {
     footerView.backgroundColor = config.controlbarConfig.backgroundColor
-    addSubview(footerView)
-    volumeButton.setImage(config.controlbarConfig.volumeButtonImage, forState: .Normal)
-    volumeButton.tintColor = config.controlbarConfig.volumeTintColor
-    volumeButton.backgroundColor = config.controlbarConfig.playButtonBackgroundColor
-    footerView.addSubview(volumeButton)
     playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
     playButton.tintColor = config.controlbarConfig.playButtonTintColor
     playButton.backgroundColor = config.controlbarConfig.playButtonBackgroundColor
-    footerView.addSubview(playButton)
     playbackTimeLabel.text = "-:-"
     playbackTimeLabel.textAlignment = .Center
     playbackTimeLabel.font = config.controlbarConfig.timeTextFont
     playbackTimeLabel.textColor = config.controlbarConfig.timeTextColor
     playbackTimeLabel.backgroundColor = config.controlbarConfig.timeBackgroundColor
-    footerView.addSubview(playbackTimeLabel)
     durationLabel.text = "-:-"
     durationLabel.textAlignment = .Center
-    durationLabel.font = config.controlbarConfig.timeTextFont
-    durationLabel.textColor = config.controlbarConfig.timeTextColor
-    durationLabel.backgroundColor = config.controlbarConfig.timeBackgroundColor
-    footerView.addSubview(durationLabel)
-    footerBorderView.backgroundColor = config.footerBorderColor
-    footerView.addSubview(footerBorderView)
+    durationLabel.font = config.controlbarConfig.durationTextFont
+    durationLabel.textColor = config.controlbarConfig.durationTextColor
+    durationLabel.backgroundColor = config.controlbarConfig.durationBackgroundColor
     customTimeSliderView.backgroundColor = config.controlbarConfig.timeSliderBackgroundColor
     customTimeSliderView.railView.backgroundColor = config.controlbarConfig.timeSliderRailTintColor
     customTimeSliderView.bufferView.backgroundColor =
@@ -112,15 +98,39 @@ final class MobilePlayerControlsView: UIView {
       config.controlbarConfig.timeSliderProgressTintColor
     customTimeSliderView.thumbView.backgroundColor =
       config.controlbarConfig.timeSliderThumbTintColor
-    footerView.addSubview(customTimeSliderView)
-    volumeButton.setImage(
-      config.controlbarConfig.volumeButtonImage,
-      forState: .Normal)
+    volumeButton.setImage(config.controlbarConfig.volumeButtonImage, forState: .Normal)
     volumeButton.backgroundColor = config.controlbarConfig.volumeBackgroundColor
     volumeButton.tintColor = config.controlbarConfig.volumeTintColor
-    footerView.addSubview(volumeButton)
     volumeView.hidden = true
+    volumeView.increaseVolumeImage.tintColor = config.controlbarConfig.volumeTintColor
+    volumeView.reduceVolumeImage.tintColor = config.controlbarConfig.volumeTintColor
+    volumeView.backgroundColor = config.controlbarConfig.backgroundColor
     addSubview(volumeView)
+    if let components = config.controlbarConfig.getComponents() as [String]? {
+      if components.count > 0 {
+        addSubview(footerView)
+        var checkValue = contains(components, "playButton")
+        if checkValue {
+          footerView.addSubview(playButton)
+        }
+        checkValue = contains(components, "timeLabel")
+        if checkValue {
+          footerView.addSubview(playbackTimeLabel)
+        }
+        checkValue = contains(components, "durationLabel")
+        if checkValue {
+          footerView.addSubview(durationLabel)
+        }
+        checkValue = contains(components, "timeSlider")
+        if checkValue {
+          footerView.addSubview(customTimeSliderView)
+        }
+        checkValue = contains(components, "volumeSlider")
+        if checkValue {
+          footerView.addSubview(volumeButton)
+        }
+      }
+    }
   }
 
   override func layoutSubviews() {
@@ -185,11 +195,6 @@ final class MobilePlayerControlsView: UIView {
       y: 0,
       width: size.width - closeButton.bounds.width - shareButton.bounds.width,
       height: size.height)
-    headerBorderView.frame = CGRect(
-      x: 0,
-      y: size.height - config.headerBorderHeight,
-      width: size.width,
-      height: config.headerBorderHeight)
   }
 
   private func layoutFooterSubviews() {
@@ -246,7 +251,5 @@ final class MobilePlayerControlsView: UIView {
           durationLabel.bounds.width + 10,
         y: 0),
       size: volumeButtonSize)
-    footerBorderView.frame = CGRect(x: 0, y: 0,
-      width: size.width, height: config.footerBorderHeight)
   }
 }

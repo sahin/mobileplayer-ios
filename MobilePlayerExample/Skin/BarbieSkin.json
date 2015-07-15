@@ -1,34 +1,35 @@
 {
   "controlbar": {
-    "backgroundColor":"#ff00ff",
+    "backgroundColor": "#f4404f",
     "playButton": {
       "image": "MLPlayButton.png",
-      "tintColor": "#ffff00",
-      "backgroundColor": "#ff00ff"
+      "tintColor": "#ffff00"
     },
     "pauseButton": {
       "image": "MLPauseButton.png",
       "tintColor": "#ffff00"
     },
-    "time": {
+    "timeLabel": {
       "textFont": "HelveticaNeue",
       "textFontSize": 14,
-      "textColor": "#ffff00",
-      "backgroundColor": "#ff00ff"
+      "textColor": "#ffff00"
+    },
+    "durationLabel": {
+      "textFont": "HelveticaNeue",
+      "textFontSize": 14,
+      "textColor": "#ffffff"
     },
     "timeSlider": {
       "railTintColor": "#ffff00",
       "bufferTintColor": "#555555",
       "progressTintColor": "#ff0000",
-      "thumbTintColor": "#ffffff",
-      "backgroundColor": "#ff00ff"
+      "thumbTintColor": "#ffffff"
     },
-    "volumeSlider":{
+    "volumeSlider": {
       "railTintColor": "#cccccc",
       "progressTintColor": "#0000ff",
       "thumbTintColor": "#c5c5c5",
       "tintColor": "#ffff00",
-      "backgroundColor": "#ff00ff",
       "buttonImage": "MLVolumeButton.png"
     }
   },
