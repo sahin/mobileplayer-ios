@@ -1,0 +1,77 @@
+{
+  "header": [
+             {
+             "order": 1,
+             "textFont": "HelveticaNeue",
+             "textSize": 16,
+             "textColor": "#ffffff",
+             "type": "label",
+             "name": "title"
+             },
+             {
+             "order": 0,
+             "image": "MLCloseButton",
+             "tintColor": "#ffffff",
+             "type": "button",
+             "name": "close"
+             },
+             {
+             "order": 1,
+             "image": "MLShareButton",
+             "tintColor": "#ffffff",
+             "type": "button",
+             "name": "share"
+             }
+             ],
+  "controlbar": [
+                 {
+                 "order": 0,
+                 "playImage": "MLPlayButton",
+                 "playTintColor": "#ffffff",
+                 "pauseImage": "MLPauseButton",
+                 "pauseTintColor": "#ffffff",
+                 "type": "button",
+                 "name": "play"
+                 },
+                 {
+                 "type": "view",
+                 "name": "seperator",
+                 "order": 1
+                 },
+                 {
+                 "order": 4,
+                 "railRadius": 5,
+                 "railHeight": 10,
+                 "railTintColor": "#cccccc",
+                 "bufferTintColor": "#9e9b9a",
+                 "progressTintColor": "#ae3f1c",
+                 "thumbTintColor": "#e54918",
+                 "thumbRadius": 12.5,
+                 "thumbHeight": 25,
+                 "thumbWidth": 25,
+                 "thumbBorder": 0,
+                 "type": "view",
+                 "name": "timeSlider"
+                 },
+                 {
+                 "type": "view",
+                 "name": "seperator",
+                 "order": 5
+                 },
+                 {
+                 "order": 6,
+                 "textFont": "HelveticaNeue",
+                 "textFontSize": 15,
+                 "textColor": "#ffffff",
+                 "type": "label",
+                 "name": "time"
+                 },
+                 {
+                 "type": "view",
+                 "name": "seperator",
+                 "order": 7
+                 }
+                 ],
+  "backgroundColor":"#000000",
+  "alpha": 0.7
+}

@@ -49,23 +49,23 @@ public struct MobilePlayerConfig {
   }
 
   public init(dictionary: [String: AnyObject]) {
-    if let controlbarConfigDictionary = dictionary["controlbar"] as? [String: AnyObject] {
-      controlbarConfig = ControlbarConfig(dictionary: controlbarConfigDictionary)
+    if let controlbarConfigArray = dictionary["controlbar"] as? [AnyObject] {
+      controlbarConfig = ControlbarConfig(array: controlbarConfigArray)
     } else {
       controlbarConfig = ControlbarConfig()
     }
-    if let shareConfigDictionary = dictionary["share"] as? [String: AnyObject] {
-      shareButtonConfig = ShareButtonConfig(dictionary: shareConfigDictionary)
+    if let shareConfigArray = dictionary["header"] as? [AnyObject] {
+      shareButtonConfig = ShareButtonConfig(array: shareConfigArray)
     } else {
       shareButtonConfig = ShareButtonConfig()
     }
-    if let titleConfigDictionary = dictionary["title"] as? [String: AnyObject] {
-      titleConfig = TitleConfig(dictionary: titleConfigDictionary)
+    if let titleConfigArray = dictionary["header"] as? [AnyObject] {
+      titleConfig = TitleConfig(array: titleConfigArray)
     } else {
       titleConfig = TitleConfig()
     }
-    if let closeButtonConfigDictionary = dictionary["closeButton"] as? [String: AnyObject] {
-      closeButtonConfig = CloseButtonConfig(dictionary: closeButtonConfigDictionary)
+    if let closeButtonConfigArray = dictionary["header"] as? [AnyObject] {
+      closeButtonConfig = CloseButtonConfig(array: closeButtonConfigArray)
     } else {
       closeButtonConfig = CloseButtonConfig()
     }

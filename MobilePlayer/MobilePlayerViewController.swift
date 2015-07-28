@@ -42,6 +42,11 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   // Volume View
   private var volumeView = VolumeControlView()
 
+  override public func viewWillTransitionToSize(size: CGSize,
+    withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+      controlsView.updateConstraintsWithLayout(CGRectMake(0.0, 0.0, size.width, size.height))
+  }
+
   // MARK: - Initialization
 
   public init(contentURL: NSURL, config: MobilePlayerConfig = globalConfiguration) {
@@ -228,7 +233,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   public override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
-    controlsView.frame = view.bounds
+    controlsView.updateConstraintsWithLayout(view.bounds)
+    //controlsView.frame = view.bounds
   }
 
   public override func viewWillDisappear(animated: Bool) {
@@ -365,7 +371,9 @@ extension MobilePlayerViewController {
     updatePlaybackTimeInterface()
     if state == .Playing || state == .Interrupted {
       doFirstPlaySetupIfNeeded()
-      controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage, forState: .Normal)
+      controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+      controlsView.playButton.tintColor = config.controlbarConfig.pauseButtonTintColor
+      controlsView.playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
       if !controlsView.controlsHidden {
         resetHideControlsTimer()
       }
@@ -376,13 +384,17 @@ extension MobilePlayerViewController {
         if isFirstPlayPreRoll {
           pauseVideoPlayer()
           controlsView.playButton.setImage(
-            config.controlbarConfig.playButtonImage,
+            config.controlbarConfig.playButtonImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate),
             forState: .Normal
           )
+          controlsView.playButton.tintColor = config.controlbarConfig.playButtonTintColor
+          controlsView.playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
         }
       }
     } else {
-      controlsView.playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
+      controlsView.playButton.setImage(config.controlbarConfig.playButtonImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+      controlsView.playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
+      controlsView.playButton.tintColor = config.controlbarConfig.playButtonTintColor
       hideControlsTimer?.invalidate()
       controlsView.controlsHidden = false
       if let pauseViewController = config.pauseViewController {

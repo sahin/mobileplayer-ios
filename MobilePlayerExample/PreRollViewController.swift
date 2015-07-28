@@ -13,7 +13,7 @@ class PreRollViewController: MobilePlayerOverlayViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.view.backgroundColor = UIColor.greenColor()
+    self.view.backgroundColor = UIColor.darkGrayColor()
   }
 
   override func didReceiveMemoryWarning() {

@@ -13,6 +13,8 @@ class VolumeControlView: UIView {
   var volumeSlider = MPVolumeView(frame: CGRectZero)
   var increaseVolumeImage = UIImageView(frame: CGRectZero)
   var reduceVolumeImage = UIImageView(frame: CGRectZero)
+  var increaseVolumeTintColor = UIColor.blackColor()
+  var reduceVolumeTintColor = UIColor.blackColor()
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -23,10 +25,14 @@ class VolumeControlView: UIView {
     volumeSlider.showsRouteButton = false
     addSubview(volumeSlider)
     increaseVolumeImage = UIImageView(frame: CGRectMake(10.0, 0.0, 20.0, 20.0))
-    increaseVolumeImage.image = UIImage(named: "MLIncreaseVolume")
+    increaseVolumeImage.image = UIImage(named: "MLIncreaseVolume")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+    increaseVolumeImage.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
     addSubview(increaseVolumeImage)
     reduceVolumeImage = UIImageView(frame: CGRectMake(10.0, 130.0, 20.0, 20.0))
-    reduceVolumeImage.image = UIImage(named: "MLReduceVolume")
+    reduceVolumeImage.image = UIImage(named: "MLReduceVolume")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+    reduceVolumeImage.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
+    increaseVolumeImage.tintColor = increaseVolumeTintColor
+    reduceVolumeImage.tintColor = reduceVolumeTintColor
     addSubview(reduceVolumeImage)
   }
 

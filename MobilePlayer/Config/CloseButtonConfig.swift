@@ -9,21 +9,26 @@
 import Foundation
 
 public struct CloseButtonConfig {
-  public var imageName = MobilePlayerConfig.loadImage(named: "MLCloseButton.png")
+  public var imageName = MobilePlayerConfig.loadImage(named: "MLCloseButton.png").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
   public var tintColor = UIColor.whiteColor()
   public var backgroundColor = UIColor.clearColor()
 
   public init() {}
 
-  public init(dictionary: [String: AnyObject]) {
-    if let imageName = dictionary["image"] as? String {
-      self.imageName = MobilePlayerConfig.loadImage(named: imageName)
-    }
-    if let tintColorHex = dictionary["tintColor"] as? String {
-      self.tintColor = UIColor(hexString: tintColorHex)
-    }
-    if let backgroundColorHex = dictionary["backgroundColor"] as? String {
-      self.backgroundColor = UIColor(hexString: backgroundColorHex)
+  public init(array: [AnyObject]) {
+    for item in array {
+      if item["name"] as? String == "close" {
+        if let imageName = item["image"] as? String {
+          self.imageName = MobilePlayerConfig.loadImage(named: imageName).imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        }
+        if let tintColorHex = item["tintColor"] as? String {
+          self.tintColor = UIColor(hexString: tintColorHex)
+        }
+        if let backgroundColorHex = item["backgroundColor"] as? String {
+          self.backgroundColor = UIColor(hexString: backgroundColorHex)
+        }
+      }
+
     }
   }
 }

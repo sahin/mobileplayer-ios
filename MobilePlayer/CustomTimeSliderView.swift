@@ -44,10 +44,17 @@ class CustomTimeSliderView: UIView {
   private var customTimeSliderProgressValue: CGFloat = 0.0
   private var customTimeSliderThumbValue: CGFloat = 0.0
   var railView = UIView(frame: CGRectZero)
+  var railHeight: CGFloat = 2.0
   var bufferView = UIView(frame: CGRectZero)
   var progressView = UIView(frame: CGRectZero)
   var thumbView = UIView(frame: CGRectZero)
+  var thumbViewRadius: CGFloat = 10.0
+  var thumbHeight: CGFloat = 22.0
+  var thumbWidth: CGFloat = 22.0
+  var thumbBorder: CGFloat = 1.0
+  var thumbBorderColor: UIColor = UIColor.blackColor()
   let timeSlider = UISlider(frame: CGRectZero)
+
 
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -150,13 +157,13 @@ class CustomTimeSliderView: UIView {
     }
     self.railView.frame = CGRect(
       x: 0.0,
-      y: 18.0,
+      y: 20.0 - self.railHeight / 2.0,
       width: self.frame.width - 2.0,
-      height: 4.0)
+      height: self.railHeight)
     UIView.animateWithDuration(0.0, animations: {
       self.progressView.frame = CGRect(x: 0.0, y: 0.0,
         width: self.customTimeSliderProgressValue,
-        height: 4.0)
+        height: self.railHeight)
     })
     UIView.animateWithDuration(
       0.0,
@@ -164,20 +171,20 @@ class CustomTimeSliderView: UIView {
       options: .AllowUserInteraction,
       animations: { () -> Void in
         self.thumbView.frame = CGRect(x: self.customTimeSliderThumbValue,
-          y: 8.0,
-          width: 22.0,
-          height: 22.0)
-        self.thumbView.layer.cornerRadius = 11.0
+          y: (self.railView.frame.yVal + self.railHeight / 2.0) - (self.thumbHeight / 2.0),
+          width: self.thumbWidth,
+          height: self.thumbHeight)
+        self.thumbView.layer.cornerRadius = self.thumbViewRadius
         self.thumbView.layer.masksToBounds = true
-        self.thumbView.layer.borderColor = UIColor.grayColor().CGColor
-        self.thumbView.layer.borderWidth = 1.0
+        self.thumbView.layer.borderColor = self.thumbBorderColor.CGColor
+        self.thumbView.layer.borderWidth = self.thumbBorder
       }) { (Bool) -> Void in}
     UIView.animateWithDuration(0.1, animations: {
       self.bufferView.frame = CGRect(
         x: 0.0,
         y: 0.0,
         width: self.bufferPercentRatio,
-        height: 4.0)
+        height: self.railHeight)
     })
   }
 }

@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		35F04942D4DB50FF7F21D5B2 /* Pods_MobilePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7D73B451E88B493F3D4298C /* Pods_MobilePlayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C305DED61B20DC8300DD9632 /* CustomTimeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305DED51B20DC8300DD9632 /* CustomTimeSliderView.swift */; };
-		C305DED81B21068700DD9632 /* BarbieSkin.json in Resources */ = {isa = PBXBuildFile; fileRef = C305DED71B21068700DD9632 /* BarbieSkin.json */; };
+		C305DED81B21068700DD9632 /* MinimalSkin.json in Resources */ = {isa = PBXBuildFile; fileRef = C305DED71B21068700DD9632 /* MinimalSkin.json */; };
 		C305DEDA1B21069500DD9632 /* SkinParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305DED91B21069500DD9632 /* SkinParser.swift */; };
 		C308B3BB1B14FAE300CB1515 /* ControlbarConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */; };
 		C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */; };
 		C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */; };
 		C35FDE0E1B3DEA56005C55A6 /* VolumeControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */; };
 		C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
+		C361643D1B6725C2000CE00E /* HuluStyleSkin.json in Resources */ = {isa = PBXBuildFile; fileRef = C361643C1B6725C2000CE00E /* HuluStyleSkin.json */; };
+		C36164411B673D04000CE00E /* NetflixStyleSkin.json in Resources */ = {isa = PBXBuildFile; fileRef = C36164401B673D04000CE00E /* NetflixStyleSkin.json */; };
 		C38833C71B26596E00918C94 /* SkinParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38833C61B26596E00918C94 /* SkinParserTests.swift */; };
 		C38833C91B266C2500918C94 /* TestSkin.json in Resources */ = {isa = PBXBuildFile; fileRef = C38833C81B266C2500918C94 /* TestSkin.json */; };
 		C38FA6511B33279600BE17E8 /* ADBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */; };
@@ -39,6 +42,7 @@
 		CE554D731AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6E1AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift */; };
 		CE554D741AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */; };
 		CE554D761AFE6EE400DAC7E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
+		EB925BA913072773B18B7013 /* Pods_MobilePlayerExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4BB3AE1437BCF90E942E120 /* Pods_MobilePlayerExample.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,13 +84,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6CCEC38BCAA197BDB85EEE44 /* Pods-MobilePlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.release.xcconfig"; sourceTree = "<group>"; };
+		AAC564F266BFE6E6667728D5 /* Pods-MobilePlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		C305DED51B20DC8300DD9632 /* CustomTimeSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTimeSliderView.swift; sourceTree = "<group>"; };
-		C305DED71B21068700DD9632 /* BarbieSkin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BarbieSkin.json; sourceTree = "<group>"; };
+		C305DED71B21068700DD9632 /* MinimalSkin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MinimalSkin.json; sourceTree = "<group>"; };
 		C305DED91B21069500DD9632 /* SkinParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinParser.swift; sourceTree = "<group>"; };
 		C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlbarConfig.swift; sourceTree = "<group>"; };
 		C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerConfig.swift; sourceTree = "<group>"; };
 		C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareButtonConfig.swift; sourceTree = "<group>"; };
 		C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeControlView.swift; sourceTree = "<group>"; };
+		C361643C1B6725C2000CE00E /* HuluStyleSkin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HuluStyleSkin.json; sourceTree = "<group>"; };
+		C36164401B673D04000CE00E /* NetflixStyleSkin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = NetflixStyleSkin.json; sourceTree = "<group>"; };
 		C38833C61B26596E00918C94 /* SkinParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinParserTests.swift; sourceTree = "<group>"; };
 		C38833C81B266C2500918C94 /* TestSkin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestSkin.json; sourceTree = "<group>"; };
 		C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADBannerViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +122,10 @@
 		CE554D6E1AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerOverlayViewController.swift; sourceTree = "<group>"; };
 		CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerViewController.swift; sourceTree = "<group>"; };
 		CE554D751AFE6EE400DAC7E9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E4BB3AE1437BCF90E942E120 /* Pods_MobilePlayerExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayerExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7D73B451E88B493F3D4298C /* Pods_MobilePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8AD4F2FB52026C487C3B5A7 /* Pods-MobilePlayerExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerExample/Pods-MobilePlayerExample.release.xcconfig"; sourceTree = "<group>"; };
+		F7438F36FFEAA93E14EB55F0 /* Pods-MobilePlayerExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerExample/Pods-MobilePlayerExample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +134,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3A9AF031B0491B500D0C842 /* MobilePlayer.framework in Frameworks */,
+				EB925BA913072773B18B7013 /* Pods_MobilePlayerExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35F04942D4DB50FF7F21D5B2 /* Pods_MobilePlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +235,9 @@
 		C3A9AF0A1B0497BE00D0C842 /* Skin */ = {
 			isa = PBXGroup;
 			children = (
-				C305DED71B21068700DD9632 /* BarbieSkin.json */,
+				C305DED71B21068700DD9632 /* MinimalSkin.json */,
+				C361643C1B6725C2000CE00E /* HuluStyleSkin.json */,
+				C36164401B673D04000CE00E /* NetflixStyleSkin.json */,
 			);
 			path = Skin;
 			sourceTree = "<group>";
@@ -242,6 +258,8 @@
 				C3A9AEDA1B048B5600D0C842 /* MobilePlayerExample */,
 				C3A9AEF01B048B5700D0C842 /* MobilePlayerExampleTests */,
 				CE554D501AFE6CCD00DAC7E9 /* Products */,
+				F94C339738693C320D05B58C /* Frameworks */,
+				D443F17774B4D6DAFB4914D5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -302,6 +320,26 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D443F17774B4D6DAFB4914D5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AAC564F266BFE6E6667728D5 /* Pods-MobilePlayer.debug.xcconfig */,
+				6CCEC38BCAA197BDB85EEE44 /* Pods-MobilePlayer.release.xcconfig */,
+				F7438F36FFEAA93E14EB55F0 /* Pods-MobilePlayerExample.debug.xcconfig */,
+				E8AD4F2FB52026C487C3B5A7 /* Pods-MobilePlayerExample.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F94C339738693C320D05B58C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E7D73B451E88B493F3D4298C /* Pods_MobilePlayer.framework */,
+				E4BB3AE1437BCF90E942E120 /* Pods_MobilePlayerExample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -320,11 +358,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C3A9AEF51B048B5700D0C842 /* Build configuration list for PBXNativeTarget "MobilePlayerExample" */;
 			buildPhases = (
+				903D94D3931940507F600B4F /* Check Pods Manifest.lock */,
 				C3A9AED51B048B5600D0C842 /* Sources */,
 				C3A9AED61B048B5600D0C842 /* Frameworks */,
 				C3A9AED71B048B5600D0C842 /* Resources */,
 				C3A9AF071B0491B500D0C842 /* Embed Frameworks */,
 				5F2739FE1B2A8F6000EF50C4 /* Validate Code Style */,
+				5ECF4FC4B61F8BECE7BFB42F /* Embed Pods Frameworks */,
+				08388E3F4B5A73500F991423 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -359,11 +400,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE554D651AFE6CCD00DAC7E9 /* Build configuration list for PBXNativeTarget "MobilePlayer" */;
 			buildPhases = (
+				E923AC7D2681E41D262E3CC4 /* Check Pods Manifest.lock */,
 				CE554D4A1AFE6CCD00DAC7E9 /* Sources */,
 				CE554D4B1AFE6CCD00DAC7E9 /* Frameworks */,
 				CE554D4C1AFE6CCD00DAC7E9 /* Headers */,
 				CE554D4D1AFE6CCD00DAC7E9 /* Resources */,
 				5F2739FC1B2A8F3400EF50C4 /* Validate Code Style */,
+				DDE33C0357809D5655D93553 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -443,9 +486,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C36164411B673D04000CE00E /* NetflixStyleSkin.json in Resources */,
+				C361643D1B6725C2000CE00E /* HuluStyleSkin.json in Resources */,
 				C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */,
 				C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */,
-				C305DED81B21068700DD9632 /* BarbieSkin.json in Resources */,
+				C305DED81B21068700DD9632 /* MinimalSkin.json in Resources */,
 				C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,9 +521,39 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		5F2739FC1B2A8F3400EF50C4 /* Validate Code Style */ = {
+		08388E3F4B5A73500F991423 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobilePlayerExample/Pods-MobilePlayerExample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5ECF4FC4B61F8BECE7BFB42F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobilePlayerExample/Pods-MobilePlayerExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F2739FC1B2A8F3400EF50C4 /* Validate Code Style */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -486,7 +561,7 @@
 			name = "Validate Code Style";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MobilePlayer\nfi\n";
 		};
@@ -506,7 +581,7 @@
 		};
 		5F2739FE1B2A8F6000EF50C4 /* Validate Code Style */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -514,7 +589,7 @@
 			name = "Validate Code Style";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MobilePlayer\n  /usr/local/bin/swiftlint lint --path MobilePlayerExample\nfi\n";
 		};
@@ -531,6 +606,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MobilePlayerExampleTests\nfi\n";
+		};
+		903D94D3931940507F600B4F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DDE33C0357809D5655D93553 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E923AC7D2681E41D262E3CC4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -620,6 +740,7 @@
 /* Begin XCBuildConfiguration section */
 		C3A9AEF61B048B5700D0C842 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7438F36FFEAA93E14EB55F0 /* Pods-MobilePlayerExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -635,6 +756,7 @@
 		};
 		C3A9AEF71B048B5700D0C842 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E8AD4F2FB52026C487C3B5A7 /* Pods-MobilePlayerExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "MobilePlayerExample/Supporting Files/Info.plist";
@@ -769,6 +891,7 @@
 		};
 		CE554D661AFE6CCD00DAC7E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AAC564F266BFE6E6667728D5 /* Pods-MobilePlayer.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
@@ -786,6 +909,7 @@
 		};
 		CE554D671AFE6CCD00DAC7E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CCEC38BCAA197BDB85EEE44 /* Pods-MobilePlayer.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;

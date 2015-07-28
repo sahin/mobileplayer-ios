@@ -15,17 +15,21 @@ public struct TitleConfig {
 
   public init() { }
 
-  public init(dictionary: [String: AnyObject]) {
-    if let textFont = dictionary["textFont"] as? String {
-      if let textSize = dictionary["textSize"] as? CGFloat {
-        self.textFont = UIFont(name: textFont, size: textSize)!
+  public init(array: [AnyObject]) {
+    for item in array {
+      if item["name"] as? String == "title" {
+        if let textFontValue = item["textFont"] as? String {
+          if let textSizeValue = item["textSize"] as? CGFloat {
+            self.textFont = UIFont(name: textFontValue, size: textSizeValue)!
+          }
+        }
+        if let backgroundColorHex = item["backgroundColor"] as? String {
+          self.backgroundColor = UIColor(hexString: backgroundColorHex)
+        }
+        if let textColorHex = item["textColor"] as? String {
+          self.textColor = UIColor(hexString: textColorHex)
+        }
       }
-    }
-    if let backgroundColor = dictionary["backgroundColor"] as? String {
-      self.backgroundColor = UIColor(hexString: backgroundColor)
-    }
-    if let textColor = dictionary["textColor"] as? String {
-      self.textColor = UIColor(hexString: textColor)
     }
   }
 }
