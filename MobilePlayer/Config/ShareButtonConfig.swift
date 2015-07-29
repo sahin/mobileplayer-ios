@@ -11,17 +11,18 @@ import Foundation
 public struct ShareButtonConfig {
 
   // MARK: - Theming
-  public var imageName = MobilePlayerConfig.loadImage(named: "MLShareButton.png").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+  public var imageName = MobilePlayerConfig.loadImage(named: "MLShareButton.png")
   public var tintColor = UIColor.whiteColor()
   public var backgroundColor = UIColor.clearColor()
 
   public init() {}
 
-  public init(array: [AnyObject]) {
+  public init(array: [[String:AnyObject]]) {
     for item in array {
-      if item["name"] as? String == "share" {
+      switch item["subType"] as! String {
+      case "share":
         if let imageNameValue = item["image"] as? String {
-          self.imageName = MobilePlayerConfig.loadImage(named: imageNameValue).imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+          self.imageName = MobilePlayerConfig.loadImage(named: imageNameValue)
         }
         if let tintColorHex = item["tintColor"] as? String {
           self.tintColor = UIColor(hexString: tintColorHex)
@@ -29,6 +30,8 @@ public struct ShareButtonConfig {
         if let backgroundColorValue = item["backgroundColor"] as? String {
           self.backgroundColor = UIColor(hexString: backgroundColorValue)
         }
+      default:
+        println("")
       }
     }
   }

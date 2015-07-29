@@ -25,11 +25,11 @@ class VolumeControlView: UIView {
     volumeSlider.showsRouteButton = false
     addSubview(volumeSlider)
     increaseVolumeImage = UIImageView(frame: CGRectMake(10.0, 0.0, 20.0, 20.0))
-    increaseVolumeImage.image = UIImage(named: "MLIncreaseVolume")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+    increaseVolumeImage.image = UIImage(named: "MLIncreaseVolume")
     increaseVolumeImage.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
     addSubview(increaseVolumeImage)
     reduceVolumeImage = UIImageView(frame: CGRectMake(10.0, 130.0, 20.0, 20.0))
-    reduceVolumeImage.image = UIImage(named: "MLReduceVolume")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+    reduceVolumeImage.image = UIImage(named: "MLReduceVolume")
     reduceVolumeImage.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
     increaseVolumeImage.tintColor = increaseVolumeTintColor
     reduceVolumeImage.tintColor = reduceVolumeTintColor

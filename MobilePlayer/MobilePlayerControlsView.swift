@@ -38,6 +38,7 @@ final class MobilePlayerControlsView: UIView {
   let playButton = UIButton()
   let playbackTimeLabel = UILabel()
   let durationLabel = UILabel()
+  let remainingLabel = UILabel()
   private let config: MobilePlayerConfig
 
   init(config: MobilePlayerConfig) {
@@ -68,9 +69,9 @@ final class MobilePlayerControlsView: UIView {
       make.height.equalTo(buttonSize.height)
     }
 
-    if let fileURL = NSBundle.mainBundle().URLForResource("HuluStyleSkin", withExtension: "json") {
-      setLayoutConstraintsWithSkinFile(fileURL, categoryName: "controlbar", layout: footerView, isUpdate: false)
-      setLayoutConstraintsWithSkinFile(fileURL, categoryName: "header", layout: headerView, isUpdate: false)
+    if let fileURL = NSBundle.mainBundle().URLForResource("NetflixStyleSkin", withExtension: "json") {
+      setLayoutConstraintsWithSkinFile(fileURL, categorysubType: "controlbar", layout: footerView, isUpdate: false)
+      setLayoutConstraintsWithSkinFile(fileURL, categorysubType: "header", layout: headerView, isUpdate: false)
     }
     initializeHeaderViews()
     initializeOverlayViews()
@@ -86,7 +87,7 @@ final class MobilePlayerControlsView: UIView {
   }
 
   private func initializeHeaderViews() {
-    closeButton.setImage(config.closeButtonConfig.imageName.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+    closeButton.setImage(config.closeButtonConfig.imageName, forState: .Normal)
     closeButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
     closeButton.tintColor = config.closeButtonConfig.tintColor
     closeButton.backgroundColor = config.closeButtonConfig.backgroundColor
@@ -94,7 +95,7 @@ final class MobilePlayerControlsView: UIView {
     titleLabel.textColor = config.titleConfig.textColor
     titleLabel.backgroundColor = config.titleConfig.backgroundColor
     titleLabel.textAlignment = .Center
-    shareButton.setImage(config.shareButtonConfig.imageName.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+    shareButton.setImage(config.shareButtonConfig.imageName, forState: .Normal)
     shareButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
     shareButton.tintColor = config.shareButtonConfig.tintColor
     shareButton.backgroundColor = config.shareButtonConfig.backgroundColor
@@ -112,11 +113,11 @@ final class MobilePlayerControlsView: UIView {
   }
 
   private func initializeFooterViews() {
-    volumeButton.setImage(config.controlbarConfig.volumeButtonImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+    volumeButton.setImage(config.controlbarConfig.volumeButtonImage, forState: .Normal)
     volumeButton.tintColor = config.controlbarConfig.volumeTintColor
     volumeButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
     volumeButton.backgroundColor = config.controlbarConfig.playButtonBackgroundColor
-    playButton.setImage(config.controlbarConfig.playButtonImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+    playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
     playButton.tintColor = config.controlbarConfig.playButtonTintColor
     playButton.backgroundColor = config.controlbarConfig.playButtonBackgroundColor
     playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
@@ -130,6 +131,11 @@ final class MobilePlayerControlsView: UIView {
     durationLabel.font = config.controlbarConfig.durationTextFont
     durationLabel.textColor = config.controlbarConfig.durationTextColor
     durationLabel.backgroundColor = config.controlbarConfig.durationBackgroundColor
+    remainingLabel.text = "-:-"
+    remainingLabel.textAlignment = .Center
+    remainingLabel.font = config.controlbarConfig.remainingTextFont
+    remainingLabel.textColor = config.controlbarConfig.remainingTextColor
+    remainingLabel.backgroundColor = config.controlbarConfig.remainingBackgroundColor
     customTimeSliderView.backgroundColor = config.controlbarConfig.timeSliderBackgroundColor
     customTimeSliderView.railView.backgroundColor = config.controlbarConfig.timeSliderRailTintColor
     customTimeSliderView.bufferView.backgroundColor =
@@ -156,11 +162,11 @@ extension MobilePlayerControlsView {
 
   private func setLayoutConstraintsWithSkinFile(
     fileURL: NSURL,
-    categoryName: String,
+    categorysubType: String,
     layout: UIView,
     isUpdate: Bool) {
     if let skin = getDictionaryFromURL(fileURL) as [String: AnyObject]? {
-      if var controlbar = skin[categoryName] as? NSArray {
+      if var controlbar = skin[categorysubType] as? NSArray {
         // defines
         var arrValues = NSMutableArray()
         var views: [UIView] = []
@@ -184,7 +190,7 @@ extension MobilePlayerControlsView {
             // type: View
             if element == "view" {
               // Customize Time Slider
-              if let slider = viewItem["name"] as? String {
+              if let slider = viewItem["subType"] as? String {
                 if slider == "timeSlider" {
                   if let sliderRailRadius = viewItem["railRadius"] as? CGFloat {
                     customTimeSliderView.railView.layer.cornerRadius = sliderRailRadius
@@ -233,7 +239,7 @@ extension MobilePlayerControlsView {
             }
             // type: Label
             if element == "label" {
-              if let slider = viewItem["name"] as? String {
+              if let slider = viewItem["subType"] as? String {
                 if slider == "title" {
                   views.append(titleLabel)
                   layout.addSubview(titleLabel)
@@ -242,27 +248,32 @@ extension MobilePlayerControlsView {
                     views.append(playbackTimeLabel)
                     layout.addSubview(playbackTimeLabel)
                   }else{
-                    if slider == "duration" {
-                      views.append(durationLabel)
-                      layout.addSubview(durationLabel)
+                    if slider == "remaining" {
+                      views.append(remainingLabel)
+                      layout.addSubview(remainingLabel)
                     }else{
-                      let label = UILabel()
-                      if let bgColor = viewItem["backgroundColor"] as? String {
-                        label.backgroundColor = UIColor(hexString: bgColor)
-                      }
-                      if let textColor = viewItem["textColor"] as? String {
-                        label.textColor = UIColor(hexString: textColor)
-                      }
-                      if let textColor = viewItem["textColor"] as? String {
-                        label.textColor = UIColor(hexString: textColor)
-                      }
-                      if let textFontSize = viewItem["textFontSize"] as? CGFloat {
-                        if let textFont = viewItem["textFont"] as? String {
-                          label.font = UIFont(name: textFont, size: textFontSize)
+                      if slider == "duration" {
+                        views.append(durationLabel)
+                        layout.addSubview(durationLabel)
+                      }else{
+                        let label = UILabel()
+                        if let bgColor = viewItem["backgroundColor"] as? String {
+                          label.backgroundColor = UIColor(hexString: bgColor)
                         }
+                        if let textColor = viewItem["textColor"] as? String {
+                          label.textColor = UIColor(hexString: textColor)
+                        }
+                        if let textColor = viewItem["textColor"] as? String {
+                          label.textColor = UIColor(hexString: textColor)
+                        }
+                        if let textFontSize = viewItem["textFontSize"] as? CGFloat {
+                          if let textFont = viewItem["textFont"] as? String {
+                            label.font = UIFont(name: textFont, size: textFontSize)
+                          }
+                        }
+                        views.append(label)
+                        layout.addSubview(label)
                       }
-                      views.append(label)
-                      layout.addSubview(label)
                     }
                   }
                 }
@@ -270,20 +281,20 @@ extension MobilePlayerControlsView {
             }
             // type: Button
             if element == "button" {
-              if let name = viewItem["name"] as? String {
-                if name == "play" {
+              if let subType = viewItem["subType"] as? String {
+                if subType == "play" {
                   views.append(playButton)
                   layout.addSubview(playButton)
                 }else{
-                  if name == "volume" {
+                  if subType == "volume" {
                     views.append(volumeButton)
                     layout.addSubview(volumeButton)
                   }else{
-                    if name == "close" {
+                    if subType == "close" {
                       views.append(closeButton)
                       layout.addSubview(closeButton)
                     }else{
-                      if name == "share" {
+                      if subType == "share" {
                         views.append(shareButton)
                         layout.addSubview(shareButton)
                       }else{
@@ -323,8 +334,8 @@ extension MobilePlayerControlsView {
     layout: UIView) {
     switch skinItemOrders.count {
     case 1:
-      if let name = skinItemOrders.objectAtIndex(0)["name"] as? String {
-        if name == "timeSlider" || name == "title" {
+      if let subType = skinItemOrders.objectAtIndex(0)["subType"] as? String {
+        if subType == "timeSlider" || subType == "title" {
           views[0].snp_makeConstraints { (make) -> Void in
             make.height.equalTo(layout.snp_height)
             make.top.equalTo(layout).offset(0)
@@ -336,8 +347,8 @@ extension MobilePlayerControlsView {
     case 2:
       for (index, referedView) in enumerate(skinItemOrders) {
         if index == 0 {
-          if let name = referedView["name"] as? String {
-            if name == "timeSlider" || name == "title" {
+          if let subType = referedView["subType"] as? String {
+            if subType == "timeSlider" || subType == "title" {
               views[index].snp_makeConstraints { (make) -> Void in
                 make.height.equalTo(layout.snp_height)
                 make.top.equalTo(layout).offset(0)
@@ -354,8 +365,8 @@ extension MobilePlayerControlsView {
             }
           }
         }else{
-          if let name = referedView["name"] as? String {
-            if name == "timeSlider" || name == "title" {
+          if let subType = referedView["subType"] as? String {
+            if subType == "timeSlider" || subType == "title" {
               views[index].snp_makeConstraints { (make) -> Void in
                 make.height.equalTo(layout.snp_height)
                 make.top.equalTo(layout).offset(0)
@@ -385,8 +396,8 @@ extension MobilePlayerControlsView {
     layout: UIView) {
     for (index, referedView) in enumerate(skinItemOrders) {
       if index == 0 {
-        if let name = referedView["name"] as? String {
-          if name == "timeSlider" || name == "title" {
+        if let subType = referedView["subType"] as? String {
+          if subType == "timeSlider" || subType == "title" {
             views[index].snp_makeConstraints { (make) -> Void in
               make.height.equalTo(layout.snp_height)
               make.top.equalTo(layout).offset(0)
@@ -396,9 +407,13 @@ extension MobilePlayerControlsView {
           }else{
             views[index].snp_makeConstraints { (make) -> Void in
               make.height.equalTo(layout.snp_height)
-              if let name = referedView["name"] as? String {
-                if name == "seperator" {
-                  make.width.equalTo(15)
+              if let subType = referedView["subType"] as? String {
+                if subType == "seperator" {
+                  if let seperatorWidth = referedView["width"] as? CGFloat {
+                    make.width.equalTo(seperatorWidth)
+                  }else{
+                    make.width.equalTo(15)
+                  }
                 }else{
                   make.width.equalTo(buttonSize.width)
                 }
@@ -409,8 +424,8 @@ extension MobilePlayerControlsView {
           }
         }
       }else{
-        if let name = referedView["name"] as? String {
-          if name == "timeSlider" || name == "title" {
+        if let subType = referedView["subType"] as? String {
+          if subType == "timeSlider" || subType == "title" {
             views[index].snp_makeConstraints { (make) -> Void in
               make.height.equalTo(layout.snp_height)
               make.top.equalTo(layout).offset(0)
@@ -424,9 +439,13 @@ extension MobilePlayerControlsView {
           }else{
             views[index].snp_makeConstraints { (make) -> Void in
               make.height.equalTo(layout.snp_height)
-              if let name = referedView["name"] as? String {
-                if name == "seperator" {
-                  make.width.equalTo(15)
+              if let subType = referedView["subType"] as? String {
+                if subType == "seperator" {
+                  if let seperatorWidth = referedView["width"] as? CGFloat {
+                    make.width.equalTo(seperatorWidth)
+                  }else{
+                    make.width.equalTo(15)
+                  }
                 }else{
                   make.width.equalTo(buttonSize.width)
                 }

@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-      if let fileUrl = NSBundle.mainBundle().URLForResource("HuluStyleSkin", withExtension: "json") {
-        let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=xrt27dZ7DOA")!
+      if let fileUrl = NSBundle.mainBundle().URLForResource("NetflixStyleSkin", withExtension: "json") {
+        let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=FHtvDA0W34I")!
         let youtubeLiveURL = NSURL(string: "https://www.youtube.com/watch?v=rxGoGg7n77A")!
         let playerVC = MobilePlayerViewController(
           youTubeURL: youtubeURL,

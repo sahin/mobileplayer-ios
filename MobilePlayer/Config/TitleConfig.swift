@@ -15,9 +15,10 @@ public struct TitleConfig {
 
   public init() { }
 
-  public init(array: [AnyObject]) {
+  public init(array: [[String:AnyObject]]) {
     for item in array {
-      if item["name"] as? String == "title" {
+      switch item["subType"] as! String {
+      case "title":
         if let textFontValue = item["textFont"] as? String {
           if let textSizeValue = item["textSize"] as? CGFloat {
             self.textFont = UIFont(name: textFontValue, size: textSizeValue)!
@@ -29,6 +30,8 @@ public struct TitleConfig {
         if let textColorHex = item["textColor"] as? String {
           self.textColor = UIColor(hexString: textColorHex)
         }
+      default:
+        println("")
       }
     }
   }

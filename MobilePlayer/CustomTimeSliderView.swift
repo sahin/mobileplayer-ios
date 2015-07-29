@@ -185,6 +185,8 @@ class CustomTimeSliderView: UIView {
         y: 0.0,
         width: self.bufferPercentRatio,
         height: self.railHeight)
+      self.bufferView.layer.cornerRadius = self.railHeight / 2.0
+      self.bufferView.layer.masksToBounds = true
     })
   }
 }

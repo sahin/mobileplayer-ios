@@ -283,6 +283,12 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     if time.isNaN || time == NSTimeInterval.infinity {
       return
     }
+    let remainingTime = moviePlayer.duration - moviePlayer.currentPlaybackTime
+    let remainingHours = UInt(remainingTime / 3600)
+    let remainingMinutes = UInt((remainingTime / 60) % 60)
+    let remainingSeconds = UInt(remainingTime % 60)
+    var remainingTimeLabelText = NSString(format: "%02lu:%02lu", remainingMinutes, remainingSeconds) as String
+    controlsView.remainingLabel.text = checkTimeLabelText(remainingTimeLabelText)
     let hours = UInt(time / 3600)
     let minutes = UInt((time / 60) % 60)
     let seconds = UInt(time % 60)
@@ -371,7 +377,7 @@ extension MobilePlayerViewController {
     updatePlaybackTimeInterface()
     if state == .Playing || state == .Interrupted {
       doFirstPlaySetupIfNeeded()
-      controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+      controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage, forState: .Normal)
       controlsView.playButton.tintColor = config.controlbarConfig.pauseButtonTintColor
       controlsView.playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
       if !controlsView.controlsHidden {
@@ -384,7 +390,7 @@ extension MobilePlayerViewController {
         if isFirstPlayPreRoll {
           pauseVideoPlayer()
           controlsView.playButton.setImage(
-            config.controlbarConfig.playButtonImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate),
+            config.controlbarConfig.playButtonImage,
             forState: .Normal
           )
           controlsView.playButton.tintColor = config.controlbarConfig.playButtonTintColor
@@ -392,7 +398,7 @@ extension MobilePlayerViewController {
         }
       }
     } else {
-      controlsView.playButton.setImage(config.controlbarConfig.playButtonImage.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate), forState: .Normal)
+      controlsView.playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
       controlsView.playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
       controlsView.playButton.tintColor = config.controlbarConfig.playButtonTintColor
       hideControlsTimer?.invalidate()

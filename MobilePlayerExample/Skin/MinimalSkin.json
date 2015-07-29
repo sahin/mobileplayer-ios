@@ -6,14 +6,14 @@
              "textSize": 16,
              "textColor": "#ffffff",
              "type": "label",
-             "name": "title"
+             "subType": "title"
              },
              {
              "order": 0,
              "image": "MLCloseButton",
              "tintColor": "#ffffff",
              "type": "button",
-             "name": "close"
+             "subType": "close"
              }
              ],
   "controlbar": [
@@ -24,11 +24,11 @@
                  "pauseImage": "MLPauseButton",
                  "pauseTintColor": "#ffffff",
                  "type": "button",
-                 "name": "play"
+                 "subType": "play"
                  },
                  {
                  "type": "view",
-                 "name": "seperator",
+                 "subType": "seperator",
                  "order": 1
                  },
                  {
@@ -45,11 +45,11 @@
                  "thumbBorder": 0,
                  "thumbBorderColor": "#ffffff",
                  "type": "view",
-                 "name": "timeSlider"
+                 "subType": "timeSlider"
                  },
                  {
                  "type": "view",
-                 "name": "seperator",
+                 "subType": "seperator",
                  "order": 5
                  }
                  ],

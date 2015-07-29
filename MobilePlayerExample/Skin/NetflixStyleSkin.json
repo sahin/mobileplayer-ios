@@ -6,21 +6,21 @@
              "textSize": 16,
              "textColor": "#ffffff",
              "type": "label",
-             "name": "title"
+             "subType": "title"
              },
              {
              "order": 0,
              "image": "MLCloseButton",
              "tintColor": "#ffffff",
              "type": "button",
-             "name": "close"
+             "subType": "close"
              },
              {
              "order": 1,
              "image": "MLShareButton",
              "tintColor": "#ffffff",
              "type": "button",
-             "name": "share"
+             "subType": "share"
              }
              ],
   "controlbar": [
@@ -31,15 +31,17 @@
                  "pauseImage": "MLPauseButton",
                  "pauseTintColor": "#ffffff",
                  "type": "button",
-                 "name": "play"
+                 "subType": "play"
                  },
                  {
                  "type": "view",
-                 "name": "seperator",
+                 "subType": "seperator",
                  "order": 1
                  },
                  {
-                 "order": 4,
+                 "order": 2,
+                 "type": "view",
+                 "subType": "timeSlider",
                  "railRadius": 5,
                  "railHeight": 10,
                  "railTintColor": "#cccccc",
@@ -49,29 +51,27 @@
                  "thumbRadius": 12.5,
                  "thumbHeight": 25,
                  "thumbWidth": 25,
-                 "thumbBorder": 0,
-                 "type": "view",
-                 "name": "timeSlider"
+                 "thumbBorder": 0
                  },
                  {
+                 "order": 3,
                  "type": "view",
-                 "name": "seperator",
-                 "order": 5
+                 "subType": "seperator"
                  },
                  {
-                 "order": 6,
+                 "order": 4,
+                 "type": "label",
+                 "subType": "remaining",
                  "textFont": "HelveticaNeue",
                  "textFontSize": 15,
-                 "textColor": "#ffffff",
-                 "type": "label",
-                 "name": "time"
+                 "textColor": "#ffffff"
                  },
                  {
+                 "order": 5,
                  "type": "view",
-                 "name": "seperator",
-                 "order": 7
+                 "subType": "seperator"
                  }
                  ],
-  "backgroundColor":"#000000",
-  "alpha": 0.7
+  "backgroundColor": "#000000",
+  "alpha": 0.3
 }

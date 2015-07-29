@@ -6,21 +6,21 @@
              "textSize": 16,
              "textColor": "#ffffff",
              "type": "label",
-             "name": "title"
+             "subType": "title"
              },
              {
              "order": 0,
              "image": "MLCloseButton",
              "tintColor": "#ffffff",
              "type": "button",
-             "name": "close"
+             "subType": "close"
              },
              {
              "order": 1,
              "image": "MLShareButton",
              "tintColor": "#ffffff",
              "type": "button",
-             "name": "share"
+             "subType": "share"
              }
              ],
   "controlbar": [
@@ -31,11 +31,11 @@
                  "pauseImage": "MLPauseButton",
                  "pauseTintColor": "#ffffff",
                  "type": "button",
-                 "name": "play"
+                 "subType": "play"
                  },
                  {
                  "type": "view",
-                 "name": "seperator",
+                 "subType": "seperator",
                  "order": 1
                  },
                  {
@@ -52,11 +52,11 @@
                  "thumbBorder": 10,
                  "thumbBorderColor": "#ffffff",
                  "type": "view",
-                 "name": "timeSlider"
+                 "subType": "timeSlider"
                  },
                  {
                  "type": "view",
-                 "name": "seperator",
+                 "subType": "seperator",
                  "order": 5
                  },
                  {
@@ -65,11 +65,11 @@
                  "textFontSize": 15,
                  "textColor": "#ffffff",
                  "type": "label",
-                 "name": "time"
+                 "subType": "time"
                  },
                  {
                  "type": "view",
-                 "name": "seperator",
+                 "subType": "seperator",
                  "order": 7
                  }
                  ],
