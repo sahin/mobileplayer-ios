@@ -25,6 +25,7 @@ public struct MobilePlayerConfig {
   public var footerBorderHeight = CGFloat(1)
   public var footerBackgroundColor = UIColor(white: 0, alpha: 0.7)
   public var footerBorderColor = UIColor(white: 1, alpha: 0.2)
+  public var skinDictionary = [String: AnyObject]()
 
   // MARK: - General Callbacks
   var playCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
@@ -49,6 +50,7 @@ public struct MobilePlayerConfig {
   }
 
   public init(dictionary: [String: AnyObject]) {
+    skinDictionary = dictionary
     if let controlbarConfigArray = dictionary["controlbar"] as? [[String:AnyObject]] {
       controlbarConfig = ControlbarConfig(array: controlbarConfigArray)
     } else {

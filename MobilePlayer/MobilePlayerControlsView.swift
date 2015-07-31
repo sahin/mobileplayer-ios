@@ -69,10 +69,9 @@ final class MobilePlayerControlsView: UIView {
       make.height.equalTo(buttonSize.height)
     }
 
-    if let fileURL = NSBundle.mainBundle().URLForResource("NetflixStyleSkin", withExtension: "json") {
-      setLayoutConstraintsWithSkinFile(fileURL, categorysubType: "controlbar", layout: footerView, isUpdate: false)
-      setLayoutConstraintsWithSkinFile(fileURL, categorysubType: "header", layout: headerView, isUpdate: false)
-    }
+    setLayoutConstraintsWithSkinFile(config.skinDictionary, categorysubType: "controlbar", layout: footerView, isUpdate: false)
+    setLayoutConstraintsWithSkinFile(config.skinDictionary, categorysubType: "header", layout: headerView, isUpdate: false)
+
     initializeHeaderViews()
     initializeOverlayViews()
     initializeFooterViews()
@@ -161,11 +160,11 @@ final class MobilePlayerControlsView: UIView {
 extension MobilePlayerControlsView {
 
   private func setLayoutConstraintsWithSkinFile(
-    fileURL: NSURL,
+    skinFile: [String: AnyObject],
     categorysubType: String,
     layout: UIView,
     isUpdate: Bool) {
-    if let skin = getDictionaryFromURL(fileURL) as [String: AnyObject]? {
+    if let skin = skinFile as [String: AnyObject]? {
       if var controlbar = skin[categorysubType] as? NSArray {
         // defines
         var arrValues = NSMutableArray()
@@ -482,17 +481,5 @@ extension MobilePlayerControlsView {
       make.width.equalTo(frame.size.width)
       make.height.equalTo(buttonSize.height)
     }
-  }
-
-  private func
-    getDictionaryFromURL(url: NSURL) -> [String: AnyObject]? {
-    if let
-      jsonString = String(contentsOfURL: url, encoding: NSUTF8StringEncoding),
-      jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
-      dictionary = NSJSONSerialization.JSONObjectWithData(
-        jsonData, options: nil, error: nil) as? [String: AnyObject] {
-          return dictionary
-    }
-    return nil
   }
 }
