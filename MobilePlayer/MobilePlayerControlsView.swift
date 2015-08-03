@@ -29,7 +29,7 @@ final class MobilePlayerControlsView: UIView {
   let footerView = UIView()
   var volumeView = VolumeControlView()
   var volumeButton = UIButton()
-  var customTimeSliderView = CustomTimeSliderView()
+  var timeSliderView = TimeSliderView()
   let backgroundImageView = UIImageView()
   let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
   let closeButton = UIButton()
@@ -68,10 +68,16 @@ final class MobilePlayerControlsView: UIView {
       make.width.equalTo(self.frame.size.width)
       make.height.equalTo(buttonSize.height)
     }
-
-    setLayoutConstraintsWithSkinFile(config.skinDictionary, categorysubType: "controlbar", layout: footerView, isUpdate: false)
-    setLayoutConstraintsWithSkinFile(config.skinDictionary, categorysubType: "header", layout: headerView, isUpdate: false)
-
+    setLayoutConstraintsWithSkinFile(
+      config.skinDictionary,
+      categorysubType: "controlbar",
+      layout: footerView,
+      isUpdate: false)
+    setLayoutConstraintsWithSkinFile(
+      config.skinDictionary,
+      categorysubType: "header",
+      layout: headerView,
+      isUpdate: false)
     initializeHeaderViews()
     initializeOverlayViews()
     initializeFooterViews()
@@ -135,14 +141,14 @@ final class MobilePlayerControlsView: UIView {
     remainingLabel.font = config.controlbarConfig.remainingTextFont
     remainingLabel.textColor = config.controlbarConfig.remainingTextColor
     remainingLabel.backgroundColor = config.controlbarConfig.remainingBackgroundColor
-    customTimeSliderView.backgroundColor = config.controlbarConfig.timeSliderBackgroundColor
-    customTimeSliderView.railView.backgroundColor = config.controlbarConfig.timeSliderRailTintColor
-    customTimeSliderView.bufferView.backgroundColor =
+    timeSliderView.backgroundColor = config.controlbarConfig.timeSliderBackgroundColor
+    timeSliderView.railView.backgroundColor =
+      config.controlbarConfig.timeSliderRailTintColor
+    timeSliderView.bufferView.backgroundColor =
       config.controlbarConfig.timeSliderBufferTintColor
-    customTimeSliderView.progressView.backgroundColor =
+    timeSliderView.progressView.backgroundColor =
       config.controlbarConfig.timeSliderProgressTintColor
-    customTimeSliderView.thumbView.backgroundColor =
-      config.controlbarConfig.timeSliderThumbTintColor
+    timeSliderView.thumbView.backgroundColor = config.controlbarConfig.timeSliderThumbTintColor
     volumeView.reduceVolumeTintColor = config.controlbarConfig.volumeTintColor
     volumeView.increaseVolumeTintColor = config.controlbarConfig.volumeTintColor
     volumeView.backgroundColor = config.controlbarConfig.volumeBackgroundColor
@@ -166,54 +172,21 @@ extension MobilePlayerControlsView {
     isUpdate: Bool) {
     if let skin = skinFile as [String: AnyObject]? {
       if var controlbar = skin[categorysubType] as? NSArray {
-        // defines
         var arrValues = NSMutableArray()
         var views: [UIView] = []
         var skinItemOrders: NSArray = NSArray()
         let descriptor: NSSortDescriptor = NSSortDescriptor(key: "order", ascending: true)
         self.addSubview(layout)
-        // Layout background color
-        if let bgColor = skin["backgroundColor"] as? String {
-          if let alpha = skin["alpha"] as? CGFloat {
-            layout.backgroundColor = UIColor(hexString: bgColor).colorWithAlphaComponent(alpha)
-          }else{
-            layout.backgroundColor = UIColor(hexString: bgColor)
-          }
-        }else{
-          layout.backgroundColor = UIColor.clearColor()
-        }
+        setBackgroundColorWithLayout(layout, skin: skin)
         skinItemOrders = controlbar.sortedArrayUsingDescriptors([descriptor])
-        // Adding elements
         for (index,viewItem) in enumerate(skinItemOrders) {
           if let element = viewItem["type"] as? String {
-            // type: View
             if element == "view" {
-              // Customize Time Slider
               if let slider = viewItem["subType"] as? String {
                 if slider == "timeSlider" {
-                  if let sliderRailRadius = viewItem["railRadius"] as? CGFloat {
-                    customTimeSliderView.railView.layer.cornerRadius = sliderRailRadius
-                  }
-                  if let sliderRailHeight = viewItem["railHeight"] as? CGFloat {
-                    customTimeSliderView.railHeight = sliderRailHeight
-                  }
-                  if let thumbRadius = viewItem["thumbRadius"] as? CGFloat {
-                    customTimeSliderView.thumbViewRadius = thumbRadius
-                  }
-                  if let thumbViewHeight = viewItem["thumbHeight"] as? CGFloat {
-                    customTimeSliderView.thumbHeight = thumbViewHeight
-                  }
-                  if let thumbViewWidth = viewItem["thumbWidth"] as? CGFloat {
-                    customTimeSliderView.thumbWidth = thumbViewWidth
-                  }
-                  if let thumbViewBorder = viewItem["thumbBorder"] as? CGFloat {
-                    customTimeSliderView.thumbBorder = thumbViewBorder
-                  }
-                  if let thumbViewBorderColor = viewItem["thumbBorderColor"] as? String {
-                    customTimeSliderView.thumbBorderColor = UIColor(hexString: thumbViewBorderColor)
-                  }
-                  views.append(customTimeSliderView)
-                  layout.addSubview(customTimeSliderView)
+                  timeSliderCases(viewItem)
+                  views.append(timeSliderView)
+                  layout.addSubview(timeSliderView)
                 }else{
                   if slider == "seperator" {
                     let seperator = UIView()
@@ -221,22 +194,13 @@ extension MobilePlayerControlsView {
                     layout.addSubview(seperator)
                   }else{
                     let customView = UIView()
-                    if let bgColor = viewItem["backgroundColor"] as? String {
-                      if let alpha = viewItem["alpha"] as? CGFloat {
-                        layout.backgroundColor = UIColor(hexString: bgColor).colorWithAlphaComponent(alpha)
-                      }else{
-                        layout.backgroundColor = UIColor(hexString: bgColor)
-                      }
-                    }else{
-                      layout.backgroundColor = UIColor.clearColor()
-                    }
+                    viewCases(viewItem, layout: layout)
                     views.append(customView)
                     layout.addSubview(customView)
                   }
                 }
               }
             }
-            // type: Label
             if element == "label" {
               if let slider = viewItem["subType"] as? String {
                 if slider == "title" {
@@ -256,20 +220,7 @@ extension MobilePlayerControlsView {
                         layout.addSubview(durationLabel)
                       }else{
                         let label = UILabel()
-                        if let bgColor = viewItem["backgroundColor"] as? String {
-                          label.backgroundColor = UIColor(hexString: bgColor)
-                        }
-                        if let textColor = viewItem["textColor"] as? String {
-                          label.textColor = UIColor(hexString: textColor)
-                        }
-                        if let textColor = viewItem["textColor"] as? String {
-                          label.textColor = UIColor(hexString: textColor)
-                        }
-                        if let textFontSize = viewItem["textFontSize"] as? CGFloat {
-                          if let textFont = viewItem["textFont"] as? String {
-                            label.font = UIFont(name: textFont, size: textFontSize)
-                          }
-                        }
+                        labelCases(label, viewItem: viewItem)
                         views.append(label)
                         layout.addSubview(label)
                       }
@@ -278,7 +229,6 @@ extension MobilePlayerControlsView {
                 }
               }
             }
-            // type: Button
             if element == "button" {
               if let subType = viewItem["subType"] as? String {
                 if subType == "play" {
@@ -297,21 +247,8 @@ extension MobilePlayerControlsView {
                         views.append(shareButton)
                         layout.addSubview(shareButton)
                       }else{
-                        // Custom Button
                         let button = UIButton()
-                        if let color = viewItem["backgroundColor"] as? String {
-                          button.backgroundColor = UIColor(hexString: color)
-                        }
-                        if let tintColor = viewItem["tintColor"] as? String {
-                          button.tintColor = UIColor(hexString: tintColor)
-                        }
-                        if let img = viewItem["image"] as? String {
-                          button.setImage(UIImage(named: img), forState: UIControlState.Normal)
-                        }else {
-                          if let img = viewItem["playImage"] as? String {
-                            button.setImage(UIImage(named: img), forState: UIControlState.Normal)
-                          }
-                        }
+                        buttonCases(button, viewItem: viewItem)
                         views.append(button)
                         layout.addSubview(button)
                       }
@@ -323,6 +260,87 @@ extension MobilePlayerControlsView {
           }
         }
         setLayoutPositionWithSkinItems(skinItemOrders, views: views, layout: layout)
+      }
+    }
+  }
+
+  private func setBackgroundColorWithLayout(layout: UIView, skin: [String: AnyObject]) {
+    if let bgColor = skin["backgroundColor"] as? String {
+      if let alpha = skin["alpha"] as? CGFloat {
+        layout.backgroundColor = UIColor(hexString: bgColor).colorWithAlphaComponent(alpha)
+      }else{
+        layout.backgroundColor = UIColor(hexString: bgColor)
+      }
+    }else{
+      layout.backgroundColor = UIColor.clearColor()
+    }
+  }
+
+  private func viewCases(viewItem: AnyObject, layout: UIView) {
+    if let bgColor = viewItem["backgroundColor"] as? String {
+      if let alpha = viewItem["alpha"] as? CGFloat {
+        layout.backgroundColor = UIColor(hexString: bgColor).colorWithAlphaComponent(alpha)
+      }else{
+        layout.backgroundColor = UIColor(hexString: bgColor)
+      }
+    }else{
+      layout.backgroundColor = UIColor.clearColor()
+    }
+  }
+
+  private func timeSliderCases(viewItem: AnyObject){
+    if let sliderRailRadius = viewItem["railRadius"] as? CGFloat {
+      timeSliderView.railView.layer.cornerRadius = sliderRailRadius
+    }
+    if let sliderRailHeight = viewItem["railHeight"] as? CGFloat {
+      timeSliderView.railHeight = sliderRailHeight
+    }
+    if let thumbRadius = viewItem["thumbRadius"] as? CGFloat {
+      timeSliderView.thumbViewRadius = thumbRadius
+    }
+    if let thumbViewHeight = viewItem["thumbHeight"] as? CGFloat {
+      timeSliderView.thumbHeight = thumbViewHeight
+    }
+    if let thumbViewWidth = viewItem["thumbWidth"] as? CGFloat {
+      timeSliderView.thumbWidth = thumbViewWidth
+    }
+    if let thumbViewBorder = viewItem["thumbBorder"] as? CGFloat {
+      timeSliderView.thumbBorder = thumbViewBorder
+    }
+    if let thumbViewBorderColor = viewItem["thumbBorderColor"] as? String {
+      timeSliderView.thumbBorderColor = UIColor(hexString: thumbViewBorderColor)
+    }
+  }
+
+  private func labelCases(label: UILabel, viewItem: AnyObject) {
+    if let bgColor = viewItem["backgroundColor"] as? String {
+      label.backgroundColor = UIColor(hexString: bgColor)
+    }
+    if let textColor = viewItem["textColor"] as? String {
+      label.textColor = UIColor(hexString: textColor)
+    }
+    if let textColor = viewItem["textColor"] as? String {
+      label.textColor = UIColor(hexString: textColor)
+    }
+    if let textFontSize = viewItem["textFontSize"] as? CGFloat {
+      if let textFont = viewItem["textFont"] as? String {
+        label.font = UIFont(name: textFont, size: textFontSize)
+      }
+    }
+  }
+
+  private func buttonCases(button: UIButton, viewItem: AnyObject) {
+    if let color = viewItem["backgroundColor"] as? String {
+      button.backgroundColor = UIColor(hexString: color)
+    }
+    if let tintColor = viewItem["tintColor"] as? String {
+      button.tintColor = UIColor(hexString: tintColor)
+    }
+    if let img = viewItem["image"] as? String {
+      button.setImage(UIImage(named: img), forState: UIControlState.Normal)
+    }else {
+      if let img = viewItem["playImage"] as? String {
+        button.setImage(UIImage(named: img), forState: UIControlState.Normal)
       }
     }
   }
@@ -365,21 +383,14 @@ extension MobilePlayerControlsView {
           }
         }else{
           if let subType = referedView["subType"] as? String {
-            if subType == "timeSlider" || subType == "title" {
-              views[index].snp_makeConstraints { (make) -> Void in
-                make.height.equalTo(layout.snp_height)
-                make.top.equalTo(layout).offset(0)
-                make.left.equalTo(views[index-1].snp_right)
-                make.right.equalTo(layout.snp_right)
-              }
-            }else{
-              views[index].snp_makeConstraints { (make) -> Void in
-                make.height.equalTo(layout.snp_height)
+            views[index].snp_makeConstraints { (make) -> Void in
+              if subType == "timeSlider" || subType == "title" { } else {
                 make.width.equalTo(buttonSize.width)
-                make.top.equalTo(layout).offset(0)
-                make.left.equalTo(views[index-1].snp_right)
-                make.right.equalTo(layout.snp_right)
               }
+              make.height.equalTo(layout.snp_height)
+              make.top.equalTo(layout).offset(0)
+              make.left.equalTo(views[index-1].snp_right)
+              make.right.equalTo(layout.snp_right)
             }
           }
         }

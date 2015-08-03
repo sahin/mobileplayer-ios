@@ -86,7 +86,9 @@ public struct ControlbarConfig {
         case "remaining":
           if let remainingTextFontValue = item["textFont"] as? String {
             if let remainingTextSizeValue = item["textFontSize"] as? CGFloat {
-              remainingTextFont = UIFont(name: remainingTextFontValue, size: remainingTextSizeValue)!
+              remainingTextFont = UIFont(
+                name: remainingTextFontValue,
+                size: remainingTextSizeValue)!
             }
           }
           if let remainingTextColorValue = item["textColor"] as? String {

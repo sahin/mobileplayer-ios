@@ -17,19 +17,21 @@ public struct CloseButtonConfig {
 
   public init(array: [[String:AnyObject]]) {
     for item in array {
-      switch item["subType"] as! String {
-      case "close":
-        if let imageName = item["image"] as? String {
-          self.imageName = MobilePlayerConfig.loadImage(named: imageName)
+      if let subtype = item["subType"] as? String {
+        switch subtype {
+        case "close":
+          if let imageName = item["image"] as? String {
+            self.imageName = MobilePlayerConfig.loadImage(named: imageName)
+          }
+          if let tintColorHex = item["tintColor"] as? String {
+            self.tintColor = UIColor(hexString: tintColorHex)
+          }
+          if let backgroundColorHex = item["backgroundColor"] as? String {
+            self.backgroundColor = UIColor(hexString: backgroundColorHex)
+          }
+        default:
+          println("")
         }
-        if let tintColorHex = item["tintColor"] as? String {
-          self.tintColor = UIColor(hexString: tintColorHex)
-        }
-        if let backgroundColorHex = item["backgroundColor"] as? String {
-          self.backgroundColor = UIColor(hexString: backgroundColorHex)
-        }
-      default:
-        println("")
       }
     }
   }

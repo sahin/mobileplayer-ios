@@ -1,5 +1,5 @@
 //
-//  CustomTimeSliderView.swift
+//  TimeSliderView.swift
 //  MobilePlayer
 //
 //  Created by Toygar Dündaralp on 04/06/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CustomTimeSliderView: UIView {
+class TimeSliderView: UIView {
 
   var maximumValue: Float {
     set{
@@ -18,7 +18,6 @@ class CustomTimeSliderView: UIView {
       return timeSlider.maximumValue
     }
   }
-
   var minimumValue: Float {
     set{
       timeSlider.minimumValue = newValue
@@ -27,7 +26,6 @@ class CustomTimeSliderView: UIView {
       return timeSlider.minimumValue
     }
   }
-
   var value: Float {
     set {
       timeSlider.value = newValue
@@ -41,8 +39,8 @@ class CustomTimeSliderView: UIView {
   private var userInteractionLocation: CGFloat = 0.0
   private var videoPercentRatio: CGFloat = 0.0
   private var bufferPercentRatio: CGFloat = 0.0
-  private var customTimeSliderProgressValue: CGFloat = 0.0
-  private var customTimeSliderThumbValue: CGFloat = 0.0
+  private var timeSliderProgressValue: CGFloat = 0.0
+  private var timeSliderThumbValue: CGFloat = 0.0
   var railView = UIView(frame: CGRectZero)
   var railHeight: CGFloat = 2.0
   var bufferView = UIView(frame: CGRectZero)
@@ -89,12 +87,12 @@ class CustomTimeSliderView: UIView {
     }
     if recognizer.state == .Changed {
       if locationInView.x < 0 {
-        customTimeSliderThumbValue = -thumbViewWidth/2
+        timeSliderThumbValue = -thumbViewWidth/2
       } else if locationInView.x + thumbViewWidth/2 >= railViewWidth {
-        customTimeSliderThumbValue = railViewWidth - thumbViewWidth/2
+        timeSliderThumbValue = railViewWidth - thumbViewWidth/2
       } else {
-        customTimeSliderThumbValue = locationInView.x
-        customTimeSliderProgressValue = locationInView.x + thumbViewWidth/2
+        timeSliderThumbValue = locationInView.x
+        timeSliderProgressValue = locationInView.x + thumbViewWidth/2
         userInteractionLocation = locationInView.x
       }
     }
@@ -111,7 +109,7 @@ class CustomTimeSliderView: UIView {
     }
   }
 
-  //Buffer Percent
+  // Buffer Percent
   func refreshBufferPercentRatio(bufferRatio width: CGFloat,totalDuration total: CGFloat) {
     if width.isNaN || total.isNaN {
       return bufferPercentRatio = 0.0
@@ -122,28 +120,27 @@ class CustomTimeSliderView: UIView {
     layoutSubviews()
   }
 
-  //Video Percent
+  // Video Percent
   func refreshVideoProgressPercentRaito(videoRaito ratio: CGFloat, totalDuration total: CGFloat) {
     if !userInteraction {
       if ratio.isNaN || total.isNaN || (ratio / total * 100).isNaN {
-        customTimeSliderProgressValue = 0.0
+        timeSliderProgressValue = 0.0
       } else {
-        customTimeSliderProgressValue = ratio / total * 100
+        timeSliderProgressValue = ratio / total * 100
       }
-      customTimeSliderProgressValue =
-        customTimeSliderProgressValue * self.bounds.size.width / 100
+      timeSliderProgressValue =
+        timeSliderProgressValue * self.bounds.size.width / 100
     } else {
-      customTimeSliderProgressValue = userInteractionLocation
+      timeSliderProgressValue = userInteractionLocation
     }
     layoutSubviews()
   }
 
   func refreshCustomTimeSliderPercentRatio() {
     if userInteraction {
-      customTimeSliderThumbValue = userInteractionLocation
+      timeSliderThumbValue = userInteractionLocation
     } else {
-      customTimeSliderThumbValue =
-        progressView.frame.size.width - thumbView.frame.size.width/2
+      timeSliderThumbValue = progressView.frame.size.width - thumbView.frame.size.width/2
     }
   }
 
@@ -155,22 +152,18 @@ class CustomTimeSliderView: UIView {
     if self.bufferPercentRatio.isNaN {
       self.bufferPercentRatio = 0.0
     }
-    self.railView.frame = CGRect(
-      x: 0.0,
-      y: 20.0 - self.railHeight / 2.0,
+    self.railView.frame = CGRect(x: 0.0, y: 20.0 - self.railHeight / 2.0,
       width: self.frame.width - 2.0,
       height: self.railHeight)
     UIView.animateWithDuration(0.0, animations: {
       self.progressView.frame = CGRect(x: 0.0, y: 0.0,
-        width: self.customTimeSliderProgressValue,
+        width: self.timeSliderProgressValue,
         height: self.railHeight)
     })
-    UIView.animateWithDuration(
-      0.0,
-      delay: 0.0,
+    UIView.animateWithDuration(0.0, delay: 0.0,
       options: .AllowUserInteraction,
       animations: { () -> Void in
-        self.thumbView.frame = CGRect(x: self.customTimeSliderThumbValue,
+        self.thumbView.frame = CGRect(x: self.timeSliderThumbValue,
           y: (self.railView.frame.yVal + self.railHeight / 2.0) - (self.thumbHeight / 2.0),
           width: self.thumbWidth,
           height: self.thumbHeight)
@@ -180,9 +173,7 @@ class CustomTimeSliderView: UIView {
         self.thumbView.layer.borderWidth = self.thumbBorder
       }) { (Bool) -> Void in}
     UIView.animateWithDuration(0.1, animations: {
-      self.bufferView.frame = CGRect(
-        x: 0.0,
-        y: 0.0,
+      self.bufferView.frame = CGRect(x: 0.0, y: 0.0,
         width: self.bufferPercentRatio,
         height: self.railHeight)
       self.bufferView.layer.cornerRadius = self.railHeight / 2.0

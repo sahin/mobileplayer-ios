@@ -17,16 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(
     application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
-      if let fileUrl = NSBundle.mainBundle().URLForResource("MinimalSkin", withExtension: "json") {
-        let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=FHtvDA0W34I")!
-        let youtubeLiveURL = NSURL(string: "https://www.youtube.com/watch?v=rxGoGg7n77A")!
-        let playerVC = MobilePlayerViewController(
-          youTubeURL: youtubeURL,
-          configFileURL: fileUrl
-        )
-        //playerVC.config.prerollViewController = PreRollViewController()
+        let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=ZyIVaZXDhho")!
+        let movieURL = NSURL(string: "http://goo.gl/97Dezi")!
+        let youtubeStreamURL = NSURL(string: "https://www.youtube.com/watch?v=tlQV61zW2kU")!
+        let skinFile = NSBundle.mainBundle().URLForResource("All", withExtension: "json")!
+        let playerVC = MobilePlayerViewController(youTubeURL: youtubeURL, configFileURL: skinFile)
         /*
+        playerVC.config.prerollViewController = PreRollViewController()
         playerVC.showOverlayViewController(
           ADBannerViewController(),
           startingAtTime: 3,
@@ -42,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window!.rootViewController = playerVC
         self.window!.backgroundColor = UIColor.whiteColor()
         self.window!.makeKeyAndVisible()
-      }
+
       return true
   }
 

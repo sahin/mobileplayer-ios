@@ -4,15 +4,15 @@
 use_frameworks!
 
 target 'MobilePlayer' do
-pod 'SnapKit'
+pod 'SnapKit', '~> 0.12.0'
 end
 
 target 'MobilePlayerTests' do
-
+pod 'SnapKit', '~> 0.12.0'
 end
 
 target 'MobilePlayerExample' do
-pod 'SnapKit'
+pod 'SnapKit', '~> 0.12.0'
 end
 
 target 'MobilePlayerExampleTests' do

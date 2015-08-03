@@ -171,15 +171,15 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       self,
       action: "toggleVolumeControl",
       forControlEvents: .TouchUpInside)
-    controlsView.customTimeSliderView.timeSlider.addTarget(
+    controlsView.timeSliderView.timeSlider.addTarget(
       self,
       action: "timeShiftDidBegin",
       forControlEvents: .TouchDown)
-    controlsView.customTimeSliderView.timeSlider.addTarget(
+    controlsView.timeSliderView.timeSlider.addTarget(
       self,
       action: "goToTimeSliderTime",
       forControlEvents: .ValueChanged)
-    controlsView.customTimeSliderView.timeSlider.addTarget(
+    controlsView.timeSliderView.timeSlider.addTarget(
       self,
       action: "timeShiftDidEnd",
       forControlEvents: .TouchUpInside | .TouchUpOutside | .TouchCancel)
@@ -275,8 +275,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   private func updateTimeSlider() {
-    controlsView.customTimeSliderView.maximumValue = Float(moviePlayer.duration)
-    controlsView.customTimeSliderView.value = Float(moviePlayer.currentPlaybackTime)
+    controlsView.timeSliderView.maximumValue = Float(moviePlayer.duration)
+    controlsView.timeSliderView.value = Float(moviePlayer.currentPlaybackTime)
   }
 
   private func updateTimeLabel(label: UILabel, time: NSTimeInterval) {
@@ -287,7 +287,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     let remainingHours = UInt(remainingTime / 3600)
     let remainingMinutes = UInt((remainingTime / 60) % 60)
     let remainingSeconds = UInt(remainingTime % 60)
-    var remainingTimeLabelText = NSString(format: "%02lu:%02lu", remainingMinutes, remainingSeconds) as String
+    var remainingTimeLabelText = NSString(
+      format: "%02lu:%02lu",
+      remainingMinutes,
+      remainingSeconds) as String
     controlsView.remainingLabel.text = checkTimeLabelText(remainingTimeLabelText)
     let hours = UInt(time / 3600)
     let minutes = UInt((time / 60) % 60)
@@ -446,8 +449,8 @@ extension MobilePlayerViewController {
   }
 
   final func goToTimeSliderTime() {
-    var timeVal = controlsView.customTimeSliderView.value
-    moviePlayer.currentPlaybackTime = NSTimeInterval(controlsView.customTimeSliderView.value)
+    var timeVal = controlsView.timeSliderView.value
+    moviePlayer.currentPlaybackTime = NSTimeInterval(controlsView.timeSliderView.value)
   }
 
   final func goToCustomTimeSliderWithTime(notification: NSNotification) {
@@ -480,9 +483,10 @@ extension MobilePlayerViewController {
   }
 
   public final func updateBufferInterface() {
-    if let bufferCalculate = progressBarBufferPercentWithMoviePlayer(moviePlayer) as? NSTimeInterval {
+    if let
+      bufferCalculate = progressBarBufferPercentWithMoviePlayer(moviePlayer) as? NSTimeInterval {
       if moviePlayer.duration > 0 {
-        controlsView.customTimeSliderView.refreshBufferPercentRatio(
+        controlsView.timeSliderView.refreshBufferPercentRatio(
           bufferRatio: CGFloat(bufferCalculate),
           totalDuration: CGFloat(moviePlayer.duration))
       }
@@ -490,11 +494,11 @@ extension MobilePlayerViewController {
   }
 
   public final func updateTimeSliderViewInterface(){
-    controlsView.customTimeSliderView.refreshVideoProgressPercentRaito(
+    controlsView.timeSliderView.refreshVideoProgressPercentRaito(
       videoRaito: CGFloat(moviePlayer.currentPlaybackTime),
       totalDuration: CGFloat(moviePlayer.duration)
     )
-    controlsView.customTimeSliderView.refreshCustomTimeSliderPercentRatio()
+    controlsView.timeSliderView.refreshCustomTimeSliderPercentRatio()
   }
 
   public final func updatePlaybackTimeInterface() {

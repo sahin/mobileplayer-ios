@@ -1,6 +1,11 @@
 {
   "header": [
              {
+             "type": "view",
+             "subType": "seperator",
+             "order": 0
+             },
+             {
              "order": 1,
              "textFont": "HelveticaNeue",
              "textSize": 16,
@@ -9,11 +14,9 @@
              "subType": "title"
              },
              {
-             "order": 0,
-             "image": "MLCloseButton",
-             "tintColor": "#ffffff",
-             "type": "button",
-             "subType": "close"
+             "type": "view",
+             "subType": "seperator",
+             "order": 2
              }
              ],
   "controlbar": [

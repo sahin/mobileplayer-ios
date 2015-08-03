@@ -17,21 +17,23 @@ public struct TitleConfig {
 
   public init(array: [[String:AnyObject]]) {
     for item in array {
-      switch item["subType"] as! String {
-      case "title":
-        if let textFontValue = item["textFont"] as? String {
-          if let textSizeValue = item["textSize"] as? CGFloat {
-            self.textFont = UIFont(name: textFontValue, size: textSizeValue)!
+      if let subtype = item["subType"] as? String {
+        switch subtype {
+        case "title":
+          if let textFontValue = item["textFont"] as? String {
+            if let textSizeValue = item["textSize"] as? CGFloat {
+              self.textFont = UIFont(name: textFontValue, size: textSizeValue)!
+            }
           }
+          if let backgroundColorHex = item["backgroundColor"] as? String {
+            self.backgroundColor = UIColor(hexString: backgroundColorHex)
+          }
+          if let textColorHex = item["textColor"] as? String {
+            self.textColor = UIColor(hexString: textColorHex)
+          }
+        default:
+          println("")
         }
-        if let backgroundColorHex = item["backgroundColor"] as? String {
-          self.backgroundColor = UIColor(hexString: backgroundColorHex)
-        }
-        if let textColorHex = item["textColor"] as? String {
-          self.textColor = UIColor(hexString: textColorHex)
-        }
-      default:
-        println("")
       }
     }
   }

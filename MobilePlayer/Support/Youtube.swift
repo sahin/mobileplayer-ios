@@ -74,13 +74,10 @@ public class Youtube: NSObject {
       var response: NSURLResponse?
       var error: NSError?
       if let
-        responseData = NSURLConnection.sendSynchronousRequest(
-          request,
-          returningResponse: &response,
-          error: &error),
-        responseString = NSString(
-          data: responseData,
-          encoding: NSUTF8StringEncoding
+        responseData = NSURLConnection.sendSynchronousRequest(request,
+          returningResponse: &response,error: &error),responseString = NSString(
+            data: responseData,
+            encoding: NSUTF8StringEncoding
         ) {
           let parts = responseString.dictionaryFromQueryStringComponents()
           if parts.count > 0 {
@@ -96,11 +93,8 @@ public class Youtube: NSObject {
               // Live Stream
               if let isLivePlayback: AnyObject = parts["live_playback"]{
                 if let hlsvp = parts["hlsvp"] as? String {
-                  return [
-                    "url": "\(hlsvp)",
-                    "title": "\(videoTitle)",
-                    "image": "\(streamImage)",
-                    "isStream": true
+                  return ["url": "\(hlsvp)", "title": "\(videoTitle)",
+                    "image": "\(streamImage)", "isStream": true
                   ]
                 }
               } else {
