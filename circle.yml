@@ -9,4 +9,4 @@ dependencies:
 
 test:
   override:
-    - xctool -workspace MobilePlayer.xcworkspace -scheme MobilePlayer -sdk iphonesimulator -destination 'name=iPhone 6' test
+    - xcodebuild -workspace MobilePlayer.xcworkspace -sdk iphonesimulator -destination 'name=iPhone 6' test
