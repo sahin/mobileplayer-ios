@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=ZyIVaZXDhho")!
         let movieURL = NSURL(string: "http://goo.gl/97Dezi")!
         let youtubeStreamURL = NSURL(string: "https://www.youtube.com/watch?v=tlQV61zW2kU")!
-        let skinFile = NSBundle.mainBundle().URLForResource("All", withExtension: "json")!
+        let skinFile = NSBundle.mainBundle().URLForResource("Netflix", withExtension: "json")!
         let playerVC = MobilePlayerViewController(youTubeURL: youtubeURL, configFileURL: skinFile)
         /*
         playerVC.config.prerollViewController = PreRollViewController()

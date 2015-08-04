@@ -73,5 +73,7 @@
                  }
                  ],
   "backgroundColor": "#000000",
+  "footerGradient": true,
+  "headerGradient": true,
   "alpha": 0.3
 }

@@ -45,11 +45,13 @@ final class MobilePlayerControlsView: UIView {
     self.config = config
     super.init(frame: CGRectZero)
 
-    headerView.backgroundColor = config.headerBackgroundColor
+    headerView.backgroundColor = config.controlbarConfig.backgroundColor
+    headerView.layer.masksToBounds = true
     addSubview(headerView)
     overlayContainerView.backgroundColor = UIColor.clearColor()
     addSubview(overlayContainerView)
     footerView.backgroundColor = config.controlbarConfig.backgroundColor
+    footerView.layer.masksToBounds = true
     addSubview(footerView)
 
     // Setting view constraints
@@ -264,7 +266,22 @@ extension MobilePlayerControlsView {
     }
   }
 
-  private func setBackgroundColorWithLayout(layout: UIView, skin: [String: AnyObject]) {
+  private func createGradiendView(bgColor: String, direction: String) -> CALayer {
+    let colorTop = UIColor(hexString: bgColor).colorWithAlphaComponent(0.0).CGColor
+    let colorBottom = UIColor(hexString: bgColor).colorWithAlphaComponent(1.0).CGColor
+    let gl = CAGradientLayer()
+    gl.colors = [ colorTop, colorBottom]
+    gl.locations = [ 0.0, 1.0]
+    gl.startPoint = CGPoint(x: 0.0, y: 0.0)
+    gl.endPoint = CGPoint(x: 0.0, y: 7.0)
+    if direction == "Down" {
+      gl.transform = CATransform3DMakeRotation((180.0 * CGFloat(M_PI)) / 180.0, 0, 0, 1.0)
+    }
+    gl.frame = CGRect(x: 0.0, y: 0.0, width: 800, height: 40.0)
+    return gl
+  }
+
+  private func getDefaultColorSchema(layout: UIView, skin: [String: AnyObject]) {
     if let bgColor = skin["backgroundColor"] as? String {
       if let alpha = skin["alpha"] as? CGFloat {
         layout.backgroundColor = UIColor(hexString: bgColor).colorWithAlphaComponent(alpha)
@@ -273,6 +290,33 @@ extension MobilePlayerControlsView {
       }
     }else{
       layout.backgroundColor = UIColor.clearColor()
+    }
+  }
+
+  private func setBackgroundColorWithLayout(layout: UIView, skin: [String: AnyObject]) {
+    if let footerGradient = skin["footerGradient"] as? Bool {
+      if footerGradient {
+        if let bgColor = skin["backgroundColor"] as? String {
+          footerView.layer.insertSublayer(createGradiendView(bgColor, direction: "Up"), atIndex: 0)
+          footerView.backgroundColor = UIColor.clearColor()
+        }
+      }else{
+        getDefaultColorSchema(layout, skin: skin)
+      }
+    }else{
+      getDefaultColorSchema(layout, skin: skin)
+    }
+    if let headerGradient = skin["headerGradient"] as? Bool {
+      if headerGradient {
+        if let bgColor = skin["backgroundColor"] as? String {
+          headerView.layer.insertSublayer(createGradiendView(bgColor, direction: "Down"), atIndex: 0)
+          headerView.backgroundColor = UIColor.clearColor()
+        }
+      }else {
+        getDefaultColorSchema(layout, skin: skin)
+      }
+    }else{
+      getDefaultColorSchema(layout, skin: skin)
     }
   }
 

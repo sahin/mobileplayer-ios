@@ -95,5 +95,7 @@
                  }
                  ],
   "backgroundColor": "#000000",
-  "alpha": 0.3
+  "footerGradient": true,
+  "headerGradient": true,
+  "alpha": 1.0
 }
