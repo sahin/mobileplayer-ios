@@ -1,0 +1,79 @@
+{
+  "header": [
+             {
+             "order": 1,
+             "textFont": "HelveticaNeue",
+             "textSize": 16,
+             "textColor": "#ffffff",
+             "type": "label",
+             "subType": "title"
+             },
+             {
+             "order": 0,
+             "image": "MLCloseButton",
+             "tintColor": "#ffffff",
+             "type": "button",
+             "subType": "close"
+             },
+             {
+             "order": 2,
+             "image": "MLShareButton",
+             "tintColor": "#ffffff",
+             "type": "button",
+             "subType": "share"
+             }
+             ],
+  "controlbar": [
+                 {
+                 "order": 0,
+                 "playImage": "MLPlayButton",
+                 "playTintColor": "#ffffff",
+                 "pauseImage": "MLPauseButton",
+                 "pauseTintColor": "#ffffff",
+                 "type": "button",
+                 "subType": "play"
+                 },
+                 {
+                 "type": "view",
+                 "subType": "seperator",
+                 "order": 1
+                 },
+                 {
+                 "order": 2,
+                 "type": "view",
+                 "subType": "timeSlider",
+                 "railRadius": 5,
+                 "railHeight": 10,
+                 "railTintColor": "#cccccc",
+                 "bufferTintColor": "#9e9b9a",
+                 "progressTintColor": "#ae3f1c",
+                 "thumbTintColor": "#e54918",
+                 "thumbRadius": 12.5,
+                 "thumbHeight": 25,
+                 "thumbWidth": 25,
+                 "thumbBorder": 0
+                 },
+                 {
+                 "order": 3,
+                 "type": "view",
+                 "subType": "seperator"
+                 },
+                 {
+                 "order": 4,
+                 "type": "label",
+                 "subType": "remaining",
+                 "textFont": "HelveticaNeue",
+                 "textFontSize": 15,
+                 "textColor": "#ffffff"
+                 },
+                 {
+                 "order": 5,
+                 "type": "view",
+                 "subType": "seperator"
+                 }
+                 ],
+  "backgroundColor": "#000000",
+  "footerGradient": true,
+  "headerGradient": true,
+  "alpha": 0.3
+}

@@ -8,8 +8,11 @@
 
 import Foundation
 import MediaPlayer
+import SnapKit
 
 final class MobilePlayerControlsView: UIView {
+  let buttonSize = CGSize(width: 40, height: 40)
+  var orderItems = [AnyObject]()
   var controlsHidden: Bool = false {
     // Hide/show controls animated.
     didSet(oldValue) {
@@ -20,30 +23,70 @@ final class MobilePlayerControlsView: UIView {
       }
     }
   }
-  var volumeView = VolumeControlView(frame: CGRectZero)
-  var volumeButton = UIButton(frame: CGRectZero)
-  var customTimeSliderView = CustomTimeSliderView(frame: CGRectZero)
-  let headerView = UIView(frame: CGRectZero)
-  let backgroundImageView = UIImageView(frame: CGRectZero)
+
+  let headerView = UIView()
+  let overlayContainerView = UIView()
+  let footerView = UIView()
+  var volumeView = VolumeControlView()
+  var volumeButton = UIButton()
+  var timeSliderView = TimeSliderView()
+  let backgroundImageView = UIImageView()
   let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
-  let overlayContainerView = UIView(frame: CGRectZero)
-  let footerView = UIView(frame: CGRectZero)
-  let closeButton = UIButton(frame: CGRectZero)
-  let titleLabel = UILabel(frame: CGRectZero)
-  let shareButton = UIButton(frame: CGRectZero)
-  let headerBorderView = UIView(frame: CGRectZero)
-  let playButton = UIButton(frame: CGRectZero)
-  let playbackTimeLabel = UILabel(frame: CGRectZero)
-  let durationLabel = UILabel(frame: CGRectZero)
-  let footerBorderView = UIView(frame: CGRectZero)
+  let closeButton = UIButton()
+  let titleLabel = UILabel()
+  let shareButton = UIButton()
+  let playButton = UIButton()
+  let playbackTimeLabel = UILabel()
+  let durationLabel = UILabel()
+  let remainingLabel = UILabel()
   private let config: MobilePlayerConfig
 
   init(config: MobilePlayerConfig) {
     self.config = config
     super.init(frame: CGRectZero)
+
+    headerView.backgroundColor = config.controlbarConfig.backgroundColor
+    headerView.layer.masksToBounds = true
+    addSubview(headerView)
+    overlayContainerView.backgroundColor = UIColor.clearColor()
+    addSubview(overlayContainerView)
+    footerView.backgroundColor = config.controlbarConfig.backgroundColor
+    footerView.layer.masksToBounds = true
+    addSubview(footerView)
+
+    // Setting view constraints
+    headerView.snp_makeConstraints { (make) -> Void in
+      make.width.equalTo(frame.size.width)
+      make.height.equalTo(buttonSize.height)
+      make.top.equalTo(0)
+    }
+    overlayContainerView.snp_makeConstraints { (make) -> Void in
+      make.top.equalTo(headerView.snp_bottom)
+      make.height.equalTo(self.frame.height - buttonSize.height * 2)
+      make.width.equalTo(self.frame.size.width)
+    }
+    footerView.snp_makeConstraints { (make) -> Void in
+      make.top.equalTo(overlayContainerView.snp_bottom)
+      make.width.equalTo(self.frame.size.width)
+      make.height.equalTo(buttonSize.height)
+    }
+    setLayoutConstraintsWithSkinFile(
+      config.skinDictionary,
+      categorysubType: "controlbar",
+      layout: footerView,
+      isUpdate: false)
+    setLayoutConstraintsWithSkinFile(
+      config.skinDictionary,
+      categorysubType: "header",
+      layout: headerView,
+      isUpdate: false)
     initializeHeaderViews()
     initializeOverlayViews()
     initializeFooterViews()
+  }
+
+  func toggleVolumeView() {
+    volumeView.hidden = !volumeView.hidden
   }
 
   required init(coder aDecoder: NSCoder) {
@@ -51,22 +94,18 @@ final class MobilePlayerControlsView: UIView {
   }
 
   private func initializeHeaderViews() {
-    headerView.backgroundColor = config.headerBackgroundColor
-    addSubview(headerView)
     closeButton.setImage(config.closeButtonConfig.imageName, forState: .Normal)
+    closeButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
     closeButton.tintColor = config.closeButtonConfig.tintColor
     closeButton.backgroundColor = config.closeButtonConfig.backgroundColor
-    headerView.addSubview(closeButton)
     titleLabel.font = config.titleConfig.textFont
     titleLabel.textColor = config.titleConfig.textColor
     titleLabel.backgroundColor = config.titleConfig.backgroundColor
-    headerView.addSubview(titleLabel)
+    titleLabel.textAlignment = .Center
     shareButton.setImage(config.shareButtonConfig.imageName, forState: .Normal)
+    shareButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
     shareButton.tintColor = config.shareButtonConfig.tintColor
     shareButton.backgroundColor = config.shareButtonConfig.backgroundColor
-    headerView.addSubview(shareButton)
-    headerBorderView.backgroundColor = config.headerBorderColor
-    headerView.addSubview(headerBorderView)
   }
 
   private func initializeOverlayViews() {
@@ -74,179 +113,428 @@ final class MobilePlayerControlsView: UIView {
     activityIndicatorView.hidesWhenStopped = true
     addSubview(activityIndicatorView)
     activityIndicatorView.startAnimating()
-    overlayContainerView.backgroundColor = UIColor.clearColor()
-    overlayContainerView.setTranslatesAutoresizingMaskIntoConstraints(false)
-    addSubview(overlayContainerView)
+    activityIndicatorView.snp_makeConstraints { (make) -> Void in
+      make.width.height.equalTo(50)
+      make.center.equalTo(overlayContainerView)
+    }
   }
 
   private func initializeFooterViews() {
-    footerView.backgroundColor = config.controlbarConfig.backgroundColor
-    addSubview(footerView)
     volumeButton.setImage(config.controlbarConfig.volumeButtonImage, forState: .Normal)
     volumeButton.tintColor = config.controlbarConfig.volumeTintColor
+    volumeButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
     volumeButton.backgroundColor = config.controlbarConfig.playButtonBackgroundColor
-    footerView.addSubview(volumeButton)
     playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
     playButton.tintColor = config.controlbarConfig.playButtonTintColor
     playButton.backgroundColor = config.controlbarConfig.playButtonBackgroundColor
-    footerView.addSubview(playButton)
+    playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
     playbackTimeLabel.text = "-:-"
     playbackTimeLabel.textAlignment = .Center
     playbackTimeLabel.font = config.controlbarConfig.timeTextFont
     playbackTimeLabel.textColor = config.controlbarConfig.timeTextColor
     playbackTimeLabel.backgroundColor = config.controlbarConfig.timeBackgroundColor
-    footerView.addSubview(playbackTimeLabel)
     durationLabel.text = "-:-"
     durationLabel.textAlignment = .Center
-    durationLabel.font = config.controlbarConfig.timeTextFont
-    durationLabel.textColor = config.controlbarConfig.timeTextColor
-    durationLabel.backgroundColor = config.controlbarConfig.timeBackgroundColor
-    footerView.addSubview(durationLabel)
-    footerBorderView.backgroundColor = config.footerBorderColor
-    footerView.addSubview(footerBorderView)
-    customTimeSliderView.backgroundColor = config.controlbarConfig.timeSliderBackgroundColor
-    customTimeSliderView.railView.backgroundColor = config.controlbarConfig.timeSliderRailTintColor
-    customTimeSliderView.bufferView.backgroundColor =
+    durationLabel.font = config.controlbarConfig.durationTextFont
+    durationLabel.textColor = config.controlbarConfig.durationTextColor
+    durationLabel.backgroundColor = config.controlbarConfig.durationBackgroundColor
+    remainingLabel.text = "-:-"
+    remainingLabel.textAlignment = .Center
+    remainingLabel.font = config.controlbarConfig.remainingTextFont
+    remainingLabel.textColor = config.controlbarConfig.remainingTextColor
+    remainingLabel.backgroundColor = config.controlbarConfig.remainingBackgroundColor
+    timeSliderView.backgroundColor = config.controlbarConfig.timeSliderBackgroundColor
+    timeSliderView.railView.backgroundColor =
+      config.controlbarConfig.timeSliderRailTintColor
+    timeSliderView.bufferView.backgroundColor =
       config.controlbarConfig.timeSliderBufferTintColor
-    customTimeSliderView.progressView.backgroundColor =
+    timeSliderView.progressView.backgroundColor =
       config.controlbarConfig.timeSliderProgressTintColor
-    customTimeSliderView.thumbView.backgroundColor =
-      config.controlbarConfig.timeSliderThumbTintColor
-    footerView.addSubview(customTimeSliderView)
-    volumeButton.setImage(
-      config.controlbarConfig.volumeButtonImage,
-      forState: .Normal)
-    volumeButton.backgroundColor = config.controlbarConfig.volumeBackgroundColor
-    volumeButton.tintColor = config.controlbarConfig.volumeTintColor
-    footerView.addSubview(volumeButton)
+    timeSliderView.thumbView.backgroundColor = config.controlbarConfig.timeSliderThumbTintColor
+    volumeView.reduceVolumeTintColor = config.controlbarConfig.volumeTintColor
+    volumeView.increaseVolumeTintColor = config.controlbarConfig.volumeTintColor
+    volumeView.backgroundColor = config.controlbarConfig.volumeBackgroundColor
+    volumeView.tintColor = config.controlbarConfig.volumeTintColor
     volumeView.hidden = true
-    addSubview(volumeView)
+    overlayContainerView.addSubview(volumeView)
+    volumeView.snp_makeConstraints { (make) -> Void in
+      make.size.equalTo(CGSizeMake(35, 150))
+      make.right.equalTo(-3)
+      make.bottom.equalTo(-5)
+    }
   }
+}
 
-  override func layoutSubviews() {
-    let size = bounds.size
-    backgroundImageView.sizeToFit()
-    backgroundImageView.center = overlayContainerView.center
-    sendSubviewToBack(backgroundImageView)
-    headerView.frame = CGRect(
-      x: 0,
-      y: controlsHidden ? -config.headerHeight : 0,
-      width: size.width,
-      height: config.headerHeight)
-    headerView.alpha = controlsHidden ? 0 : 1
-    overlayContainerView.frame = CGRect(
-      x: 0,
-      y: controlsHidden ? 0 : config.headerHeight,
-      width: size.width,
-      height: controlsHidden ? size.height: size.height - config.headerHeight - config.footerHeight)
-    if let arrOverlays = overlayContainerView.subviews as? [UIView] {
-      for overlayView in arrOverlays {
-        overlayView.frame = overlayContainerView.bounds
+extension MobilePlayerControlsView {
+
+  private func setLayoutConstraintsWithSkinFile(
+    skinFile: [String: AnyObject],
+    categorysubType: String,
+    layout: UIView,
+    isUpdate: Bool) {
+    if let skin = skinFile as [String: AnyObject]? {
+      if var controlbar = skin[categorysubType] as? NSArray {
+        var arrValues = NSMutableArray()
+        var views: [UIView] = []
+        var skinItemOrders: NSArray = NSArray()
+        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "order", ascending: true)
+        self.addSubview(layout)
+        setBackgroundColorWithLayout(layout, skin: skin)
+        skinItemOrders = controlbar.sortedArrayUsingDescriptors([descriptor])
+        for (index,viewItem) in enumerate(skinItemOrders) {
+          if let element = viewItem["type"] as? String {
+            if element == "view" {
+              if let slider = viewItem["subType"] as? String {
+                if slider == "timeSlider" {
+                  timeSliderCases(viewItem)
+                  views.append(timeSliderView)
+                  layout.addSubview(timeSliderView)
+                }else{
+                  if slider == "seperator" {
+                    let seperator = UIView()
+                    views.append(seperator)
+                    layout.addSubview(seperator)
+                  }else{
+                    let customView = UIView()
+                    viewCases(viewItem, layout: layout)
+                    views.append(customView)
+                    layout.addSubview(customView)
+                  }
+                }
+              }
+            }
+            if element == "label" {
+              if let slider = viewItem["subType"] as? String {
+                if slider == "title" {
+                  views.append(titleLabel)
+                  layout.addSubview(titleLabel)
+                }else{
+                  if slider == "time" {
+                    views.append(playbackTimeLabel)
+                    layout.addSubview(playbackTimeLabel)
+                  }else{
+                    if slider == "remaining" {
+                      views.append(remainingLabel)
+                      layout.addSubview(remainingLabel)
+                    }else{
+                      if slider == "duration" {
+                        views.append(durationLabel)
+                        layout.addSubview(durationLabel)
+                      }else{
+                        let label = UILabel()
+                        labelCases(label, viewItem: viewItem)
+                        views.append(label)
+                        layout.addSubview(label)
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            if element == "button" {
+              if let subType = viewItem["subType"] as? String {
+                if subType == "play" {
+                  views.append(playButton)
+                  layout.addSubview(playButton)
+                }else{
+                  if subType == "volume" {
+                    views.append(volumeButton)
+                    layout.addSubview(volumeButton)
+                  }else{
+                    if subType == "close" {
+                      views.append(closeButton)
+                      layout.addSubview(closeButton)
+                    }else{
+                      if subType == "share" {
+                        views.append(shareButton)
+                        layout.addSubview(shareButton)
+                      }else{
+                        let button = UIButton()
+                        buttonCases(button, viewItem: viewItem)
+                        views.append(button)
+                        layout.addSubview(button)
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        setLayoutPositionWithSkinItems(skinItemOrders, views: views, layout: layout)
       }
     }
-    footerView.frame = CGRect(
-      x: 0,
-      y: size.height - (controlsHidden ? 0 : config.footerHeight),
-      width: size.width,
-      height: config.footerHeight)
-    footerView.alpha = controlsHidden ? 0 : 1
-    activityIndicatorView.sizeToFit()
-    activityIndicatorView.center = overlayContainerView.center
-    layoutHeaderSubviews()
-    layoutFooterSubviews()
-    volumeView.frame = CGRect(
-      x: volumeButton.frame.origin.x,
-      y: footerView.frame.origin.y - 155.0,
-      width: 35.0,
-      height: 150.0)
   }
 
-  func toggleVolumeView() {
-    volumeView.hidden = !volumeView.hidden
-    layoutSubviews()
+  private func createGradiendView(bgColor: String, direction: String) -> CALayer {
+    let colorTop = UIColor(hexString: bgColor).colorWithAlphaComponent(0.0).CGColor
+    let colorBottom = UIColor(hexString: bgColor).colorWithAlphaComponent(1.0).CGColor
+    let gl = CAGradientLayer()
+    gl.colors = [ colorTop, colorBottom]
+    gl.locations = [ 0.0, 1.0]
+    gl.startPoint = CGPoint(x: 0.0, y: 0.0)
+    gl.endPoint = CGPoint(x: 0.0, y: 7.0)
+    if direction == "Down" {
+      gl.transform = CATransform3DMakeRotation((180.0 * CGFloat(M_PI)) / 180.0, 0, 0, 1.0)
+    }
+    gl.frame = CGRect(x: 0.0, y: 0.0, width: 800, height: 40.0)
+    return gl
   }
 
-  private func layoutHeaderSubviews() {
-    let size = headerView.bounds.size
-    closeButton.sizeToFit()
-    let closeButtonSize = CGSize(
-      width: config.headerHeight * closeButton.bounds.aspectRatio + 16,
-      height: config.headerHeight)
-    closeButton.frame = CGRect(origin: CGPointZero, size: closeButtonSize)
-    shareButton.sizeToFit()
-    let shareButtonSize = CGSize(
-      width: config.headerHeight * shareButton.bounds.aspectRatio + 16,
-      height: config.headerHeight)
-    shareButton.frame = CGRect(
-      origin: CGPoint(x: size.width - shareButtonSize.width, y: 0),
-      size: shareButtonSize)
-    titleLabel.frame = CGRect(
-      x: closeButton.bounds.size.width,
-      y: 0,
-      width: size.width - closeButton.bounds.width - shareButton.bounds.width,
-      height: size.height)
-    headerBorderView.frame = CGRect(
-      x: 0,
-      y: size.height - config.headerBorderHeight,
-      width: size.width,
-      height: config.headerBorderHeight)
+  private func getDefaultColorSchema(layout: UIView, skin: [String: AnyObject]) {
+    if let bgColor = skin["backgroundColor"] as? String {
+      if let alpha = skin["alpha"] as? CGFloat {
+        layout.backgroundColor = UIColor(hexString: bgColor).colorWithAlphaComponent(alpha)
+      }else{
+        layout.backgroundColor = UIColor(hexString: bgColor)
+      }
+    }else{
+      layout.backgroundColor = UIColor.clearColor()
+    }
   }
 
-  private func layoutFooterSubviews() {
-    let size = footerView.bounds.size
-    playButton.sizeToFit()
-    let playButtonSize = CGSize(
-      width: config.footerHeight * playButton.bounds.aspectRatio + 16,
-      height: config.footerHeight)
-    playButton.frame = CGRect(origin: CGPointZero, size: playButtonSize)
-    playbackTimeLabel.sizeToFit()
-    let playbackTimeLabelSize = CGSize(
-      width: playbackTimeLabel.bounds.width + 16,
-      height: config.footerHeight)
-    playbackTimeLabel.frame = CGRect(
-      origin: CGPoint(x: playButton.bounds.width, y: 0),
-      size: playbackTimeLabelSize)
-    customTimeSliderView.sizeToFit()
-    let customTimeSliderSize = CGSize(
-      width: size.width - playButton.bounds.width -
-        playbackTimeLabel.bounds.width -
-        durationLabel.bounds.width - volumeButton.bounds.width - 10,
-      height: config.footerHeight)
-    customTimeSliderView.frame = CGRect(
-      origin: CGPoint(x: playButton.bounds.width + playbackTimeLabel.bounds.width + 10, y: 0),
-      size: customTimeSliderSize)
-    self.customTimeSliderView.timeSlider.sizeToFit()
-    let timeSliderSize = CGSize(
-      width: size.width - playButton.bounds.width -
-        playbackTimeLabel.bounds.width - durationLabel.bounds.width,
-      height: config.footerHeight)
-    self.customTimeSliderView.timeSlider.frame = CGRect(
-      origin: CGPoint(x: playButton.bounds.width + playbackTimeLabel.bounds.width, y: 0),
-      size: timeSliderSize)
-    durationLabel.sizeToFit()
-    let durationLabelSize = CGSize(
-      width: durationLabel.bounds.width + 16,
-      height: config.footerHeight)
-    durationLabel.frame = CGRect(
-      origin: CGPoint(
-        x: playButton.bounds.width +
-          playbackTimeLabel.bounds.width +
-          customTimeSliderView.bounds.width + 10,
-        y: 0),
-      size: durationLabelSize)
-    volumeButton.sizeToFit()
-    let volumeButtonSize = CGSize(
-      width: config.footerHeight * volumeButton.bounds.aspectRatio + 16,
-      height: config.footerHeight)
-    volumeButton.frame = CGRect(
-      origin: CGPoint(
-        x: playButton.bounds.width +
-          playbackTimeLabel.bounds.width +
-          customTimeSliderView.bounds.width +
-          durationLabel.bounds.width + 10,
-        y: 0),
-      size: volumeButtonSize)
-    footerBorderView.frame = CGRect(x: 0, y: 0,
-      width: size.width, height: config.footerBorderHeight)
+  private func setBackgroundColorWithLayout(layout: UIView, skin: [String: AnyObject]) {
+    if let footerGradient = skin["footerGradient"] as? Bool {
+      if footerGradient {
+        if let bgColor = skin["backgroundColor"] as? String {
+          footerView.layer.insertSublayer(createGradiendView(bgColor, direction: "Up"), atIndex: 0)
+          footerView.backgroundColor = UIColor.clearColor()
+        }
+      }else{
+        getDefaultColorSchema(layout, skin: skin)
+      }
+    }else{
+      getDefaultColorSchema(layout, skin: skin)
+    }
+    if let headerGradient = skin["headerGradient"] as? Bool {
+      if headerGradient {
+        if let bgColor = skin["backgroundColor"] as? String {
+          headerView.layer.insertSublayer(createGradiendView(bgColor, direction: "Down"), atIndex: 0)
+          headerView.backgroundColor = UIColor.clearColor()
+        }
+      }else {
+        getDefaultColorSchema(layout, skin: skin)
+      }
+    }else{
+      getDefaultColorSchema(layout, skin: skin)
+    }
+  }
+
+  private func viewCases(viewItem: AnyObject, layout: UIView) {
+    if let bgColor = viewItem["backgroundColor"] as? String {
+      if let alpha = viewItem["alpha"] as? CGFloat {
+        layout.backgroundColor = UIColor(hexString: bgColor).colorWithAlphaComponent(alpha)
+      }else{
+        layout.backgroundColor = UIColor(hexString: bgColor)
+      }
+    }else{
+      layout.backgroundColor = UIColor.clearColor()
+    }
+  }
+
+  private func timeSliderCases(viewItem: AnyObject){
+    if let sliderRailRadius = viewItem["railRadius"] as? CGFloat {
+      timeSliderView.railView.layer.cornerRadius = sliderRailRadius
+    }
+    if let sliderRailHeight = viewItem["railHeight"] as? CGFloat {
+      timeSliderView.railHeight = sliderRailHeight
+    }
+    if let thumbRadius = viewItem["thumbRadius"] as? CGFloat {
+      timeSliderView.thumbViewRadius = thumbRadius
+    }
+    if let thumbViewHeight = viewItem["thumbHeight"] as? CGFloat {
+      timeSliderView.thumbHeight = thumbViewHeight
+    }
+    if let thumbViewWidth = viewItem["thumbWidth"] as? CGFloat {
+      timeSliderView.thumbWidth = thumbViewWidth
+    }
+    if let thumbViewBorder = viewItem["thumbBorder"] as? CGFloat {
+      timeSliderView.thumbBorder = thumbViewBorder
+    }
+    if let thumbViewBorderColor = viewItem["thumbBorderColor"] as? String {
+      timeSliderView.thumbBorderColor = UIColor(hexString: thumbViewBorderColor)
+    }
+  }
+
+  private func labelCases(label: UILabel, viewItem: AnyObject) {
+    if let bgColor = viewItem["backgroundColor"] as? String {
+      label.backgroundColor = UIColor(hexString: bgColor)
+    }
+    if let textColor = viewItem["textColor"] as? String {
+      label.textColor = UIColor(hexString: textColor)
+    }
+    if let textColor = viewItem["textColor"] as? String {
+      label.textColor = UIColor(hexString: textColor)
+    }
+    if let textFontSize = viewItem["textFontSize"] as? CGFloat {
+      if let textFont = viewItem["textFont"] as? String {
+        label.font = UIFont(name: textFont, size: textFontSize)
+      }
+    }
+  }
+
+  private func buttonCases(button: UIButton, viewItem: AnyObject) {
+    if let color = viewItem["backgroundColor"] as? String {
+      button.backgroundColor = UIColor(hexString: color)
+    }
+    if let tintColor = viewItem["tintColor"] as? String {
+      button.tintColor = UIColor(hexString: tintColor)
+    }
+    if let img = viewItem["image"] as? String {
+      button.setImage(UIImage(named: img), forState: UIControlState.Normal)
+    }else {
+      if let img = viewItem["playImage"] as? String {
+        button.setImage(UIImage(named: img), forState: UIControlState.Normal)
+      }
+    }
+  }
+
+  private func setLayoutPositionWithSkinItems(
+    skinItemOrders: NSArray,
+    views: [UIView],
+    layout: UIView) {
+    switch skinItemOrders.count {
+    case 1:
+      if let subType = skinItemOrders.objectAtIndex(0)["subType"] as? String {
+        if subType == "timeSlider" || subType == "title" {
+          views[0].snp_makeConstraints { (make) -> Void in
+            make.height.equalTo(layout.snp_height)
+            make.top.equalTo(layout).offset(0)
+            make.left.equalTo(layout.snp_left)
+            make.right.equalTo(layout.snp_right)
+          }
+        }
+      }
+    case 2:
+      for (index, referedView) in enumerate(skinItemOrders) {
+        if index == 0 {
+          if let subType = referedView["subType"] as? String {
+            if subType == "timeSlider" || subType == "title" {
+              views[index].snp_makeConstraints { (make) -> Void in
+                make.height.equalTo(layout.snp_height)
+                make.top.equalTo(layout).offset(0)
+                make.left.equalTo(layout.snp_left)
+                make.right.equalTo(views[index+1].snp_left)
+              }
+            }else{
+              views[index].snp_makeConstraints { (make) -> Void in
+                make.height.equalTo(layout.snp_height)
+                make.width.equalTo(buttonSize.width)
+                make.top.equalTo(layout).offset(0)
+                make.edges.equalTo(layout).offset(0)
+              }
+            }
+          }
+        }else{
+          if let subType = referedView["subType"] as? String {
+            views[index].snp_makeConstraints { (make) -> Void in
+              if subType == "timeSlider" || subType == "title" { } else {
+                make.width.equalTo(buttonSize.width)
+              }
+              make.height.equalTo(layout.snp_height)
+              make.top.equalTo(layout).offset(0)
+              make.left.equalTo(views[index-1].snp_right)
+              make.right.equalTo(layout.snp_right)
+            }
+          }
+        }
+      }
+    default:
+      setLayoutPositionDefaulCaseWithSkinItems(skinItemOrders, views: views, layout: layout)
+    }
+  }
+
+  private func setLayoutPositionDefaulCaseWithSkinItems(
+    skinItemOrders: NSArray,
+    views: [UIView],
+    layout: UIView) {
+    for (index, referedView) in enumerate(skinItemOrders) {
+      if index == 0 {
+        if let subType = referedView["subType"] as? String {
+          if subType == "timeSlider" || subType == "title" {
+            views[index].snp_makeConstraints { (make) -> Void in
+              make.height.equalTo(layout.snp_height)
+              make.top.equalTo(layout).offset(0)
+              make.left.equalTo(layout.snp_left)
+              make.right.equalTo(views[index+1].snp_left)
+            }
+          }else{
+            views[index].snp_makeConstraints { (make) -> Void in
+              make.height.equalTo(layout.snp_height)
+              if let subType = referedView["subType"] as? String {
+                if subType == "seperator" {
+                  if let seperatorWidth = referedView["width"] as? CGFloat {
+                    make.width.equalTo(seperatorWidth)
+                  }else{
+                    make.width.equalTo(15)
+                  }
+                }else{
+                  make.width.equalTo(buttonSize.width)
+                }
+              }
+              make.top.equalTo(layout).offset(0)
+              make.edges.equalTo(layout).offset(0)
+            }
+          }
+        }
+      }else{
+        if let subType = referedView["subType"] as? String {
+          if subType == "timeSlider" || subType == "title" {
+            views[index].snp_makeConstraints { (make) -> Void in
+              make.height.equalTo(layout.snp_height)
+              make.top.equalTo(layout).offset(0)
+              make.left.equalTo(views[index-1].snp_right)
+              if index == skinItemOrders.count - 1 {
+                make.right.equalTo(layout.snp_right)
+              }else{
+                make.right.equalTo(views[index+1].snp_left)
+              }
+            }
+          }else{
+            views[index].snp_makeConstraints { (make) -> Void in
+              make.height.equalTo(layout.snp_height)
+              if let subType = referedView["subType"] as? String {
+                if subType == "seperator" {
+                  if let seperatorWidth = referedView["width"] as? CGFloat {
+                    make.width.equalTo(seperatorWidth)
+                  }else{
+                    make.width.equalTo(15)
+                  }
+                }else{
+                  make.width.equalTo(buttonSize.width)
+                }
+              }
+              make.top.equalTo(layout).offset(0)
+              if index == skinItemOrders.count - 1 {
+                make.left.equalTo(views[index-1].snp_right)
+                make.right.equalTo(layout.snp_right)
+              }else{
+                make.left.equalTo(views[index-1].snp_right)
+                make.right.equalTo(views[index+1].snp_left)
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  func updateConstraintsWithLayout(frame: CGRect) {
+    self.frame = frame
+    headerView.snp_updateConstraints { (make) -> Void in
+      make.width.equalTo(frame.size.width)
+      make.height.equalTo(buttonSize.height)
+      make.top.equalTo(0)
+    }
+    overlayContainerView.snp_updateConstraints { (make) -> Void in
+      make.top.equalTo(headerView.snp_bottom)
+      make.height.equalTo(frame.height - buttonSize.height * 2)
+      make.width.equalTo(frame.size.width)
+    }
+    footerView.snp_updateConstraints { (make) -> Void in
+      make.top.equalTo(overlayContainerView.snp_bottom)
+      make.width.equalTo(frame.size.width)
+      make.height.equalTo(buttonSize.height)
+    }
   }
 }

@@ -25,6 +25,7 @@ public struct MobilePlayerConfig {
   public var footerBorderHeight = CGFloat(1)
   public var footerBackgroundColor = UIColor(white: 0, alpha: 0.7)
   public var footerBorderColor = UIColor(white: 1, alpha: 0.2)
+  public var skinDictionary = [String: AnyObject]()
 
   // MARK: - General Callbacks
   var playCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
@@ -49,23 +50,24 @@ public struct MobilePlayerConfig {
   }
 
   public init(dictionary: [String: AnyObject]) {
-    if let controlbarConfigDictionary = dictionary["controlbar"] as? [String: AnyObject] {
-      controlbarConfig = ControlbarConfig(dictionary: controlbarConfigDictionary)
+    skinDictionary = dictionary
+    if let controlbarConfigArray = dictionary["controlbar"] as? [[String:AnyObject]] {
+      controlbarConfig = ControlbarConfig(array: controlbarConfigArray)
     } else {
       controlbarConfig = ControlbarConfig()
     }
-    if let shareConfigDictionary = dictionary["share"] as? [String: AnyObject] {
-      shareButtonConfig = ShareButtonConfig(dictionary: shareConfigDictionary)
+    if let shareConfigArray = dictionary["header"] as? [[String:AnyObject]] {
+      shareButtonConfig = ShareButtonConfig(array: shareConfigArray)
     } else {
       shareButtonConfig = ShareButtonConfig()
     }
-    if let titleConfigDictionary = dictionary["title"] as? [String: AnyObject] {
-      titleConfig = TitleConfig(dictionary: titleConfigDictionary)
+    if let titleConfigArray = dictionary["header"] as? [[String:AnyObject]] {
+      titleConfig = TitleConfig(array: titleConfigArray)
     } else {
       titleConfig = TitleConfig()
     }
-    if let closeButtonConfigDictionary = dictionary["closeButton"] as? [String: AnyObject] {
-      closeButtonConfig = CloseButtonConfig(dictionary: closeButtonConfigDictionary)
+    if let closeButtonConfigArray = dictionary["header"] as? [[String:AnyObject]] {
+      closeButtonConfig = CloseButtonConfig(array: closeButtonConfigArray)
     } else {
       closeButtonConfig = CloseButtonConfig()
     }

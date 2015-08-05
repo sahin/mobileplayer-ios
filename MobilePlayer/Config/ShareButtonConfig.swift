@@ -17,15 +17,24 @@ public struct ShareButtonConfig {
 
   public init() {}
 
-  public init(dictionary: [String: AnyObject]) {
-    if let imageName = dictionary["image"] as? String {
-      self.imageName = MobilePlayerConfig.loadImage(named: imageName)
-    }
-    if let tintColor = dictionary["tintColor"] as? String {
-      self.tintColor = UIColor(hexString: tintColor)
-    }
-    if let backgroundColor = dictionary["backgroundColor"] as? String {
-      self.backgroundColor = UIColor(hexString: backgroundColor)
+  public init(array: [[String:AnyObject]]) {
+    for item in array {
+      if let subtype = item["subType"] as? String {
+        switch subtype {
+        case "share":
+          if let imageNameValue = item["image"] as? String {
+            self.imageName = MobilePlayerConfig.loadImage(named: imageNameValue)
+          }
+          if let tintColorHex = item["tintColor"] as? String {
+            self.tintColor = UIColor(hexString: tintColorHex)
+          }
+          if let backgroundColorValue = item["backgroundColor"] as? String {
+            self.backgroundColor = UIColor(hexString: backgroundColorValue)
+          }
+        default:
+          println("")
+        }
+      }
     }
   }
 }

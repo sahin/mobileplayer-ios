@@ -42,6 +42,11 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   // Volume View
   private var volumeView = VolumeControlView()
 
+  override public func viewWillTransitionToSize(size: CGSize,
+    withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+      controlsView.updateConstraintsWithLayout(CGRectMake(0.0, 0.0, size.width, size.height))
+  }
+
   // MARK: - Initialization
 
   public init(contentURL: NSURL, config: MobilePlayerConfig = globalConfiguration) {
@@ -166,15 +171,15 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       self,
       action: "toggleVolumeControl",
       forControlEvents: .TouchUpInside)
-    controlsView.customTimeSliderView.timeSlider.addTarget(
+    controlsView.timeSliderView.timeSlider.addTarget(
       self,
       action: "timeShiftDidBegin",
       forControlEvents: .TouchDown)
-    controlsView.customTimeSliderView.timeSlider.addTarget(
+    controlsView.timeSliderView.timeSlider.addTarget(
       self,
       action: "goToTimeSliderTime",
       forControlEvents: .ValueChanged)
-    controlsView.customTimeSliderView.timeSlider.addTarget(
+    controlsView.timeSliderView.timeSlider.addTarget(
       self,
       action: "timeShiftDidEnd",
       forControlEvents: .TouchUpInside | .TouchUpOutside | .TouchCancel)
@@ -228,7 +233,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   public override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
-    controlsView.frame = view.bounds
+    controlsView.updateConstraintsWithLayout(view.bounds)
+    //controlsView.frame = view.bounds
   }
 
   public override func viewWillDisappear(animated: Bool) {
@@ -269,14 +275,23 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   private func updateTimeSlider() {
-    controlsView.customTimeSliderView.maximumValue = Float(moviePlayer.duration)
-    controlsView.customTimeSliderView.value = Float(moviePlayer.currentPlaybackTime)
+    controlsView.timeSliderView.maximumValue = Float(moviePlayer.duration)
+    controlsView.timeSliderView.value = Float(moviePlayer.currentPlaybackTime)
   }
 
   private func updateTimeLabel(label: UILabel, time: NSTimeInterval) {
     if time.isNaN || time == NSTimeInterval.infinity {
       return
     }
+    let remainingTime = moviePlayer.duration - moviePlayer.currentPlaybackTime
+    let remainingHours = UInt(remainingTime / 3600)
+    let remainingMinutes = UInt((remainingTime / 60) % 60)
+    let remainingSeconds = UInt(remainingTime % 60)
+    var remainingTimeLabelText = NSString(
+      format: "%02lu:%02lu",
+      remainingMinutes,
+      remainingSeconds) as String
+    controlsView.remainingLabel.text = checkTimeLabelText(remainingTimeLabelText)
     let hours = UInt(time / 3600)
     let minutes = UInt((time / 60) % 60)
     let seconds = UInt(time % 60)
@@ -366,6 +381,8 @@ extension MobilePlayerViewController {
     if state == .Playing || state == .Interrupted {
       doFirstPlaySetupIfNeeded()
       controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage, forState: .Normal)
+      controlsView.playButton.tintColor = config.controlbarConfig.pauseButtonTintColor
+      controlsView.playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
       if !controlsView.controlsHidden {
         resetHideControlsTimer()
       }
@@ -379,10 +396,14 @@ extension MobilePlayerViewController {
             config.controlbarConfig.playButtonImage,
             forState: .Normal
           )
+          controlsView.playButton.tintColor = config.controlbarConfig.playButtonTintColor
+          controlsView.playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
         }
       }
     } else {
       controlsView.playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
+      controlsView.playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
+      controlsView.playButton.tintColor = config.controlbarConfig.playButtonTintColor
       hideControlsTimer?.invalidate()
       controlsView.controlsHidden = false
       if let pauseViewController = config.pauseViewController {
@@ -428,8 +449,8 @@ extension MobilePlayerViewController {
   }
 
   final func goToTimeSliderTime() {
-    var timeVal = controlsView.customTimeSliderView.value
-    moviePlayer.currentPlaybackTime = NSTimeInterval(controlsView.customTimeSliderView.value)
+    var timeVal = controlsView.timeSliderView.value
+    moviePlayer.currentPlaybackTime = NSTimeInterval(controlsView.timeSliderView.value)
   }
 
   final func goToCustomTimeSliderWithTime(notification: NSNotification) {
@@ -462,9 +483,10 @@ extension MobilePlayerViewController {
   }
 
   public final func updateBufferInterface() {
-    if let bufferCalculate = progressBarBufferPercentWithMoviePlayer(moviePlayer) as? NSTimeInterval {
+    if let
+      bufferCalculate = progressBarBufferPercentWithMoviePlayer(moviePlayer) as? NSTimeInterval {
       if moviePlayer.duration > 0 {
-        controlsView.customTimeSliderView.refreshBufferPercentRatio(
+        controlsView.timeSliderView.refreshBufferPercentRatio(
           bufferRatio: CGFloat(bufferCalculate),
           totalDuration: CGFloat(moviePlayer.duration))
       }
@@ -472,11 +494,11 @@ extension MobilePlayerViewController {
   }
 
   public final func updateTimeSliderViewInterface(){
-    controlsView.customTimeSliderView.refreshVideoProgressPercentRaito(
+    controlsView.timeSliderView.refreshVideoProgressPercentRaito(
       videoRaito: CGFloat(moviePlayer.currentPlaybackTime),
       totalDuration: CGFloat(moviePlayer.duration)
     )
-    controlsView.customTimeSliderView.refreshCustomTimeSliderPercentRatio()
+    controlsView.timeSliderView.refreshCustomTimeSliderPercentRatio()
   }
 
   public final func updatePlaybackTimeInterface() {

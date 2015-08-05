@@ -1,0 +1,99 @@
+{
+  "header": [
+             {
+             "order": 0,
+             "image": "MLCloseButton",
+             "tintColor": "#ffffff",
+             "type": "button",
+             "subType": "close"
+             },
+             {
+             "order": 1,
+             "textFont": "HelveticaNeue",
+             "textSize": 16,
+             "textColor": "#ffffff",
+             "type": "label",
+             "subType": "title"
+             },
+             {
+             "order": 2,
+             "image": "MLShareButton",
+             "tintColor": "#ffffff",
+             "type": "button",
+             "subType": "share"
+             }
+             ],
+  "controlbar": [
+                 {
+                 "order": 0,
+                 "playImage": "MLPlayButton",
+                 "playTintColor": "#ffffff",
+                 "pauseImage": "MLPauseButton",
+                 "pauseTintColor": "#ffffff",
+                 "type": "button",
+                 "subType": "play"
+                 },
+                 {
+                 "order": 1,
+                 "textFont": "HelveticaNeue",
+                 "textFontSize": 15,
+                 "textColor": "#ffffff",
+                 "type": "label",
+                 "subType": "time"
+                 },
+                 {
+                 "type": "view",
+                 "subType": "seperator",
+                 "order": 2
+                 },
+                 {
+                 "order": 3,
+                 "type": "view",
+                 "subType": "timeSlider",
+                 "railRadius": 5,
+                 "railHeight": 10,
+                 "railTintColor": "#cccccc",
+                 "bufferTintColor": "#9e9b9a",
+                 "progressTintColor": "#ae3f1c",
+                 "thumbTintColor": "#e54918",
+                 "thumbRadius": 12.5,
+                 "thumbHeight": 25,
+                 "thumbWidth": 25,
+                 "thumbBorder": 0
+                 },
+                 {
+                 "order": 4,
+                 "type": "view",
+                 "subType": "seperator"
+                 },
+                 {
+                 "order": 5,
+                 "type": "label",
+                 "subType": "remaining",
+                 "textFont": "HelveticaNeue",
+                 "textFontSize": 15,
+                 "textColor": "#ffffff"
+                 },
+                 {
+                 "order": 6,
+                 "textFont": "HelveticaNeue",
+                 "textFontSize": 15,
+                 "textColor": "#ffffff",
+                 "type": "label",
+                 "subType": "duration"
+                 },
+                 {
+                 "order": 7,
+                 "railTintColor": "#cccccc",
+                 "progressTintColor": "#0000ff",
+                 "thumbTintColor": "#c5c5c5",
+                 "tintColor": "#ffffff",
+                 "image": "MLVolumeButton",
+                 "backgroundColor": "#ffffff",
+                 "type": "button",
+                 "subType": "volume"
+                 }
+                 ],
+  "backgroundColor": "#000000",
+  "alpha": 0.3
+}
