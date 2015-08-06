@@ -5,7 +5,9 @@ machine:
 dependencies:
   pre:
     - brew update
+    - gem install cocoapods
     - brew install swiftlint
+
 
 test:
   override:
