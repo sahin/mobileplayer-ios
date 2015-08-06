@@ -4,7 +4,7 @@
 use_frameworks!
 
 target 'MobilePlayer' do
-pod 'SnapKit', '~> '0.12.0'
+pod 'SnapKit', '~> 0.12.0'
 end
 
 target 'MobilePlayerTests', :exclusive => true do
