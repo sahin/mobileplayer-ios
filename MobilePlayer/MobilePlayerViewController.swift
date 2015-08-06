@@ -9,23 +9,30 @@
 import UIKit
 import MediaPlayer
 
-public enum PlayerState: Int {
-  case Buffering
-  case Idle
-  case Complete
-  case Paused
-  case Playing
-  case Error
-  case Loading
-  case Stalled
-  case Unknown
-  case SeekingBackward
-  case SeekingForward
-}
-private(set) var playerStateHistory: [PlayerState] = []
 private var globalConfiguration = MobilePlayerConfig()
 
 public class MobilePlayerViewController: MPMoviePlayerViewController {
+
+  public enum State {
+    case Buffering
+    case Idle
+    case Complete
+    case Paused
+    case Playing
+    case Error
+    case Loading
+    case Stalled
+    case Unknown
+    case SeekingBackward
+    case SeekingForward
+  }
+  public private(set) var previousState: State = .Unknown
+  public private(set) var state: State = .Unknown {
+    didSet(oldValue) {
+      previousState = oldValue
+    }
+  }
+
   public class var globalConfig: MobilePlayerConfig { return globalConfiguration }
   public var config: MobilePlayerConfig
 
@@ -84,7 +91,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     self.config = config
     controlsView = MobilePlayerControlsView(config: config)
     super.init(contentURL: NSURL())
-    addPlayerHistoryItem(PlayerState.Loading)
+    state = State.Loading
     Youtube.h264videosWithYoutubeURL(youTubeURL, completion: { videoInfo, error in
       if let
         videoURLString = videoInfo?["url"] as? String,
@@ -114,7 +121,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   private func initializeMobilePlayerViewController() {
-    playerStateHistory.reserveCapacity(2)
     edgesForExtendedLayout = .None
     moviePlayer.scalingMode = .AspectFit
     moviePlayer.controlStyle = .None
@@ -370,8 +376,8 @@ extension MobilePlayerViewController {
   }
 
   func togglePlay() {
-    let state = moviePlayer.playbackState
-    if state == .Playing || state == .Interrupted {
+    let playerState = moviePlayer.playbackState
+    if playerState == .Playing || playerState == .Interrupted {
       moviePlayer.pause()
     } else {
       if isFirstPlayPreRoll {
@@ -392,50 +398,11 @@ extension MobilePlayerViewController {
     moviePlayer.play()
   }
 
-  private func setPlayerStatesWithMoviePlayer(player: MPMoviePlayerController, bufferValue: NSTimeInterval?) {
-    // MPMoviePlaybackState
-    switch (player.playbackState){
-    case MPMoviePlaybackState.Interrupted:
-      addPlayerHistoryItem(PlayerState.Error)
-    case MPMoviePlaybackState.Paused:
-      addPlayerHistoryItem(PlayerState.Paused)
-    case MPMoviePlaybackState.Playing:
-      addPlayerHistoryItem(PlayerState.Playing)
-    case MPMoviePlaybackState.SeekingBackward:
-      addPlayerHistoryItem(PlayerState.SeekingBackward)
-    case MPMoviePlaybackState.SeekingForward:
-      addPlayerHistoryItem(PlayerState.SeekingForward)
-    case MPMoviePlaybackState.Stopped:
-      addPlayerHistoryItem(PlayerState.Complete)
-    default:
-      break
-    }
-    // MPMoviePlaybackState
-    switch (player.loadState){
-    case MPMovieLoadState.Playable:
-      addPlayerHistoryItem(PlayerState.Idle)
-    case MPMovieLoadState.PlaythroughOK:
-      addPlayerHistoryItem(PlayerState.Idle)
-    case MPMovieLoadState.Stalled:
-      addPlayerHistoryItem(PlayerState.Stalled)
-    case MPMovieLoadState.Unknown:
-      addPlayerHistoryItem(PlayerState.Unknown)
-    default:
-      break
-    }
-    // Buffering State
-    if let bValue = bufferValue {
-      if Int(bValue) != Int(moviePlayer.duration) {
-        //addPlayerHistoryItem(PlayerState.Buffering)
-      }
-    }
-  }
-
   final func handleMoviePlayerPlaybackStateDidChangeNotification() {
-    let state = moviePlayer.playbackState
-    setPlayerStatesWithMoviePlayer(moviePlayer, bufferValue: bufferValue)
+    var playerState = moviePlayer.playbackState
+    state = StateHelper.stateForPlayer(moviePlayer)
     updatePlaybackTimeInterface()
-    if state == .Playing || state == .Interrupted {
+    if playerState == .Playing || playerState == .Interrupted {
       doFirstPlaySetupIfNeeded()
       controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage, forState: .Normal)
       controlsView.playButton.tintColor = config.controlbarConfig.pauseButtonTintColor
@@ -473,8 +440,8 @@ extension MobilePlayerViewController {
   }
 
   final func hideControlsIfPlaying() {
-    let state = moviePlayer.playbackState
-    if state == .Playing || state == .Interrupted {
+    let playerState = moviePlayer.playbackState
+    if playerState == .Playing || playerState == .Interrupted {
       controlsView.controlsHidden = controlsView.volumeView.hidden
     }
   }
@@ -500,8 +467,8 @@ extension MobilePlayerViewController {
   }
 
   final func timeShiftDidBegin() {
-    let state = moviePlayer.playbackState
-    wasPlayingBeforeTimeShift = (state == .Playing || state == .Interrupted)
+    let playerState = moviePlayer.playbackState
+    wasPlayingBeforeTimeShift = (playerState == .Playing || playerState == .Interrupted)
     moviePlayer.pause()
   }
 
@@ -588,35 +555,6 @@ extension MobilePlayerViewController {
       nc.popViewControllerAnimated(true)
     } else {
       dismissViewControllerAnimated(true, completion: nil)
-    }
-  }
-}
-
-// MARK: - PlayerStateHistory
-
-extension MobilePlayerViewController {
-
-  private func addPlayerHistoryItem(state: PlayerState) {
-    if playerStateHistory.count > 1 {
-      playerStateHistory.insert(state, atIndex: 0)
-      playerStateHistory.removeLast()
-    } else {
-      playerStateHistory.append(state)
-    }
-  }
-
-  public func getStateAtHistoyCount() -> Int {
-    return playerStateHistory.count
-  }
-
-  /**
-    The latest state then loaded into the directory index 0
-  */
-  public func getStateAtHistory(index: Int) -> PlayerState? {
-    if playerStateHistory.count <= index {
-      return nil
-    }else{
-      return playerStateHistory[index]
     }
   }
 }
