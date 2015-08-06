@@ -9,7 +9,7 @@ end
 
 target 'MobilePlayerTests’, :exclusive => true do
 pod 'SnapKit', '~> 0.12.0'
-pod 'KIF', '~> 3.0'
+pod 'KIF', '~> 3.0', :configurations => ['Debug']
 end
 
 target 'MobilePlayerExample' do
