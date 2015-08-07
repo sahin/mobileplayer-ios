@@ -37,6 +37,8 @@
 		C3A9AF031B0491B500D0C842 /* MobilePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MobilePlayer.framework */; };
 		C3A9AF041B0491B500D0C842 /* MobilePlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MobilePlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3A9AF0D1B049A4D00D0C842 /* Images.xcassets */; };
+		C3BEBCC81B7436040015F6D1 /* URLHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BEBCC71B7436040015F6D1 /* URLHelper.swift */; };
+		C3BEBCCA1B743AF40015F6D1 /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = C3BEBCC91B743AF40015F6D1 /* test.mp4 */; };
 		C3E643B21B16751B0017DBE6 /* TitleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643B11B16751B0017DBE6 /* TitleConfig.swift */; };
 		C3E643B41B16798A0017DBE6 /* CloseButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */; };
 		CE554D551AFE6CCD00DAC7E9 /* MobilePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = CE554D541AFE6CCD00DAC7E9 /* MobilePlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -129,6 +131,8 @@
 		C3A9AEF31B048B5700D0C842 /* MobilePlayerExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobilePlayerExampleTests.swift; sourceTree = "<group>"; };
 		C3A9AF0D1B049A4D00D0C842 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C3ADD7B61B6C327E00E82C3B /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "Pods/../build/Debug-iphoneos/Pods-MobilePlayerExample/SnapKit.framework"; sourceTree = "<group>"; };
+		C3BEBCC71B7436040015F6D1 /* URLHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLHelper.swift; sourceTree = "<group>"; };
+		C3BEBCC91B743AF40015F6D1 /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		C3E643B11B16751B0017DBE6 /* TitleConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleConfig.swift; sourceTree = "<group>"; };
 		C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseButtonConfig.swift; sourceTree = "<group>"; };
 		CE554D4F1AFE6CCD00DAC7E9 /* MobilePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MobilePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -229,6 +233,7 @@
 		C3A9AEDB1B048B5600D0C842 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C3BEBCC91B743AF40015F6D1 /* test.mp4 */,
 				C3A9AEDC1B048B5600D0C842 /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -308,6 +313,7 @@
 				CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */,
 				CE554D6E1AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift */,
 				C38E86A71B73EDAC0073B660 /* StateHelper.swift */,
+				C3BEBCC71B7436040015F6D1 /* URLHelper.swift */,
 				CE554D751AFE6EE400DAC7E9 /* Images.xcassets */,
 				CE554D521AFE6CCD00DAC7E9 /* Supporting Files */,
 			);
@@ -524,6 +530,7 @@
 				C384AB271B6C3BB000D5B243 /* All.json in Resources */,
 				C305DED81B21068700DD9632 /* Minimal.json in Resources */,
 				C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */,
+				C3BEBCCA1B743AF40015F6D1 /* test.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -767,6 +774,7 @@
 				C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */,
 				C3A406A21B278B5A00D1833D /* CGRect+LayoutHelper.swift in Sources */,
 				C3A406AF1B27AA8C00D1833D /* UIColor+Extension.swift in Sources */,
+				C3BEBCC81B7436040015F6D1 /* URLHelper.swift in Sources */,
 				C3E643B41B16798A0017DBE6 /* CloseButtonConfig.swift in Sources */,
 				CE554D721AFE6EBB00DAC7E9 /* MobilePlayerControlsView.swift in Sources */,
 			);
