@@ -29,11 +29,9 @@ class PlayerStateTest: KIFTestCase {
 
   override func afterEach() { }
 
-  func testPlayerStates() {
-    loadingStateTest()
-  }
+  #if DEBUG
 
-  func loadingStateTest() {
+  func testloadingStateTest() {
     let expectation: XCTestExpectation = expectationWithDescription("LoadingState")
     expectation.fulfill()
     if let player: UILabel = tester.waitForViewWithAccessibilityLabel("PlayerState") as? UILabel {
@@ -117,5 +115,7 @@ class PlayerStateTest: KIFTestCase {
   func componentsWithString(str: String) -> [String] {
     return str.componentsSeparatedByString("-") as [String]
   }
+
+  #endif
 
 }
