@@ -400,6 +400,7 @@ extension MobilePlayerViewController {
   final func handleMoviePlayerPlaybackStateDidChangeNotification() {
     var playerState = moviePlayer.playbackState
     state = StateHelper.stateForPlayer(moviePlayer)
+    controlsView.playerStateLabel.text = NSString(format: "%d-%d", state.hashValue, previousState.hashValue) as String
     updatePlaybackTimeInterface()
     if playerState == .Playing || playerState == .Interrupted {
       doFirstPlaySetupIfNeeded()

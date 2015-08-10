@@ -7,53 +7,120 @@
 //
 
 import UIKit
-import XCTest
-import KIF
 import MobilePlayer
+import KIF
 
 class PlayerStateTest: KIFTestCase {
-  let screenSize: CGRect = UIScreen.mainScreen().bounds
   var tester: KIFUITestActor {
     get {
       return KIFUITestActor(inFile: __FILE__, atLine: __LINE__, delegate: self)
     }
   }
-  let fileURL = NSBundle(forClass: PlayerStateTest.self).URLForResource(
-    "Skin", withExtension:"json")!
 
   override func setUp() {
     super.setUp()
+  }
+
+  override func tearDown() {
+    super.tearDown()
   }
 
   override func beforeEach() { }
 
   override func afterEach() { }
 
-  func testPlayPauseStateTest() {
-    let testURL = NSURL(string: "https://www.youtube.com/watch?v=ZyIVaZXDhho")!
-    let expectation: XCTestExpectation = expectationWithDescription("PlayAndPauseTap")
-    // Setup test video
-    let player = MobilePlayerViewController(
-      youTubeURL: testURL,
-      configFileURL: fileURL
-    )
-    expectation.fulfill()
-    waitForExpectationsWithTimeout(10, handler: nil)
-    tester.waitForTimeInterval(2)
-    tester.tapScreenAtPoint(CGPointMake(10.0, screenSize.height - 20))
-    tester.waitForTimeInterval(2)
-    tester.tapScreenAtPoint(CGPointMake(10.0, screenSize.height - 20))
-    tester.waitForTimeInterval(5)
+  func testPlayerStates() {
+    loadingStateTest()
+  }
 
-    /*
-    if let state = player.getStateAtHistory(0)?.hashValue {
-      debugPrintln(state)
-      if state != 4 {
-        XCTFail("Play and pause state not working!")
-      }else{
-        debugPrintln("test ok")
+  func loadingStateTest() {
+    let expectation: XCTestExpectation = expectationWithDescription("LoadingState")
+    expectation.fulfill()
+    if let player: UILabel = tester.waitForViewWithAccessibilityLabel("PlayerState") as? UILabel {
+      tester.waitForTimeInterval(1.5)
+      if let str = player.text as String? {
+        let items = componentsWithString(str)
+        var state = items.first?.toInt()
+        var previousState = items.last?.toInt()
+        if let previousState = previousState as Int? {
+          debugPrintln(previousState)
+          println("Loading state : \(previousState)")
+          XCTAssertEqual(previousState, 6, "Not changed loading state")
+          seekingForwardTest()
+        }
       }
     }
-    */
   }
+
+  func seekingForwardTest() {
+    let expectation: XCTestExpectation = expectationWithDescription("ForwardState")
+    expectation.fulfill()
+    tester.waitForTimeInterval(0.01)
+    tester.tapViewWithAccessibilityLabel("Play") // playing
+    tester.swipeViewWithAccessibilityLabel("Thumb", inDirection: KIFSwipeDirection.Right)
+    if let player: UILabel = tester.waitForViewWithAccessibilityLabel("PlayerState") as? UILabel {
+      if let str = player.text as String? {
+        let items = componentsWithString(str)
+        var state = items.first?.toInt()
+        var previousState = items.last?.toInt()
+        if let previousState = previousState as Int? {
+          println("Forward state : \(previousState)")
+          XCTAssertEqual(previousState, 10, "Not changed forward seeking state")
+          seekingBackwardTest()
+        }
+      }
+    }
+  }
+
+  func seekingBackwardTest() {
+    let expectation: XCTestExpectation = expectationWithDescription("BackwardState")
+    expectation.fulfill()
+    tester.waitForTimeInterval(1)
+    tester.swipeViewWithAccessibilityLabel("Thumb", inDirection: KIFSwipeDirection.Left)
+    if let player: UILabel = tester.waitForViewWithAccessibilityLabel("PlayerState") as? UILabel {
+      if let str = player.text as String? {
+        let items = componentsWithString(str)
+        var state = items.first?.toInt()
+        var previousState = items.last?.toInt()
+        if let previousState = previousState as Int? {
+          println("Backward state : \(previousState) - \(state)")
+          XCTAssertEqual(previousState, 2, "Not changed backward seeking state")
+          playPauseStateTests()
+        }
+      }
+    }
+  }
+
+  func playPauseStateTests() {
+    let expectation: XCTestExpectation = expectationWithDescription("PlayAndPauseState")
+    expectation.fulfill()
+    if let player: UILabel = tester.waitForViewWithAccessibilityLabel("PlayerState") as? UILabel {
+      tester.tapViewWithAccessibilityLabel("Play") // playing
+      tester.waitForTimeInterval(1)
+      tester.tapViewWithAccessibilityLabel("Play") // paused
+      tester.waitForTimeInterval(1)
+      tester.tapViewWithAccessibilityLabel("Play") // playing
+      tester.waitForTimeInterval(1)
+      tester.tapViewWithAccessibilityLabel("Play") // paused
+      tester.waitForTimeInterval(1)
+      if let str = player.text as String? {
+        let items = componentsWithString(str)
+        var state = items.first?.toInt()
+        var previousState = items.last?.toInt()
+        println("Play-Pause state : \(state)-\(previousState)")
+        if let state = state as Int? {
+          XCTAssertEqual(state, 4, "Not changed playing state")
+        }
+        if let previousState = previousState as Int? {
+          XCTAssertEqual(previousState, 3, "Not changed paused state")
+        }
+      }
+    }
+    waitForExpectationsWithTimeout(10, handler: nil)
+  }
+
+  func componentsWithString(str: String) -> [String] {
+    return str.componentsSeparatedByString("-") as [String]
+  }
+
 }
