@@ -173,11 +173,6 @@ final class MobilePlayerControlsView: UIView {
       make.right.equalTo(-3)
       make.bottom.equalTo(-5)
     }
-    playerStateLabel.snp_makeConstraints { (make) -> Void in
-      make.size.equalTo(CGSizeMake(200, 30))
-      make.left.equalTo(10)
-      make.bottom.equalTo(-30)
-    }
   }
 }
 
