@@ -43,8 +43,6 @@ class PlayerStateTest: KIFTestCase {
         var state = items.first?.toInt()
         var previousState = items.last?.toInt()
         if let previousState = previousState as Int? {
-          debugPrintln(previousState)
-          println("Loading state : \(previousState)")
           XCTAssertEqual(previousState, 6, "Not changed loading state")
           seekingForwardTest()
         }
@@ -64,7 +62,6 @@ class PlayerStateTest: KIFTestCase {
         var state = items.first?.toInt()
         var previousState = items.last?.toInt()
         if let previousState = previousState as Int? {
-          println("Forward state : \(previousState)")
           XCTAssertEqual(previousState, 10, "Not changed forward seeking state")
           seekingBackwardTest()
         }
@@ -83,7 +80,6 @@ class PlayerStateTest: KIFTestCase {
         var state = items.first?.toInt()
         var previousState = items.last?.toInt()
         if let previousState = previousState as Int? {
-          println("Backward state : \(previousState) - \(state)")
           XCTAssertEqual(previousState, 2, "Not changed backward seeking state")
           playPauseStateTests()
         }
@@ -107,7 +103,6 @@ class PlayerStateTest: KIFTestCase {
         let items = componentsWithString(str)
         var state = items.first?.toInt()
         var previousState = items.last?.toInt()
-        println("Play-Pause state : \(state)-\(previousState)")
         if let state = state as Int? {
           XCTAssertEqual(state, 4, "Not changed playing state")
         }
