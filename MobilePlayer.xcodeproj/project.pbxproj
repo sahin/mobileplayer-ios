@@ -35,6 +35,7 @@
 		C3A9AF031B0491B500D0C842 /* MobilePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MobilePlayer.framework */; };
 		C3A9AF041B0491B500D0C842 /* MobilePlayer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MobilePlayer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C3A9AF0D1B049A4D00D0C842 /* Images.xcassets */; };
+		C3BABE2F1B7A804100BBF7C7 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C3BABE2E1B7A804100BBF7C7 /* logo.png */; };
 		C3E643B21B16751B0017DBE6 /* TitleConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643B11B16751B0017DBE6 /* TitleConfig.swift */; };
 		C3E643B41B16798A0017DBE6 /* CloseButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */; };
 		CE554D551AFE6CCD00DAC7E9 /* MobilePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = CE554D541AFE6CCD00DAC7E9 /* MobilePlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -118,6 +119,7 @@
 		C3A9AEF31B048B5700D0C842 /* MobilePlayerExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobilePlayerExampleTests.swift; sourceTree = "<group>"; };
 		C3A9AF0D1B049A4D00D0C842 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C3ADD7B61B6C327E00E82C3B /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "Pods/../build/Debug-iphoneos/Pods-MobilePlayerExample/SnapKit.framework"; sourceTree = "<group>"; };
+		C3BABE2E1B7A804100BBF7C7 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Logo/logo.png; sourceTree = "<group>"; };
 		C3E643B11B16751B0017DBE6 /* TitleConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleConfig.swift; sourceTree = "<group>"; };
 		C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloseButtonConfig.swift; sourceTree = "<group>"; };
 		CE554D4F1AFE6CCD00DAC7E9 /* MobilePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MobilePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -243,6 +245,7 @@
 		C3A9AF0A1B0497BE00D0C842 /* Skin */ = {
 			isa = PBXGroup;
 			children = (
+				C3BABE2D1B7A802E00BBF7C7 /* Logo */,
 				C305DED71B21068700DD9632 /* Minimal.json */,
 				C361643C1B6725C2000CE00E /* Hulu.json */,
 				C36164401B673D04000CE00E /* Netflix.json */,
@@ -257,6 +260,14 @@
 				C305DED91B21069500DD9632 /* SkinParser.swift */,
 			);
 			path = Parser;
+			sourceTree = "<group>";
+		};
+		C3BABE2D1B7A802E00BBF7C7 /* Logo */ = {
+			isa = PBXGroup;
+			children = (
+				C3BABE2E1B7A804100BBF7C7 /* logo.png */,
+			);
+			name = Logo;
 			sourceTree = "<group>";
 		};
 		CE554D451AFE6CCD00DAC7E9 = {
@@ -506,6 +517,7 @@
 				C361643D1B6725C2000CE00E /* Hulu.json in Resources */,
 				C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */,
 				C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */,
+				C3BABE2F1B7A804100BBF7C7 /* logo.png in Resources */,
 				C384AB271B6C3BB000D5B243 /* All.json in Resources */,
 				C305DED81B21068700DD9632 /* Minimal.json in Resources */,
 				C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */,
