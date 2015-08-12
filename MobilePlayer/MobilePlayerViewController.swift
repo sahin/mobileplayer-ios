@@ -53,6 +53,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   public var timedOverlays = [[String: AnyObject]]()
   // Volume View
   private var volumeView = VolumeControlView()
+  private var shareURL = NSURL()
 
   override public func viewWillTransitionToSize(size: CGSize,
     withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -62,6 +63,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   // MARK: - Initialization
   public init(contentURL: NSURL, config: MobilePlayerConfig = globalConfiguration) {
     self.config = config
+    self.shareURL = contentURL
     controlsView = MobilePlayerControlsView(config: config)
     super.init(contentURL: contentURL)
     URLHelper.checkURL(contentURL, urlType: URLHelper.URLType.Local) { (check, error) -> Void in
@@ -77,6 +79,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   public init(contentURL: NSURL, configFileURL: NSURL) {
     let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
     self.config = config
+    self.shareURL = contentURL
     controlsView = MobilePlayerControlsView(config: config)
     super.init(contentURL: contentURL)
     URLHelper.checkURL(contentURL, urlType: URLHelper.URLType.Local) { (check, error) -> Void in
@@ -92,6 +95,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   public init(youTubeURL: NSURL, configFileURL: NSURL) {
     let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
     self.config = config
+    self.shareURL = youTubeURL
     controlsView = MobilePlayerControlsView(config: config)
     super.init(contentURL: NSURL())
     URLHelper.checkURL(youTubeURL, urlType: URLHelper.URLType.Remote) { (check, error) -> Void in
@@ -542,6 +546,21 @@ extension MobilePlayerViewController {
   }
 
   public final func shareContent() {
+    if let myWebsite = self.shareURL as NSURL? {
+      let objectsToShare = [self.title!, myWebsite]
+      let shareVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+      shareVC.excludedActivityTypes =  [
+        UIActivityTypePostToWeibo,
+        UIActivityTypeCopyToPasteboard,
+        UIActivityTypeAssignToContact,
+        UIActivityTypeSaveToCameraRoll,
+        UIActivityTypePostToFlickr,
+        UIActivityTypePostToVimeo,
+        UIActivityTypePostToTencentWeibo,
+        UIActivityTypeAirDrop
+      ]
+      self.presentViewController(shareVC, animated: true, completion: nil)
+    }
     if let shareCallback = config.shareCallback {
       moviePlayer.pause()
       shareCallback(playerVC: self)
