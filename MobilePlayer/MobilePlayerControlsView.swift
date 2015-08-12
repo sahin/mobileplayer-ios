@@ -194,88 +194,89 @@ extension MobilePlayerControlsView {
     categorysubType: String,
     layout: UIView,
     isUpdate: Bool) {
-    if let skin = skinFile as [String: AnyObject]? {
-      if var controlbar = skin[categorysubType] as? NSArray {
-        var arrValues = NSMutableArray()
-        var views: [UIView] = []
-        var skinItemOrders: NSArray = NSArray()
-        let descriptor: NSSortDescriptor = NSSortDescriptor(key: "order", ascending: true)
-        self.addSubview(layout)
-        setBackgroundColorWithLayout(layout, skin: skin)
-        setLogoWithSkin(skin)
-        skinItemOrders = controlbar.sortedArrayUsingDescriptors([descriptor])
-        for (index,viewItem) in enumerate(skinItemOrders) {
-          if let element = viewItem["type"] as? String {
-            if element == "view" {
-              if let slider = viewItem["subType"] as? String {
-                if slider == "timeSlider" {
-                  timeSliderCases(viewItem)
-                  views.append(timeSliderView)
-                  layout.addSubview(timeSliderView)
-                }else{
-                  if slider == "seperator" {
-                    let seperator = UIView()
-                    views.append(seperator)
-                    layout.addSubview(seperator)
+      if let skin = skinFile as [String: AnyObject]? {
+        if var controlbar = skin[categorysubType] as? NSArray {
+          var arrValues = NSMutableArray()
+          var views: [UIView] = []
+          var skinItemOrders: NSArray = NSArray()
+          let descriptor: NSSortDescriptor = NSSortDescriptor(key: "order", ascending: true)
+          self.addSubview(layout)
+          setBackgroundColorWithLayout(layout, skin: skin)
+          setLogoWithSkin(skin)
+          skinItemOrders = controlbar.sortedArrayUsingDescriptors([descriptor])
+          for (index,viewItem) in enumerate(skinItemOrders) {
+            if let element = viewItem["type"] as? String {
+              if element == "view" {
+                if let slider = viewItem["subType"] as? String {
+                  if slider == "timeSlider" {
+                    timeSliderCases(viewItem)
+                    views.append(timeSliderView)
+                    layout.addSubview(timeSliderView)
                   }else{
-                    let customView = UIView()
-                    viewCases(viewItem, layout: layout)
-                    views.append(customView)
-                    layout.addSubview(customView)
+                    if slider == "seperator" {
+                      let seperator = UIView()
+                      views.append(seperator)
+                      layout.addSubview(seperator)
+                    }else{
+                      let customView = UIView()
+                      viewCases(viewItem, layout: layout)
+                      views.append(customView)
+                      layout.addSubview(customView)
+                    }
                   }
                 }
               }
-            }
-            if element == "label" {
-              if let slider = viewItem["subType"] as? String {
-                if slider == "title" {
-                  views.append(titleLabel)
-                  layout.addSubview(titleLabel)
-                }else{
-                  if slider == "time" {
-                    views.append(playbackTimeLabel)
-                    layout.addSubview(playbackTimeLabel)
+              if element == "label" {
+                if let slider = viewItem["subType"] as? String {
+                  if slider == "title" {
+                    views.append(titleLabel)
+                    layout.addSubview(titleLabel)
                   }else{
-                    if slider == "remaining" {
-                      views.append(remainingLabel)
-                      layout.addSubview(remainingLabel)
+                    if slider == "time" {
+                      views.append(playbackTimeLabel)
+                      layout.addSubview(playbackTimeLabel)
                     }else{
-                      if slider == "duration" {
-                        views.append(durationLabel)
-                        layout.addSubview(durationLabel)
+                      if slider == "remaining" {
+                        views.append(remainingLabel)
+                        layout.addSubview(remainingLabel)
                       }else{
-                        let label = UILabel()
-                        labelCases(label, viewItem: viewItem)
-                        views.append(label)
-                        layout.addSubview(label)
+                        if slider == "duration" {
+                          views.append(durationLabel)
+                          layout.addSubview(durationLabel)
+                        }else{
+                          let label = UILabel()
+                          labelCases(label, viewItem: viewItem)
+                          views.append(label)
+                          layout.addSubview(label)
+                        }
                       }
                     }
                   }
                 }
               }
-            }
-            if element == "button" {
-              if let subType = viewItem["subType"] as? String {
-                if subType == "play" {
-                  views.append(playButton)
-                  layout.addSubview(playButton)
-                }else{
-                  if subType == "volume" {
-                    views.append(volumeButton)
-                    layout.addSubview(volumeButton)
+              if element == "button" {
+                if let subType = viewItem["subType"] as? String {
+                  if subType == "play" {
+                    views.append(playButton)
+                    layout.addSubview(playButton)
                   }else{
-                    if subType == "close" {
-                      views.append(closeButton)
-                      layout.addSubview(closeButton)
+                    if subType == "volume" {
+                      views.append(volumeButton)
+                      layout.addSubview(volumeButton)
                     }else{
-                      if subType == "share" {
-                        views.append(shareButton)
-                        layout.addSubview(shareButton)
+                      if subType == "close" {
+                        views.append(closeButton)
+                        layout.addSubview(closeButton)
                       }else{
-                        let button = UIButton()
-                        buttonCases(button, viewItem: viewItem)
-                        views.append(button)
-                        layout.addSubview(button)
+                        if subType == "share" {
+                          views.append(shareButton)
+                          layout.addSubview(shareButton)
+                        }else{
+                          let button = UIButton()
+                          buttonCases(button, viewItem: viewItem)
+                          views.append(button)
+                          layout.addSubview(button)
+                        }
                       }
                     }
                   }
@@ -283,10 +284,9 @@ extension MobilePlayerControlsView {
               }
             }
           }
+          setLayoutPositionWithSkinItems(skinItemOrders, views: views, layout: layout)
         }
-        setLayoutPositionWithSkinItems(skinItemOrders, views: views, layout: layout)
       }
-    }
   }
 
   private func setLogoWithSkin(skin: [String: AnyObject]) {
@@ -422,19 +422,61 @@ extension MobilePlayerControlsView {
     skinItemOrders: NSArray,
     views: [UIView],
     layout: UIView) {
-    switch skinItemOrders.count {
-    case 1:
-      if let subType = skinItemOrders.objectAtIndex(0)["subType"] as? String {
-        if subType == "timeSlider" || subType == "title" {
-          views[0].snp_makeConstraints { (make) -> Void in
-            make.height.equalTo(layout.snp_height)
-            make.top.equalTo(layout).offset(0)
-            make.left.equalTo(layout.snp_left)
-            make.right.equalTo(layout.snp_right)
+      switch skinItemOrders.count {
+      case 1:
+        if let subType = skinItemOrders.objectAtIndex(0)["subType"] as? String {
+          if subType == "timeSlider" || subType == "title" {
+            views[0].snp_makeConstraints { (make) -> Void in
+              make.height.equalTo(layout.snp_height)
+              make.top.equalTo(layout).offset(0)
+              make.left.equalTo(layout.snp_left)
+              make.right.equalTo(layout.snp_right)
+            }
           }
         }
+      case 2:
+        for (index, referedView) in enumerate(skinItemOrders) {
+          if index == 0 {
+            if let subType = referedView["subType"] as? String {
+              if subType == "timeSlider" || subType == "title" {
+                views[index].snp_makeConstraints { (make) -> Void in
+                  make.height.equalTo(layout.snp_height)
+                  make.top.equalTo(layout).offset(0)
+                  make.left.equalTo(layout.snp_left)
+                  make.right.equalTo(views[index+1].snp_left)
+                }
+              }else{
+                views[index].snp_makeConstraints { (make) -> Void in
+                  make.height.equalTo(layout.snp_height)
+                  make.width.equalTo(buttonSize.width)
+                  make.top.equalTo(layout).offset(0)
+                  make.edges.equalTo(layout).offset(0)
+                }
+              }
+            }
+          }else{
+            if let subType = referedView["subType"] as? String {
+              views[index].snp_makeConstraints { (make) -> Void in
+                if subType == "timeSlider" || subType == "title" { } else {
+                  make.width.equalTo(buttonSize.width)
+                }
+                make.height.equalTo(layout.snp_height)
+                make.top.equalTo(layout).offset(0)
+                make.left.equalTo(views[index-1].snp_right)
+                make.right.equalTo(layout.snp_right)
+              }
+            }
+          }
+        }
+      default:
+        setLayoutPositionDefaulCaseWithSkinItems(skinItemOrders, views: views, layout: layout)
       }
-    case 2:
+  }
+
+  private func setLayoutPositionDefaulCaseWithSkinItems(
+    skinItemOrders: NSArray,
+    views: [UIView],
+    layout: UIView) {
       for (index, referedView) in enumerate(skinItemOrders) {
         if index == 0 {
           if let subType = referedView["subType"] as? String {
@@ -448,7 +490,17 @@ extension MobilePlayerControlsView {
             }else{
               views[index].snp_makeConstraints { (make) -> Void in
                 make.height.equalTo(layout.snp_height)
-                make.width.equalTo(buttonSize.width)
+                if let subType = referedView["subType"] as? String {
+                  if subType == "seperator" {
+                    if let seperatorWidth = referedView["width"] as? CGFloat {
+                      make.width.equalTo(seperatorWidth)
+                    }else{
+                      make.width.equalTo(15)
+                    }
+                  }else{
+                    make.width.equalTo(buttonSize.width)
+                  }
+                }
                 make.top.equalTo(layout).offset(0)
                 make.edges.equalTo(layout).offset(0)
               }
@@ -456,96 +508,44 @@ extension MobilePlayerControlsView {
           }
         }else{
           if let subType = referedView["subType"] as? String {
-            views[index].snp_makeConstraints { (make) -> Void in
-              if subType == "timeSlider" || subType == "title" { } else {
-                make.width.equalTo(buttonSize.width)
-              }
-              make.height.equalTo(layout.snp_height)
-              make.top.equalTo(layout).offset(0)
-              make.left.equalTo(views[index-1].snp_right)
-              make.right.equalTo(layout.snp_right)
-            }
-          }
-        }
-      }
-    default:
-      setLayoutPositionDefaulCaseWithSkinItems(skinItemOrders, views: views, layout: layout)
-    }
-  }
-
-  private func setLayoutPositionDefaulCaseWithSkinItems(
-    skinItemOrders: NSArray,
-    views: [UIView],
-    layout: UIView) {
-    for (index, referedView) in enumerate(skinItemOrders) {
-      if index == 0 {
-        if let subType = referedView["subType"] as? String {
-          if subType == "timeSlider" || subType == "title" {
-            views[index].snp_makeConstraints { (make) -> Void in
-              make.height.equalTo(layout.snp_height)
-              make.top.equalTo(layout).offset(0)
-              make.left.equalTo(layout.snp_left)
-              make.right.equalTo(views[index+1].snp_left)
-            }
-          }else{
-            views[index].snp_makeConstraints { (make) -> Void in
-              make.height.equalTo(layout.snp_height)
-              if let subType = referedView["subType"] as? String {
-                if subType == "seperator" {
-                  if let seperatorWidth = referedView["width"] as? CGFloat {
-                    make.width.equalTo(seperatorWidth)
-                  }else{
-                    make.width.equalTo(15)
-                  }
+            if subType == "timeSlider" || subType == "title" {
+              views[index].snp_makeConstraints { (make) -> Void in
+                make.height.equalTo(layout.snp_height)
+                make.top.equalTo(layout).offset(0)
+                make.left.equalTo(views[index-1].snp_right)
+                if index == skinItemOrders.count - 1 {
+                  make.right.equalTo(layout.snp_right)
                 }else{
-                  make.width.equalTo(buttonSize.width)
+                  make.right.equalTo(views[index+1].snp_left)
                 }
               }
-              make.top.equalTo(layout).offset(0)
-              make.edges.equalTo(layout).offset(0)
-            }
-          }
-        }
-      }else{
-        if let subType = referedView["subType"] as? String {
-          if subType == "timeSlider" || subType == "title" {
-            views[index].snp_makeConstraints { (make) -> Void in
-              make.height.equalTo(layout.snp_height)
-              make.top.equalTo(layout).offset(0)
-              make.left.equalTo(views[index-1].snp_right)
-              if index == skinItemOrders.count - 1 {
-                make.right.equalTo(layout.snp_right)
-              }else{
-                make.right.equalTo(views[index+1].snp_left)
-              }
-            }
-          }else{
-            views[index].snp_makeConstraints { (make) -> Void in
-              make.height.equalTo(layout.snp_height)
-              if let subType = referedView["subType"] as? String {
-                if subType == "seperator" {
-                  if let seperatorWidth = referedView["width"] as? CGFloat {
-                    make.width.equalTo(seperatorWidth)
+            }else{
+              views[index].snp_makeConstraints { (make) -> Void in
+                make.height.equalTo(layout.snp_height)
+                if let subType = referedView["subType"] as? String {
+                  if subType == "seperator" {
+                    if let seperatorWidth = referedView["width"] as? CGFloat {
+                      make.width.equalTo(seperatorWidth)
+                    }else{
+                      make.width.equalTo(15)
+                    }
                   }else{
-                    make.width.equalTo(15)
+                    make.width.equalTo(buttonSize.width)
                   }
-                }else{
-                  make.width.equalTo(buttonSize.width)
                 }
-              }
-              make.top.equalTo(layout).offset(0)
-              if index == skinItemOrders.count - 1 {
-                make.left.equalTo(views[index-1].snp_right)
-                make.right.equalTo(layout.snp_right)
-              }else{
-                make.left.equalTo(views[index-1].snp_right)
-                make.right.equalTo(views[index+1].snp_left)
+                make.top.equalTo(layout).offset(0)
+                if index == skinItemOrders.count - 1 {
+                  make.left.equalTo(views[index-1].snp_right)
+                  make.right.equalTo(layout.snp_right)
+                }else{
+                  make.left.equalTo(views[index-1].snp_right)
+                  make.right.equalTo(views[index+1].snp_left)
+                }
               }
             }
           }
         }
       }
-    }
   }
 
   func updateConstraintsWithLayout(frame: CGRect) {
