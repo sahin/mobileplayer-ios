@@ -51,6 +51,11 @@
                BlueprintName = "MobilePlayerTests"
                ReferencedContainer = "container:MobilePlayer.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "SkinTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

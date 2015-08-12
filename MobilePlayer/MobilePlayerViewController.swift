@@ -12,6 +12,17 @@ import MediaPlayer
 private var globalConfiguration = MobilePlayerConfig()
 
 public class MobilePlayerViewController: MPMoviePlayerViewController {
+
+  public enum State {
+    case Buffering, Idle, Complete, Paused, Playing, Error,
+    Loading, Stalled, Unknown, SeekingBackward, SeekingForward
+  }
+  public private(set) var previousState: State = .Unknown
+  public private(set) var state: State = .Unknown {
+    didSet(oldValue) {
+      previousState = oldValue
+    }
+  }
   public class var globalConfig: MobilePlayerConfig { return globalConfiguration }
   public var config: MobilePlayerConfig
 
@@ -28,6 +39,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var previousStatusBarStyle: UIStatusBarStyle!
   private var isFirstPlay = true
   private var isFirstPlayPreRoll = true
+  private var bufferValue: NSTimeInterval?
   private var wasPlayingBeforeTimeShift = false
   private var playbackTimeInterfaceUpdateTimer: NSTimer?
   private var hideControlsTimer: NSTimer?
@@ -48,11 +60,17 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   // MARK: - Initialization
-
   public init(contentURL: NSURL, config: MobilePlayerConfig = globalConfiguration) {
     self.config = config
     controlsView = MobilePlayerControlsView(config: config)
     super.init(contentURL: contentURL)
+    URLHelper.checkURL(contentURL, urlType: URLHelper.URLType.Local) { (check, error) -> Void in
+      if check {
+        self.state = .Loading
+      }else{
+        self.state = .Error
+      }
+    }
     initializeMobilePlayerViewController()
   }
 
@@ -61,6 +79,13 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     self.config = config
     controlsView = MobilePlayerControlsView(config: config)
     super.init(contentURL: contentURL)
+    URLHelper.checkURL(contentURL, urlType: URLHelper.URLType.Local) { (check, error) -> Void in
+      if check {
+        self.state = .Loading
+      }else{
+        self.state = .Error
+      }
+    }
     initializeMobilePlayerViewController()
   }
 
@@ -69,6 +94,13 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     self.config = config
     controlsView = MobilePlayerControlsView(config: config)
     super.init(contentURL: NSURL())
+    URLHelper.checkURL(youTubeURL, urlType: URLHelper.URLType.Remote) { (check, error) -> Void in
+      if check {
+        self.state = .Loading
+      }else{
+        self.state = .Error
+      }
+    }
     Youtube.h264videosWithYoutubeURL(youTubeURL, completion: { videoInfo, error in
       if let
         videoURLString = videoInfo?["url"] as? String,
@@ -254,19 +286,14 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   // MARK: - Internal Helpers
-
   private func doFirstPlaySetupIfNeeded() {
     if isFirstPlay {
       isFirstPlay = false
       controlsView.backgroundImageView.removeFromSuperview()
       controlsView.activityIndicatorView.stopAnimating()
       updateTimeLabel(controlsView.durationLabel, time: moviePlayer.duration)
-      playbackTimeInterfaceUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(
-        0.0,
-        target: self,
-        selector: "updatePlaybackTimeInterface",
-        userInfo: nil,
-        repeats: true)
+      playbackTimeInterfaceUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(0.0,
+        target: self, selector: "updatePlaybackTimeInterface", userInfo: nil, repeats: true)
       playbackTimeInterfaceUpdateTimer?.fire()
       if let firstPlayCallback = config.firstPlayCallback {
         firstPlayCallback(playerVC: self)
@@ -311,12 +338,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   private func resetHideControlsTimer() {
     hideControlsTimer?.invalidate()
-    hideControlsTimer = NSTimer.scheduledTimerWithTimeInterval(
-      2,
-      target: self,
-      selector: "hideControlsIfPlaying",
-      userInfo: nil,
-      repeats: false)
+    hideControlsTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "hideControlsIfPlaying", userInfo: nil, repeats: false)
   }
 
   final func progressBarBufferPercentWithMoviePlayer(
@@ -353,8 +375,8 @@ extension MobilePlayerViewController {
   }
 
   func togglePlay() {
-    let state = moviePlayer.playbackState
-    if state == .Playing || state == .Interrupted {
+    let playerState = moviePlayer.playbackState
+    if playerState == .Playing || playerState == .Interrupted {
       moviePlayer.pause()
     } else {
       if isFirstPlayPreRoll {
@@ -376,9 +398,11 @@ extension MobilePlayerViewController {
   }
 
   final func handleMoviePlayerPlaybackStateDidChangeNotification() {
-    let state = moviePlayer.playbackState
+    var playerState = moviePlayer.playbackState
+    state = StateHelper.stateForPlayer(moviePlayer)
+    controlsView.playerStateLabel.text = NSString(format: "%d-%d", state.hashValue, previousState.hashValue) as String
     updatePlaybackTimeInterface()
-    if state == .Playing || state == .Interrupted {
+    if playerState == .Playing || playerState == .Interrupted {
       doFirstPlaySetupIfNeeded()
       controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage, forState: .Normal)
       controlsView.playButton.tintColor = config.controlbarConfig.pauseButtonTintColor
@@ -416,8 +440,8 @@ extension MobilePlayerViewController {
   }
 
   final func hideControlsIfPlaying() {
-    let state = moviePlayer.playbackState
-    if state == .Playing || state == .Interrupted {
+    let playerState = moviePlayer.playbackState
+    if playerState == .Playing || playerState == .Interrupted {
       controlsView.controlsHidden = controlsView.volumeView.hidden
     }
   }
@@ -443,8 +467,8 @@ extension MobilePlayerViewController {
   }
 
   final func timeShiftDidBegin() {
-    let state = moviePlayer.playbackState
-    wasPlayingBeforeTimeShift = (state == .Playing || state == .Interrupted)
+    let playerState = moviePlayer.playbackState
+    wasPlayingBeforeTimeShift = (playerState == .Playing || playerState == .Interrupted)
     moviePlayer.pause()
   }
 
@@ -471,7 +495,6 @@ extension MobilePlayerViewController {
 }
 
 // MARK: - Public API
-
 extension MobilePlayerViewController {
 
   public final func toggleVideoScalingMode() {
@@ -485,6 +508,7 @@ extension MobilePlayerViewController {
   public final func updateBufferInterface() {
     if let
       bufferCalculate = progressBarBufferPercentWithMoviePlayer(moviePlayer) as? NSTimeInterval {
+      bufferValue = bufferCalculate
       if moviePlayer.duration > 0 {
         controlsView.timeSliderView.refreshBufferPercentRatio(
           bufferRatio: CGFloat(bufferCalculate),
@@ -534,18 +558,14 @@ extension MobilePlayerViewController {
   }
 }
 
-// Timed Overlays
-
+// MARK: - Timed Overlays
 extension MobilePlayerViewController {
 
   public final func showOverlayViewController(
     overlayVC: MobilePlayerOverlayViewController,
     startingAtTime: NSTimeInterval,
     forDuration: NSTimeInterval) {
-      timedOverlays.append([
-        "vc": overlayVC,
-        "start": startingAtTime,
-        "duration": forDuration])
+      timedOverlays.append(["vc": overlayVC, "start": startingAtTime, "duration": forDuration])
   }
 
   public final func updateTimeLabelInterface(){
@@ -562,11 +582,7 @@ extension MobilePlayerViewController {
                 self.showOverlayViewController(overlayView)
                 let vc = ["val": index]
                 NSTimer.scheduledTimerWithTimeInterval(
-                  duration,
-                  target: self,
-                  selector: "dissmisBannerLayout:",
-                  userInfo: vc,
-                  repeats: false)
+                  duration, target: self, selector: "dissmisBannerLayout:", userInfo: vc, repeats: false)
               }
             }
           }

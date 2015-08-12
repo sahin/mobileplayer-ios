@@ -39,6 +39,7 @@ final class MobilePlayerControlsView: UIView {
   let playbackTimeLabel = UILabel()
   let durationLabel = UILabel()
   let remainingLabel = UILabel()
+  let playerStateLabel = UILabel()
   private let config: MobilePlayerConfig
 
   init(config: MobilePlayerConfig) {
@@ -98,6 +99,7 @@ final class MobilePlayerControlsView: UIView {
     closeButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
     closeButton.tintColor = config.closeButtonConfig.tintColor
     closeButton.backgroundColor = config.closeButtonConfig.backgroundColor
+    closeButton.accessibilityLabel = "Close"
     titleLabel.font = config.titleConfig.textFont
     titleLabel.textColor = config.titleConfig.textColor
     titleLabel.backgroundColor = config.titleConfig.backgroundColor
@@ -106,9 +108,17 @@ final class MobilePlayerControlsView: UIView {
     shareButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
     shareButton.tintColor = config.shareButtonConfig.tintColor
     shareButton.backgroundColor = config.shareButtonConfig.backgroundColor
+    shareButton.accessibilityLabel = "Share"
   }
 
   private func initializeOverlayViews() {
+    playerStateLabel.textAlignment = NSTextAlignment.Center
+    playerStateLabel.text = "Test State"
+    playerStateLabel.textColor = UIColor.whiteColor()
+    playerStateLabel.backgroundColor = UIColor.redColor()
+    playerStateLabel.accessibilityLabel = "PlayerState"
+    playerStateLabel.alpha = 0.0
+    addSubview(playerStateLabel)
     addSubview(backgroundImageView)
     activityIndicatorView.hidesWhenStopped = true
     addSubview(activityIndicatorView)
@@ -128,6 +138,7 @@ final class MobilePlayerControlsView: UIView {
     playButton.tintColor = config.controlbarConfig.playButtonTintColor
     playButton.backgroundColor = config.controlbarConfig.playButtonBackgroundColor
     playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
+    playButton.accessibilityLabel = "Play"
     playbackTimeLabel.text = "-:-"
     playbackTimeLabel.textAlignment = .Center
     playbackTimeLabel.font = config.controlbarConfig.timeTextFont

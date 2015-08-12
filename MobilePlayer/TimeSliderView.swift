@@ -63,6 +63,7 @@ class TimeSliderView: UIView {
     progressView.backgroundColor = UIColor.blueColor()
     railView.addSubview(progressView)
     thumbView.backgroundColor = UIColor.lightGrayColor()
+    thumbView.accessibilityLabel = "Thumb"
     addSubview(thumbView)
     railView.layer.masksToBounds = true
     thumbView.addGestureRecognizer(
