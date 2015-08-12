@@ -26,6 +26,7 @@
 		C38FA6511B33279600BE17E8 /* ADBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */; };
 		C38FA6531B33530C00BE17E8 /* PreRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */; };
 		C39C749F1B75400700E6CD21 /* KIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39C749E1B75400700E6CD21 /* KIF.framework */; };
+		C3A2D3821B7BB765009D44ED /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A2D3811B7BB765009D44ED /* logo.png */; };
 		C3A4069B1B27709900D1833D /* Youtube.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069A1B27709900D1833D /* Youtube.swift */; };
 		C3A406A21B278B5A00D1833D /* CGRect+LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */; };
 		C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */; };
@@ -119,6 +120,7 @@
 		C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADBannerViewController.swift; sourceTree = "<group>"; };
 		C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreRollViewController.swift; sourceTree = "<group>"; };
 		C39C749E1B75400700E6CD21 /* KIF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KIF.framework; path = "Pods/../build/Debug-iphoneos/KIF.framework"; sourceTree = "<group>"; };
+		C3A2D3811B7BB765009D44ED /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Images/logo.png; sourceTree = "<group>"; };
 		C3A4069A1B27709900D1833D /* Youtube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Youtube.swift; sourceTree = "<group>"; };
 		C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+LayoutHelper.swift"; sourceTree = "<group>"; };
 		C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeTests.swift; sourceTree = "<group>"; };
@@ -200,6 +202,22 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		C3A2D37E1B7BB6E5009D44ED /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				C3A9AF0A1B0497BE00D0C842 /* Skin */,
+			);
+			name = "New Group";
+			sourceTree = "<group>";
+		};
+		C3A2D3801B7BB6F6009D44ED /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				C3A2D3811B7BB765009D44ED /* logo.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		C3A406971B27700400D1833D /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,7 +238,7 @@
 		C3A9AEDA1B048B5600D0C842 /* MobilePlayerExample */ = {
 			isa = PBXGroup;
 			children = (
-				C3A9AF0A1B0497BE00D0C842 /* Skin */,
+				C3A2D37E1B7BB6E5009D44ED /* New Group */,
 				C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */,
 				C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */,
 				C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */,
@@ -259,6 +277,7 @@
 		C3A9AF0A1B0497BE00D0C842 /* Skin */ = {
 			isa = PBXGroup;
 			children = (
+				C3A2D3801B7BB6F6009D44ED /* Images */,
 				C305DED71B21068700DD9632 /* Minimal.json */,
 				C361643C1B6725C2000CE00E /* Hulu.json */,
 				C36164401B673D04000CE00E /* Netflix.json */,
@@ -528,6 +547,7 @@
 				C361643D1B6725C2000CE00E /* Hulu.json in Resources */,
 				C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */,
 				C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */,
+				C3A2D3821B7BB765009D44ED /* logo.png in Resources */,
 				C384AB271B6C3BB000D5B243 /* All.json in Resources */,
 				C305DED81B21068700DD9632 /* Minimal.json in Resources */,
 				C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */,

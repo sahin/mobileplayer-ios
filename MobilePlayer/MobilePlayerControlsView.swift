@@ -27,6 +27,7 @@ final class MobilePlayerControlsView: UIView {
   let headerView = UIView()
   let overlayContainerView = UIView()
   let footerView = UIView()
+  let logoView = UIImageView()
   var volumeView = VolumeControlView()
   var volumeButton = UIButton()
   var timeSliderView = TimeSliderView()
@@ -112,6 +113,12 @@ final class MobilePlayerControlsView: UIView {
   }
 
   private func initializeOverlayViews() {
+    addSubview(backgroundImageView)
+    logoView.backgroundColor = UIColor.clearColor()
+    logoView.alpha = 1.0
+    logoView.contentMode = .ScaleAspectFit
+    logoView.layer.masksToBounds = true
+    addSubview(logoView)
     playerStateLabel.textAlignment = NSTextAlignment.Center
     playerStateLabel.text = "Test State"
     playerStateLabel.textColor = UIColor.whiteColor()
@@ -119,13 +126,17 @@ final class MobilePlayerControlsView: UIView {
     playerStateLabel.accessibilityLabel = "PlayerState"
     playerStateLabel.alpha = 0.0
     addSubview(playerStateLabel)
-    addSubview(backgroundImageView)
     activityIndicatorView.hidesWhenStopped = true
     addSubview(activityIndicatorView)
     activityIndicatorView.startAnimating()
     activityIndicatorView.snp_makeConstraints { (make) -> Void in
       make.width.height.equalTo(50)
       make.center.equalTo(overlayContainerView)
+    }
+    logoView.snp_makeConstraints { (make) -> Void in
+      make.size.equalTo(CGSizeMake(100, 28))
+      make.right.equalTo(-10)
+      make.bottom.equalTo(-35)
     }
   }
 
@@ -191,6 +202,7 @@ extension MobilePlayerControlsView {
         let descriptor: NSSortDescriptor = NSSortDescriptor(key: "order", ascending: true)
         self.addSubview(layout)
         setBackgroundColorWithLayout(layout, skin: skin)
+        setLogoWithSkin(skin)
         skinItemOrders = controlbar.sortedArrayUsingDescriptors([descriptor])
         for (index,viewItem) in enumerate(skinItemOrders) {
           if let element = viewItem["type"] as? String {
@@ -274,6 +286,12 @@ extension MobilePlayerControlsView {
         }
         setLayoutPositionWithSkinItems(skinItemOrders, views: views, layout: layout)
       }
+    }
+  }
+
+  private func setLogoWithSkin(skin: [String: AnyObject]) {
+    if let logo = skin["logo"] as? String {
+      logoView.image = UIImage(named: logo)
     }
   }
 
