@@ -10,7 +10,12 @@ import Foundation
 import MediaPlayer
 import SnapKit
 
-final class MobilePlayerControlsView: UIView {
+public protocol MobilePlayerCustomButtonDelegate : class {
+  func didPressButton(button: UIButton)
+}
+
+public class MobilePlayerControlsView: UIView {
+  public var delegate: MobilePlayerCustomButtonDelegate?
   let buttonSize = CGSize(width: 40, height: 40)
   var orderItems = [AnyObject]()
   var controlsHidden: Bool = false {
@@ -45,7 +50,6 @@ final class MobilePlayerControlsView: UIView {
   init(config: MobilePlayerConfig) {
     self.config = config
     super.init(frame: CGRectZero)
-
     headerView.backgroundColor = config.controlbarConfig.backgroundColor
     headerView.layer.masksToBounds = true
     addSubview(headerView)
@@ -54,8 +58,6 @@ final class MobilePlayerControlsView: UIView {
     footerView.backgroundColor = config.controlbarConfig.backgroundColor
     footerView.layer.masksToBounds = true
     addSubview(footerView)
-
-    // Setting view constraints
     headerView.snp_makeConstraints { (make) -> Void in
       make.width.equalTo(frame.size.width)
       make.height.equalTo(buttonSize.height)
@@ -90,7 +92,7 @@ final class MobilePlayerControlsView: UIView {
     volumeView.hidden = !volumeView.hidden
   }
 
-  required init(coder aDecoder: NSCoder) {
+  required public init(coder aDecoder: NSCoder) {
     fatalError("storyboards are incompatible with truth and beauty")
   }
 
@@ -261,6 +263,7 @@ extension MobilePlayerControlsView {
                         layout.addSubview(shareButton)
                       }else{
                         let button = UIButton()
+                        customButtonAction(subType, viewItem: viewItem, button: button)
                         buttonCases(button, viewItem: viewItem)
                         views.append(button)
                         layout.addSubview(button)
@@ -275,6 +278,22 @@ extension MobilePlayerControlsView {
         setLayoutPositionWithSkinItems(skinItemOrders, views: views, layout: layout)
       }
     }
+  }
+
+  private func customButtonAction(subType: String, viewItem: AnyObject, button: UIButton) {
+    if subType == "custom" {
+      if let tag = viewItem["tag"] as? Int {
+        button.tag = tag
+        button.addTarget(
+          self,
+          action: "customButtonAction:",
+          forControlEvents: UIControlEvents.TouchUpInside)
+      }
+    }
+  }
+
+  func customButtonAction(button: UIButton) {
+      delegate?.didPressButton(button)
   }
 
   private func createGradiendView(bgColor: String, direction: String) -> CALayer {

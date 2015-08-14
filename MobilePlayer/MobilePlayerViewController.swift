@@ -33,7 +33,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     }
   }
   // Subviews.
-  private let controlsView: MobilePlayerControlsView
+  public let controlsView: MobilePlayerControlsView
   // State management properties.
   private var previousStatusBarHiddenValue: Bool!
   private var previousStatusBarStyle: UIStatusBarStyle!
@@ -572,8 +572,7 @@ extension MobilePlayerViewController {
     updateTimeLabel(controlsView.playbackTimeLabel, time: moviePlayer.currentPlaybackTime)
     controlsView.setNeedsLayout()
     for (index,overlay) in enumerate(timedOverlays) {
-      if let
-        start = overlay["start"] as? NSTimeInterval,
+      if let start = overlay["start"] as? NSTimeInterval,
         duration = overlay["duration"] as? NSTimeInterval {
           if !self.moviePlayer.currentPlaybackTime.isNaN {
             var videoTime = Int(self.moviePlayer.currentPlaybackTime)

@@ -15,6 +15,7 @@
 		C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */; };
 		C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */; };
 		C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35497A21B70007500FDDBFF /* SkinTests.swift */; };
+		C35E68BF1B7D06F700594CE6 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */; };
 		C35FDE0E1B3DEA56005C55A6 /* VolumeControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */; };
 		C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
 		C361643D1B6725C2000CE00E /* Hulu.json in Resources */ = {isa = PBXBuildFile; fileRef = C361643C1B6725C2000CE00E /* Hulu.json */; };
@@ -109,6 +110,7 @@
 		C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerConfig.swift; sourceTree = "<group>"; };
 		C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareButtonConfig.swift; sourceTree = "<group>"; };
 		C35497A21B70007500FDDBFF /* SkinTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinTests.swift; sourceTree = "<group>"; };
+		C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeControlView.swift; sourceTree = "<group>"; };
 		C361643C1B6725C2000CE00E /* Hulu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Hulu.json; sourceTree = "<group>"; };
 		C36164401B673D04000CE00E /* Netflix.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Netflix.json; sourceTree = "<group>"; };
@@ -200,6 +202,13 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
+		C32CB1021B7D6067007EFDD6 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		C3A406971B27700400D1833D /* Support */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +231,7 @@
 			children = (
 				C3A9AF0A1B0497BE00D0C842 /* Skin */,
 				C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */,
+				C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */,
 				C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */,
 				C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */,
 				C3A9AEE61B048B5600D0C842 /* LaunchScreen.xib */,
@@ -259,6 +269,7 @@
 		C3A9AF0A1B0497BE00D0C842 /* Skin */ = {
 			isa = PBXGroup;
 			children = (
+				C32CB1021B7D6067007EFDD6 /* Images */,
 				C305DED71B21068700DD9632 /* Minimal.json */,
 				C361643C1B6725C2000CE00E /* Hulu.json */,
 				C36164401B673D04000CE00E /* Netflix.json */,
@@ -744,6 +755,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3A9AEDE1B048B5600D0C842 /* AppDelegate.swift in Sources */,
+				C35E68BF1B7D06F700594CE6 /* PlayerViewController.swift in Sources */,
 				C38FA6531B33530C00BE17E8 /* PreRollViewController.swift in Sources */,
 				C38FA6511B33279600BE17E8 /* ADBannerViewController.swift in Sources */,
 			);
