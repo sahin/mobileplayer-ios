@@ -28,7 +28,7 @@
              "tintColor": "#ffffff",
              "type": "button",
              "subType": "custom",
-             "tag": 2001
+             "identifier": "gopro action"
              }
              ],
   "controlbar": [

@@ -20,13 +20,13 @@ class PlayerViewController: UIViewController, MobilePlayerCustomButtonDelegate {
     playerVC.view.frame = self.view.frame
     playerVC.controlsView.delegate = self
     self.view.addSubview(playerVC.view)
-    playerVC.config.prerollViewController = PreRollViewController()
-    playerVC.showOverlayViewController(ADBannerViewController(), startingAtTime: 3, forDuration: 3)
-    playerVC.showOverlayViewController(ADBannerViewController(), startingAtTime: 10, forDuration: 5)
+    // playerVC.config.prerollViewController = PreRollViewController()
+    // playerVC.showOverlayViewController(ADBannerViewController(), startingAtTime: 3, forDuration: 3)
+    // playerVC.showOverlayViewController(ADBannerViewController(), startingAtTime: 10, forDuration: 5)
   }
 
-  func didPressButton(button: UIButton) {
-    UIAlertView(title: "Test", message: "Action", delegate: self, cancelButtonTitle: "OK").show()
+  func didPressButton(button: UIButton, identifier: String) {
+    UIAlertView(title: identifier, message: "Action", delegate: self, cancelButtonTitle: "OK").show()
   }
 
   override func didReceiveMemoryWarning() {

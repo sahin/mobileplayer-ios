@@ -11,7 +11,7 @@ import MediaPlayer
 import SnapKit
 
 public protocol MobilePlayerCustomButtonDelegate : class {
-  func didPressButton(button: UIButton)
+  func didPressButton(button: UIButton, identifier: String)
 }
 
 public class MobilePlayerControlsView: UIView {
@@ -282,8 +282,8 @@ extension MobilePlayerControlsView {
 
   private func customButtonAction(subType: String, viewItem: AnyObject, button: UIButton) {
     if subType == "custom" {
-      if let tag = viewItem["tag"] as? Int {
-        button.tag = tag
+      if let identifier = viewItem["identifier"] as? String {
+        button.accessibilityElements = [identifier]
         button.addTarget(
           self,
           action: "customButtonAction:",
@@ -293,7 +293,10 @@ extension MobilePlayerControlsView {
   }
 
   func customButtonAction(button: UIButton) {
-      delegate?.didPressButton(button)
+    if let identifiers = button.accessibilityElements,
+      let identifier = identifiers[0] as? String  {
+        delegate?.didPressButton(button, identifier: identifier)
+    }
   }
 
   private func createGradiendView(bgColor: String, direction: String) -> CALayer {
