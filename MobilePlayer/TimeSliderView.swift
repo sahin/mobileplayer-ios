@@ -139,7 +139,7 @@ class TimeSliderView: UIView {
 
   func refreshCustomTimeSliderPercentRatio() {
     if userInteraction {
-      timeSliderThumbValue = userInteractionLocation
+      timeSliderThumbValue = userInteractionLocation - thumbView.frame.size.width/2
     } else {
       timeSliderThumbValue = progressView.frame.size.width - thumbView.frame.size.width/2
     }
