@@ -18,7 +18,7 @@ class PlayerViewController: UIViewController, MobilePlayerCustomButtonDelegate {
     super.viewDidLoad()
     let playerVC = MobilePlayerViewController(youTubeURL: youtubeURL, configFileURL: skinFile)
     playerVC.view.frame = self.view.frame
-    playerVC.controlsView.delegate = self
+    playerVC.delegate = self
     self.view.addSubview(playerVC.view)
     // playerVC.config.prerollViewController = PreRollViewController()
     // playerVC.showOverlayViewController(ADBannerViewController(), startingAtTime: 3, forDuration: 3)

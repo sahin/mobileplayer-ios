@@ -9,6 +9,10 @@
 import UIKit
 import MediaPlayer
 
+public protocol MobilePlayerCustomButtonDelegate : class {
+  func didPressButton(button: UIButton, identifier: String)
+}
+
 private var globalConfiguration = MobilePlayerConfig()
 
 public class MobilePlayerViewController: MPMoviePlayerViewController {
@@ -33,7 +37,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     }
   }
   // Subviews.
-  public let controlsView: MobilePlayerControlsView
+  private let controlsView: MobilePlayerControlsView
+  public var delegate: MobilePlayerCustomButtonDelegate?
   // State management properties.
   private var previousStatusBarHiddenValue: Bool!
   private var previousStatusBarStyle: UIStatusBarStyle!
@@ -593,6 +598,14 @@ extension MobilePlayerViewController {
     if let index = notification.userInfo?["val"] as? Int,
       overlayView = timedOverlays[index]["vc"] as? MobilePlayerOverlayViewController {
         self.dismissMobilePlayerOverlay(overlayView)
+    }
+  }
+
+  // MARK: - Custom Button Delegate
+  func customButtonAction(button: UIButton) {
+    if let identifiers = button.accessibilityElements,
+      let identifier = identifiers[0] as? String  {
+        delegate?.didPressButton(button, identifier: identifier)
     }
   }
 }

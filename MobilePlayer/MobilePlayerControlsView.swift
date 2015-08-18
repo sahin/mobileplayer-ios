@@ -10,12 +10,7 @@ import Foundation
 import MediaPlayer
 import SnapKit
 
-public protocol MobilePlayerCustomButtonDelegate : class {
-  func didPressButton(button: UIButton, identifier: String)
-}
-
-public class MobilePlayerControlsView: UIView {
-  public var delegate: MobilePlayerCustomButtonDelegate?
+class MobilePlayerControlsView: UIView {
   let buttonSize = CGSize(width: 40, height: 40)
   var orderItems = [AnyObject]()
   var controlsHidden: Bool = false {
@@ -285,17 +280,10 @@ extension MobilePlayerControlsView {
       if let identifier = viewItem["identifier"] as? String {
         button.accessibilityElements = [identifier]
         button.addTarget(
-          self,
+          self.superview,
           action: "customButtonAction:",
           forControlEvents: UIControlEvents.TouchUpInside)
       }
-    }
-  }
-
-  func customButtonAction(button: UIButton) {
-    if let identifiers = button.accessibilityElements,
-      let identifier = identifiers[0] as? String  {
-        delegate?.didPressButton(button, identifier: identifier)
     }
   }
 
