@@ -9,10 +9,6 @@
 import UIKit
 import MediaPlayer
 
-public protocol MobilePlayerCustomButtonDelegate : class {
-  func didPressButton(button: UIButton, identifier: String)
-}
-
 private var globalConfiguration = MobilePlayerConfig()
 
 public class MobilePlayerViewController: MPMoviePlayerViewController {
@@ -38,7 +34,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
   // Subviews.
   private let controlsView: MobilePlayerControlsView
-  public var delegate: MobilePlayerCustomButtonDelegate?
+  public var delegate: MobilePlayerViewControllerDelegate?
   // State management properties.
   private var previousStatusBarHiddenValue: Bool!
   private var previousStatusBarStyle: UIStatusBarStyle!

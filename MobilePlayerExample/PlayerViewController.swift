@@ -9,7 +9,7 @@
 import UIKit
 import MobilePlayer
 
-class PlayerViewController: UIViewController, MobilePlayerCustomButtonDelegate {
+class PlayerViewController: UIViewController, MobilePlayerViewControllerDelegate {
 
   let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=ZyIVaZXDhho")!
   let skinFile = NSBundle.mainBundle().URLForResource("Netflix", withExtension: "json")!
