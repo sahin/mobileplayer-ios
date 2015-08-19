@@ -60,69 +60,48 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   // MARK: - Initialization
-  public init(contentURL: NSURL, config: MobilePlayerConfig = globalConfiguration) {
-    self.config = config
-    controlsView = MobilePlayerControlsView(config: config)
-    super.init(contentURL: contentURL)
-    URLHelper.checkURL(contentURL, urlType: URLHelper.URLType.Local) { (check, error) -> Void in
-      if check {
-        self.state = .Loading
-      }else{
-        self.state = .Error
-      }
-    }
-    initializeMobilePlayerViewController()
-  }
-
   public init(contentURL: NSURL, configFileURL: NSURL) {
     let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
     self.config = config
     controlsView = MobilePlayerControlsView(config: config)
     super.init(contentURL: contentURL)
-    URLHelper.checkURL(contentURL, urlType: URLHelper.URLType.Local) { (check, error) -> Void in
-      if check {
-        self.state = .Loading
-      }else{
-        self.state = .Error
+    if contentURL.host == "www.youtube.com" {
+      self.checkUrlStateWithContentURL(contentURL, urlType: URLHelper.URLType.Remote)
+      Youtube.h264videosWithYoutubeURL(contentURL, completion: { videoInfo, error in
+        if let
+          videoURLString = videoInfo?["url"] as? String,
+          videoTitle = videoInfo?["title"] as? String {
+            if let isStream = videoInfo?["isStream"] as? Bool,
+              image = videoInfo?["image"] as? String {
+                if let imageURL = NSURL(string: image),
+                  data = NSData(contentsOfURL: imageURL),
+                  bgImage = UIImage(data: data) {
+                    self.controlsView.backgroundImageView.image = bgImage
+                }
+            }
+            if let url = NSURL(string: videoURLString) {
+              self.currentVideoURL = url
+            }
+            self.title = videoTitle
+        }
+      })
+      if self.config.prerollViewController == nil {
+        self.moviePlayer.contentURL = currentVideoURL
       }
+    }else{
+      checkUrlStateWithContentURL(contentURL, urlType: URLHelper.URLType.Local)
     }
     initializeMobilePlayerViewController()
   }
 
-  public init(youTubeURL: NSURL, configFileURL: NSURL) {
-    let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
-    self.config = config
-    controlsView = MobilePlayerControlsView(config: config)
-    super.init(contentURL: NSURL())
-    URLHelper.checkURL(youTubeURL, urlType: URLHelper.URLType.Remote) { (check, error) -> Void in
+  private func checkUrlStateWithContentURL(contentURL: NSURL, urlType: URLHelper.URLType) {
+    URLHelper.checkURL(contentURL, urlType: urlType) { (check, error) -> Void in
       if check {
         self.state = .Loading
       }else{
         self.state = .Error
       }
     }
-    Youtube.h264videosWithYoutubeURL(youTubeURL, completion: { videoInfo, error in
-      if let
-        videoURLString = videoInfo?["url"] as? String,
-        videoTitle = videoInfo?["title"] as? String {
-          if let isStream = videoInfo?["isStream"] as? Bool,
-            image = videoInfo?["image"] as? String {
-              if let imageURL = NSURL(string: image),
-                data = NSData(contentsOfURL: imageURL),
-                bgImage = UIImage(data: data) {
-                  self.controlsView.backgroundImageView.image = bgImage
-              }
-          }
-          if let url = NSURL(string: videoURLString) {
-            self.currentVideoURL = url
-          }
-          self.title = videoTitle
-      }
-    })
-    if self.config.prerollViewController == nil {
-      self.moviePlayer.contentURL = currentVideoURL
-    }
-    initializeMobilePlayerViewController()
   }
 
   public required init(coder aDecoder: NSCoder) {
