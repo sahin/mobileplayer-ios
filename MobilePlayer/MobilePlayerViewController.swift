@@ -53,6 +53,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   public var timedOverlays = [[String: AnyObject]]()
   // Volume View
   private var volumeView = VolumeControlView()
+  // Share Items
+  private var shareItems = [AnyObject]?()
 
   override public func viewWillTransitionToSize(size: CGSize,
     withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -60,10 +62,13 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   // MARK: - Initialization
-  public init(contentURL: NSURL, configFileURL: NSURL) {
+  public init(contentURL: NSURL, configFileURL: NSURL, shareItems: [AnyObject]? = nil) {
     let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
     self.config = config
     controlsView = MobilePlayerControlsView(config: config)
+    if let items = shareItems as [AnyObject]? {
+      self.shareItems = items
+    }
     super.init(contentURL: contentURL)
     if contentURL.host == "www.youtube.com" {
       self.checkUrlStateWithContentURL(contentURL, urlType: URLHelper.URLType.Remote)
@@ -521,6 +526,20 @@ extension MobilePlayerViewController {
   }
 
   public final func shareContent() {
+    if let items = self.shareItems as [AnyObject]? {
+      let shareVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+      shareVC.excludedActivityTypes =  [
+        UIActivityTypePostToWeibo,
+        UIActivityTypeCopyToPasteboard,
+        UIActivityTypeAssignToContact,
+        UIActivityTypeSaveToCameraRoll,
+        UIActivityTypePostToFlickr,
+        UIActivityTypePostToVimeo,
+        UIActivityTypePostToTencentWeibo,
+        UIActivityTypeAirDrop
+      ]
+      self.presentViewController(shareVC, animated: true, completion: nil)
+    }
     if let shareCallback = config.shareCallback {
       moviePlayer.pause()
       shareCallback(playerVC: self)
