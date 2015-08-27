@@ -10,7 +10,7 @@ import Foundation
 import MediaPlayer
 import SnapKit
 
-class MobilePlayerControlsView: UIView {
+final class MobilePlayerControlsView: UIView {
   let buttonSize = CGSize(width: 40, height: 40)
   var orderItems = [AnyObject]()
   var controlsHidden: Bool = false {
@@ -87,7 +87,7 @@ class MobilePlayerControlsView: UIView {
     volumeView.hidden = !volumeView.hidden
   }
 
-  required public init(coder aDecoder: NSCoder) {
+  required init(coder aDecoder: NSCoder) {
     fatalError("storyboards are incompatible with truth and beauty")
   }
 
