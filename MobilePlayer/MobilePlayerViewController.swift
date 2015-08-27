@@ -527,6 +527,7 @@ extension MobilePlayerViewController {
 
   public final func shareContent() {
     if let items = self.shareItems as [AnyObject]? {
+      moviePlayer.pause()
       let shareVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
       shareVC.excludedActivityTypes =  [
         UIActivityTypePostToWeibo,
@@ -539,10 +540,6 @@ extension MobilePlayerViewController {
         UIActivityTypeAirDrop
       ]
       self.presentViewController(shareVC, animated: true, completion: nil)
-    }
-    if let shareCallback = config.shareCallback {
-      moviePlayer.pause()
-      shareCallback(playerVC: self)
     }
   }
 
