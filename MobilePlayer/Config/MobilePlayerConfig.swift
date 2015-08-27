@@ -38,7 +38,6 @@ public struct MobilePlayerConfig {
 
   // MARK: - Special Callbacks
   public var firstPlayCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
-  public var shareCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
   public var endCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
 
   // MARK: - Not Configuration Related
