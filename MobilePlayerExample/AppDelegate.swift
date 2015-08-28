@@ -16,9 +16,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(
     application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-      let playerController = PlayerViewController()
+      let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=ZyIVaZXDhho")!
+      let movieURL = NSURL(string: "http://goo.gl/97Dezi")!
+      let youtubeStreamURL = NSURL(string: "https://www.youtube.com/watch?v=tlQV61zW2kU")!
+      let skinFile = NSBundle.mainBundle().URLForResource("Netflix", withExtension: "json")!
+      let playerVC = MobilePlayerViewController(
+        contentURL: youtubeURL,
+        configFileURL: skinFile,
+        shareItems: ["http://www.domain.com", "Text"])
+      /*
+      playerVC.config.prerollViewController = PreRollViewController()
+      playerVC.showOverlayViewController(
+        ADBannerViewController(),
+        startingAtTime: 3,
+        forDuration: 3
+      )
+      playerVC.showOverlayViewController(
+        ADBannerViewController(),
+        startingAtTime: 10,
+        forDuration: 5
+      )
+      */
       self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-      self.window!.rootViewController = playerController
+      self.window!.rootViewController = playerVC
       self.window!.backgroundColor = UIColor.whiteColor()
       self.window!.makeKeyAndVisible()
       return true

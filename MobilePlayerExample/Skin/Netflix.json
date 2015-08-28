@@ -83,5 +83,6 @@
   "backgroundColor": "#000000",
   "footerGradient": true,
   "headerGradient": true,
-  "alpha": 0.3
+  "alpha": 0.3,
+  "logo": "logo.png"
 }

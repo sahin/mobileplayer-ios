@@ -54,6 +54,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   public var timedOverlays = [[String: AnyObject]]()
   // Volume View
   private var volumeView = VolumeControlView()
+  // Share Items
+  private var shareItems = [AnyObject]?()
 
   override public func viewWillTransitionToSize(size: CGSize,
     withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
@@ -61,69 +63,51 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   // MARK: - Initialization
-  public init(contentURL: NSURL, config: MobilePlayerConfig = globalConfiguration) {
+  public init(contentURL: NSURL, configFileURL: NSURL, shareItems: [AnyObject]? = nil) {
+    let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
     self.config = config
     controlsView = MobilePlayerControlsView(config: config)
+    if let items = shareItems as [AnyObject]? {
+      self.shareItems = items
+    }
     super.init(contentURL: contentURL)
-    URLHelper.checkURL(contentURL, urlType: URLHelper.URLType.Local) { (check, error) -> Void in
-      if check {
-        self.state = .Loading
-      }else{
-        self.state = .Error
+    if contentURL.host == "www.youtube.com" {
+      self.checkUrlStateWithContentURL(contentURL, urlType: URLHelper.URLType.Remote)
+      Youtube.h264videosWithYoutubeURL(contentURL, completion: { videoInfo, error in
+        if let
+          videoURLString = videoInfo?["url"] as? String,
+          videoTitle = videoInfo?["title"] as? String {
+            if let isStream = videoInfo?["isStream"] as? Bool,
+              image = videoInfo?["image"] as? String {
+                if let imageURL = NSURL(string: image),
+                  data = NSData(contentsOfURL: imageURL),
+                  bgImage = UIImage(data: data) {
+                    self.controlsView.backgroundImageView.image = bgImage
+                }
+            }
+            if let url = NSURL(string: videoURLString) {
+              self.currentVideoURL = url
+            }
+            self.title = videoTitle
+        }
+      })
+      if self.config.prerollViewController == nil {
+        self.moviePlayer.contentURL = currentVideoURL
       }
+    }else{
+      checkUrlStateWithContentURL(contentURL, urlType: URLHelper.URLType.Local)
     }
     initializeMobilePlayerViewController()
   }
 
-  public init(contentURL: NSURL, configFileURL: NSURL) {
-    let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
-    self.config = config
-    controlsView = MobilePlayerControlsView(config: config)
-    super.init(contentURL: contentURL)
-    URLHelper.checkURL(contentURL, urlType: URLHelper.URLType.Local) { (check, error) -> Void in
+  private func checkUrlStateWithContentURL(contentURL: NSURL, urlType: URLHelper.URLType) {
+    URLHelper.checkURL(contentURL, urlType: urlType) { (check, error) -> Void in
       if check {
         self.state = .Loading
       }else{
         self.state = .Error
       }
     }
-    initializeMobilePlayerViewController()
-  }
-
-  public init(youTubeURL: NSURL, configFileURL: NSURL) {
-    let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
-    self.config = config
-    controlsView = MobilePlayerControlsView(config: config)
-    super.init(contentURL: NSURL())
-    URLHelper.checkURL(youTubeURL, urlType: URLHelper.URLType.Remote) { (check, error) -> Void in
-      if check {
-        self.state = .Loading
-      }else{
-        self.state = .Error
-      }
-    }
-    Youtube.h264videosWithYoutubeURL(youTubeURL, completion: { videoInfo, error in
-      if let
-        videoURLString = videoInfo?["url"] as? String,
-        videoTitle = videoInfo?["title"] as? String {
-          if let isStream = videoInfo?["isStream"] as? Bool,
-            image = videoInfo?["image"] as? String {
-              if let imageURL = NSURL(string: image),
-                data = NSData(contentsOfURL: imageURL),
-                bgImage = UIImage(data: data) {
-                  self.controlsView.backgroundImageView.image = bgImage
-              }
-          }
-          if let url = NSURL(string: videoURLString) {
-            self.currentVideoURL = url
-          }
-          self.title = videoTitle
-      }
-    })
-    if self.config.prerollViewController == nil {
-      self.moviePlayer.contentURL = currentVideoURL
-    }
-    initializeMobilePlayerViewController()
   }
 
   public required init(coder aDecoder: NSCoder) {
@@ -543,9 +527,20 @@ extension MobilePlayerViewController {
   }
 
   public final func shareContent() {
-    if let shareCallback = config.shareCallback {
+    if let items = self.shareItems as [AnyObject]? {
       moviePlayer.pause()
-      shareCallback(playerVC: self)
+      let shareVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+      shareVC.excludedActivityTypes =  [
+        UIActivityTypePostToWeibo,
+        UIActivityTypeCopyToPasteboard,
+        UIActivityTypeAssignToContact,
+        UIActivityTypeSaveToCameraRoll,
+        UIActivityTypePostToFlickr,
+        UIActivityTypePostToVimeo,
+        UIActivityTypePostToTencentWeibo,
+        UIActivityTypeAirDrop
+      ]
+      self.presentViewController(shareVC, animated: true, completion: nil)
     }
   }
 
