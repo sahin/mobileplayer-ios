@@ -21,6 +21,14 @@
              "tintColor": "#ffffff",
              "type": "button",
              "subType": "share"
+             },
+             {
+             "order": 4,
+             "image": "MLCloseButton",
+             "tintColor": "#ffffff",
+             "type": "button",
+             "subType": "custom",
+             "identifier": "gopro action"
              }
              ],
   "controlbar": [

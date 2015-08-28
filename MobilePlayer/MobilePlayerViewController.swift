@@ -34,6 +34,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
   // Subviews.
   private let controlsView: MobilePlayerControlsView
+  public var delegate: MobilePlayerViewControllerDelegate?
   // State management properties.
   private var previousStatusBarHiddenValue: Bool!
   private var previousStatusBarStyle: UIStatusBarStyle!
@@ -567,8 +568,7 @@ extension MobilePlayerViewController {
     updateTimeLabel(controlsView.playbackTimeLabel, time: moviePlayer.currentPlaybackTime)
     controlsView.setNeedsLayout()
     for (index,overlay) in enumerate(timedOverlays) {
-      if let
-        start = overlay["start"] as? NSTimeInterval,
+      if let start = overlay["start"] as? NSTimeInterval,
         duration = overlay["duration"] as? NSTimeInterval {
           if !self.moviePlayer.currentPlaybackTime.isNaN {
             var videoTime = Int(self.moviePlayer.currentPlaybackTime)
@@ -589,6 +589,14 @@ extension MobilePlayerViewController {
     if let index = notification.userInfo?["val"] as? Int,
       overlayView = timedOverlays[index]["vc"] as? MobilePlayerOverlayViewController {
         self.dismissMobilePlayerOverlay(overlayView)
+    }
+  }
+
+  // MARK: - Custom Button Delegate
+  func customButtonAction(button: UIButton) {
+    if let identifiers = button.accessibilityElements,
+      let identifier = identifiers[0] as? String  {
+        delegate?.didPressButton(button, identifier: identifier)
     }
   }
 }

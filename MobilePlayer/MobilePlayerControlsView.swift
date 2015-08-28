@@ -46,7 +46,6 @@ final class MobilePlayerControlsView: UIView {
   init(config: MobilePlayerConfig) {
     self.config = config
     super.init(frame: CGRectZero)
-
     headerView.backgroundColor = config.controlbarConfig.backgroundColor
     headerView.layer.masksToBounds = true
     addSubview(headerView)
@@ -55,8 +54,6 @@ final class MobilePlayerControlsView: UIView {
     footerView.backgroundColor = config.controlbarConfig.backgroundColor
     footerView.layer.masksToBounds = true
     addSubview(footerView)
-
-    // Setting view constraints
     headerView.snp_makeConstraints { (make) -> Void in
       make.width.equalTo(frame.size.width)
       make.height.equalTo(buttonSize.height)
@@ -292,6 +289,18 @@ extension MobilePlayerControlsView {
   private func setLogoWithSkin(skin: [String: AnyObject]) {
     if let logo = skin["logo"] as? String {
       logoView.image = UIImage(named: logo)
+    }
+  }
+
+  private func customButtonAction(subType: String, viewItem: AnyObject, button: UIButton) {
+    if subType == "custom" {
+      if let identifier = viewItem["identifier"] as? String {
+        button.accessibilityElements = [identifier]
+        button.addTarget(
+          self.superview,
+          action: "customButtonAction:",
+          forControlEvents: UIControlEvents.TouchUpInside)
+      }
     }
   }
 
