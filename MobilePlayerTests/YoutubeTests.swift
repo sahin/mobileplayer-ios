@@ -83,7 +83,7 @@ class YoutubeTests: XCTestCase {
         }
       })
     }
-    if let liveVideoURL = NSURL(string: "https://www.youtube.com/watch?v=rxGoGg7n77A"){
+    if let liveVideoURL = NSURL(string: "https://www.youtube.com/watch?v=E3DEih8_6O8"){
       Youtube.h264videosWithYoutubeURL(liveVideoURL, completion: { (videoInfo, error) -> Void in
         XCTAssertNotNil(videoInfo, "video dictionary is nil")
         if let info = videoInfo as [String:AnyObject]? {
