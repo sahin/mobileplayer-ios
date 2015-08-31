@@ -16,7 +16,7 @@ class PlayerViewController: UIViewController, MobilePlayerViewControllerDelegate
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    let playerVC = MobilePlayerViewController(youTubeURL: youtubeURL, configFileURL: skinFile)
+    let playerVC = MobilePlayerViewController(contentURL: youtubeURL, configFileURL: skinFile)
     playerVC.view.frame = self.view.frame
     playerVC.delegate = self
     self.view.addSubview(playerVC.view)

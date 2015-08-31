@@ -206,14 +206,6 @@
 			path = Config;
 			sourceTree = "<group>";
 		};
-		C3A2D37E1B7BB6E5009D44ED /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				C3A9AF0A1B0497BE00D0C842 /* Skin */,
-			);
-			name = "New Group";
-			sourceTree = "<group>";
-		};
 		C3A2D3801B7BB6F6009D44ED /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,7 +234,7 @@
 		C3A9AEDA1B048B5600D0C842 /* MobilePlayerExample */ = {
 			isa = PBXGroup;
 			children = (
-				C3A2D37E1B7BB6E5009D44ED /* New Group */,
+				C3A9AF0A1B0497BE00D0C842 /* Skin */,
 				C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */,
 				C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */,
 				C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */,
