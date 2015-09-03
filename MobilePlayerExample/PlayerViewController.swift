@@ -12,11 +12,25 @@ import MobilePlayer
 class PlayerViewController: UIViewController, MobilePlayerViewControllerDelegate {
 
   let youtubeURL = NSURL(string: "https://www.youtube.com/watch?v=ZyIVaZXDhho")!
-  let skinFile = NSBundle.mainBundle().URLForResource("Netflix", withExtension: "json")!
+  var file = NSURL()
+  //let skinFile = NSBundle.mainBundle().URLForResource("Netflix", withExtension: "json")!
+
+  convenience init() {
+    self.init(skinFile: NSURL())
+  }
+  
+  init(skinFile: NSURL?) {
+    file = skinFile!
+    super.init(nibName: nil, bundle: nil)
+  }
+  
+  required init(coder aDecoder: NSCoder) {
+    super.init(coder: aDecoder)
+  }
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    let playerVC = MobilePlayerViewController(contentURL: youtubeURL, configFileURL: skinFile)
+    let playerVC = MobilePlayerViewController(contentURL: youtubeURL, configFileURL: file)
     playerVC.view.frame = self.view.frame
     playerVC.delegate = self
     self.view.addSubview(playerVC.view)

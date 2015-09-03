@@ -7,7 +7,7 @@
              },
              {
              "order": 1,
-             "textFont": "HelveticaNeue",
+             "textFont": "SanFranciscoDisplay-Medium",
              "textSize": 16,
              "textColor": "#ffffff",
              "type": "label",
@@ -35,9 +35,9 @@
                  "order": 1
                  },
                  {
-                 "order": 4,
-                 "railRadius": 1,
-                 "railHeight": 2,
+                 "order": 2,
+                 "railRadius": 0.5,
+                 "railHeight": 1,
                  "railTintColor": "#555555",
                  "bufferTintColor": "#cdcdcd",
                  "progressTintColor": "#f44336",
@@ -53,9 +53,11 @@
                  {
                  "type": "view",
                  "subType": "seperator",
-                 "order": 5
+                 "order": 3
                  }
                  ],
-                "backgroundColor":"#000000",
-                "alpha": 0.2
+                "backgroundColor": "#000000",
+                "footerGradient": true,
+                "headerGradient": true,
+                "alpha": 0.3
 }
