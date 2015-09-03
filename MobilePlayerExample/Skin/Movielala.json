@@ -3,7 +3,7 @@
              {
              "order": 1,
              "textFont": "SanFranciscoDisplay-Medium",
-             "textSize": 16,
+             "textSize": 14,
              "textColor": "#ffffff",
              "type": "label",
              "subType": "title"
@@ -36,7 +36,7 @@
                  {
                  "order": 1,
                  "textFont": "SanFranciscoDisplay-Medium",
-                 "textFontSize": 15,
+                 "textFontSize": 12,
                  "textColor": "#ffffff",
                  "type": "label",
                  "subType": "time"
@@ -50,16 +50,16 @@
                  "order": 3,
                  "type": "view",
                  "subType": "timeSlider",
-                 "railRadius": 5,
-                 "railHeight": 10,
-                 "railTintColor": "#cccccc",
+                 "railRadius": 0,
+                 "railHeight": 1,
+                 "railTintColor": "#ffffff",
                  "bufferTintColor": "#9e9b9a",
                  "progressTintColor": "#ae3f1c",
                  "thumbTintColor": "#e54918",
-                 "thumbRadius": 12.5,
-                 "thumbHeight": 25,
-                 "thumbWidth": 25,
-                 "thumbBorder": 0
+                 "thumbRadius": 6.0,
+                 "thumbHeight": 20,
+                 "thumbWidth": 20,
+                 "thumbBorder": 0.1
                  },
                  {
                  "order": 4,
@@ -71,7 +71,7 @@
                  "type": "label",
                  "subType": "duration",
                  "textFont": "SanFranciscoDisplay-Medium",
-                 "textFontSize": 15,
+                 "textFontSize": 12,
                  "textColor": "#ffffff"
                  },
                  {
@@ -87,7 +87,8 @@
                  }
                  ],
   "backgroundColor": "#000000",
-  "footerGradient": true,
-  "headerGradient": true,
-  "alpha": 1.0
+  "footerGradient": false,
+  "headerGradient": false,
+  "alpha": 0.2,
+  "logo": "logo.png"
 }

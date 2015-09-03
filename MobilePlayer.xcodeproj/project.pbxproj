@@ -8,8 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		35F04942D4DB50FF7F21D5B2 /* Pods_MobilePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7D73B451E88B493F3D4298C /* Pods_MobilePlayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		537D66AC1B97847200FA6E52 /* SkinListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537D66AB1B97847200FA6E52 /* SkinListViewController.swift */; };
+		53CD32211B95333100BF48DC /* All.json in Resources */ = {isa = PBXBuildFile; fileRef = 53CD32191B95333100BF48DC /* All.json */; };
+		53CD32221B95333100BF48DC /* Facebook.json in Resources */ = {isa = PBXBuildFile; fileRef = 53CD321A1B95333100BF48DC /* Facebook.json */; };
+		53CD32241B95333100BF48DC /* Hulu.json in Resources */ = {isa = PBXBuildFile; fileRef = 53CD321C1B95333100BF48DC /* Hulu.json */; };
+		53CD32261B95333100BF48DC /* Minimal.json in Resources */ = {isa = PBXBuildFile; fileRef = 53CD321E1B95333100BF48DC /* Minimal.json */; };
+		53CD32271B95333100BF48DC /* Movielala.json in Resources */ = {isa = PBXBuildFile; fileRef = 53CD321F1B95333100BF48DC /* Movielala.json */; };
+		53CD32281B95333100BF48DC /* Netflix.json in Resources */ = {isa = PBXBuildFile; fileRef = 53CD32201B95333100BF48DC /* Netflix.json */; };
+		53CD322C1B95335B00BF48DC /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 53CD322B1B95335B00BF48DC /* logo.png */; };
+		53CD322F1B95336400BF48DC /* SanFrancisco-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53CD322D1B95336400BF48DC /* SanFrancisco-Medium.otf */; };
+		53CD32301B95336400BF48DC /* SanFranciscoThin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 53CD322E1B95336400BF48DC /* SanFranciscoThin.otf */; };
 		C305DED61B20DC8300DD9632 /* TimeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305DED51B20DC8300DD9632 /* TimeSliderView.swift */; };
-		C305DED81B21068700DD9632 /* Minimal.json in Resources */ = {isa = PBXBuildFile; fileRef = C305DED71B21068700DD9632 /* Minimal.json */; };
 		C305DEDA1B21069500DD9632 /* SkinParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305DED91B21069500DD9632 /* SkinParser.swift */; };
 		C308B3BB1B14FAE300CB1515 /* ControlbarConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */; };
 		C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */; };
@@ -18,9 +27,6 @@
 		C35E68BF1B7D06F700594CE6 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */; };
 		C35FDE0E1B3DEA56005C55A6 /* VolumeControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */; };
 		C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
-		C361643D1B6725C2000CE00E /* Hulu.json in Resources */ = {isa = PBXBuildFile; fileRef = C361643C1B6725C2000CE00E /* Hulu.json */; };
-		C36164411B673D04000CE00E /* Netflix.json in Resources */ = {isa = PBXBuildFile; fileRef = C36164401B673D04000CE00E /* Netflix.json */; };
-		C384AB271B6C3BB000D5B243 /* All.json in Resources */ = {isa = PBXBuildFile; fileRef = C384AB261B6C3BB000D5B243 /* All.json */; };
 		C38833C91B266C2500918C94 /* Skin.json in Resources */ = {isa = PBXBuildFile; fileRef = C38833C81B266C2500918C94 /* Skin.json */; };
 		C38BEEA61B72DBD1009E4F64 /* PlayerStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BEEA51B72DBD1009E4F64 /* PlayerStateTest.swift */; };
 		C38E86A81B73EDAC0073B660 /* StateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E86A71B73EDAC0073B660 /* StateHelper.swift */; };
@@ -28,7 +34,6 @@
 		C38FA6511B33279600BE17E8 /* ADBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */; };
 		C38FA6531B33530C00BE17E8 /* PreRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */; };
 		C39C749F1B75400700E6CD21 /* KIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39C749E1B75400700E6CD21 /* KIF.framework */; };
-		C3A2D3821B7BB765009D44ED /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A2D3811B7BB765009D44ED /* logo.png */; };
 		C3A4069B1B27709900D1833D /* Youtube.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069A1B27709900D1833D /* Youtube.swift */; };
 		C3A406A21B278B5A00D1833D /* CGRect+LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */; };
 		C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */; };
@@ -103,10 +108,19 @@
 		0A3D625F8D46F7B3823A9927 /* Pods-MobilePlayerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		460022C3A2D4FC80A1D57D18 /* Pods-MobilePlayerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.release.xcconfig"; sourceTree = "<group>"; };
 		505CCD80FF878F8F17EC4627 /* Pods_MobilePlayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		537D66AB1B97847200FA6E52 /* SkinListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinListViewController.swift; sourceTree = "<group>"; };
+		53CD32191B95333100BF48DC /* All.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = All.json; sourceTree = "<group>"; };
+		53CD321A1B95333100BF48DC /* Facebook.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Facebook.json; sourceTree = "<group>"; };
+		53CD321C1B95333100BF48DC /* Hulu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Hulu.json; sourceTree = "<group>"; };
+		53CD321E1B95333100BF48DC /* Minimal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Minimal.json; sourceTree = "<group>"; };
+		53CD321F1B95333100BF48DC /* Movielala.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Movielala.json; sourceTree = "<group>"; };
+		53CD32201B95333100BF48DC /* Netflix.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Netflix.json; sourceTree = "<group>"; };
+		53CD322B1B95335B00BF48DC /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Images/logo.png; sourceTree = "<group>"; };
+		53CD322D1B95336400BF48DC /* SanFrancisco-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SanFrancisco-Medium.otf"; path = "Fonts/SanFrancisco-Medium.otf"; sourceTree = "<group>"; };
+		53CD322E1B95336400BF48DC /* SanFranciscoThin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SanFranciscoThin.otf; path = Fonts/SanFranciscoThin.otf; sourceTree = "<group>"; };
 		6CCEC38BCAA197BDB85EEE44 /* Pods-MobilePlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.release.xcconfig"; sourceTree = "<group>"; };
 		AAC564F266BFE6E6667728D5 /* Pods-MobilePlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		C305DED51B20DC8300DD9632 /* TimeSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSliderView.swift; sourceTree = "<group>"; };
-		C305DED71B21068700DD9632 /* Minimal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Minimal.json; sourceTree = "<group>"; };
 		C305DED91B21069500DD9632 /* SkinParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinParser.swift; sourceTree = "<group>"; };
 		C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlbarConfig.swift; sourceTree = "<group>"; };
 		C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerConfig.swift; sourceTree = "<group>"; };
@@ -114,9 +128,6 @@
 		C35497A21B70007500FDDBFF /* SkinTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinTests.swift; sourceTree = "<group>"; };
 		C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeControlView.swift; sourceTree = "<group>"; };
-		C361643C1B6725C2000CE00E /* Hulu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Hulu.json; sourceTree = "<group>"; };
-		C36164401B673D04000CE00E /* Netflix.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Netflix.json; sourceTree = "<group>"; };
-		C384AB261B6C3BB000D5B243 /* All.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = All.json; sourceTree = "<group>"; };
 		C38833C81B266C2500918C94 /* Skin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Skin.json; sourceTree = "<group>"; };
 		C38BEEA51B72DBD1009E4F64 /* PlayerStateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStateTest.swift; sourceTree = "<group>"; };
 		C38E86A71B73EDAC0073B660 /* StateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateHelper.swift; sourceTree = "<group>"; };
@@ -124,7 +135,6 @@
 		C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADBannerViewController.swift; sourceTree = "<group>"; };
 		C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreRollViewController.swift; sourceTree = "<group>"; };
 		C39C749E1B75400700E6CD21 /* KIF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KIF.framework; path = "Pods/../build/Debug-iphoneos/KIF.framework"; sourceTree = "<group>"; };
-		C3A2D3811B7BB765009D44ED /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Images/logo.png; sourceTree = "<group>"; };
 		C3A4069A1B27709900D1833D /* Youtube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Youtube.swift; sourceTree = "<group>"; };
 		C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+LayoutHelper.swift"; sourceTree = "<group>"; };
 		C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeTests.swift; sourceTree = "<group>"; };
@@ -194,6 +204,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		53CD32291B95333D00BF48DC /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				53CD322D1B95336400BF48DC /* SanFrancisco-Medium.otf */,
+				53CD322E1B95336400BF48DC /* SanFranciscoThin.otf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		53CD322A1B95335100BF48DC /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				53CD322B1B95335B00BF48DC /* logo.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		C308B3B71B14F98700CB1515 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,22 +231,6 @@
 				C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */,
 			);
 			path = Config;
-			sourceTree = "<group>";
-		};
-		C3A2D37E1B7BB6E5009D44ED /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				C3A9AF0A1B0497BE00D0C842 /* Skin */,
-			);
-			name = "New Group";
-			sourceTree = "<group>";
-		};
-		C3A2D3801B7BB6F6009D44ED /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				C3A2D3811B7BB765009D44ED /* logo.png */,
-			);
-			name = Images;
 			sourceTree = "<group>";
 		};
 		C3A406971B27700400D1833D /* Support */ = {
@@ -242,8 +253,9 @@
 		C3A9AEDA1B048B5600D0C842 /* MobilePlayerExample */ = {
 			isa = PBXGroup;
 			children = (
-				C3A2D37E1B7BB6E5009D44ED /* New Group */,
+				C3A9AF0A1B0497BE00D0C842 /* Skin */,
 				C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */,
+				537D66AB1B97847200FA6E52 /* SkinListViewController.swift */,
 				C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */,
 				C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */,
 				C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */,
@@ -282,11 +294,14 @@
 		C3A9AF0A1B0497BE00D0C842 /* Skin */ = {
 			isa = PBXGroup;
 			children = (
-				C3A2D3801B7BB6F6009D44ED /* Images */,
-				C305DED71B21068700DD9632 /* Minimal.json */,
-				C361643C1B6725C2000CE00E /* Hulu.json */,
-				C36164401B673D04000CE00E /* Netflix.json */,
-				C384AB261B6C3BB000D5B243 /* All.json */,
+				53CD322A1B95335100BF48DC /* Images */,
+				53CD32291B95333D00BF48DC /* Fonts */,
+				53CD32191B95333100BF48DC /* All.json */,
+				53CD321A1B95333100BF48DC /* Facebook.json */,
+				53CD321C1B95333100BF48DC /* Hulu.json */,
+				53CD321E1B95333100BF48DC /* Minimal.json */,
+				53CD321F1B95333100BF48DC /* Movielala.json */,
+				53CD32201B95333100BF48DC /* Netflix.json */,
 			);
 			path = Skin;
 			sourceTree = "<group>";
@@ -549,14 +564,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C36164411B673D04000CE00E /* Netflix.json in Resources */,
-				C361643D1B6725C2000CE00E /* Hulu.json in Resources */,
+				53CD32271B95333100BF48DC /* Movielala.json in Resources */,
+				53CD32221B95333100BF48DC /* Facebook.json in Resources */,
+				53CD32241B95333100BF48DC /* Hulu.json in Resources */,
 				C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */,
+				53CD32211B95333100BF48DC /* All.json in Resources */,
+				53CD322F1B95336400BF48DC /* SanFrancisco-Medium.otf in Resources */,
 				C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */,
-				C3A2D3821B7BB765009D44ED /* logo.png in Resources */,
-				C384AB271B6C3BB000D5B243 /* All.json in Resources */,
-				C305DED81B21068700DD9632 /* Minimal.json in Resources */,
+				53CD322C1B95335B00BF48DC /* logo.png in Resources */,
+				53CD32301B95336400BF48DC /* SanFranciscoThin.otf in Resources */,
+				53CD32261B95333100BF48DC /* Minimal.json in Resources */,
 				C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */,
+				53CD32281B95333100BF48DC /* Netflix.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,7 +709,7 @@
 		};
 		5F2739FF1B2A8F7400EF50C4 /* Validate Code Style */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -771,6 +790,7 @@
 			files = (
 				C3A9AEDE1B048B5600D0C842 /* AppDelegate.swift in Sources */,
 				C35E68BF1B7D06F700594CE6 /* PlayerViewController.swift in Sources */,
+				537D66AC1B97847200FA6E52 /* SkinListViewController.swift in Sources */,
 				C38FA6531B33530C00BE17E8 /* PreRollViewController.swift in Sources */,
 				C38FA6511B33279600BE17E8 /* ADBannerViewController.swift in Sources */,
 			);

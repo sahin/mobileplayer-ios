@@ -1,0 +1,65 @@
+{
+  "header": [ ],
+  "controlbar": [
+                 {
+                 "order": 0,
+                 "playImage": "MLPlayButton",
+                 "playTintColor": "#ffffff",
+                 "pauseImage": "MLPauseButton",
+                 "pauseTintColor": "#ffffff",
+                 "type": "button",
+                 "subType": "play"
+                 },
+                 {
+                 "type": "view",
+                 "subType": "seperator",
+                 "order": 1,
+                 "width": 10
+                 },
+                 {
+                 "order": 2,
+                 "railRadius": 0.5,
+                 "railHeight": 1,
+                 "railTintColor": "#858585",
+                 "bufferTintColor": "#e2e2e2",
+                 "progressTintColor": "#6a9dfc",
+                 "thumbTintColor": "#ffffff",
+                 "thumbRadius": 7.5,
+                 "thumbHeight": 15,
+                 "thumbWidth": 15,
+                 "thumbBorder": 0,
+                 "thumbBorderColor": "#ffffff",
+                 "type": "view",
+                 "subType": "timeSlider"
+                 },
+                 {
+                 "order": 6,
+                 "textFont": "SanFranciscoDisplay-Medium",
+                 "textFontSize": 12,
+                 "textColor": "#e2e2e2",
+                 "type": "label",
+                 "subType": "remaining"
+                 },
+                 {
+                 "type": "view",
+                 "subType": "seperator",
+                 "order": 5,
+                 "width": 10
+                 },
+                 {
+                 "order": 7,
+                 "railTintColor": "#cccccc",
+                 "progressTintColor": "#0000ff",
+                 "thumbTintColor": "#c5c5c5",
+                 "tintColor": "#ffffff",
+                 "image": "MLVolumeButton",
+                 "backgroundColor": "#ffffff",
+                 "type": "button",
+                 "subType": "volume"
+                 }
+                 ],
+  "backgroundColor": "#000000",
+  "footerGradient": false,
+  "headerGradient": true,
+  "alpha": 0.3
+}

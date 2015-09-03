@@ -2,7 +2,7 @@
   "header": [
              {
              "order": 1,
-             "textFont": "HelveticaNeue",
+             "textFont": "SanFranciscoDisplay-Medium",
              "textSize": 16,
              "textColor": "#ffffff",
              "type": "label",
@@ -21,14 +21,6 @@
              "tintColor": "#ffffff",
              "type": "button",
              "subType": "share"
-             },
-             {
-             "order": 4,
-             "image": "MLCloseButton",
-             "tintColor": "#ffffff",
-             "type": "button",
-             "subType": "custom",
-             "identifier": "gopro action"
              }
              ],
   "controlbar": [
@@ -42,12 +34,20 @@
                  "subType": "play"
                  },
                  {
-                 "type": "view",
-                 "subType": "seperator",
-                 "order": 1
+                 "order": 1,
+                 "textFont": "SanFranciscoDisplay-Medium",
+                 "textFontSize": 15,
+                 "textColor": "#ffffff",
+                 "type": "label",
+                 "subType": "time"
                  },
                  {
-                 "order": 2,
+                 "type": "view",
+                 "subType": "seperator",
+                 "order": 2
+                 },
+                 {
+                 "order": 3,
                  "type": "view",
                  "subType": "timeSlider",
                  "railRadius": 5,
@@ -62,27 +62,33 @@
                  "thumbBorder": 0
                  },
                  {
-                 "order": 3,
+                 "order": 4,
                  "type": "view",
                  "subType": "seperator"
                  },
                  {
-                 "order": 4,
+                 "order": 5,
                  "type": "label",
-                 "subType": "remaining",
-                 "textFont": "HelveticaNeue",
+                 "subType": "duration",
+                 "textFont": "SanFranciscoDisplay-Medium",
                  "textFontSize": 15,
                  "textColor": "#ffffff"
                  },
                  {
                  "order": 5,
-                 "type": "view",
-                 "subType": "seperator"
+                 "railTintColor": "#cccccc",
+                 "progressTintColor": "#0000ff",
+                 "thumbTintColor": "#c5c5c5",
+                 "tintColor": "#ffffff",
+                 "image": "MLVolumeButton",
+                 "backgroundColor": "#ffffff",
+                 "type": "button",
+                 "subType": "volume"
                  }
                  ],
   "backgroundColor": "#000000",
   "footerGradient": true,
   "headerGradient": true,
-  "alpha": 0.3,
-  "logo": "logo.png"
+  "alpha": 1.0,
+  "logo": "logo"
 }
