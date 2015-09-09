@@ -9,41 +9,38 @@
 import UIKit
 import MediaPlayer
 
-class VolumeControlView: UIView {
-  var volumeSlider = MPVolumeView(frame: CGRectZero)
-  var increaseVolumeImage = UIImageView(frame: CGRectZero)
-  var reduceVolumeImage = UIImageView(frame: CGRectZero)
-  var increaseVolumeTintColor = UIColor.blackColor()
-  var reduceVolumeTintColor = UIColor.blackColor()
+private let defaultIncreaseVolumeTintColor = UIColor.blackColor()
+private let defaultReduceVolumeTintColor = UIColor.blackColor()
 
-  override init(frame: CGRect) {
-    super.init(frame: frame)
-    backgroundColor = UIColor.whiteColor()
-    volumeSlider.frame = CGRectMake(-22.0, 50.0, 110.0, 50.0)
-    volumeSlider.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
-    volumeSlider.showsVolumeSlider = true
-    volumeSlider.showsRouteButton = false
-    addSubview(volumeSlider)
-    increaseVolumeImage = UIImageView(frame: CGRectMake(10.0, 0.0, 20.0, 20.0))
-    increaseVolumeImage.image = UIImage(named: "MLIncreaseVolume")
-    increaseVolumeImage.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
-    addSubview(increaseVolumeImage)
-    reduceVolumeImage = UIImageView(frame: CGRectMake(10.0, 130.0, 20.0, 20.0))
-    reduceVolumeImage.image = UIImage(named: "MLReduceVolume")
-    reduceVolumeImage.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
-    increaseVolumeImage.tintColor = increaseVolumeTintColor
-    reduceVolumeImage.tintColor = reduceVolumeTintColor
-    addSubview(reduceVolumeImage)
+class VolumeControlView: UIView {
+  let volumeSlider = MPVolumeView(frame: CGRect(x: -22, y: 50, width: 110, height: 50))
+  let increaseVolumeImage = UIImageView(frame: CGRect(x: 10, y: 0, width: 20, height: 20))
+  let reduceVolumeImage = UIImageView(frame: CGRect(x: 10, y: 130, width: 20, height: 20))
+
+  init(
+    increaseVolumeTintColor: UIColor = defaultIncreaseVolumeTintColor,
+    reduceVolumeTintColor: UIColor = defaultReduceVolumeTintColor) {
+      super.init(frame: CGRectZero)
+      layer.cornerRadius = 5
+      layer.borderColor = UIColor.grayColor().CGColor
+      layer.borderWidth = 0.5
+      layer.masksToBounds = true
+      backgroundColor = UIColor.whiteColor()
+      volumeSlider.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
+      volumeSlider.showsVolumeSlider = true
+      volumeSlider.showsRouteButton = false
+      addSubview(volumeSlider)
+      increaseVolumeImage.image = UIImage(named: "MLIncreaseVolume")
+      increaseVolumeImage.tintAdjustmentMode = .Normal
+      addSubview(increaseVolumeImage)
+      reduceVolumeImage.image = UIImage(named: "MLReduceVolume")
+      reduceVolumeImage.tintAdjustmentMode = .Normal
+      increaseVolumeImage.tintColor = increaseVolumeTintColor
+      reduceVolumeImage.tintColor = reduceVolumeTintColor
+      addSubview(reduceVolumeImage)
   }
 
   required init(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-
-  override func layoutSubviews() {
-    layer.cornerRadius = 5
-    layer.borderColor = UIColor.grayColor().CGColor
-    layer.borderWidth = 0.5
-    layer.masksToBounds = true
   }
 }

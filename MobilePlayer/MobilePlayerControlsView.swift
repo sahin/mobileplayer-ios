@@ -28,7 +28,7 @@ final class MobilePlayerControlsView: UIView {
   let overlayContainerView = UIView()
   let footerView = UIView()
   let logoView = UIImageView()
-  var volumeView = VolumeControlView()
+  var volumeView: VolumeControlView!
   var volumeButton = UIButton()
   var timeSliderView = TimeSliderView()
   let backgroundImageView = UIImageView()
@@ -170,8 +170,9 @@ final class MobilePlayerControlsView: UIView {
     timeSliderView.progressView.backgroundColor =
       config.controlbarConfig.timeSliderProgressTintColor
     timeSliderView.thumbView.backgroundColor = config.controlbarConfig.timeSliderThumbTintColor
-    volumeView.reduceVolumeTintColor = config.controlbarConfig.volumeTintColor
-    volumeView.increaseVolumeTintColor = config.controlbarConfig.volumeTintColor
+    volumeView = VolumeControlView(
+      increaseVolumeTintColor: config.controlbarConfig.volumeTintColor,
+      reduceVolumeTintColor: config.controlbarConfig.volumeTintColor)
     volumeView.backgroundColor = config.controlbarConfig.volumeBackgroundColor
     volumeView.tintColor = config.controlbarConfig.volumeTintColor
     volumeView.hidden = true
