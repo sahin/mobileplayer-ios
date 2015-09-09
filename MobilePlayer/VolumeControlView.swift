@@ -29,9 +29,11 @@ class VolumeControlView: UIView {
       volumeSlider.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
       volumeSlider.showsRouteButton = false
       addSubview(volumeSlider)
+      increaseVolumeImage.contentMode = .ScaleAspectFit;
       increaseVolumeImage.image = UIImage(named: "MLIncreaseVolume")
       increaseVolumeImage.tintColor = increaseVolumeTintColor
       addSubview(increaseVolumeImage)
+      reduceVolumeImage.contentMode = .ScaleAspectFit;
       reduceVolumeImage.image = UIImage(named: "MLReduceVolume")
       reduceVolumeImage.tintColor = reduceVolumeTintColor
       addSubview(reduceVolumeImage)
