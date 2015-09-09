@@ -27,15 +27,12 @@ class VolumeControlView: UIView {
       layer.masksToBounds = true
       backgroundColor = UIColor.whiteColor()
       volumeSlider.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
-      volumeSlider.showsVolumeSlider = true
       volumeSlider.showsRouteButton = false
       addSubview(volumeSlider)
       increaseVolumeImage.image = UIImage(named: "MLIncreaseVolume")
-      increaseVolumeImage.tintAdjustmentMode = .Normal
+      increaseVolumeImage.tintColor = increaseVolumeTintColor
       addSubview(increaseVolumeImage)
       reduceVolumeImage.image = UIImage(named: "MLReduceVolume")
-      reduceVolumeImage.tintAdjustmentMode = .Normal
-      increaseVolumeImage.tintColor = increaseVolumeTintColor
       reduceVolumeImage.tintColor = reduceVolumeTintColor
       addSubview(reduceVolumeImage)
   }
