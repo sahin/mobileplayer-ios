@@ -12,10 +12,8 @@ import MediaPlayer
 private var globalConfiguration = MobilePlayerConfig()
 
 public class MobilePlayerViewController: MPMoviePlayerViewController {
-
   public enum State {
-    case Buffering, Idle, Complete, Paused, Playing, Error,
-    Loading, Stalled, Unknown, SeekingBackward, SeekingForward
+    case Buffering, Idle, Complete, Paused, Playing, Error, Loading, Stalled, Unknown, SeekingBackward, SeekingForward
   }
   public private(set) var previousState: State = .Unknown
   public private(set) var state: State = .Unknown {
@@ -23,9 +21,9 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       previousState = oldValue
     }
   }
+  // Config.
   public class var globalConfig: MobilePlayerConfig { return globalConfiguration }
   public var config: MobilePlayerConfig
-
   // controller title |> player title
   public override var title: String? {
     didSet {
@@ -52,8 +50,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   public var overlayController = MobilePlayerOverlayViewController()
   public var isShowOverlay = false
   public var timedOverlays = [[String: AnyObject]]()
-  // Volume View
-  private var volumeView = VolumeControlView()
   // Share Items
   private var shareItems = [AnyObject]?()
 
