@@ -9,41 +9,42 @@
 import UIKit
 import MediaPlayer
 
-class StateHelper: MobilePlayerViewController {
+struct StateHelper {
 
-  static func stateForPlayer(player: MPMoviePlayerController) -> MobilePlayerViewController.State {
-    var state: MobilePlayerViewController.State
-    // MPMoviePlaybackState
-    switch (player.playbackState){
-    case MPMoviePlaybackState.Interrupted:
-      state = .Error
-    case MPMoviePlaybackState.Paused:
-      state = .Paused
-    case MPMoviePlaybackState.Playing:
-      state = .Playing
-    case MPMoviePlaybackState.SeekingBackward:
-      state = .SeekingBackward
-    case MPMoviePlaybackState.SeekingForward:
-      state = .SeekingForward
-    case MPMoviePlaybackState.Stopped:
-      state = .Complete
-    default:
-      break
-    }
-    // MPMoviePlaybackState
-    switch (player.loadState){
-    case MPMovieLoadState.Playable:
-      state = .Idle
-    case MPMovieLoadState.PlaythroughOK:
-      state = .Idle
-    case MPMovieLoadState.Stalled:
-      state = .Stalled
-    case MPMovieLoadState.Unknown:
-      state = .Unknown
-    default:
-      break
-    }
-    return state
+  static func stateForPlaybackState(
+    playbackState: MPMoviePlaybackState,
+    andLoadState loadState: MPMovieLoadState) -> MobilePlayerViewController.State {
+      var state: MobilePlayerViewController.State
+      // MPMoviePlaybackState
+      switch (playbackState){
+      case MPMoviePlaybackState.Interrupted:
+        state = .Error
+      case MPMoviePlaybackState.Paused:
+        state = .Paused
+      case MPMoviePlaybackState.Playing:
+        state = .Playing
+      case MPMoviePlaybackState.SeekingBackward:
+        state = .SeekingBackward
+      case MPMoviePlaybackState.SeekingForward:
+        state = .SeekingForward
+      case MPMoviePlaybackState.Stopped:
+        state = .Complete
+      default:
+        break
+      }
+      // MPMoviePlaybackState
+      switch (loadState){
+      case MPMovieLoadState.Playable:
+        state = .Idle
+      case MPMovieLoadState.PlaythroughOK:
+        state = .Idle
+      case MPMovieLoadState.Stalled:
+        state = .Stalled
+      case MPMovieLoadState.Unknown:
+        state = .Unknown
+      default:
+        break
+      }
+      return state
   }
-
 }

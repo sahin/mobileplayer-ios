@@ -380,11 +380,11 @@ extension MobilePlayerViewController {
   }
 
   final func handleMoviePlayerPlaybackStateDidChangeNotification() {
-    var playerState = moviePlayer.playbackState
-    state = StateHelper.stateForPlayer(moviePlayer)
+    let playbackState = moviePlayer.playbackState
+    state = StateHelper.stateForPlaybackState(playbackState, andLoadState: moviePlayer.loadState)
     controlsView.playerStateLabel.text = NSString(format: "%d-%d", state.hashValue, previousState.hashValue) as String
     updatePlaybackTimeInterface()
-    if playerState == .Playing || playerState == .Interrupted {
+    if playbackState == .Playing || playbackState == .Interrupted {
       doFirstPlaySetupIfNeeded()
       controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage, forState: .Normal)
       controlsView.playButton.tintColor = config.controlbarConfig.pauseButtonTintColor
