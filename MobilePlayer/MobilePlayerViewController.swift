@@ -12,6 +12,10 @@ import MediaPlayer
 private var globalConfiguration = MobilePlayerConfig()
 
 public class MobilePlayerViewController: MPMoviePlayerViewController {
+  // MARK: - Properties
+  // MARK: Delegation
+  public var delegate: MobilePlayerViewControllerDelegate?
+  // MARK: Player State
   public enum State {
     case Buffering, Idle, Complete, Paused, Playing, Error, Loading, Stalled, Unknown, SeekingBackward, SeekingForward
   }
@@ -21,19 +25,24 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       previousState = oldValue
     }
   }
-  // Config.
+  // MARK: Player Configuration
   public class var globalConfig: MobilePlayerConfig { return globalConfiguration }
   public var config: MobilePlayerConfig
-  // controller title |> player title
+  // MARK: Mapped Properties
   public override var title: String? {
     didSet {
       controlsView.titleLabel.text = title
     }
   }
-  // Subviews.
+  // MARK: Subviews
   private let controlsView: MobilePlayerControlsView
-  public var delegate: MobilePlayerViewControllerDelegate?
-  // State management properties.
+  // MARK: Overlays
+  public var overlayController = MobilePlayerOverlayViewController()
+  public var isShowOverlay = false
+  public var timedOverlays = [[String: AnyObject]]()
+  // MARK: Sharing
+  private var shareItems = [AnyObject]?()
+  // MARK: Other Properties
   private var previousStatusBarHiddenValue: Bool!
   private var previousStatusBarStyle: UIStatusBarStyle!
   private var isFirstPlay = true
@@ -46,28 +55,20 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var updateTimeSliderViewInterfaceTimer: NSTimer?
   private var updateTimeLabelInterfaceTimer: NSTimer?
   private var currentVideoURL = NSURL()
-  // OverlayController
-  public var overlayController = MobilePlayerOverlayViewController()
-  public var isShowOverlay = false
-  public var timedOverlays = [[String: AnyObject]]()
-  // Share Items
-  private var shareItems = [AnyObject]?()
-
-  override public func viewWillTransitionToSize(size: CGSize,
-    withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-      controlsView.updateConstraintsWithLayout(CGRectMake(0.0, 0.0, size.width, size.height))
-  }
 
   // MARK: - Initialization
-  public init(contentURL: NSURL, configFileURL: NSURL, shareItems: [AnyObject]? = nil) {
-    let config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
-    self.config = config
+  public init(contentURL: NSURL, configFileURL: NSURL? = nil, shareItems: [AnyObject]? = nil) {
+    if let configFileURL = configFileURL {
+      config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
+    } else {
+      config = globalConfiguration
+    }
     controlsView = MobilePlayerControlsView(config: config)
     if let items = shareItems as [AnyObject]? {
       self.shareItems = items
     }
     super.init(contentURL: contentURL)
-    if contentURL.host == "www.youtube.com" {
+    if contentURL.host?.rangeOfString("youtube.com") != nil {
       self.checkUrlStateWithContentURL(contentURL, urlType: URLHelper.URLType.Remote)
       Youtube.h264videosWithYoutubeURL(contentURL, completion: { videoInfo, error in
         if let
@@ -90,7 +91,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       if self.config.prerollViewController == nil {
         self.moviePlayer.contentURL = currentVideoURL
       }
-    }else{
+    } else{
       checkUrlStateWithContentURL(contentURL, urlType: URLHelper.URLType.Local)
     }
     initializeMobilePlayerViewController()
@@ -594,5 +595,15 @@ extension MobilePlayerViewController {
       let identifier = identifiers[0] as? String  {
         delegate?.didPressButton(button, identifier: identifier)
     }
+  }
+}
+
+// MARK: - UIContentContainer
+extension MobilePlayerViewController {
+
+  override public func viewWillTransitionToSize(
+    size: CGSize,
+    withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+      controlsView.updateConstraintsWithLayout(CGRect(x: 0, y: 0, width: size.width, height: size.height))
   }
 }
