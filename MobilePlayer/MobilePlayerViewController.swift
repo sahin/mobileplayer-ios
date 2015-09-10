@@ -17,10 +17,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   public var delegate: MobilePlayerViewControllerDelegate?
   // MARK: Player State
   public enum State {
-    case Buffering, Idle, Complete, Paused, Playing, Error, Loading, Stalled, Unknown, SeekingBackward, SeekingForward
+    case Idle, Buffering, Playing, Paused
   }
-  public private(set) var previousState: State = .Unknown
-  public private(set) var state: State = .Unknown {
+  public private(set) var previousState: State = .Idle
+  public private(set) var state: State = .Idle {
     didSet(oldValue) {
       previousState = oldValue
     }
@@ -380,11 +380,10 @@ extension MobilePlayerViewController {
   }
 
   final func handleMoviePlayerPlaybackStateDidChangeNotification() {
-    let playbackState = moviePlayer.playbackState
-    state = StateHelper.stateForPlaybackState(playbackState, andLoadState: moviePlayer.loadState)
+    state = StateHelper.calculateStateUsing(previousState, andPlaybackState: moviePlayer.playbackState)
     controlsView.playerStateLabel.text = NSString(format: "%d-%d", state.hashValue, previousState.hashValue) as String
     updatePlaybackTimeInterface()
-    if playbackState == .Playing || playbackState == .Interrupted {
+    if state == .Playing {
       doFirstPlaySetupIfNeeded()
       controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage, forState: .Normal)
       controlsView.playButton.tintColor = config.controlbarConfig.pauseButtonTintColor

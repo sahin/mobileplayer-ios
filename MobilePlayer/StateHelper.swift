@@ -11,40 +11,20 @@ import MediaPlayer
 
 struct StateHelper {
 
-  static func stateForPlaybackState(
-    playbackState: MPMoviePlaybackState,
-    andLoadState loadState: MPMovieLoadState) -> MobilePlayerViewController.State {
-      var state: MobilePlayerViewController.State
-      // MPMoviePlaybackState
-      switch (playbackState){
-      case MPMoviePlaybackState.Interrupted:
-        state = .Error
-      case MPMoviePlaybackState.Paused:
-        state = .Paused
-      case MPMoviePlaybackState.Playing:
-        state = .Playing
-      case MPMoviePlaybackState.SeekingBackward:
-        state = .SeekingBackward
-      case MPMoviePlaybackState.SeekingForward:
-        state = .SeekingForward
-      case MPMoviePlaybackState.Stopped:
-        state = .Complete
-      default:
-        break
+  static func calculateStateUsing(
+    previousState: MobilePlayerViewController.State,
+    andPlaybackState playbackState: MPMoviePlaybackState) -> MobilePlayerViewController.State {
+      switch playbackState {
+      case .Stopped:
+        return .Idle
+      case .Playing:
+        return .Playing
+      case .Paused:
+        return .Paused
+      case .Interrupted:
+        return .Buffering
+      case .SeekingForward, .SeekingBackward:
+        return previousState
       }
-      // MPMoviePlaybackState
-      switch (loadState){
-      case MPMovieLoadState.Playable:
-        state = .Idle
-      case MPMovieLoadState.PlaythroughOK:
-        state = .Idle
-      case MPMovieLoadState.Stalled:
-        state = .Stalled
-      case MPMovieLoadState.Unknown:
-        state = .Unknown
-      default:
-        break
-      }
-      return state
   }
 }
