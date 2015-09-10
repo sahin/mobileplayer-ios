@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		35F04942D4DB50FF7F21D5B2 /* Pods_MobilePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7D73B451E88B493F3D4298C /* Pods_MobilePlayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		5F7CFC221BA21A4700EF50C4 /* NSTimer+Closures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CFC211BA21A4700EF50C4 /* NSTimer+Closures.swift */; };
 		C305DED61B20DC8300DD9632 /* TimeSliderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305DED51B20DC8300DD9632 /* TimeSliderView.swift */; };
 		C305DED81B21068700DD9632 /* Minimal.json in Resources */ = {isa = PBXBuildFile; fileRef = C305DED71B21068700DD9632 /* Minimal.json */; };
 		C305DEDA1B21069500DD9632 /* SkinParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C305DED91B21069500DD9632 /* SkinParser.swift */; };
@@ -103,6 +104,7 @@
 		0A3D625F8D46F7B3823A9927 /* Pods-MobilePlayerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		460022C3A2D4FC80A1D57D18 /* Pods-MobilePlayerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.release.xcconfig"; sourceTree = "<group>"; };
 		505CCD80FF878F8F17EC4627 /* Pods_MobilePlayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F7CFC211BA21A4700EF50C4 /* NSTimer+Closures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTimer+Closures.swift"; sourceTree = "<group>"; };
 		6CCEC38BCAA197BDB85EEE44 /* Pods-MobilePlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.release.xcconfig"; sourceTree = "<group>"; };
 		AAC564F266BFE6E6667728D5 /* Pods-MobilePlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		C305DED51B20DC8300DD9632 /* TimeSliderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeSliderView.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			children = (
 				C3A406AE1B27AA8C00D1833D /* UIColor+Extension.swift */,
 				C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */,
+				5F7CFC211BA21A4700EF50C4 /* NSTimer+Closures.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -326,15 +329,15 @@
 		CE554D511AFE6CCD00DAC7E9 /* MobilePlayer */ = {
 			isa = PBXGroup;
 			children = (
+				CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */,
+				CE554D6D1AFE6EBB00DAC7E9 /* MobilePlayerControlsView.swift */,
+				C308B3B71B14F98700CB1515 /* Config */,
 				C3A4069C1B278A4900D1833D /* Extensions */,
 				C3A406971B27700400D1833D /* Support */,
-				C308B3B71B14F98700CB1515 /* Config */,
 				C3A9AF0F1B04C89D00D0C842 /* Parser */,
 				CE554D541AFE6CCD00DAC7E9 /* MobilePlayer.h */,
 				C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */,
-				CE554D6D1AFE6EBB00DAC7E9 /* MobilePlayerControlsView.swift */,
 				C305DED51B20DC8300DD9632 /* TimeSliderView.swift */,
-				CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */,
 				C38ED8E41B84F5AF0036EACC /* MobilePlayerViewControllerDelegate.swift */,
 				CE554D6E1AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift */,
 				C38E86A71B73EDAC0073B660 /* StateHelper.swift */,
@@ -798,6 +801,7 @@
 				CE554D731AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift in Sources */,
 				C38ED8E51B84F5AF0036EACC /* MobilePlayerViewControllerDelegate.swift in Sources */,
 				C3A4069B1B27709900D1833D /* Youtube.swift in Sources */,
+				5F7CFC221BA21A4700EF50C4 /* NSTimer+Closures.swift in Sources */,
 				CE554D741AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift in Sources */,
 				C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */,
 				C3A406A21B278B5A00D1833D /* CGRect+LayoutHelper.swift in Sources */,
