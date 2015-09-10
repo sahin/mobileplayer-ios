@@ -25,7 +25,6 @@
 		C38833C91B266C2500918C94 /* Skin.json in Resources */ = {isa = PBXBuildFile; fileRef = C38833C81B266C2500918C94 /* Skin.json */; };
 		C38BEEA61B72DBD1009E4F64 /* PlayerStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BEEA51B72DBD1009E4F64 /* PlayerStateTest.swift */; };
 		C38E86A81B73EDAC0073B660 /* StateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E86A71B73EDAC0073B660 /* StateHelper.swift */; };
-		C38ED8E51B84F5AF0036EACC /* MobilePlayerViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38ED8E41B84F5AF0036EACC /* MobilePlayerViewControllerDelegate.swift */; };
 		C38FA6511B33279600BE17E8 /* ADBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */; };
 		C38FA6531B33530C00BE17E8 /* PreRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */; };
 		C39C749F1B75400700E6CD21 /* KIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39C749E1B75400700E6CD21 /* KIF.framework */; };
@@ -122,7 +121,6 @@
 		C38833C81B266C2500918C94 /* Skin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Skin.json; sourceTree = "<group>"; };
 		C38BEEA51B72DBD1009E4F64 /* PlayerStateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStateTest.swift; sourceTree = "<group>"; };
 		C38E86A71B73EDAC0073B660 /* StateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateHelper.swift; sourceTree = "<group>"; };
-		C38ED8E41B84F5AF0036EACC /* MobilePlayerViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerViewControllerDelegate.swift; sourceTree = "<group>"; };
 		C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADBannerViewController.swift; sourceTree = "<group>"; };
 		C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreRollViewController.swift; sourceTree = "<group>"; };
 		C39C749E1B75400700E6CD21 /* KIF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KIF.framework; path = "Pods/../build/Debug-iphoneos/KIF.framework"; sourceTree = "<group>"; };
@@ -196,6 +194,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F7CFC251BA22A3100EF50C4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE554D6D1AFE6EBB00DAC7E9 /* MobilePlayerControlsView.swift */,
+				C305DED51B20DC8300DD9632 /* TimeSliderView.swift */,
+				C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		5F7CFC261BA22A6B00EF50C4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				C38E86A71B73EDAC0073B660 /* StateHelper.swift */,
+				C3BEBCC71B7436040015F6D1 /* URLHelper.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		C308B3B71B14F98700CB1515 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -294,11 +311,12 @@
 			path = Skin;
 			sourceTree = "<group>";
 		};
-		C3A9AF0F1B04C89D00D0C842 /* Parser */ = {
+		C3A9AF0F1B04C89D00D0C842 /* Parsers */ = {
 			isa = PBXGroup;
 			children = (
 				C305DED91B21069500DD9632 /* SkinParser.swift */,
 			);
+			name = Parsers;
 			path = Parser;
 			sourceTree = "<group>";
 		};
@@ -329,19 +347,15 @@
 		CE554D511AFE6CCD00DAC7E9 /* MobilePlayer */ = {
 			isa = PBXGroup;
 			children = (
-				CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */,
-				CE554D6D1AFE6EBB00DAC7E9 /* MobilePlayerControlsView.swift */,
-				C308B3B71B14F98700CB1515 /* Config */,
-				C3A4069C1B278A4900D1833D /* Extensions */,
-				C3A406971B27700400D1833D /* Support */,
-				C3A9AF0F1B04C89D00D0C842 /* Parser */,
 				CE554D541AFE6CCD00DAC7E9 /* MobilePlayer.h */,
-				C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */,
-				C305DED51B20DC8300DD9632 /* TimeSliderView.swift */,
-				C38ED8E41B84F5AF0036EACC /* MobilePlayerViewControllerDelegate.swift */,
+				CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */,
 				CE554D6E1AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift */,
-				C38E86A71B73EDAC0073B660 /* StateHelper.swift */,
-				C3BEBCC71B7436040015F6D1 /* URLHelper.swift */,
+				5F7CFC251BA22A3100EF50C4 /* Views */,
+				C308B3B71B14F98700CB1515 /* Config */,
+				C3A406971B27700400D1833D /* Support */,
+				C3A9AF0F1B04C89D00D0C842 /* Parsers */,
+				5F7CFC261BA22A6B00EF50C4 /* Helpers */,
+				C3A4069C1B278A4900D1833D /* Extensions */,
 				CE554D751AFE6EE400DAC7E9 /* Images.xcassets */,
 				CE554D521AFE6CCD00DAC7E9 /* Supporting Files */,
 			);
@@ -799,7 +813,6 @@
 				C38E86A81B73EDAC0073B660 /* StateHelper.swift in Sources */,
 				C305DED61B20DC8300DD9632 /* TimeSliderView.swift in Sources */,
 				CE554D731AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift in Sources */,
-				C38ED8E51B84F5AF0036EACC /* MobilePlayerViewControllerDelegate.swift in Sources */,
 				C3A4069B1B27709900D1833D /* Youtube.swift in Sources */,
 				5F7CFC221BA21A4700EF50C4 /* NSTimer+Closures.swift in Sources */,
 				CE554D741AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift in Sources */,

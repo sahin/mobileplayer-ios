@@ -9,6 +9,10 @@
 import UIKit
 import MediaPlayer
 
+public protocol MobilePlayerViewControllerDelegate: class {
+  func didPressButton(button: UIButton, identifier: String)
+}
+
 private var globalConfiguration = MobilePlayerConfig()
 
 public class MobilePlayerViewController: MPMoviePlayerViewController {
