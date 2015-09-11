@@ -10,8 +10,9 @@ import Foundation
 import MediaPlayer
 import SnapKit
 
+private let buttonSize = CGSize(width: 40, height: 40)
+
 final class MobilePlayerControlsView: UIView {
-  let buttonSize = CGSize(width: 40, height: 40)
   var orderItems = [AnyObject]()
   var controlsHidden: Bool = false {
     // Hide/show controls animated.
@@ -30,7 +31,7 @@ final class MobilePlayerControlsView: UIView {
   let logoView = UIImageView()
   var volumeView: VolumeView!
   var volumeButton = UIButton()
-  var timeSliderView = TimeSliderView()
+  var timeSlider = TimeSlider(frame: CGRectZero)
   let backgroundImageView = UIImageView()
   let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
   let closeButton = UIButton()
@@ -162,14 +163,14 @@ final class MobilePlayerControlsView: UIView {
     remainingLabel.font = config.controlbarConfig.remainingTextFont
     remainingLabel.textColor = config.controlbarConfig.remainingTextColor
     remainingLabel.backgroundColor = config.controlbarConfig.remainingBackgroundColor
-    timeSliderView.backgroundColor = config.controlbarConfig.timeSliderBackgroundColor
-    timeSliderView.railView.backgroundColor =
+    timeSlider.backgroundColor = config.controlbarConfig.timeSliderBackgroundColor
+    timeSlider.railView.backgroundColor =
       config.controlbarConfig.timeSliderRailTintColor
-    timeSliderView.bufferView.backgroundColor =
+    timeSlider.bufferView.backgroundColor =
       config.controlbarConfig.timeSliderBufferTintColor
-    timeSliderView.progressView.backgroundColor =
+    timeSlider.progressView.backgroundColor =
       config.controlbarConfig.timeSliderProgressTintColor
-    timeSliderView.thumbView.backgroundColor = config.controlbarConfig.timeSliderThumbTintColor
+    timeSlider.thumbView.backgroundColor = config.controlbarConfig.timeSliderThumbTintColor
     volumeView = VolumeView(
       increaseVolumeTintColor: config.controlbarConfig.volumeTintColor,
       reduceVolumeTintColor: config.controlbarConfig.volumeTintColor)
@@ -208,8 +209,8 @@ extension MobilePlayerControlsView {
                 if let slider = viewItem["subType"] as? String {
                   if slider == "timeSlider" {
                     timeSliderCases(viewItem)
-                    views.append(timeSliderView)
-                    layout.addSubview(timeSliderView)
+                    views.append(timeSlider)
+                    layout.addSubview(timeSlider)
                   }else{
                     if slider == "seperator" {
                       let seperator = UIView()
@@ -372,26 +373,26 @@ extension MobilePlayerControlsView {
   }
 
   private func timeSliderCases(viewItem: AnyObject){
-    if let sliderRailRadius = viewItem["railRadius"] as? CGFloat {
-      timeSliderView.railView.layer.cornerRadius = sliderRailRadius
+    if let railHeight = viewItem["railHeight"] as? CGFloat {
+      timeSlider.railViewHeight = railHeight
     }
-    if let sliderRailHeight = viewItem["railHeight"] as? CGFloat {
-      timeSliderView.railHeight = sliderRailHeight
+    if let railRadius = viewItem["railRadius"] as? CGFloat {
+      timeSlider.railViewRadius = railRadius
+    }
+    if let thumbWidth = viewItem["thumbWidth"] as? CGFloat {
+      timeSlider.thumbViewWidth = thumbWidth
+    }
+    if let thumbHeight = viewItem["thumbHeight"] as? CGFloat {
+      timeSlider.thumbViewHeight = thumbHeight
     }
     if let thumbRadius = viewItem["thumbRadius"] as? CGFloat {
-      timeSliderView.thumbViewRadius = thumbRadius
+      timeSlider.thumbViewRadius = thumbRadius
     }
-    if let thumbViewHeight = viewItem["thumbHeight"] as? CGFloat {
-      timeSliderView.thumbHeight = thumbViewHeight
+    if let thumbBorderWidth = viewItem["thumbBorderWidth"] as? CGFloat {
+      timeSlider.thumbViewBorderWidth = thumbBorderWidth
     }
-    if let thumbViewWidth = viewItem["thumbWidth"] as? CGFloat {
-      timeSliderView.thumbWidth = thumbViewWidth
-    }
-    if let thumbViewBorder = viewItem["thumbBorder"] as? CGFloat {
-      timeSliderView.thumbBorder = thumbViewBorder
-    }
-    if let thumbViewBorderColor = viewItem["thumbBorderColor"] as? String {
-      timeSliderView.thumbBorderColor = UIColor(hexString: thumbViewBorderColor)
+    if let thumbBorderColor = viewItem["thumbBorderColor"] as? String {
+      timeSlider.thumbViewBorderColor = UIColor(hexString: thumbBorderColor)
     }
   }
 
