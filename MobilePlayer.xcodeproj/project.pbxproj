@@ -17,7 +17,7 @@
 		C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */; };
 		C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35497A21B70007500FDDBFF /* SkinTests.swift */; };
 		C35E68BF1B7D06F700594CE6 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */; };
-		C35FDE0E1B3DEA56005C55A6 /* VolumeControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */; };
+		C35FDE0E1B3DEA56005C55A6 /* VolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35FDE0D1B3DEA56005C55A6 /* VolumeView.swift */; };
 		C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
 		C361643D1B6725C2000CE00E /* Hulu.json in Resources */ = {isa = PBXBuildFile; fileRef = C361643C1B6725C2000CE00E /* Hulu.json */; };
 		C36164411B673D04000CE00E /* Netflix.json in Resources */ = {isa = PBXBuildFile; fileRef = C36164401B673D04000CE00E /* Netflix.json */; };
@@ -114,7 +114,7 @@
 		C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareButtonConfig.swift; sourceTree = "<group>"; };
 		C35497A21B70007500FDDBFF /* SkinTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinTests.swift; sourceTree = "<group>"; };
 		C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeControlView.swift; sourceTree = "<group>"; };
+		C35FDE0D1B3DEA56005C55A6 /* VolumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeView.swift; sourceTree = "<group>"; };
 		C361643C1B6725C2000CE00E /* Hulu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Hulu.json; sourceTree = "<group>"; };
 		C36164401B673D04000CE00E /* Netflix.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Netflix.json; sourceTree = "<group>"; };
 		C384AB261B6C3BB000D5B243 /* All.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = All.json; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 			children = (
 				CE554D6D1AFE6EBB00DAC7E9 /* MobilePlayerControlsView.swift */,
 				C305DED51B20DC8300DD9632 /* TimeSliderView.swift */,
-				C35FDE0D1B3DEA56005C55A6 /* VolumeControlView.swift */,
+				C35FDE0D1B3DEA56005C55A6 /* VolumeView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -807,7 +807,7 @@
 			files = (
 				C305DEDA1B21069500DD9632 /* SkinParser.swift in Sources */,
 				C308B3BB1B14FAE300CB1515 /* ControlbarConfig.swift in Sources */,
-				C35FDE0E1B3DEA56005C55A6 /* VolumeControlView.swift in Sources */,
+				C35FDE0E1B3DEA56005C55A6 /* VolumeView.swift in Sources */,
 				C3E643B21B16751B0017DBE6 /* TitleConfig.swift in Sources */,
 				C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */,
 				C38E86A81B73EDAC0073B660 /* StateHelper.swift in Sources */,

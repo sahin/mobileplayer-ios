@@ -1,5 +1,5 @@
 //
-//  SoundControlView.swift
+//  VolumeView.swift
 //  MobilePlayer
 //
 //  Created by Toygar Dündaralp on 25/06/15.
@@ -12,7 +12,7 @@ import MediaPlayer
 private let defaultIncreaseVolumeTintColor = UIColor.blackColor()
 private let defaultReduceVolumeTintColor = UIColor.blackColor()
 
-class VolumeControlView: UIView {
+class VolumeView: UIView {
   let volumeSlider = MPVolumeView(frame: CGRect(x: -22, y: 50, width: 110, height: 50))
   let increaseVolumeImage = UIImageView(frame: CGRect(x: 10, y: 0, width: 20, height: 20))
   let reduceVolumeImage = UIImageView(frame: CGRect(x: 10, y: 130, width: 20, height: 20))
