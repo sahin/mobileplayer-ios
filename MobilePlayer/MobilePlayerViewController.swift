@@ -13,8 +13,6 @@ public protocol MobilePlayerViewControllerDelegate: class {
   func didPressButton(button: UIButton, identifier: String)
 }
 
-private let playbackInterfaceUpdateInterval = 0.25
-private var globalConfiguration = MobilePlayerConfig()
 
 public class MobilePlayerViewController: MPMoviePlayerViewController {
   // MARK: - Properties
@@ -31,7 +29,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     }
   }
   // MARK: Player Configuration
-  public class var globalConfig: MobilePlayerConfig { return globalConfiguration }
+  private static let playbackInterfaceUpdateInterval = 0.25
+  public static let globalConfig = MobilePlayerConfig()
   public var config: MobilePlayerConfig
   // MARK: Mapped Properties
   public override var title: String? {
@@ -46,7 +45,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   public var isShowOverlay = false
   public var timedOverlays = [[String: AnyObject]]()
   // MARK: Sharing
-  private var shareItems: [AnyObject]?
+  public var shareItems: [AnyObject]?
   // MARK: Other Properties
   private var previousStatusBarHiddenValue: Bool!
   private var previousStatusBarStyle: UIStatusBarStyle!
@@ -62,13 +61,12 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   public init(contentURL: NSURL, configFileURL: NSURL? = nil, shareItems: [AnyObject]? = nil) {
     if let configFileURL = configFileURL {
-      config = SkinParser.parseConfigFromURL(configFileURL) ?? globalConfiguration
+      config = SkinParser.parseConfigFromURL(configFileURL) ?? MobilePlayerViewController.globalConfig
     } else {
-      config = globalConfiguration
+      config = MobilePlayerViewController.globalConfig
     }
     controlsView = MobilePlayerControlsView(config: config)
     super.init(contentURL: contentURL)
-    controlsView.timeSlider.delegate = self
     self.shareItems = shareItems
     if contentURL.host?.rangeOfString("youtube.com") != nil {
       self.checkUrlStateWithContentURL(contentURL, urlType: URLHelper.URLType.Remote)
@@ -136,22 +134,11 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   private func initializeControlsView() {
-    controlsView.closeButton.addTarget(
-      self,
-      action: "dismiss",
-      forControlEvents: .TouchUpInside)
-    controlsView.shareButton.addTarget(
-      self,
-      action: "shareContent",
-      forControlEvents: .TouchUpInside)
-    controlsView.playButton.addTarget(
-      self,
-      action: "togglePlayback",
-      forControlEvents: .TouchUpInside)
-    controlsView.volumeButton.addTarget(
-      controlsView,
-      action: "toggleVolumeView",
-      forControlEvents: .TouchUpInside)
+    controlsView.timeSlider.delegate = self
+    controlsView.closeButton.addCallback(dismiss, forControlEvents: .TouchUpInside)
+    controlsView.shareButton.addCallback(shareContent, forControlEvents: .TouchUpInside)
+    controlsView.playButton.addCallback(togglePlayback, forControlEvents: .TouchUpInside)
+    controlsView.volumeButton.addCallback(controlsView.toggleVolumeView, forControlEvents: .TouchUpInside)
     initializeControlsViewTapRecognizers()
   }
 
@@ -175,15 +162,21 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     super.viewDidLoad()
     view.addSubview(controlsView)
     playbackInterfaceUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(
-      playbackInterfaceUpdateInterval,
+      MobilePlayerViewController.playbackInterfaceUpdateInterval,
       callback: {
         self.controlsView.timeSlider.maximumValue = self.moviePlayer.duration.isNormal ? self.moviePlayer.duration : 0
         if !self.seeking {
           let sliderValue = self.moviePlayer.currentPlaybackTime.isNormal ? self.moviePlayer.currentPlaybackTime : 0
-          self.controlsView.timeSlider.setValue(sliderValue, animated: true, duration: playbackInterfaceUpdateInterval)
+          self.controlsView.timeSlider.setValue(
+            sliderValue,
+            animated: true,
+            duration: MobilePlayerViewController.playbackInterfaceUpdateInterval)
         }
         let bufferValue = self.moviePlayer.playableDuration.isNormal ? self.moviePlayer.playableDuration : 0
-        self.controlsView.timeSlider.setBufferValue(bufferValue, animated: true, duration: playbackInterfaceUpdateInterval)
+        self.controlsView.timeSlider.setBufferValue(
+          bufferValue,
+          animated: true,
+          duration: MobilePlayerViewController.playbackInterfaceUpdateInterval)
         self.updateTimeLabel(self.controlsView.playbackTimeLabel, time: self.moviePlayer.currentPlaybackTime)
         self.updateShownTimedOverlays()
       },
