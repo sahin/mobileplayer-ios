@@ -117,20 +117,22 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   private func initializeNotificationObservers() {
     let notificationCenter = NSNotificationCenter.defaultCenter()
-    notificationCenter.addObserver(
-      self,
-      selector: "handleMoviePlayerPlaybackStateDidChangeNotification",
-      name: MPMoviePlayerPlaybackStateDidChangeNotification,
-      object: moviePlayer)
+    notificationCenter.addObserverForName(
+      MPMoviePlayerPlaybackStateDidChangeNotification,
+      object: moviePlayer,
+      queue: NSOperationQueue.mainQueue()) { notification in
+        self.handleMoviePlayerPlaybackStateDidChangeNotification()
+    }
     notificationCenter.removeObserver(
       self,
       name: MPMoviePlayerPlaybackDidFinishNotification,
       object: moviePlayer)
-    notificationCenter.addObserver(
-      self,
-      selector: "showPostrollOrDismissAtVideoEnd",
-      name: MPMoviePlayerPlaybackDidFinishNotification,
-      object: moviePlayer)
+    notificationCenter.addObserverForName(
+      MPMoviePlayerPlaybackDidFinishNotification,
+      object: moviePlayer,
+      queue: NSOperationQueue.mainQueue()) { notification in
+        self.showPostrollOrDismissAtVideoEnd()
+    }
   }
 
   private func initializeControlsView() {
