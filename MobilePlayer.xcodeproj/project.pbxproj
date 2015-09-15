@@ -29,12 +29,12 @@
 		C38FA6531B33530C00BE17E8 /* PreRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */; };
 		C39C749F1B75400700E6CD21 /* KIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39C749E1B75400700E6CD21 /* KIF.framework */; };
 		C3A2D3821B7BB765009D44ED /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = C3A2D3811B7BB765009D44ED /* logo.png */; };
-		C3A4069B1B27709900D1833D /* Youtube.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069A1B27709900D1833D /* Youtube.swift */; };
+		C3A4069B1B27709900D1833D /* YoutubeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069A1B27709900D1833D /* YoutubeParser.swift */; };
 		C3A406A21B278B5A00D1833D /* CGRect+LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */; };
 		C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */; };
 		C3A406AF1B27AA8C00D1833D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Extension.swift */; };
 		C3A406B01B27AA9500D1833D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Extension.swift */; };
-		C3A406B11B27AAA700D1833D /* Youtube.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069A1B27709900D1833D /* Youtube.swift */; };
+		C3A406B11B27AAA700D1833D /* YoutubeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069A1B27709900D1833D /* YoutubeParser.swift */; };
 		C3A9AEDE1B048B5600D0C842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */; };
 		C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A9AEE61B048B5600D0C842 /* LaunchScreen.xib */; };
 		C3A9AEF41B048B5700D0C842 /* MobilePlayerExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEF31B048B5700D0C842 /* MobilePlayerExampleTests.swift */; };
@@ -125,7 +125,7 @@
 		C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreRollViewController.swift; sourceTree = "<group>"; };
 		C39C749E1B75400700E6CD21 /* KIF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KIF.framework; path = "Pods/../build/Debug-iphoneos/KIF.framework"; sourceTree = "<group>"; };
 		C3A2D3811B7BB765009D44ED /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = Images/logo.png; sourceTree = "<group>"; };
-		C3A4069A1B27709900D1833D /* Youtube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Youtube.swift; sourceTree = "<group>"; };
+		C3A4069A1B27709900D1833D /* YoutubeParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YoutubeParser.swift; path = ../Support/YoutubeParser.swift; sourceTree = "<group>"; };
 		C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+LayoutHelper.swift"; sourceTree = "<group>"; };
 		C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeTests.swift; sourceTree = "<group>"; };
 		C3A406AE1B27AA8C00D1833D /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -241,14 +241,6 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
-		C3A406971B27700400D1833D /* Support */ = {
-			isa = PBXGroup;
-			children = (
-				C3A4069A1B27709900D1833D /* Youtube.swift */,
-			);
-			path = Support;
-			sourceTree = "<group>";
-		};
 		C3A4069C1B278A4900D1833D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				C305DED91B21069500DD9632 /* SkinParser.swift */,
+				C3A4069A1B27709900D1833D /* YoutubeParser.swift */,
 			);
 			name = Parsers;
 			path = Parser;
@@ -352,7 +345,6 @@
 				CE554D6E1AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift */,
 				5F7CFC251BA22A3100EF50C4 /* Views */,
 				C308B3B71B14F98700CB1515 /* Config */,
-				C3A406971B27700400D1833D /* Support */,
 				C3A9AF0F1B04C89D00D0C842 /* Parsers */,
 				5F7CFC261BA22A6B00EF50C4 /* Helpers */,
 				C3A4069C1B278A4900D1833D /* Extensions */,
@@ -813,7 +805,7 @@
 				C38E86A81B73EDAC0073B660 /* StateHelper.swift in Sources */,
 				C305DED61B20DC8300DD9632 /* TimeSlider.swift in Sources */,
 				CE554D731AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift in Sources */,
-				C3A4069B1B27709900D1833D /* Youtube.swift in Sources */,
+				C3A4069B1B27709900D1833D /* YoutubeParser.swift in Sources */,
 				5F7CFC221BA21A4700EF50C4 /* ClosureSupport.swift in Sources */,
 				CE554D741AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift in Sources */,
 				C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */,
@@ -830,7 +822,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3A406B01B27AA9500D1833D /* UIColor+Extension.swift in Sources */,
-				C3A406B11B27AAA700D1833D /* Youtube.swift in Sources */,
+				C3A406B11B27AAA700D1833D /* YoutubeParser.swift in Sources */,
 				C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */,
 				C38BEEA61B72DBD1009E4F64 /* PlayerStateTest.swift in Sources */,
 				C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */,
