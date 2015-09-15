@@ -241,9 +241,11 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   private func updateTimeLabel(label: UILabel, time: NSTimeInterval) {
-    if time.isNaN || time == NSTimeInterval.infinity {
+    if !time.isNormal {
+      label.text = "-:-"
       return
     }
+    // FIXME: Remaining time calculation and remainingLabel.text assignment does not belong here.
     let remainingTime = moviePlayer.duration - moviePlayer.currentPlaybackTime
     let remainingHours = UInt(remainingTime / 3600)
     let remainingMinutes = UInt((remainingTime / 60) % 60)
@@ -252,22 +254,15 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       format: "%02lu:%02lu",
       remainingMinutes,
       remainingSeconds) as String
-    controlsView.remainingLabel.text = checkTimeLabelText(remainingTimeLabelText)
+    controlsView.remainingLabel.text = remainingTimeLabelText
     let hours = UInt(time / 3600)
     let minutes = UInt((time / 60) % 60)
     let seconds = UInt(time % 60)
     var timeLabelText = NSString(format: "%02lu:%02lu", minutes, seconds) as String
-    label.text = checkTimeLabelText(timeLabelText)
+    label.text = timeLabelText
     if hours > 0 {
       label.text = NSString(format: "%02lu:%@", hours, label.text!) as String
     }
-  }
-
-  private func checkTimeLabelText(text: NSString) -> String {
-    if text.length > 8 {
-      return String("00:00")
-    }
-    return String(text)
   }
 
   private func resetHideControlsTimer() {
