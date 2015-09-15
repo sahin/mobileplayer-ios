@@ -32,8 +32,8 @@
 		C3A4069B1B27709900D1833D /* YoutubeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069A1B27709900D1833D /* YoutubeParser.swift */; };
 		C3A406A21B278B5A00D1833D /* CGRect+LayoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */; };
 		C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */; };
-		C3A406AF1B27AA8C00D1833D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Extension.swift */; };
-		C3A406B01B27AA9500D1833D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Extension.swift */; };
+		C3A406AF1B27AA8C00D1833D /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */; };
+		C3A406B01B27AA9500D1833D /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */; };
 		C3A406B11B27AAA700D1833D /* YoutubeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A4069A1B27709900D1833D /* YoutubeParser.swift */; };
 		C3A9AEDE1B048B5600D0C842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */; };
 		C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3A9AEE61B048B5600D0C842 /* LaunchScreen.xib */; };
@@ -128,7 +128,7 @@
 		C3A4069A1B27709900D1833D /* YoutubeParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YoutubeParser.swift; path = ../Support/YoutubeParser.swift; sourceTree = "<group>"; };
 		C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGRect+LayoutHelper.swift"; sourceTree = "<group>"; };
 		C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeTests.swift; sourceTree = "<group>"; };
-		C3A406AE1B27AA8C00D1833D /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		C3A9AED91B048B5600D0C842 /* MobilePlayerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobilePlayerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A9AEDC1B048B5600D0C842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 		C3A4069C1B278A4900D1833D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				C3A406AE1B27AA8C00D1833D /* UIColor+Extension.swift */,
+				C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */,
 				C3A4069F1B278B5A00D1833D /* CGRect+LayoutHelper.swift */,
 				5F7CFC211BA21A4700EF50C4 /* ClosureSupport.swift */,
 			);
@@ -810,7 +810,7 @@
 				CE554D741AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift in Sources */,
 				C308B3C11B150F7600CB1515 /* ShareButtonConfig.swift in Sources */,
 				C3A406A21B278B5A00D1833D /* CGRect+LayoutHelper.swift in Sources */,
-				C3A406AF1B27AA8C00D1833D /* UIColor+Extension.swift in Sources */,
+				C3A406AF1B27AA8C00D1833D /* UIColor+Hex.swift in Sources */,
 				C3BEBCC81B7436040015F6D1 /* URLHelper.swift in Sources */,
 				C3E643B41B16798A0017DBE6 /* CloseButtonConfig.swift in Sources */,
 				CE554D721AFE6EBB00DAC7E9 /* MobilePlayerControlsView.swift in Sources */,
@@ -821,7 +821,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3A406B01B27AA9500D1833D /* UIColor+Extension.swift in Sources */,
+				C3A406B01B27AA9500D1833D /* UIColor+Hex.swift in Sources */,
 				C3A406B11B27AAA700D1833D /* YoutubeParser.swift in Sources */,
 				C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */,
 				C38BEEA61B72DBD1009E4F64 /* PlayerStateTest.swift in Sources */,
