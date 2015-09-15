@@ -167,14 +167,12 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
           let sliderValue = self.moviePlayer.currentPlaybackTime.isNormal ? self.moviePlayer.currentPlaybackTime : 0
           self.controlsView.timeSlider.setValue(
             sliderValue,
-            animated: true,
-            duration: MobilePlayerViewController.playbackInterfaceUpdateInterval)
+            animatedForDuration: MobilePlayerViewController.playbackInterfaceUpdateInterval)
         }
         let bufferValue = self.moviePlayer.playableDuration.isNormal ? self.moviePlayer.playableDuration : 0
         self.controlsView.timeSlider.setBufferValue(
           bufferValue,
-          animated: true,
-          duration: MobilePlayerViewController.playbackInterfaceUpdateInterval)
+          animatedForDuration: MobilePlayerViewController.playbackInterfaceUpdateInterval)
         self.updateTimeLabel(self.controlsView.playbackTimeLabel, time: self.moviePlayer.currentPlaybackTime)
         self.updateShownTimedOverlays()
       },

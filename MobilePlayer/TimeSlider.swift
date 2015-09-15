@@ -22,8 +22,8 @@ class TimeSlider: UIView {
   var maximumValue = NSTimeInterval(1) { didSet { setNeedsLayout() } }
 
   let railView = UIView(frame: CGRectZero)
-  var railViewHeight = CGFloat(2)                     { didSet { setNeedsLayout() } }
-  var railViewRadius = CGFloat(1)                     { didSet { setNeedsLayout() } }
+  var railViewHeight = CGFloat(2)                 { didSet { setNeedsLayout() } }
+  var railViewRadius = CGFloat(1)                 { didSet { setNeedsLayout() } }
   let progressView = UIView(frame: CGRectZero)
   let bufferView = UIView(frame: CGRectZero)
   let thumbView = UIView(frame: CGRectZero)
@@ -58,9 +58,9 @@ class TimeSlider: UIView {
 
   // MARK: - Setters
 
-  func setValue(value: NSTimeInterval, animated: Bool, duration: NSTimeInterval) {
+  func setValue(value: NSTimeInterval, animatedForDuration duration: NSTimeInterval) {
     self.value = value
-    if animated {
+    if duration > 0 {
       UIView.animateWithDuration(
         duration,
         delay: 0,
@@ -72,9 +72,9 @@ class TimeSlider: UIView {
     }
   }
 
-  func setBufferValue(bufferValue: NSTimeInterval, animated: Bool, duration: NSTimeInterval) {
+  func setBufferValue(bufferValue: NSTimeInterval, animatedForDuration duration: NSTimeInterval) {
     self.bufferValue = bufferValue
-    if animated {
+    if duration > 0 {
       UIView.animateWithDuration(
         duration,
         animations: {
