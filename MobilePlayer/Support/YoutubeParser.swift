@@ -1,5 +1,5 @@
 //
-//  Youtube.swift
+//  YoutubeParser.swift
 //  MobilePlayer
 //
 //  Created by Toygar Dündaralp on 09/06/15.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-public extension NSURL {
+extension NSURL {
 
   func dictionaryForQueryString() -> [String: AnyObject]? {
     return self.query?.dictionaryFromQueryStringComponents()
   }
 }
 
-public extension NSString {
+extension NSString {
 
   func stringByDecodingURLFormat() -> String {
     var result = self.stringByReplacingOccurrencesOfString("+", withString:" ")
@@ -37,13 +37,13 @@ public extension NSString {
   }
 }
 
-public class Youtube: NSObject {
+class YoutubeParser: NSObject {
   static let infoURL = "http://www.youtube.com/get_video_info?video_id="
   static var userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2)"
     + " AppleWebKit/537.4 (KHTML, like Gecko)"
     + " Chrome/22.0.1229.79 Safari/537.4"
 
-  public static func youtubeIDFromYoutubeURL(youtubeURL: NSURL) -> String? {
+  static func youtubeIDFromYoutubeURL(youtubeURL: NSURL) -> String? {
     if let
       youtubeHost = youtubeURL.host,
       youtubePathComponents = youtubeURL.pathComponents as? [String] {
@@ -64,7 +64,7 @@ public class Youtube: NSObject {
     return nil
   }
 
-  public static func h264videosWithYoutubeID(youtubeID: String) -> [String: AnyObject]? {
+  static func h264videosWithYoutubeID(youtubeID: String) -> [String: AnyObject]? {
     if count(youtubeID) > 0 {
       let urlString = String(format: "%@%@", infoURL, youtubeID) as String
       let url = NSURL(string: urlString)!
@@ -114,7 +114,7 @@ public class Youtube: NSObject {
     return nil
   }
 
-  public static func h264videosWithYoutubeURL(
+  static func h264videosWithYoutubeURL(
     youtubeURL: NSURL,
     completion: ((
     videoInfo: [String: AnyObject]?,

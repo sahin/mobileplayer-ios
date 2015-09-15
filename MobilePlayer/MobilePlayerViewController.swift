@@ -70,7 +70,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     self.shareItems = shareItems
     if contentURL.host?.rangeOfString("youtube.com") != nil {
       self.checkUrlStateWithContentURL(contentURL, urlType: URLHelper.URLType.Remote)
-      Youtube.h264videosWithYoutubeURL(contentURL, completion: { videoInfo, error in
+      YoutubeParser.h264videosWithYoutubeURL(contentURL, completion: { videoInfo, error in
         if let
           videoURLString = videoInfo?["url"] as? String,
           videoTitle = videoInfo?["title"] as? String {
