@@ -217,9 +217,9 @@
 			isa = PBXGroup;
 			children = (
 				C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */,
+				C3E643B11B16751B0017DBE6 /* TitleConfig.swift */,
 				C308B3BA1B14FAE300CB1515 /* ControlbarConfig.swift */,
 				C308B3BF1B150F7600CB1515 /* ShareButtonConfig.swift */,
-				C3E643B11B16751B0017DBE6 /* TitleConfig.swift */,
 				C3E643B31B16798A0017DBE6 /* CloseButtonConfig.swift */,
 			);
 			path = Config;

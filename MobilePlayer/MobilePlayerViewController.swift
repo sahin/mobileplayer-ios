@@ -13,11 +13,12 @@ public protocol MobilePlayerViewControllerDelegate: class {
   func didPressButton(button: UIButton, identifier: String)
 }
 
-
 public class MobilePlayerViewController: MPMoviePlayerViewController {
   // MARK: - Properties
+
   // MARK: Delegation
   public var delegate: MobilePlayerViewControllerDelegate?
+
   // MARK: Player State
   public enum State {
     case Idle, Buffering, Playing, Paused
@@ -28,24 +29,38 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       previousState = oldValue
     }
   }
+
   // MARK: Player Configuration
   private static let playbackInterfaceUpdateInterval = 0.25
   public static let globalConfig = MobilePlayerConfig()
   public var config: MobilePlayerConfig
+
   // MARK: Mapped Properties
   public override var title: String? {
     didSet {
       controlsView.titleLabel.text = title
     }
   }
+  public var shouldAutoplay: Bool {
+    get {
+      return moviePlayer.shouldAutoplay
+    }
+    set {
+      moviePlayer.shouldAutoplay = newValue
+    }
+  }
+
   // MARK: Subviews
   private let controlsView: MobilePlayerControlsView
+
   // MARK: Overlays
   public var overlayController = MobilePlayerOverlayViewController()
   public var isShowOverlay = false
   public var timedOverlays = [[String: AnyObject]]()
+
   // MARK: Sharing
   public var shareItems: [AnyObject]?
+
   // MARK: Other Properties
   private var previousStatusBarHiddenValue: Bool!
   private var previousStatusBarStyle: UIStatusBarStyle!
@@ -55,7 +70,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var wasPlayingBeforeSeek = false
   private var playbackInterfaceUpdateTimer: NSTimer?
   private var hideControlsTimer: NSTimer?
-  private var currentVideoURL = NSURL()
 
   // MARK: - Initialization
 
@@ -68,51 +82,26 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     controlsView = MobilePlayerControlsView(config: config)
     super.init(contentURL: contentURL)
     self.shareItems = shareItems
-    if contentURL.host?.rangeOfString("youtube.com") != nil {
-      self.checkUrlStateWithContentURL(contentURL, urlType: URLHelper.URLType.Remote)
-      YoutubeParser.h264videosWithYoutubeURL(contentURL, completion: { videoInfo, error in
-        if let
-          videoURLString = videoInfo?["url"] as? String,
-          videoTitle = videoInfo?["title"] as? String {
-            if let isStream = videoInfo?["isStream"] as? Bool,
-              image = videoInfo?["image"] as? String {
-                if let imageURL = NSURL(string: image),
-                  data = NSData(contentsOfURL: imageURL),
-                  bgImage = UIImage(data: data) {
-                    self.controlsView.backgroundImageView.image = bgImage
-                }
-            }
-            if let url = NSURL(string: videoURLString) {
-              self.currentVideoURL = url
-            }
-            self.title = videoTitle
-        }
-      })
-      if self.config.prerollViewController == nil {
-        self.moviePlayer.contentURL = currentVideoURL
-      }
-    } else {
-      checkUrlStateWithContentURL(contentURL, urlType: URLHelper.URLType.Local)
-    }
     initializeMobilePlayerViewController()
   }
 
-  private func checkUrlStateWithContentURL(contentURL: NSURL, urlType: URLHelper.URLType) {
-    URLHelper.checkURL(contentURL, urlType: urlType) { check, error in
-      self.state = check ? .Buffering : .Idle
-    }
-  }
-
   public required init(coder aDecoder: NSCoder) {
-    fatalError("storyboards are incompatible with truth and beauty")
+    config = MobilePlayerViewController.globalConfig
+    controlsView = MobilePlayerControlsView(config: config)
+    super.init(coder: aDecoder)
+    initializeMobilePlayerViewController()
   }
 
   private func initializeMobilePlayerViewController() {
+    if config.prerollViewController != nil {
+      shouldAutoplay = false
+    }
     edgesForExtendedLayout = .None
     moviePlayer.scalingMode = .AspectFit
     moviePlayer.controlStyle = .None
     initializeNotificationObservers()
     initializeControlsView()
+    parseContentURLIfNeeded()
   }
 
   private func initializeNotificationObservers() {
@@ -212,6 +201,32 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   // MARK: - Internal Helpers
+
+  private func parseContentURLIfNeeded() {
+    if let youtubeID = YoutubeParser.youtubeIDFromURL(moviePlayer.contentURL) {
+      YoutubeParser.h264videosWithYoutubeID(youtubeID, completion: { videoInfo, error in
+        if let error = error {
+          // TODO: Delegate the error.
+        } else {
+          if self.title == nil {
+            self.title = videoInfo.title
+          }
+          if let
+            previewImageURLString = videoInfo.previewImageURL,
+            previewImageURL = NSURL(string: previewImageURLString) {
+              NSURLSession.sharedSession().dataTaskWithURL(previewImageURL) { data, response, error in
+                dispatch_async(dispatch_get_main_queue()) {
+                  self.controlsView.backgroundImageView.image = UIImage(data: data)
+                }
+              }.resume()
+          }
+          if let videoURL = videoInfo.videoURL {
+            self.moviePlayer.contentURL = NSURL(string: videoURL)
+          }
+        }
+      })
+    }
+  }
 
   private func doFirstPlaySetupIfNeeded() {
     if isFirstPlay {
