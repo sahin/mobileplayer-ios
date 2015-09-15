@@ -145,14 +145,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   private func initializeControlsViewTapRecognizers() {
-    let singleTapRecognizer = UITapGestureRecognizer(
-      target: self,
-      action: "toggleControls")
+    let singleTapRecognizer = UITapGestureRecognizer(callback: toggleControls)
     singleTapRecognizer.numberOfTapsRequired = 1
     controlsView.addGestureRecognizer(singleTapRecognizer)
-    let doubleTapRecognizer = UITapGestureRecognizer(
-      target: self,
-      action: "toggleVideoScalingMode")
+    let doubleTapRecognizer = UITapGestureRecognizer(callback: toggleVideoScalingMode)
     doubleTapRecognizer.numberOfTapsRequired = 2
     controlsView.addGestureRecognizer(doubleTapRecognizer)
     singleTapRecognizer.requireGestureRecognizerToFail(doubleTapRecognizer)

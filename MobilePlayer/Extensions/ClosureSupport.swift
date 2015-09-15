@@ -1,12 +1,12 @@
 //
-//  NSTimer+Closures.swift
+//  ClosureSupport.swift
 //  MobilePlayer
 //
 //  Created by Baris Sencan on 9/10/15.
 //  Copyright (c) 2015 MovieLaLa. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class CallbackContainer {
   let callback: () -> Void
@@ -48,5 +48,18 @@ extension UIControl {
       removeTarget(callbackContainer, action: "callCallback", forControlEvents: .AllEvents)
       objc_setAssociatedObject(self, key, nil, 0)
     }
+  }
+}
+
+extension UIGestureRecognizer {
+
+  convenience init(callback: () -> Void) {
+    let callbackContainer = CallbackContainer(callback: callback)
+    self.init(target: callbackContainer, action: "callCallback")
+    objc_setAssociatedObject(
+      self,
+      unsafeAddressOf(callbackContainer),
+      callbackContainer,
+      objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
   }
 }
