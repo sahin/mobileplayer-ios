@@ -4,28 +4,22 @@
     "backgroundColor": ["#000000ff", "#00000000"],
     "elements": [{
                  "type": "button",
-                 "identifier": "close",
-                 "image": "MLCloseButton",
-                 "tintColor": "#ffffff"
+                 "identifier": "close"
                  },
                  {
                  "type": "label",
                  "identifier": "title",
                  "font": "HelveticaNeue",
-                 "size": 16,
-                 "textColor": "#ffffff"
+                 "size": 16
                  },
                  {
                  "type": "button",
-                 "identifier": "share",
-                 "image": "MLShareButton",
-                 "tintColor": "#ffffff"
+                 "identifier": "share"
                  },
                  {
                  "type": "button",
                  "identifier": "gopro action",
-                 "image": "MLCloseButton",
-                 "tintColor": "#ffffff",
+                 "image": "MLCloseButton"
                  }]
   },
   "bottomBar": {
@@ -34,9 +28,7 @@
                  "type": "toggleButton",
                  "identifier": "play",
                  "image": "MLPlayButton",
-                 "tintColor": "#ffffff",
-                 "toggledImage": "MLPauseButton",
-                 "toggledTintColor": "#ffffff"
+                 "toggledImage": "MLPauseButton"
                  },
                  {
                  "type": "separator"
@@ -50,9 +42,9 @@
                  "availableTrackTintColor": "#9e9b9a",
                  "maximumTrackTintColor": "#cccccc",
                  "thumbTintColor": "#e54918",
-                 "thumbWidth": 25,
-                 "thumbHeight": 25,
-                 "thumbCornerRadius": 12.5,
+                 "thumbWidth": 24,
+                 "thumbHeight": 24,
+                 "thumbCornerRadius": 12,
                  "thumbBorderWidth": 0
                  },
                  {
@@ -63,8 +55,7 @@
                  "identifier": "remainingTime",
                  "text": "-:-",
                  "font": "HelveticaNeue",
-                 "size": 15,
-                 "textColor": "#ffffff"
+                 "size": 15
                  },
                  {
                  "type": "separator"
