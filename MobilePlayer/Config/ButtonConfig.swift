@@ -8,18 +8,18 @@
 
 import UIKit
 
-class ButtonConfig {
-  let identifier: String?
-  let width: CGFloat
-  let height: CGFloat
-  let image: UIImage?
-  let tintColor: UIColor
+public class ButtonConfig {
+  public let identifier: String?
+  public let width: CGFloat
+  public let height: CGFloat
+  public let image: UIImage?
+  public let tintColor: UIColor
 
-  convenience init() {
+  public convenience init() {
     self.init(dictionary: [String: AnyObject]())
   }
 
-  init(dictionary: [String: AnyObject]) {
+  public init(dictionary: [String: AnyObject]) {
     identifier = dictionary["identifier"] as? String
     width = (dictionary["width"] as? CGFloat) ?? 40
     height = (dictionary["height"] as? CGFloat) ?? 40

@@ -6,27 +6,27 @@
 //  Copyright (c) 2015 MovieLaLa. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class SliderConfig {
-  let identifier: String?
-  let trackHeight: CGFloat
-  let trackCornerRadius: CGFloat
-  let minimumTrackTintColor: UIColor
-  let availableTrackTintColor: UIColor
-  let maximumTrackTintColor: UIColor
-  let thumbTintColor: UIColor
-  let thumbWidth: CGFloat
-  let thumbHeight: CGFloat
-  let thumbCornerRadius: CGFloat
-  let thumbBorderWidth: CGFloat
-  let thumbBorderColor: CGColor
+public class SliderConfig {
+  public let identifier: String?
+  public let trackHeight: CGFloat
+  public let trackCornerRadius: CGFloat
+  public let minimumTrackTintColor: UIColor
+  public let availableTrackTintColor: UIColor
+  public let maximumTrackTintColor: UIColor
+  public let thumbTintColor: UIColor
+  public let thumbWidth: CGFloat
+  public let thumbHeight: CGFloat
+  public let thumbCornerRadius: CGFloat
+  public let thumbBorderWidth: CGFloat
+  public let thumbBorderColor: CGColor
 
-  convenience init() {
+  public convenience init() {
     self.init(dictionary: [String: AnyObject]())
   }
 
-  init(dictionary: [String: AnyObject]) {
+  public init(dictionary: [String: AnyObject]) {
     identifier = dictionary["identifier"] as? String
     trackHeight = (dictionary["trackHeight"] as? CGFloat) ?? 4
     trackCornerRadius = (dictionary["trackCornerRadius"] as? CGFloat) ?? 2

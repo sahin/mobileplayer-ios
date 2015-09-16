@@ -6,22 +6,22 @@
 //  Copyright (c) 2015 MovieLaLa. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class ToggleButtonConfig {
-  let identifier: String?
-  let width: CGFloat
-  let height: CGFloat
-  let image: UIImage?
-  let tintColor: UIColor
-  let toggledImage: UIImage?
-  let toggledTintColor: UIColor
+public class ToggleButtonConfig {
+  public let identifier: String?
+  public let width: CGFloat
+  public let height: CGFloat
+  public let image: UIImage?
+  public let tintColor: UIColor
+  public let toggledImage: UIImage?
+  public let toggledTintColor: UIColor
 
-  convenience init() {
+  public convenience init() {
     self.init(dictionary: [String: AnyObject]())
   }
 
-  init(dictionary: [String: AnyObject]) {
+  public init(dictionary: [String: AnyObject]) {
     identifier = dictionary["identifier"] as? String
     width = (dictionary["width"] as? CGFloat) ?? 40
     height = (dictionary["height"] as? CGFloat) ?? 40

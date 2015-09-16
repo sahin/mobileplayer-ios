@@ -6,19 +6,19 @@
 //  Copyright (c) 2015 MovieLaLa. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class LabelConfig {
-  let identifier: String?
-  let text: String?
-  let font: UIFont
-  let textColor: UIColor
+public class LabelConfig {
+  public let identifier: String?
+  public let text: String?
+  public let font: UIFont
+  public let textColor: UIColor
 
-  convenience init() {
+  public convenience init() {
     self.init(dictionary: [String: AnyObject]())
   }
 
-  init(dictionary: [String: AnyObject]) {
+  public init(dictionary: [String: AnyObject]) {
     identifier = dictionary["identifier"] as? String
     text = dictionary["text"] as? String
 
