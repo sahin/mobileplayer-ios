@@ -26,8 +26,11 @@ class ToggleButtonConfig {
     width = (dictionary["width"] as? CGFloat) ?? 40
     height = (dictionary["height"] as? CGFloat) ?? 40
 
+    let mobilePlayerBundle = NSBundle(forClass: ToggleButtonConfig.self)
     if let imageName = dictionary["image"] as? String {
       image = UIImage(named: imageName)
+    } else if identifier == "play" {
+      image = UIImage(named: "MLPlayButton", inBundle: mobilePlayerBundle, compatibleWithTraitCollection: nil)
     } else {
       image = nil
     }
@@ -40,6 +43,8 @@ class ToggleButtonConfig {
 
     if let toggledImageName = dictionary["toggledImage"] as? String {
       toggledImage = UIImage(named: toggledImageName)
+    } else if identifier == "play" {
+      toggledImage = UIImage(named: "MLPauseButton", inBundle: mobilePlayerBundle, compatibleWithTraitCollection: nil)
     } else {
       toggledImage = nil
     }

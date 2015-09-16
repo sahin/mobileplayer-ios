@@ -26,9 +26,7 @@
     "backgroundColor": ["#00000000", "#000000ff"],
     "elements": [{
                  "type": "toggleButton",
-                 "identifier": "play",
-                 "image": "MLPlayButton",
-                 "toggledImage": "MLPauseButton"
+                 "identifier": "play"
                  },
                  {
                  "type": "separator"
