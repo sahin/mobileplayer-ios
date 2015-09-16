@@ -1,58 +1,52 @@
 {
-  "header": [
-             {
-             "order": 1,
-             "textFont": "HelveticaNeue",
-             "textSize": 16,
-             "textColor": "#ffffff",
-             "type": "label",
-             "subType": "title"
-             },
-             {
-             "order": 0,
-             "image": "MLCloseButton",
-             "tintColor": "#ffffff",
-             "type": "button",
-             "subType": "close"
-             },
-             {
-             "order": 2,
-             "image": "MLShareButton",
-             "tintColor": "#ffffff",
-             "type": "button",
-             "subType": "share"
-             },
-             {
-             "order": 4,
-             "image": "MLCloseButton",
-             "tintColor": "#ffffff",
-             "type": "button",
-             "subType": "custom",
-             "identifier": "gopro action"
-             }
-             ],
-  "controlbar": [
-                 {
-                 "order": 0,
-                 "playImage": "MLPlayButton",
-                 "playTintColor": "#ffffff",
-                 "pauseImage": "MLPauseButton",
-                 "pauseTintColor": "#ffffff",
+  "watermark": "logo.png"
+  "topBar": {
+    "backgroundColor": ["#000000ff", "#00000000"],
+    "elements": [{
                  "type": "button",
-                 "subType": "play"
+                 "identifier": "close",
+                 "image": "MLCloseButton",
+                 "tintColor": "#ffffff"
                  },
                  {
-                 "type": "view",
-                 "subType": "seperator",
-                 "order": 1
+                 "type": "label",
+                 "identifier": "title",
+                 "font": "HelveticaNeue",
+                 "size": 16,
+                 "textColor": "#ffffff"
                  },
                  {
-                 "order": 2,
-                 "type": "view",
-                 "subType": "timeSlider",
-                 "railRadius": 5,
-                 "railHeight": 10,
+                 "type": "button",
+                 "identifier": "share",
+                 "image": "MLShareButton",
+                 "tintColor": "#ffffff"
+                 },
+                 {
+                 "type": "button",
+                 "identifier": "gopro action",
+                 "image": "MLCloseButton",
+                 "tintColor": "#ffffff",
+                 }]
+  },
+  "bottomBar": {
+    "backgroundColor": ["#00000000", "#000000ff"],
+    "elements": [{
+                 "type": "toggleButton",
+                 "identifier": "play",
+                 "image": "MLPlayButton",
+                 "tintColor": "#ffffff",
+                 "toggledImage": "MLPauseButton",
+                 "toggledTintColor": "#ffffff"
+                 },
+                 {
+                 "type": "separator"
+                 },
+                 {
+                 "type": "slider",
+                 "identifier": "time",
                  "railTintColor": "#cccccc",
+                 "railHeight": 10,
+                 "railRadius": 5,
                  "bufferTintColor": "#9e9b9a",
                  "progressTintColor": "#ae3f1c",
                  "thumbTintColor": "#e54918",
@@ -62,27 +56,17 @@
                  "thumbBorder": 0
                  },
                  {
-                 "order": 3,
-                 "type": "view",
-                 "subType": "seperator"
+                 "type": "separator"
                  },
                  {
-                 "order": 4,
                  "type": "label",
-                 "subType": "remaining",
-                 "textFont": "HelveticaNeue",
-                 "textFontSize": 15,
+                 "identifier": "remainingTime",
+                 "font": "HelveticaNeue",
+                 "size": 15,
                  "textColor": "#ffffff"
                  },
                  {
-                 "order": 5,
-                 "type": "view",
-                 "subType": "seperator"
-                 }
-                 ],
-  "backgroundColor": "#000000",
-  "footerGradient": true,
-  "headerGradient": true,
-  "alpha": 0.3,
-  "logo": "logo.png"
+                 "type": "separator"
+                 }]
+  }
 }
