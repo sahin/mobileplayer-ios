@@ -73,7 +73,7 @@ public struct MobilePlayerConfig {
   }
 
   /// Loads an image from the player's resource bundle.
-  static func loadImage(#named: String) -> UIImage {
+  static func loadImage(named named: String) -> UIImage {
     return UIImage(
       named: named,
       inBundle: NSBundle(forClass: MobilePlayerViewController.self),

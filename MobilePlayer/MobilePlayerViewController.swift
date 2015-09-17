@@ -85,7 +85,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     initializeMobilePlayerViewController()
   }
 
-  public required init(coder aDecoder: NSCoder) {
+  public required init?(coder aDecoder: NSCoder) {
     config = MobilePlayerViewController.globalConfig
     controlsView = MobilePlayerControlsView(config: config)
     super.init(coder: aDecoder)
@@ -250,7 +250,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     let remainingHours = UInt(remainingTime / 3600)
     let remainingMinutes = UInt((remainingTime / 60) % 60)
     let remainingSeconds = UInt(remainingTime % 60)
-    var remainingTimeLabelText = NSString(
+    let remainingTimeLabelText = NSString(
       format: "%02lu:%02lu",
       remainingMinutes,
       remainingSeconds) as String
@@ -258,7 +258,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     let hours = UInt(time / 3600)
     let minutes = UInt((time / 60) % 60)
     let seconds = UInt(time % 60)
-    var timeLabelText = NSString(format: "%02lu:%02lu", minutes, seconds) as String
+    let timeLabelText = NSString(format: "%02lu:%02lu", minutes, seconds) as String
     label.text = timeLabelText
     if hours > 0 {
       label.text = NSString(format: "%02lu:%@", hours, label.text!) as String
@@ -478,12 +478,12 @@ extension MobilePlayerViewController {
 extension MobilePlayerViewController {
 
   final func updateShownTimedOverlays() {
-    for (index, overlay) in enumerate(self.timedOverlays) {
+    for (index, overlay) in self.timedOverlays.enumerate() {
       if let
         start = overlay["start"] as? NSTimeInterval,
         duration = overlay["duration"] as? NSTimeInterval {
           if !self.moviePlayer.currentPlaybackTime.isNaN {
-            var videoTime = Int(self.moviePlayer.currentPlaybackTime)
+            let videoTime = Int(self.moviePlayer.currentPlaybackTime)
             if Int(start) == videoTime {
               if let overlayView = overlay["vc"] as? MobilePlayerOverlayViewController {
                 self.showOverlayViewController(overlayView)

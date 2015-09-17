@@ -89,7 +89,7 @@ final class MobilePlayerControlsView: UIView {
     volumeView.hidden = !volumeView.hidden
   }
 
-  required init(coder aDecoder: NSCoder) {
+  required init?(coder aDecoder: NSCoder) {
     fatalError("storyboards are incompatible with truth and beauty")
   }
 
@@ -203,7 +203,7 @@ extension MobilePlayerControlsView {
           setBackgroundColorWithLayout(layout, skin: skin)
           setLogoWithSkin(skin)
           skinItemOrders = controlbar.sortedArrayUsingDescriptors([descriptor])
-          for (index,viewItem) in enumerate(skinItemOrders) {
+          for (index,viewItem) in skinItemOrders.enumerate() {
             if let element = viewItem["type"] as? String {
               if element == "view" {
                 if let slider = viewItem["subType"] as? String {
@@ -307,8 +307,8 @@ extension MobilePlayerControlsView {
   }
 
   private func createGradiendView(bgColor: String, direction: String) -> CALayer {
-    let colorTop = UIColor(hexString: bgColor).colorWithAlphaComponent(0.0).CGColor
-    let colorBottom = UIColor(hexString: bgColor).colorWithAlphaComponent(1.0).CGColor
+    let colorTop = UIColor(hex: bgColor).colorWithAlphaComponent(0.0).CGColor
+    let colorBottom = UIColor(hex: bgColor).colorWithAlphaComponent(1.0).CGColor
     let gl = CAGradientLayer()
     gl.colors = [ colorTop, colorBottom]
     gl.locations = [ 0.0, 1.0]
@@ -324,9 +324,9 @@ extension MobilePlayerControlsView {
   private func getDefaultColorSchema(layout: UIView, skin: [String: AnyObject]) {
     if let bgColor = skin["backgroundColor"] as? String {
       if let alpha = skin["alpha"] as? CGFloat {
-        layout.backgroundColor = UIColor(hexString: bgColor).colorWithAlphaComponent(alpha)
+        layout.backgroundColor = UIColor(hex: bgColor).colorWithAlphaComponent(alpha)
       }else{
-        layout.backgroundColor = UIColor(hexString: bgColor)
+        layout.backgroundColor = UIColor(hex: bgColor)
       }
     }else{
       layout.backgroundColor = UIColor.clearColor()
@@ -363,9 +363,9 @@ extension MobilePlayerControlsView {
   private func viewCases(viewItem: AnyObject, layout: UIView) {
     if let bgColor = viewItem["backgroundColor"] as? String {
       if let alpha = viewItem["alpha"] as? CGFloat {
-        layout.backgroundColor = UIColor(hexString: bgColor).colorWithAlphaComponent(alpha)
+        layout.backgroundColor = UIColor(hex: bgColor).colorWithAlphaComponent(alpha)
       }else{
-        layout.backgroundColor = UIColor(hexString: bgColor)
+        layout.backgroundColor = UIColor(hex: bgColor)
       }
     }else{
       layout.backgroundColor = UIColor.clearColor()
@@ -392,19 +392,19 @@ extension MobilePlayerControlsView {
       timeSlider.thumbViewBorderWidth = thumbBorderWidth
     }
     if let thumbBorderColor = viewItem["thumbBorderColor"] as? String {
-      timeSlider.thumbViewBorderColor = UIColor(hexString: thumbBorderColor)
+      timeSlider.thumbViewBorderColor = UIColor(hex: thumbBorderColor)
     }
   }
 
   private func labelCases(label: UILabel, viewItem: AnyObject) {
     if let bgColor = viewItem["backgroundColor"] as? String {
-      label.backgroundColor = UIColor(hexString: bgColor)
+      label.backgroundColor = UIColor(hex: bgColor)
     }
     if let textColor = viewItem["textColor"] as? String {
-      label.textColor = UIColor(hexString: textColor)
+      label.textColor = UIColor(hex: textColor)
     }
     if let textColor = viewItem["textColor"] as? String {
-      label.textColor = UIColor(hexString: textColor)
+      label.textColor = UIColor(hex: textColor)
     }
     if let textFontSize = viewItem["textFontSize"] as? CGFloat {
       if let textFont = viewItem["textFont"] as? String {
@@ -415,10 +415,10 @@ extension MobilePlayerControlsView {
 
   private func buttonCases(button: UIButton, viewItem: AnyObject) {
     if let color = viewItem["backgroundColor"] as? String {
-      button.backgroundColor = UIColor(hexString: color)
+      button.backgroundColor = UIColor(hex: color)
     }
     if let tintColor = viewItem["tintColor"] as? String {
-      button.tintColor = UIColor(hexString: tintColor)
+      button.tintColor = UIColor(hex: tintColor)
     }
     if let img = viewItem["image"] as? String {
       button.setImage(UIImage(named: img), forState: UIControlState.Normal)
@@ -446,7 +446,7 @@ extension MobilePlayerControlsView {
           }
         }
       case 2:
-        for (index, referedView) in enumerate(skinItemOrders) {
+        for (index, referedView) in skinItemOrders.enumerate() {
           if index == 0 {
             if let subType = referedView["subType"] as? String {
               if subType == "timeSlider" || subType == "title" {
@@ -488,7 +488,7 @@ extension MobilePlayerControlsView {
     skinItemOrders: NSArray,
     views: [UIView],
     layout: UIView) {
-      for (index, referedView) in enumerate(skinItemOrders) {
+      for (index, referedView) in skinItemOrders.enumerate() {
         if index == 0 {
           if let subType = referedView["subType"] as? String {
             if subType == "timeSlider" || subType == "title" {

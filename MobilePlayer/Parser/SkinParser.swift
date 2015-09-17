@@ -14,8 +14,8 @@ public struct SkinParser {
     if let
       jsonString = String(contentsOfURL: url, encoding: NSUTF8StringEncoding),
       jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
-      dictionary = NSJSONSerialization.JSONObjectWithData(
-        jsonData, options: nil, error: nil) as? [String: AnyObject] {
+      dictionary = (try? NSJSONSerialization.JSONObjectWithData(
+        jsonData, options: [])) as? [String: AnyObject] {
           return MobilePlayerConfig(dictionary: dictionary)
     }
     return nil
