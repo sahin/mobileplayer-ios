@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class Button: UIButton {
   let config: ButtonConfig
@@ -16,14 +15,14 @@ class Button: UIButton {
     self.config = config
     super.init(frame: CGRectZero)
     tintColor = config.tintColor
-    setImage(config.image, forState: .Normal)
-    snp_makeConstraints { make in
-      make.width.equalTo(config.width)
-      make.height.equalTo(config.height)
-    }
+    setBackgroundImage(config.image, forState: .Normal)
   }
 
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  override func sizeThatFits(size: CGSize) -> CGSize {
+    return CGSize(width: config.width, height: config.height)
   }
 }

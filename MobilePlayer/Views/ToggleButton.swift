@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 
 class ToggleButton: UIButton {
   let config: ToggleButtonConfig
@@ -17,11 +16,7 @@ class ToggleButton: UIButton {
     self.config = config
     super.init(frame: CGRectZero)
     tintColor = config.tintColor
-    setImage(config.image, forState: .Normal)
-    snp_makeConstraints { make in
-      make.width.equalTo(config.width)
-      make.height.equalTo(config.height)
-    }
+    setBackgroundImage(config.image, forState: .Normal)
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -36,5 +31,9 @@ class ToggleButton: UIButton {
       tintColor = config.tintColor
       setImage(config.image, forState: .Normal)
     }
+  }
+
+  override func sizeThatFits(size: CGSize) -> CGSize {
+    return CGSize(width: config.width, height: config.height)
   }
 }

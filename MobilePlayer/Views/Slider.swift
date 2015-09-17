@@ -109,6 +109,12 @@ class Slider: UIView {
 
   // MARK: - Layout
 
+  override func sizeThatFits(size: CGSize) -> CGSize {
+    let biggestHeight = config.thumbHeight > config.trackHeight ? config.thumbHeight : config.trackHeight
+    let height = size.height < biggestHeight ? biggestHeight : size.height
+    return CGSize(width: size.width, height: height)
+  }
+
   override func layoutSubviews() {
     let size = bounds.size
     maximumTrack.frame = CGRect(
