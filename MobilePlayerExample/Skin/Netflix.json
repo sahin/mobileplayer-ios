@@ -9,8 +9,7 @@
                  {
                  "type": "label",
                  "identifier": "title",
-                 "font": "HelveticaNeue",
-                 "size": 16
+                 "font": "HelveticaNeue"
                  },
                  {
                  "type": "button",

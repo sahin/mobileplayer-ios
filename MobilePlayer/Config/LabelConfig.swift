@@ -22,7 +22,7 @@ public class LabelConfig: ElementConfig {
     text = dictionary["text"] as? String
 
     let fontName = dictionary["font"] as? String
-    let size = (dictionary["size"] as? CGFloat) ?? 14
+    let size = (dictionary["size"] as? CGFloat) ?? (identifier == "title" ? 16 : 14)
     if let fontName = fontName, font = UIFont(name: fontName, size: size) {
       self.font = font
     } else {
