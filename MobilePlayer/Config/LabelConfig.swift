@@ -8,8 +8,7 @@
 
 import UIKit
 
-public class LabelConfig {
-  public let identifier: String?
+public class LabelConfig: ElementConfig {
   public let text: String?
   public let font: UIFont
   public let textColor: UIColor
@@ -18,8 +17,8 @@ public class LabelConfig {
     self.init(dictionary: [String: AnyObject]())
   }
 
-  public init(dictionary: [String: AnyObject]) {
-    identifier = dictionary["identifier"] as? String
+  public override init(dictionary: [String: AnyObject]) {
+    super.init(dictionary: dictionary)
     text = dictionary["text"] as? String
 
     let fontName = dictionary["font"] as? String

@@ -8,8 +8,7 @@
 
 import UIKit
 
-public class ButtonConfig {
-  public let identifier: String?
+public class ButtonConfig: ElementConfig {
   public let width: CGFloat
   public let height: CGFloat
   public let image: UIImage?
@@ -19,8 +18,8 @@ public class ButtonConfig {
     self.init(dictionary: [String: AnyObject]())
   }
 
-  public init(dictionary: [String: AnyObject]) {
-    identifier = dictionary["identifier"] as? String
+  public override init(dictionary: [String: AnyObject]) {
+    super.init(dictionary: dictionary)
     width = (dictionary["width"] as? CGFloat) ?? 40
     height = (dictionary["height"] as? CGFloat) ?? 40
 

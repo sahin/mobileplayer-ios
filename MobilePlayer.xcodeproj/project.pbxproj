@@ -10,6 +10,7 @@
 		35F04942D4DB50FF7F21D5B2 /* Pods_MobilePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7D73B451E88B493F3D4298C /* Pods_MobilePlayer.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5F6AF3701BA96EF000EF50C4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6AF36F1BA96EF000EF50C4 /* Button.swift */; };
 		5F7CFC221BA21A4700EF50C4 /* ClosureSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CFC211BA21A4700EF50C4 /* ClosureSupport.swift */; };
+		5FA7EAB61BAAADE200EF50C4 /* ElementConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA7EAB51BAAADE200EF50C4 /* ElementConfig.swift */; };
 		5FA92E9F1BA9832F00EF50C4 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA92E9E1BA9832F00EF50C4 /* Label.swift */; };
 		5FA92EA11BA9839300EF50C4 /* ButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA92EA01BA9839300EF50C4 /* ButtonConfig.swift */; };
 		5FA92EA31BA9896300EF50C4 /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA92EA21BA9896300EF50C4 /* ToggleButton.swift */; };
@@ -109,6 +110,7 @@
 		505CCD80FF878F8F17EC4627 /* Pods_MobilePlayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F6AF36F1BA96EF000EF50C4 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Views/Button.swift; sourceTree = "<group>"; };
 		5F7CFC211BA21A4700EF50C4 /* ClosureSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureSupport.swift; sourceTree = "<group>"; };
+		5FA7EAB51BAAADE200EF50C4 /* ElementConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementConfig.swift; sourceTree = "<group>"; };
 		5FA92E9E1BA9832F00EF50C4 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Label.swift; path = Views/Label.swift; sourceTree = "<group>"; };
 		5FA92EA01BA9839300EF50C4 /* ButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonConfig.swift; sourceTree = "<group>"; };
 		5FA92EA21BA9896300EF50C4 /* ToggleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToggleButton.swift; path = Views/ToggleButton.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 			children = (
 				C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */,
 				5FBFEA2D1BA8AC1B00EF50C4 /* BarConfig.swift */,
+				5FA7EAB51BAAADE200EF50C4 /* ElementConfig.swift */,
 				5FA92EA01BA9839300EF50C4 /* ButtonConfig.swift */,
 				5FBFEA331BA8ACDE00EF50C4 /* ToggleButtonConfig.swift */,
 				5FBFEA311BA8ACC500EF50C4 /* LabelConfig.swift */,
@@ -829,6 +832,7 @@
 				5FA92EA11BA9839300EF50C4 /* ButtonConfig.swift in Sources */,
 				C3A406A21B278B5A00D1833D /* CGRect+LayoutHelper.swift in Sources */,
 				C3A406AF1B27AA8C00D1833D /* UIColor+Hex.swift in Sources */,
+				5FA7EAB61BAAADE200EF50C4 /* ElementConfig.swift in Sources */,
 				CE554D721AFE6EBB00DAC7E9 /* MobilePlayerControlsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
