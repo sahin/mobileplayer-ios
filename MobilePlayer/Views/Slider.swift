@@ -14,7 +14,7 @@ protocol SliderDelegate: class {
   func sliderThumbPanDidEnd(slider: Slider)
 }
 
-class Slider: UIView {
+class Slider: UIView, Element {
   let config: SliderConfig
   var delegate: SliderDelegate?
   var minimumValue = Float(0)    { didSet { setNeedsLayout() } }

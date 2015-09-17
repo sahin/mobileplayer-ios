@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ToggleButton: UIButton {
+class ToggleButton: UIButton, Element {
   let config: ToggleButtonConfig
   var toggled = false { didSet { update() } }
 

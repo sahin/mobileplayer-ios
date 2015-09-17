@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Label: UILabel {
+class Label: UILabel, Element {
   let config: LabelConfig
 
   init(config: LabelConfig = LabelConfig()) {

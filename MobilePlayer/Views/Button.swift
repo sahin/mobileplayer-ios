@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Button: UIButton {
+class Button: UIButton, Element {
   let config: ButtonConfig
 
   init(config: ButtonConfig = ButtonConfig()) {

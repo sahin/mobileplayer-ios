@@ -17,8 +17,8 @@ public struct BarConfig {
   public let bottomBorderColor: UIColor
   public let elements: [ElementConfig]
 
-  public init() {
-    init(dictionary: ())
+  public convenience init() {
+    self.init(dictionary: [String: AnyObject]())
   }
 
   public init(dictionary: [String: AnyObject]) {
