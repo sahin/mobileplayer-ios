@@ -7,5 +7,5 @@
 //
 
 protocol Element {
-  let config: ElementConfig
+  var config: ElementConfig { get }
 }

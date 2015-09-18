@@ -9,6 +9,7 @@
 import Foundation
 
 public class ElementConfig {
+  public let type: String?
   public let identifier: String?
 
   public convenience init() {
@@ -16,6 +17,7 @@ public class ElementConfig {
   }
 
   public init(dictionary: [String: AnyObject]) {
+    type = dictionary["type"] as? String
     identifier = dictionary["identifier"] as? String
   }
 }

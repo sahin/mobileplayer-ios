@@ -15,7 +15,7 @@ class Button: UIButton, Element {
     self.config = config
     super.init(frame: CGRectZero)
     tintColor = config.tintColor
-    setBackgroundImage(config.image, forState: .Normal)
+    setImage(config.image, forState: .Normal)
   }
 
   required init?(coder aDecoder: NSCoder) {

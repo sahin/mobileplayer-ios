@@ -111,8 +111,9 @@ class Slider: UIView, Element {
 
   override func sizeThatFits(size: CGSize) -> CGSize {
     let biggestHeight = config.thumbHeight > config.trackHeight ? config.thumbHeight : config.trackHeight
+    let width = (config.width != nil) ? config.width! : size.width
     let height = size.height < biggestHeight ? biggestHeight : size.height
-    return CGSize(width: size.width, height: height)
+    return CGSize(width: width, height: height)
   }
 
   override func layoutSubviews() {

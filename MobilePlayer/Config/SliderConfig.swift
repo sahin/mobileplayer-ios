@@ -9,6 +9,7 @@
 import UIKit
 
 public class SliderConfig: ElementConfig {
+  public let width: CGFloat?
   public let trackHeight: CGFloat
   public let trackCornerRadius: CGFloat
   public let minimumTrackTintColor: UIColor
@@ -27,6 +28,7 @@ public class SliderConfig: ElementConfig {
 
   public override init(dictionary: [String: AnyObject]) {
     super.init(dictionary: dictionary)
+    width = dictionary["width"] as? CGFloat
     trackHeight = (dictionary["trackHeight"] as? CGFloat) ?? 4
     trackCornerRadius = (dictionary["trackCornerRadius"] as? CGFloat) ?? 2
 
