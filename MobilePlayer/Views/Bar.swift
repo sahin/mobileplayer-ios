@@ -92,28 +92,30 @@ class Bar: UIView {
 
     // Size elements.
     var slidersWithUndefinedWidth = [Slider]()
-    var totalWidthOfSizedElements = CGFloat(0)
+    var totalOccupiedWidth = CGFloat(0)
     for element in elements {
-      guard let type = (element as? Element)?.config.type else { continue }
+      guard let config = (element as? Element)?.config else { continue }
+      guard let type = config.type else { continue }
       switch type {
       case "button", "toggleButton", "label":
         element.sizeToFit()
-        totalWidthOfSizedElements += element.frame.size.width
+        totalOccupiedWidth += element.frame.size.width
       case "slider":
         element.sizeToFit()
         guard let slider = element as? Slider else { continue }
         if slider.config.width == nil {
           slidersWithUndefinedWidth.append(slider)
         } else {
-          totalWidthOfSizedElements += element.frame.size.width
+          totalOccupiedWidth += element.frame.size.width
         }
       default:
         break
       }
+      totalOccupiedWidth += config.marginLeft + config.marginRight
     }
 
     if slidersWithUndefinedWidth.count > 0 {
-      let widthPerSlider = (size.width - totalWidthOfSizedElements) / CGFloat(slidersWithUndefinedWidth.count)
+      let widthPerSlider = (size.width - totalOccupiedWidth) / CGFloat(slidersWithUndefinedWidth.count)
       for slider in slidersWithUndefinedWidth {
         slider.frame.size.width = widthPerSlider
       }
@@ -122,8 +124,10 @@ class Bar: UIView {
     // Position them.
     var left = CGFloat(0)
     for element in elements {
+      guard let config = (element as? Element)?.config else { continue }
+      left += config.marginLeft
       element.frame.origin = CGPoint(x: left, y: (size.height - element.frame.size.height) / 2)
-      left += element.frame.size.width
+      left += element.frame.size.width + config.marginRight
     }
   }
 }
