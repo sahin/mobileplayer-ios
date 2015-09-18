@@ -21,6 +21,17 @@ public class MobilePlayerConfig {
     self.init(dictionary: [String: AnyObject]())
   }
 
+  public convenience init(fileURL: NSURL) {
+    if let
+      jsonString = (try? String(contentsOfURL: fileURL, encoding: NSUTF8StringEncoding)),
+      jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
+      dictionary = (try? NSJSONSerialization.JSONObjectWithData(jsonData, options: [])) as? [String: AnyObject] {
+        self.init(dictionary: dictionary)
+    } else {
+      self.init()
+    }
+  }
+
   public init(dictionary: [String: AnyObject]) {
     if let watermarkDictionary = dictionary["watermark"] as? [String: AnyObject] {
       watermark = WatermarkConfig(dictionary: watermarkDictionary)
