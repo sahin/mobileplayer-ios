@@ -13,7 +13,7 @@ class Bar: UIView {
   let gradientLayer: CAGradientLayer?
   let topBorderView = UIView(frame: CGRectZero)
   let bottomBorderView = UIView(frame: CGRectZero)
-  let elements = [UIView]()
+  var elements = [UIView]()
 
   init(config: BarConfig = BarConfig()) {
     self.config = config
@@ -32,34 +32,39 @@ class Bar: UIView {
     bottomBorderView.backgroundColor = config.bottomBorderColor
     addSubview(bottomBorderView)
     for elementConfig in config.elements {
-      guard let type = elementConfig.type else { continue }
-      let element: UIView?
-      // TODO: Define element types as an enum.
-      switch type {
-      case "button":
-        guard let buttonConfig = elementConfig as? ButtonConfig else { continue }
-        element = Button(config: buttonConfig)
-      case "toggleButton":
-        guard let toggleButtonConfig = elementConfig as? ToggleButtonConfig else { continue }
-        element = ToggleButton(config: toggleButtonConfig)
-      case "label":
-        guard let labelConfig = elementConfig as? LabelConfig else { continue }
-        element = Label(config: labelConfig)
-      case "slider":
-        guard let sliderConfig = elementConfig as? SliderConfig else { continue }
-        element = Slider(config: sliderConfig)
-      default:
-        element = nil
-      }
-      if let element = element {
-        addSubview(element)
-        elements.append(element)
-      }
+      addElementUsingConfig(elementConfig)
     }
   }
 
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
+  }
+
+  func addElementUsingConfig(config: ElementConfig) {
+    guard let type = config.type else { return }
+    let element: UIView?
+    // TODO: Define element types as an enum.
+    switch type {
+    case "button":
+      guard let buttonConfig = config as? ButtonConfig else { return }
+      element = Button(config: buttonConfig)
+    case "toggleButton":
+      guard let toggleButtonConfig = config as? ToggleButtonConfig else { return }
+      element = ToggleButton(config: toggleButtonConfig)
+    case "label":
+      guard let labelConfig = config as? LabelConfig else { return }
+      element = Label(config: labelConfig)
+    case "slider":
+      guard let sliderConfig = config as? SliderConfig else { return }
+      element = Slider(config: sliderConfig)
+    default:
+      element = nil
+    }
+    if let element = element {
+      addSubview(element)
+      elements.append(element)
+      setNeedsLayout()
+    }
   }
 
   func getViewForElementWithIdentifier(identifier: String) -> UIView? {
