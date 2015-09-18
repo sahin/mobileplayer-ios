@@ -8,26 +8,36 @@
 
 import Foundation
 
-public struct MobilePlayerConfig {
+public class MobilePlayerConfig {
   public let watermark: WatermarkConfig?
   public let topBarConfig: BarConfig
   public let bottomBarConfig: BarConfig
-
-  var playCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
-  var pauseCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
 
   public var prerollViewController: MobilePlayerOverlayViewController? = nil
   public var pauseViewController: MobilePlayerOverlayViewController? = nil
   public var postrollViewController: MobilePlayerOverlayViewController? = nil
 
-  public var firstPlayCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
-  public var endCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
-
-  public init() {
-    self.init(dictionary: ())
+  public convenience init() {
+    self.init(dictionary: [String: AnyObject]())
   }
 
   public init(dictionary: [String: AnyObject]) {
+    if let watermarkDictionary = dictionary["watermark"] as? [String: AnyObject] {
+      watermark = WatermarkConfig(dictionary: watermarkDictionary)
+    } else {
+      watermark = nil
+    }
 
+    if let topBarDictionary = dictionary["topBar"] as? [String: AnyObject] {
+      topBarConfig = BarConfig(dictionary: topBarDictionary)
+    } else {
+      topBarConfig = BarConfig()
+    }
+
+    if let bottomBarDictionary = dictionary["bottomBar"] as? [String: AnyObject] {
+      bottomBarConfig = BarConfig(dictionary: bottomBarDictionary)
+    } else {
+      bottomBarConfig = BarConfig()
+    }
   }
 }
