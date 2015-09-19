@@ -29,8 +29,10 @@ class Button: UIButton {
 
 // MARK: - Element
 extension Button: Element {
-  var type: String? { return config.type }
+  var type: ElementType { return config.type }
   var identifier: String? { return config.identifier }
+  var widthCalculation: ElementWidthCalculationMode { return config.widthCalculation }
+  var width: CGFloat { return config.width }
   var marginLeft: CGFloat { return config.marginLeft }
   var marginRight: CGFloat { return config.marginRight }
   var view: UIView { return self }

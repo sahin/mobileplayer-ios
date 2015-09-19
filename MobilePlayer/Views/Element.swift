@@ -7,8 +7,10 @@
 //
 
 protocol Element {
-  var type: String? { get }
+  var type: ElementType { get }
   var identifier: String? { get }
+  var widthCalculation: ElementWidthCalculationMode { get }
+  var width: CGFloat { get }
   var marginLeft: CGFloat { get }
   var marginRight: CGFloat { get }
   var view: UIView { get }

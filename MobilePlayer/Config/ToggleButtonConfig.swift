@@ -9,7 +9,6 @@
 import UIKit
 
 public class ToggleButtonConfig: ElementConfig {
-  public let width: CGFloat
   public let height: CGFloat
   public let image: UIImage?
   public let tintColor: UIColor
@@ -23,7 +22,6 @@ public class ToggleButtonConfig: ElementConfig {
   public override init(dictionary: [String: AnyObject]) {
     let identifier = dictionary["identifier"] as? String
     
-    width = (dictionary["width"] as? CGFloat) ?? 40
     height = (dictionary["height"] as? CGFloat) ?? 40
 
     let mobilePlayerBundle = NSBundle(forClass: ToggleButtonConfig.self)

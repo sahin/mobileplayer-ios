@@ -8,9 +8,25 @@
 
 import Foundation
 
+public enum ElementType: String {
+  case Unknown = "unknown"
+  case Label = "label"
+  case Button = "button"
+  case ToggleButton = "toggleButton"
+  case Slider = "slider"
+}
+
+public enum ElementWidthCalculationMode: String {
+  case AsDefined = "asDefined"
+  case Fill = "fill"
+  case Fit = "fit"
+}
+
 public class ElementConfig {
-  public let type: String?
+  public let type: ElementType
   public let identifier: String?
+  public let widthCalculation: ElementWidthCalculationMode
+  public let width: CGFloat
   public let marginLeft: CGFloat
   public let marginRight: CGFloat
 
@@ -19,8 +35,25 @@ public class ElementConfig {
   }
 
   public init(dictionary: [String: AnyObject]) {
-    type = dictionary["type"] as? String
+    if let
+      elementTypeString = dictionary["type"] as? String,
+      elementType = ElementType(rawValue: elementTypeString) {
+        type = elementType
+    } else {
+      type = .Unknown
+    }
+
     identifier = dictionary["identifier"] as? String
+
+    if let
+      widthCalculationModeString = dictionary["widthCalculation"] as? String,
+      widthCalculationMode = ElementWidthCalculationMode(rawValue: widthCalculationModeString) {
+        widthCalculation = widthCalculationMode
+    } else {
+      widthCalculation = .AsDefined
+    }
+
+    width = (dictionary["width"] as? CGFloat) ?? 40
     marginLeft = (dictionary["marginLeft"] as? CGFloat) ?? 0
     marginRight = (dictionary["marginRight"] as? CGFloat) ?? 0
   }

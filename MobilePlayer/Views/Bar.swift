@@ -46,23 +46,21 @@ class Bar: UIView {
   }
 
   func addElementUsingConfig(config: ElementConfig) {
-    guard let type = config.type else { return }
     let elementView: UIView?
-    // TODO: Define element types as an enum.
-    switch type {
-    case "button":
+    switch config.type {
+    case .Button:
       guard let buttonConfig = config as? ButtonConfig else { return }
       elementView = Button(config: buttonConfig)
-    case "toggleButton":
+    case .ToggleButton:
       guard let toggleButtonConfig = config as? ToggleButtonConfig else { return }
       elementView = ToggleButton(config: toggleButtonConfig)
-    case "label":
+    case .Label:
       guard let labelConfig = config as? LabelConfig else { return }
       elementView = Label(config: labelConfig)
-    case "slider":
+    case .Slider:
       guard let sliderConfig = config as? SliderConfig else { return }
       elementView = Slider(config: sliderConfig)
-    default:
+    case .Unknown:
       elementView = nil
     }
     if let
@@ -106,24 +104,25 @@ class Bar: UIView {
       height: config.bottomBorderHeight)
 
     // Size element views.
-    var viewsToFillAvailableSpace = [UIView]()
+    var viewsToFillAvailableWidth = [UIView]()
     var totalOccupiedWidth = CGFloat(0)
     for element in elements {
       element.view.sizeToFit()
-      guard let type = element.type else { continue }
-      switch type {
-      case "label" where element.identifier == "title", "slider":
-        viewsToFillAvailableSpace.append(element.view)
-      default:
+      switch element.widthCalculation {
+      case .AsDefined:
+        element.view.frame.size.width = element.width
+        totalOccupiedWidth += element.width
+      case .Fit:
         totalOccupiedWidth += element.view.frame.size.width
-        break
+      case .Fill:
+        viewsToFillAvailableWidth.append(element.view)
       }
       totalOccupiedWidth += element.marginLeft + element.marginRight
     }
 
-    if viewsToFillAvailableSpace.count > 0 {
-      let widthPerFillerView = (size.width - totalOccupiedWidth) / CGFloat(viewsToFillAvailableSpace.count)
-      for view in viewsToFillAvailableSpace {
+    if viewsToFillAvailableWidth.count > 0 {
+      let widthPerFillerView = (size.width - totalOccupiedWidth) / CGFloat(viewsToFillAvailableWidth.count)
+      for view in viewsToFillAvailableWidth {
         view.frame.size.width = widthPerFillerView
       }
     }

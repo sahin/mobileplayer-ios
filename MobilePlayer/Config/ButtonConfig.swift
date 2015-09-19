@@ -9,7 +9,6 @@
 import UIKit
 
 public class ButtonConfig: ElementConfig {
-  public let width: CGFloat
   public let height: CGFloat
   public let image: UIImage?
   public let tintColor: UIColor
@@ -19,7 +18,6 @@ public class ButtonConfig: ElementConfig {
   }
 
   public override init(dictionary: [String: AnyObject]) {
-    width = (dictionary["width"] as? CGFloat) ?? 40
     height = (dictionary["height"] as? CGFloat) ?? 40
 
     if let imageName = dictionary["image"] as? String {
