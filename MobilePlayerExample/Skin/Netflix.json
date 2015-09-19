@@ -1,5 +1,7 @@
 {
-  "watermark": "logo.png"
+  "watermark": {
+    "image": "Logo"
+  },
   "topBar": {
     "backgroundColor": ["#000000ff", "#00000000"],
     "elements": [{
@@ -28,9 +30,6 @@
                  "identifier": "play"
                  },
                  {
-                 "type": "separator"
-                 },
-                 {
                  "type": "slider",
                  "identifier": "playback",
                  "trackHeight": 10,
@@ -42,20 +41,17 @@
                  "thumbWidth": 24,
                  "thumbHeight": 24,
                  "thumbCornerRadius": 12,
-                 "thumbBorderWidth": 0
-                 },
-                 {
-                 "type": "separator"
+                 "thumbBorderWidth": 0,
+                 "marginLeft": 8,
+                 "marginRight": 8
                  },
                  {
                  "type": "label",
                  "identifier": "remainingTime",
                  "text": "-:-",
                  "font": "HelveticaNeue",
-                 "size": 15
-                 },
-                 {
-                 "type": "separator"
+                 "size": 15,
+                 "marginRight": 8
                  }]
   }
 }

@@ -106,32 +106,25 @@ class Bar: UIView {
       height: config.bottomBorderHeight)
 
     // Size element views.
-    var slidersWithUndefinedWidth = [Slider]()
+    var viewsToFillAvailableSpace = [UIView]()
     var totalOccupiedWidth = CGFloat(0)
     for element in elements {
+      element.view.sizeToFit()
       guard let type = element.type else { continue }
       switch type {
-      case "button", "toggleButton", "label":
-        element.view.sizeToFit()
-        totalOccupiedWidth += element.view.frame.size.width
-      case "slider":
-        element.view.sizeToFit()
-        guard let slider = element.view as? Slider else { continue }
-        if slider.config.width == nil {
-          slidersWithUndefinedWidth.append(slider)
-        } else {
-          totalOccupiedWidth += slider.frame.size.width
-        }
+      case "label" where element.identifier == "title", "slider":
+        viewsToFillAvailableSpace.append(element.view)
       default:
+        totalOccupiedWidth += element.view.frame.size.width
         break
       }
       totalOccupiedWidth += element.marginLeft + element.marginRight
     }
 
-    if slidersWithUndefinedWidth.count > 0 {
-      let widthPerSlider = (size.width - totalOccupiedWidth) / CGFloat(slidersWithUndefinedWidth.count)
-      for slider in slidersWithUndefinedWidth {
-        slider.frame.size.width = widthPerSlider
+    if viewsToFillAvailableSpace.count > 0 {
+      let widthPerFillerView = (size.width - totalOccupiedWidth) / CGFloat(viewsToFillAvailableSpace.count)
+      for view in viewsToFillAvailableSpace {
+        view.frame.size.width = widthPerFillerView
       }
     }
 
