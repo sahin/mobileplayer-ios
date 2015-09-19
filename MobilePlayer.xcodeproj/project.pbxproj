@@ -430,8 +430,6 @@
 				C3A9AED71B048B5600D0C842 /* Resources */,
 				C3A9AF071B0491B500D0C842 /* Embed Frameworks */,
 				5F2739FE1B2A8F6000EF50C4 /* Validate Code Style */,
-				5ECF4FC4B61F8BECE7BFB42F /* Embed Pods Frameworks */,
-				08388E3F4B5A73500F991423 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -471,7 +469,6 @@
 				CE554D4C1AFE6CCD00DAC7E9 /* Headers */,
 				CE554D4D1AFE6CCD00DAC7E9 /* Resources */,
 				5F2739FC1B2A8F3400EF50C4 /* Validate Code Style */,
-				DDE33C0357809D5655D93553 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -595,21 +592,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		08388E3F4B5A73500F991423 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobilePlayerExample/Pods-MobilePlayerExample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		34FBA218D2E9EFA476A8CB14 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -638,21 +620,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		5ECF4FC4B61F8BECE7BFB42F /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobilePlayerExample/Pods-MobilePlayerExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5F2739FC1B2A8F3400EF50C4 /* Validate Code Style */ = {
@@ -710,21 +677,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MobilePlayerExampleTests\nfi\n";
-		};
-		DDE33C0357809D5655D93553 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		F40C37578BF721D3E7447872 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
