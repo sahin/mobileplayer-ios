@@ -14,6 +14,7 @@ class Bar: UIView {
   let topBorderView = UIView(frame: CGRectZero)
   let bottomBorderView = UIView(frame: CGRectZero)
   var elements = [UIView]()
+  private var elementFindCache = [String: UIView]()
 
   init(config: BarConfig = BarConfig()) {
     self.config = config
@@ -68,9 +69,13 @@ class Bar: UIView {
   }
 
   func getViewForElementWithIdentifier(identifier: String) -> UIView? {
-    for view in subviews {
+    if let view = elementFindCache[identifier] {
+      return view
+    }
+    for view in elements {
       guard let element = view as? Element else { continue }
       if element.config.identifier == identifier {
+        elementFindCache[identifier] = view
         return view
       }
     }
