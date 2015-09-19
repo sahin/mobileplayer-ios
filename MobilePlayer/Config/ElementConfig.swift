@@ -18,8 +18,8 @@ public enum ElementType: String {
 
 public enum ElementWidthCalculationMode: String {
   case AsDefined = "asDefined"
-  case Fill = "fill"
   case Fit = "fit"
+  case Fill = "fill"
 }
 
 public class ElementConfig {

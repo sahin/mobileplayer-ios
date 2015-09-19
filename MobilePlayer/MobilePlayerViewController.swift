@@ -10,7 +10,10 @@ import UIKit
 import MediaPlayer
 
 public protocol MobilePlayerViewControllerDelegate: class {
-  func didPressButton(button: UIButton, identifier: String)
+  func mobilePlayerViewControllerStateDidChange(mobilePlayerViewController: MobilePlayerViewController)
+  func mobilePlayerViewController(mobilePlayerViewController: MobilePlayerViewController, didEncounterError error: NSError)
+  func mobilePlayerViewController(mobilePlayerViewController: MobilePlayerViewController, buttonWithIdentifierDidGetTapped identifier: String)
+  func mobilePlayerViewControllerPlaybackDidFinish(mobilePlayerViewController: MobilePlayerViewController)
 }
 
 public class MobilePlayerViewController: MPMoviePlayerViewController {
@@ -25,7 +28,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
   public private(set) var previousState: State = .Idle
   public private(set) var state: State = .Idle {
-    didSet(oldValue) {
+    didSet {
       previousState = oldValue
     }
   }
@@ -38,7 +41,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   // MARK: Mapped Properties
   public override var title: String? {
     didSet {
-      controlsView.titleLabel.text = title
+      (getViewForElementWithIdentifier("title") as? Label)?.text = title
     }
   }
   public var shouldAutoplay: Bool {
@@ -73,15 +76,11 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   // MARK: - Initialization
 
-  public init(contentURL: NSURL, configFileURL: NSURL? = nil, shareItems: [AnyObject]? = nil) {
-    if let configFileURL = configFileURL {
-      config = SkinParser.parseConfigFromURL(configFileURL) ?? MobilePlayerViewController.globalConfig
-    } else {
-      config = MobilePlayerViewController.globalConfig
-    }
+  public init(contentURL: NSURL, config: MobilePlayerConfig = MobilePlayerViewController.globalConfig, shareItems: [AnyObject]? = nil) {
+    self.config = config
     controlsView = MobilePlayerControlsView(config: config)
-    super.init(contentURL: contentURL)
     self.shareItems = shareItems
+    super.init(contentURL: contentURL)
     initializeMobilePlayerViewController()
   }
 
@@ -111,6 +110,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       object: moviePlayer,
       queue: NSOperationQueue.mainQueue()) { notification in
         self.handleMoviePlayerPlaybackStateDidChangeNotification()
+        self.delegate?.mobilePlayerViewControllerStateDidChange(self)
     }
     notificationCenter.removeObserver(
       self,
@@ -120,16 +120,25 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       MPMoviePlayerPlaybackDidFinishNotification,
       object: moviePlayer,
       queue: NSOperationQueue.mainQueue()) { notification in
-        self.showPostrollOrDismissAtVideoEnd()
+        if let postrollVC = self.config.postrollViewController {
+          self.showOverlayViewController(postrollVC)
+        }
+        self.delegate?.mobilePlayerViewControllerPlaybackDidFinish(self)
     }
   }
 
   private func initializeControlsView() {
-    controlsView.timeSlider.delegate = self
-    controlsView.closeButton.addCallback(dismiss, forControlEvents: .TouchUpInside)
-    controlsView.shareButton.addCallback(shareContent, forControlEvents: .TouchUpInside)
-    controlsView.playButton.addCallback(togglePlayback, forControlEvents: .TouchUpInside)
-    controlsView.volumeButton.addCallback(controlsView.toggleVolumeView, forControlEvents: .TouchUpInside)
+    (getViewForElementWithIdentifier("playback") as? Slider)?.delegate = self
+    (getViewForElementWithIdentifier("close") as? Button)?.addCallback(
+      dismiss,
+      forControlEvents: .TouchUpInside)
+    (getViewForElementWithIdentifier("share") as? Button)?.addCallback(shareContent, forControlEvents: .TouchUpInside)
+    (getViewForElementWithIdentifier("play") as? Button)?.addCallback(
+      {
+        self.resetHideControlsTimer()
+        self.togglePlayback()
+      },
+      forControlEvents: .TouchUpInside)
     initializeControlsViewTapRecognizers()
   }
 
@@ -150,25 +159,17 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     view.addSubview(controlsView)
     playbackInterfaceUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(
       MobilePlayerViewController.playbackInterfaceUpdateInterval,
-      callback: {
-        self.controlsView.timeSlider.maximumValue = self.moviePlayer.duration.isNormal ? self.moviePlayer.duration : 0
-        if !self.seeking {
-          let sliderValue = self.moviePlayer.currentPlaybackTime.isNormal ? self.moviePlayer.currentPlaybackTime : 0
-          self.controlsView.timeSlider.setValue(
-            sliderValue,
-            animatedForDuration: MobilePlayerViewController.playbackInterfaceUpdateInterval)
-        }
-        let bufferValue = self.moviePlayer.playableDuration.isNormal ? self.moviePlayer.playableDuration : 0
-        self.controlsView.timeSlider.setBufferValue(
-          bufferValue,
-          animatedForDuration: MobilePlayerViewController.playbackInterfaceUpdateInterval)
-        self.updateTimeLabel(self.controlsView.playbackTimeLabel, time: self.moviePlayer.currentPlaybackTime)
-        self.updateShownTimedOverlays()
-      },
+      callback: updatePlaybackInterface,
       repeats: true)
     if let preRollVC = self.config.prerollViewController {
+      shouldAutoplay = false
       showOverlayViewController(preRollVC)
     }
+  }
+
+  public override func viewWillLayoutSubviews() {
+    super.viewWillLayoutSubviews()
+    controlsView.frame = view.bounds
   }
 
   public override func viewWillAppear(animated: Bool) {
@@ -177,12 +178,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     previousStatusBarHiddenValue = UIApplication.sharedApplication().statusBarHidden
     UIApplication.sharedApplication().statusBarHidden = true
     setNeedsStatusBarAppearanceUpdate()
-  }
-
-  public override func viewWillLayoutSubviews() {
-    super.viewWillLayoutSubviews()
-    controlsView.updateConstraintsWithLayout(view.bounds)
-    //controlsView.frame = view.bounds
   }
 
   public override func viewWillDisappear(animated: Bool) {
@@ -203,65 +198,70 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   // MARK: - Internal Helpers
 
   private func parseContentURLIfNeeded() {
-    if let youtubeID = YoutubeParser.youtubeIDFromURL(moviePlayer.contentURL) {
-      YoutubeParser.h264videosWithYoutubeID(youtubeID, completion: { videoInfo, error in
-        if let error = error {
-          // TODO: Delegate the error.
-        } else {
-          if self.title == nil {
-            self.title = videoInfo.title
-          }
-          if let
-            previewImageURLString = videoInfo.previewImageURL,
-            previewImageURL = NSURL(string: previewImageURLString) {
-              NSURLSession.sharedSession().dataTaskWithURL(previewImageURL) { data, response, error in
-                dispatch_async(dispatch_get_main_queue()) {
-                  self.controlsView.backgroundImageView.image = UIImage(data: data)
-                }
-              }.resume()
-          }
-          if let videoURL = videoInfo.videoURL {
-            self.moviePlayer.contentURL = NSURL(string: videoURL)
-          }
-        }
-      })
-    }
+//    if let youtubeID = YoutubeParser.youtubeIDFromURL(moviePlayer.contentURL) {
+//      YoutubeParser.h264videosWithYoutubeID(youtubeID, completion: { videoInfo, error in
+//        if let error = error {
+//          // TODO: Delegate the error.
+//        } else {
+//          if self.title == nil {
+//            self.title = videoInfo.title
+//          }
+//          if let
+//            previewImageURLString = videoInfo.previewImageURL,
+//            previewImageURL = NSURL(string: previewImageURLString) {
+//              NSURLSession.sharedSession().dataTaskWithURL(previewImageURL) { data, response, error in
+//                dispatch_async(dispatch_get_main_queue()) {
+//                  self.controlsView.backgroundImageView.image = UIImage(data: data)
+//                }
+//              }.resume()
+//          }
+//          if let videoURL = videoInfo.videoURL {
+//            self.moviePlayer.contentURL = NSURL(string: videoURL)
+//          }
+//        }
+//      })
+//    }
   }
 
   private func doFirstPlaySetupIfNeeded() {
     if isFirstPlay {
       isFirstPlay = false
-      controlsView.backgroundImageView.removeFromSuperview()
+      controlsView.previewImageView.removeFromSuperview()
       controlsView.activityIndicatorView.stopAnimating()
-      updateTimeLabel(controlsView.durationLabel, time: moviePlayer.duration)
-      if let firstPlayCallback = config.firstPlayCallback {
-        firstPlayCallback(playerVC: self)
-      }
+      (getViewForElementWithIdentifier("duration") as? Label)?.text = textForPlaybackTime(moviePlayer.duration)
     }
   }
 
-  private func updateTimeLabel(label: UILabel, time: NSTimeInterval) {
-    if !time.isNormal {
-      label.text = "-:-"
-      return
+  private func updatePlaybackInterface() {
+    if let playbackSlider = getViewForElementWithIdentifier("playback") as? Slider {
+      playbackSlider.maximumValue = Float(moviePlayer.duration.isNormal ? moviePlayer.duration : 0)
+      if !seeking {
+        let sliderValue = Float(moviePlayer.currentPlaybackTime.isNormal ? moviePlayer.currentPlaybackTime : 0)
+        playbackSlider.setValue(
+          sliderValue,
+          animatedForDuration: MobilePlayerViewController.playbackInterfaceUpdateInterval)
+      }
+      let availableValue = Float(moviePlayer.playableDuration.isNormal ? moviePlayer.playableDuration : 0)
+      playbackSlider.setAvailableValue(
+        availableValue,
+        animatedForDuration: MobilePlayerViewController.playbackInterfaceUpdateInterval)
     }
-    // FIXME: Remaining time calculation and remainingLabel.text assignment does not belong here.
-    let remainingTime = moviePlayer.duration - moviePlayer.currentPlaybackTime
-    let remainingHours = UInt(remainingTime / 3600)
-    let remainingMinutes = UInt((remainingTime / 60) % 60)
-    let remainingSeconds = UInt(remainingTime % 60)
-    let remainingTimeLabelText = NSString(
-      format: "%02lu:%02lu",
-      remainingMinutes,
-      remainingSeconds) as String
-    controlsView.remainingLabel.text = remainingTimeLabelText
+    (getViewForElementWithIdentifier("currentTime") as? Label)?.text = textForPlaybackTime(moviePlayer.currentPlaybackTime)
+    updateShownTimedOverlays()
+  }
+
+  private func textForPlaybackTime(time: NSTimeInterval) -> String {
+    if !time.isNormal {
+      return "-:-"
+    }
     let hours = UInt(time / 3600)
     let minutes = UInt((time / 60) % 60)
     let seconds = UInt(time % 60)
-    let timeLabelText = NSString(format: "%02lu:%02lu", minutes, seconds) as String
-    label.text = timeLabelText
+    let text = NSString(format: "%02lu:%02lu", minutes, seconds) as String
     if hours > 0 {
-      label.text = NSString(format: "%02lu:%@", hours, label.text!) as String
+      return NSString(format: "%02lu:%@", hours, text) as String
+    } else {
+      return text
     }
   }
 
@@ -270,59 +270,37 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     hideControlsTimer = NSTimer.scheduledTimerWithTimeInterval(
       2,
       callback: {
-        self.controlsView.controlsHidden = (self.state == .Playing && self.controlsView.volumeView.hidden)
+        self.controlsView.controlsHidden = (self.state == .Playing)
       },
       repeats: false)
   }
 
   final func handleMoviePlayerPlaybackStateDidChangeNotification() {
     state = StateHelper.calculateStateUsing(previousState, andPlaybackState: moviePlayer.playbackState)
-    controlsView.playerStateLabel.text = NSString(format: "%d-%d", state.hashValue, previousState.hashValue) as String
+    let playButton = getViewForElementWithIdentifier("play") as? ToggleButton
     if state == .Playing {
       doFirstPlaySetupIfNeeded()
-      controlsView.playButton.setImage(config.controlbarConfig.pauseButtonImage, forState: .Normal)
-      controlsView.playButton.tintColor = config.controlbarConfig.pauseButtonTintColor
-      controlsView.playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
+      playButton?.toggled = true
       if !controlsView.controlsHidden {
         resetHideControlsTimer()
+      }
+      if let prerollViewController = config.prerollViewController {
+        dismissMobilePlayerOverlay(prerollViewController)
       }
       if let pauseViewController = config.pauseViewController {
         dismissMobilePlayerOverlay(pauseViewController)
       }
-      if let preRollVC = self.config.prerollViewController {
-        if isFirstPlayPreRoll {
-          pause()
-          controlsView.playButton.setImage(
-            config.controlbarConfig.playButtonImage,
-            forState: .Normal
-          )
-          controlsView.playButton.tintColor = config.controlbarConfig.playButtonTintColor
-          controlsView.playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
-        }
-      }
     } else {
-      controlsView.playButton.setImage(config.controlbarConfig.playButtonImage, forState: .Normal)
-      controlsView.playButton.tintAdjustmentMode = UIViewTintAdjustmentMode.Normal
-      controlsView.playButton.tintColor = config.controlbarConfig.playButtonTintColor
+      playButton?.toggled = false
       hideControlsTimer?.invalidate()
       controlsView.controlsHidden = false
       if let pauseViewController = config.pauseViewController {
+        // FIXME: Constraints.
         addChildViewController(pauseViewController)
         controlsView.overlayContainerView.addSubview(pauseViewController.view)
         pauseViewController.didMoveToParentViewController(self)
         pauseViewController.delegate = self
       }
-    }
-  }
-
-  final func showPostrollOrDismissAtVideoEnd() {
-    if let postrollVC = config.postrollViewController {
-      showOverlayViewController(postrollVC)
-      if let endCallback = config.endCallback {
-        endCallback(playerVC: self)
-      }
-    } else {
-      dismiss()
     }
   }
 }
@@ -340,19 +318,19 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
 }
 
 // MARK: - TimeSliderDelegate
-extension MobilePlayerViewController: TimeSliderDelegate {
+extension MobilePlayerViewController: SliderDelegate {
 
-  func timeSliderSeekDidBegin(timeSlider: TimeSlider) {
+  func sliderThumbPanDidBegin(slider: Slider) {
     seeking = true
     wasPlayingBeforeSeek = (state == .Playing)
     moviePlayer.pause()
   }
 
-  func timeSliderDidSeek(timeSlider: TimeSlider) {}
+  func sliderThumbDidPan(slider: Slider) {}
 
-  func timeSliderSeekDidEnd(timeSlider: TimeSlider) {
+  func sliderThumbPanDidEnd(slider: Slider) {
     seeking = false
-    moviePlayer.currentPlaybackTime = timeSlider.value
+    moviePlayer.currentPlaybackTime = NSTimeInterval(slider.value)
     if wasPlayingBeforeSeek {
       moviePlayer.play()
     }
@@ -444,12 +422,22 @@ extension MobilePlayerViewController {
     controlsView.controlsHidden ? showControls() : hideControls()
   }
 
+  // MARK: Elements
+
+  public func getViewForElementWithIdentifier(identifier: String) -> UIView? {
+    if let view = controlsView.topBar.getViewForElementWithIdentifier(identifier) {
+      return view
+    }
+    return controlsView.bottomBar.getViewForElementWithIdentifier(identifier)
+  }
+
   // MARK: Overlays
 
   public func showOverlayViewController(
     overlayVC: MobilePlayerOverlayViewController,
     startingAtTime presentationTime: NSTimeInterval? = nil,
     forDuration showDuration: NSTimeInterval? = nil) {
+      // FIXME: Timed overlay mechanism and constraints.
       if let presentationTime = presentationTime, showDuration = showDuration {
         timedOverlays.append(["vc": overlayVC, "start": presentationTime, "duration": showDuration])
       } else {
@@ -506,24 +494,5 @@ extension MobilePlayerViewController {
       overlayView = timedOverlays[index]["vc"] as? MobilePlayerOverlayViewController {
         self.dismissMobilePlayerOverlay(overlayView)
     }
-  }
-
-  // MARK: - Custom Button Delegate
-
-  func customButtonAction(button: UIButton) {
-    if let identifiers = button.accessibilityElements,
-      let identifier = identifiers[0] as? String  {
-        delegate?.didPressButton(button, identifier: identifier)
-    }
-  }
-}
-
-// MARK: - UIContentContainer
-extension MobilePlayerViewController {
-
-  override public func viewWillTransitionToSize(
-    size: CGSize,
-    withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-      controlsView.updateConstraintsWithLayout(CGRect(x: 0, y: 0, width: size.width, height: size.height))
   }
 }
