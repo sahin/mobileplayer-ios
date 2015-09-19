@@ -27,7 +27,6 @@ public class SliderConfig: ElementConfig {
   }
 
   public override init(dictionary: [String: AnyObject]) {
-    super.init(dictionary: dictionary)
     width = dictionary["width"] as? CGFloat
     trackHeight = (dictionary["trackHeight"] as? CGFloat) ?? 4
     trackCornerRadius = (dictionary["trackCornerRadius"] as? CGFloat) ?? 2
@@ -63,6 +62,10 @@ public class SliderConfig: ElementConfig {
 
     if let thumbBorderColorHex = dictionary["thumbBorderColor"] as? String {
       thumbBorderColor = UIColor(hex: thumbBorderColorHex).CGColor
+    } else {
+      thumbBorderColor = UIColor.blackColor().CGColor
     }
+
+    super.init(dictionary: dictionary)
   }
 }

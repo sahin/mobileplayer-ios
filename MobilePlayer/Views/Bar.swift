@@ -13,20 +13,24 @@ class Bar: UIView {
   let gradientLayer: CAGradientLayer?
   let topBorderView = UIView(frame: CGRectZero)
   let bottomBorderView = UIView(frame: CGRectZero)
-  var elements = [UIView]()
+  var elements = [Element]()
   private var elementFindCache = [String: UIView]()
 
   init(config: BarConfig = BarConfig()) {
     self.config = config
-    super.init(frame: CGRectZero)
-    if config.backgroundColor.count == 1 {
-      backgroundColor = config.backgroundColor[0]
-    } else {
+    if config.backgroundColor.count > 1 {
       let gradientLayer = CAGradientLayer()
       gradientLayer.colors = [config.backgroundColor.first!.CGColor, config.backgroundColor.last!.CGColor]
       gradientLayer.locations = [0, 1]
-      layer.addSublayer(gradientLayer)
       self.gradientLayer = gradientLayer
+    } else {
+      gradientLayer = nil
+    }
+    super.init(frame: CGRectZero)
+    if config.backgroundColor.count == 1 {
+      backgroundColor = config.backgroundColor[0]
+    } else if let gradientLayer = gradientLayer {
+      layer.addSublayer(gradientLayer)
     }
     topBorderView.backgroundColor = config.topBorderColor
     addSubview(topBorderView)
@@ -43,28 +47,30 @@ class Bar: UIView {
 
   func addElementUsingConfig(config: ElementConfig) {
     guard let type = config.type else { return }
-    let element: UIView?
+    let elementView: UIView?
     // TODO: Define element types as an enum.
     switch type {
     case "button":
       guard let buttonConfig = config as? ButtonConfig else { return }
-      element = Button(config: buttonConfig)
+      elementView = Button(config: buttonConfig)
     case "toggleButton":
       guard let toggleButtonConfig = config as? ToggleButtonConfig else { return }
-      element = ToggleButton(config: toggleButtonConfig)
+      elementView = ToggleButton(config: toggleButtonConfig)
     case "label":
       guard let labelConfig = config as? LabelConfig else { return }
-      element = Label(config: labelConfig)
+      elementView = Label(config: labelConfig)
     case "slider":
       guard let sliderConfig = config as? SliderConfig else { return }
-      element = Slider(config: sliderConfig)
+      elementView = Slider(config: sliderConfig)
     default:
-      element = nil
+      elementView = nil
     }
-    if let element = element {
-      addSubview(element)
-      elements.append(element)
-      setNeedsLayout()
+    if let
+      elementView = elementView,
+      element = elementView as? Element {
+        addSubview(elementView)
+        elements.append(element)
+        setNeedsLayout()
     }
   }
 
@@ -72,11 +78,10 @@ class Bar: UIView {
     if let view = elementFindCache[identifier] {
       return view
     }
-    for view in elements {
-      guard let element = view as? Element else { continue }
-      if element.config.identifier == identifier {
-        elementFindCache[identifier] = view
-        return view
+    for element in elements {
+      if element.identifier == identifier {
+        elementFindCache[identifier] = element.view
+        return element.view
       }
     }
     return nil
@@ -100,28 +105,27 @@ class Bar: UIView {
       width: size.width,
       height: config.bottomBorderHeight)
 
-    // Size elements.
+    // Size element views.
     var slidersWithUndefinedWidth = [Slider]()
     var totalOccupiedWidth = CGFloat(0)
     for element in elements {
-      guard let config = (element as? Element)?.config else { continue }
-      guard let type = config.type else { continue }
+      guard let type = element.type else { continue }
       switch type {
       case "button", "toggleButton", "label":
-        element.sizeToFit()
-        totalOccupiedWidth += element.frame.size.width
+        element.view.sizeToFit()
+        totalOccupiedWidth += element.view.frame.size.width
       case "slider":
-        element.sizeToFit()
-        guard let slider = element as? Slider else { continue }
+        element.view.sizeToFit()
+        guard let slider = element.view as? Slider else { continue }
         if slider.config.width == nil {
           slidersWithUndefinedWidth.append(slider)
         } else {
-          totalOccupiedWidth += element.frame.size.width
+          totalOccupiedWidth += slider.frame.size.width
         }
       default:
         break
       }
-      totalOccupiedWidth += config.marginLeft + config.marginRight
+      totalOccupiedWidth += element.marginLeft + element.marginRight
     }
 
     if slidersWithUndefinedWidth.count > 0 {
@@ -134,10 +138,9 @@ class Bar: UIView {
     // Position them.
     var left = CGFloat(0)
     for element in elements {
-      guard let config = (element as? Element)?.config else { continue }
-      left += config.marginLeft
-      element.frame.origin = CGPoint(x: left, y: (size.height - element.frame.size.height) / 2)
-      left += element.frame.size.width + config.marginRight
+      left += element.marginLeft
+      element.view.frame.origin = CGPoint(x: left, y: (size.height - element.view.frame.size.height) / 2)
+      left += element.view.frame.size.width + element.marginRight
     }
   }
 }

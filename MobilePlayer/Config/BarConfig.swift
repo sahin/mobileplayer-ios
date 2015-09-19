@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct BarConfig {
+public class BarConfig {
   public let backgroundColor: [UIColor]
   public let height: CGFloat
   public let topBorderHeight: CGFloat
@@ -31,7 +31,7 @@ public struct BarConfig {
     } else if let backgroundColorHex = dictionary["backgroundColor"] as? String {
       backgroundColor = [UIColor(hex: backgroundColorHex)]
     } else {
-      backgroundColor = UIColor(white: 0, alpha: 0.7)
+      backgroundColor = [UIColor(white: 0, alpha: 0.7)]
     }
 
     height = (dictionary["height"] as? CGFloat) ?? 40
@@ -69,6 +69,9 @@ public struct BarConfig {
           }
         }
       }
+      elements = validElements
+    } else {
+      elements = []
     }
   }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ToggleButton: UIButton, Element {
+class ToggleButton: UIButton {
   let config: ToggleButtonConfig
   var toggled = false { didSet { update() } }
 
@@ -36,4 +36,13 @@ class ToggleButton: UIButton, Element {
   override func sizeThatFits(size: CGSize) -> CGSize {
     return CGSize(width: config.width, height: config.height)
   }
+}
+
+// MARK: - Element
+extension ToggleButton: Element {
+  var type: String? { return config.type }
+  var identifier: String? { return config.identifier }
+  var marginLeft: CGFloat { return config.marginLeft }
+  var marginRight: CGFloat { return config.marginRight }
+  var view: UIView { return self }
 }

@@ -19,13 +19,12 @@ public class ButtonConfig: ElementConfig {
   }
 
   public override init(dictionary: [String: AnyObject]) {
-    super.init(dictionary: dictionary)
     width = (dictionary["width"] as? CGFloat) ?? 40
     height = (dictionary["height"] as? CGFloat) ?? 40
 
     if let imageName = dictionary["image"] as? String {
       image = UIImage(named: imageName)
-    } else if let identifier = identifier {
+    } else if let identifier = dictionary["identifier"] as? String {
       let mobilePlayerBundle = NSBundle(forClass: ButtonConfig.self)
       switch identifier {
       case "close":
@@ -44,5 +43,7 @@ public class ButtonConfig: ElementConfig {
     } else {
       tintColor = UIColor.whiteColor()
     }
+
+    super.init(dictionary: dictionary)
   }
 }

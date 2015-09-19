@@ -21,7 +21,8 @@ public class ToggleButtonConfig: ElementConfig {
   }
 
   public override init(dictionary: [String: AnyObject]) {
-    super.init(dictionary: dictionary)
+    let identifier = dictionary["identifier"] as? String
+    
     width = (dictionary["width"] as? CGFloat) ?? 40
     height = (dictionary["height"] as? CGFloat) ?? 40
 
@@ -53,5 +54,7 @@ public class ToggleButtonConfig: ElementConfig {
     } else {
       toggledTintColor = UIColor.whiteColor()
     }
+
+    super.init(dictionary: dictionary)
   }
 }

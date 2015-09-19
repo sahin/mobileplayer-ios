@@ -23,7 +23,7 @@ class YoutubeParser: NSObject {
 
   private static func decodeURLEncodedString(urlString: String) -> String {
     let withSpaces = urlString.stringByReplacingOccurrencesOfString("+", withString:" ")
-    return withSpaces.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding) ?? withSpaces
+    return withSpaces.stringByRemovingPercentEncoding ?? withSpaces
   }
 
   private static func queryStringToDictionary(queryString: String) -> [String: AnyObject] {
@@ -43,7 +43,7 @@ class YoutubeParser: NSObject {
   static func youtubeIDFromURL(url: NSURL) -> String? {
     if let
       host = url.host,
-      pathComponents = url.pathComponents as? [String] {
+      pathComponents = url.pathComponents {
         if host.rangeOfString("youtu.be") != nil {
           return pathComponents[1]
         } else if (host.rangeOfString("youtube.com") != nil && pathComponents[1] == "embed") || (host == "youtube.googleapis.com") {
@@ -70,15 +70,19 @@ class YoutubeParser: NSObject {
         completionHandler: { response, data, error in
           if let error = error {
             completion(
-              videoInfo: YoutubeVideoInfo(
-                title: nil,
-                previewImageURL: nil,
-                videoURL: nil,
-                isStream: nil),
+              videoInfo: YoutubeVideoInfo(title: nil, previewImageURL: nil, videoURL: nil, isStream: nil),
               error: error)
             return
           }
-          let parts = self.queryStringToDictionary(NSString(data: data, encoding: NSUTF8StringEncoding)! as String)
+          guard let
+            data = data,
+            dataString = NSString(data: data, encoding: NSUTF8StringEncoding) as? String else {
+              completion(
+                videoInfo: YoutubeVideoInfo(title: nil, previewImageURL: nil, videoURL: nil, isStream: nil),
+                error: NSError(domain: "com.movielala.MobilePlayer.error", code: 0, userInfo: nil))
+              return
+          }
+          let parts = self.queryStringToDictionary(dataString)
           let title = parts["title"] as? String
           let previewImageURL = parts["iurl"] as? String
           if parts["live_playback"] != nil {

@@ -18,11 +18,10 @@ public class LabelConfig: ElementConfig {
   }
 
   public override init(dictionary: [String: AnyObject]) {
-    super.init(dictionary: dictionary)
     text = dictionary["text"] as? String
 
     let fontName = dictionary["font"] as? String
-    let size = (dictionary["size"] as? CGFloat) ?? (identifier == "title" ? 16 : 14)
+    let size = (dictionary["size"] as? CGFloat) ?? ((dictionary["identifier"] as? String) == "title" ? 16 : 14)
     if let fontName = fontName, font = UIFont(name: fontName, size: size) {
       self.font = font
     } else {
@@ -34,5 +33,7 @@ public class LabelConfig: ElementConfig {
     } else {
       textColor = UIColor.whiteColor()
     }
+
+    super.init(dictionary: dictionary)
   }
 }

@@ -11,17 +11,17 @@ import UIKit
 extension UIColor {
 
   convenience init(hex: String) {
-    var red: CGFloat = 0.0
-    var green: CGFloat = 0.0
-    var blue: CGFloat = 0.0
-    var alpha: CGFloat = 1.0
-    if hexString.hasPrefix("#") {
-      let index   = advance(hexString.startIndex, 1)
-      let hex     = hexString.substringFromIndex(index)
+    var red = CGFloat(0)
+    var green = CGFloat(0)
+    var blue = CGFloat(0)
+    var alpha = CGFloat(1)
+    if hex.hasPrefix("#") {
+      let index   = hex.startIndex.advancedBy(1)
+      let hex     = hex.substringFromIndex(index)
       let scanner = NSScanner(string: hex)
-      var hexValue: CUnsignedLongLong = 0
+      var hexValue = CUnsignedLongLong(0)
       if scanner.scanHexLongLong(&hexValue) {
-        switch (count(hex)) {
+        switch (hex.characters.count) {
         case 3:
           red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
           green = CGFloat((hexValue & 0x0F0) >> 4)       / 15.0
@@ -49,6 +49,6 @@ extension UIColor {
     } else {
       assert(false, "Invalid RGB string, missing '#' as prefix")
     }
-    self.init(red:red, green:green, blue:blue, alpha:alpha)
+    self.init(red: red, green: green, blue: blue, alpha: alpha)
   }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Button: UIButton, Element {
+class Button: UIButton {
   let config: ButtonConfig
 
   init(config: ButtonConfig = ButtonConfig()) {
@@ -25,4 +25,13 @@ class Button: UIButton, Element {
   override func sizeThatFits(size: CGSize) -> CGSize {
     return CGSize(width: config.width, height: config.height)
   }
+}
+
+// MARK: - Element
+extension Button: Element {
+  var type: String? { return config.type }
+  var identifier: String? { return config.identifier }
+  var marginLeft: CGFloat { return config.marginLeft }
+  var marginRight: CGFloat { return config.marginRight }
+  var view: UIView { return self }
 }

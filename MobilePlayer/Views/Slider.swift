@@ -14,7 +14,7 @@ protocol SliderDelegate: class {
   func sliderThumbPanDidEnd(slider: Slider)
 }
 
-class Slider: UIView, Element {
+class Slider: UIView {
   let config: SliderConfig
   var delegate: SliderDelegate?
   var minimumValue = Float(0)    { didSet { setNeedsLayout() } }
@@ -31,7 +31,7 @@ class Slider: UIView, Element {
 
   init(config: SliderConfig = SliderConfig()) {
     self.config = config
-    super.init(frame: frame)
+    super.init(frame: CGRectZero)
     maximumTrack.backgroundColor = config.maximumTrackTintColor
     maximumTrack.clipsToBounds = true
     addSubview(maximumTrack)
@@ -134,4 +134,13 @@ class Slider: UIView, Element {
       width: config.thumbWidth,
       height: config.thumbHeight)
   }
+}
+
+// MARK: - Element
+extension Slider: Element {
+  var type: String? { return config.type }
+  var identifier: String? { return config.identifier }
+  var marginLeft: CGFloat { return config.marginLeft }
+  var marginRight: CGFloat { return config.marginRight }
+  var view: UIView { return self }
 }

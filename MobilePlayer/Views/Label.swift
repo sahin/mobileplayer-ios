@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Label: UILabel, Element {
+class Label: UILabel {
   let config: LabelConfig
 
   init(config: LabelConfig = LabelConfig()) {
@@ -22,4 +22,13 @@ class Label: UILabel, Element {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+}
+
+// MARK: - Element
+extension Label: Element {
+  var type: String? { return config.type }
+  var identifier: String? { return config.identifier }
+  var marginLeft: CGFloat { return config.marginLeft }
+  var marginRight: CGFloat { return config.marginRight }
+  var view: UIView { return self }
 }

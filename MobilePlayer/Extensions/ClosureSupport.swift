@@ -46,7 +46,7 @@ extension UIControl {
   func removeCallbackForKey(key: UnsafePointer<Void>) {
     if let callbackContainer = objc_getAssociatedObject(self, key) as? CallbackContainer {
       removeTarget(callbackContainer, action: "callCallback", forControlEvents: .AllEvents)
-      objc_setAssociatedObject(self, key, nil, 0)
+      objc_setAssociatedObject(self, key, nil, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
   }
 }

@@ -29,19 +29,19 @@ final class MobilePlayerControlsView: UIView {
 
   init(config: MobilePlayerConfig) {
     self.config = config
+    topBar = Bar(config: config.topBarConfig)
+    bottomBar = Bar(config: config.bottomBarConfig)
     super.init(frame: CGRectZero)
     previewImageView.contentMode = .ScaleAspectFit
     addSubview(previewImageView)
     addSubview(activityIndicatorView)
     addSubview(overlayContainerView)
-    topBar = Bar(config: config.topBarConfig)
     if topBar.elements.count == 0 {
       topBar.addElementUsingConfig(ElementConfig(dictionary: ["type": "button", "identifier": "close"]))
       topBar.addElementUsingConfig(ElementConfig(dictionary: ["type": "label", "identifier": "title"]))
       topBar.addElementUsingConfig(ElementConfig(dictionary: ["type": "button", "identifier": "share"]))
     }
     addSubview(topBar)
-    bottomBar = Bar(config: config.bottomBarConfig)
     if bottomBar.elements.count == 0 {
       bottomBar.addElementUsingConfig(ElementConfig(dictionary: ["type": "toggleButton", "identifier": "play"]))
       bottomBar.addElementUsingConfig(ElementConfig(dictionary: ["type": "label", "identifier": "currentTime"]))

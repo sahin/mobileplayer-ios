@@ -7,5 +7,9 @@
 //
 
 protocol Element {
-  var config: ElementConfig { get }
+  var type: String? { get }
+  var identifier: String? { get }
+  var marginLeft: CGFloat { get }
+  var marginRight: CGFloat { get }
+  var view: UIView { get }
 }
