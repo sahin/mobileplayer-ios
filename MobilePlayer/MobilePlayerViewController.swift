@@ -41,7 +41,9 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   // MARK: Mapped Properties
   public override var title: String? {
     didSet {
-      (getViewForElementWithIdentifier("title") as? Label)?.text = title
+      guard let titleLabel = getViewForElementWithIdentifier("title") as? Label else { return}
+      titleLabel.text = title
+      titleLabel.superview?.setNeedsLayout()
     }
   }
   public var shouldAutoplay: Bool {
@@ -224,9 +226,11 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private func doFirstPlaySetupIfNeeded() {
     if isFirstPlay {
       isFirstPlay = false
-      controlsView.previewImageView.removeFromSuperview()
+      controlsView.previewImageView.hidden = true
       controlsView.activityIndicatorView.stopAnimating()
-      (getViewForElementWithIdentifier("duration") as? Label)?.text = textForPlaybackTime(moviePlayer.duration)
+      guard let durationLabel = getViewForElementWithIdentifier("duration") as? Label else { return }
+      durationLabel.text = textForPlaybackTime(moviePlayer.duration)
+      durationLabel.superview?.setNeedsLayout()
     }
   }
 
@@ -244,7 +248,14 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
         availableValue,
         animatedForDuration: MobilePlayerViewController.playbackInterfaceUpdateInterval)
     }
-    (getViewForElementWithIdentifier("currentTime") as? Label)?.text = textForPlaybackTime(moviePlayer.currentPlaybackTime)
+    if let currentTimeLabel = getViewForElementWithIdentifier("currentTime") as? Label {
+      currentTimeLabel.text = textForPlaybackTime(moviePlayer.currentPlaybackTime)
+      currentTimeLabel.superview?.setNeedsLayout()
+    }
+    if let remainingTimeLabel = getViewForElementWithIdentifier("remainingTime") as? Label {
+      remainingTimeLabel.text = textForPlaybackTime(moviePlayer.duration - moviePlayer.currentPlaybackTime)
+      remainingTimeLabel.superview?.setNeedsLayout()
+    }
     updateShownTimedOverlays()
   }
 

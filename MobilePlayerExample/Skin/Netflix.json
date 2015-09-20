@@ -16,11 +16,6 @@
                  {
                  "type": "button",
                  "identifier": "share"
-                 },
-                 {
-                 "type": "button",
-                 "identifier": "gopro action",
-                 "image": "MLCloseButton"
                  }]
   },
   "bottomBar": {
@@ -42,8 +37,8 @@
                  "thumbHeight": 24,
                  "thumbCornerRadius": 12,
                  "thumbBorderWidth": 0,
-                 "marginLeft": 8,
-                 "marginRight": 8
+                 "marginLeft": 4,
+                 "marginRight": 4
                  },
                  {
                  "type": "label",

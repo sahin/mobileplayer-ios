@@ -35,13 +35,13 @@ class Slider: UIView {
     accessibilityLabel = accessibilityLabel ?? config.identifier
     maximumTrack.backgroundColor = config.maximumTrackTintColor
     maximumTrack.clipsToBounds = true
+    maximumTrack.layer.cornerRadius = config.trackCornerRadius
     addSubview(maximumTrack)
     availableTrack.backgroundColor = config.availableTrackTintColor
     availableTrack.clipsToBounds = true
     availableTrack.layer.cornerRadius = config.trackCornerRadius
     maximumTrack.addSubview(availableTrack)
     minimumTrack.backgroundColor = config.minimumTrackTintColor
-    minimumTrack.layer.cornerRadius = config.trackCornerRadius
     maximumTrack.addSubview(minimumTrack)
     thumb.backgroundColor = config.thumbTintColor
     thumb.accessibilityLabel = "thumb"
@@ -130,7 +130,7 @@ class Slider: UIView {
     let availableTrackWidth = realMaximumValue != 0 ? maximumTrack.frame.size.width * CGFloat((availableValue - minimumValue) / realMaximumValue) : 0
     availableTrack.frame = CGRect(x: 0, y: 0, width: availableTrackWidth, height: config.trackHeight)
     thumb.frame = CGRect(
-      x: minimumTrackWidth - config.thumbWidth / 2,
+      x: minimumTrackWidth,
       y: (size.height - config.thumbHeight) / 2,
       width: config.thumbWidth,
       height: config.thumbHeight)
