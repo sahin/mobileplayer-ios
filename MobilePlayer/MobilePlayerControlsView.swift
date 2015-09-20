@@ -20,7 +20,7 @@ final class MobilePlayerControlsView: UIView {
   var controlsHidden: Bool = false {
     didSet {
       if oldValue != controlsHidden {
-        UIView.animateWithDuration(0) {
+        UIView.animateWithDuration(0.2) {
           self.layoutSubviews()
         }
       }
@@ -34,6 +34,7 @@ final class MobilePlayerControlsView: UIView {
     super.init(frame: CGRectZero)
     previewImageView.contentMode = .ScaleAspectFit
     addSubview(previewImageView)
+    activityIndicatorView.startAnimating()
     addSubview(activityIndicatorView)
     addSubview(overlayContainerView)
     if topBar.elements.count == 0 {
