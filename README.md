@@ -5,10 +5,36 @@
 
 A powerful and completely customizable media player for iOS.
 
-# Documentation
+## Installation
 
-`// TODO`
+## Usage
 
-# Examples
+If you were previously using MPMoviePlayerViewController, changing
 
-`// TODO`
+```swift
+let playerVC = MPMoviePlayerViewController(contentURL: videoURL)
+```
+
+to
+
+```swift
+let playerVC = MobilePlayerViewController(contentURL: videoURL)
+```
+
+is enough.
+
+### Customizing the Player
+
+In most cases though you would want to customize the player. You can do this by creating a configuration .json file or programmatically.
+
+### Configuration File
+
+Coming soon.
+
+### Programmatic Configuration
+
+Coming soon.
+
+## Documentation
+
+The entire documentation for the library can be found [here](https://htmlpreview.github.io/?https://github.com/movielala/mobileplayer-ios/blob/master/Documentation/index.html).
