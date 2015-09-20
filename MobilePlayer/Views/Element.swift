@@ -9,7 +9,7 @@
 protocol Element {
   var type: ElementType { get }
   var identifier: String? { get }
-  var widthCalculation: ElementWidthCalculationMode { get }
+  var widthCalculation: ElementWidthCalculation { get }
   var width: CGFloat { get }
   var marginLeft: CGFloat { get }
   var marginRight: CGFloat { get }

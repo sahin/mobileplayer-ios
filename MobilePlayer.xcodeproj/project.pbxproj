@@ -20,6 +20,7 @@
 		5FBFEA321BA8ACC500EF50C4 /* LabelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBFEA311BA8ACC500EF50C4 /* LabelConfig.swift */; };
 		5FBFEA341BA8ACDE00EF50C4 /* ToggleButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBFEA331BA8ACDE00EF50C4 /* ToggleButtonConfig.swift */; };
 		5FBFEA361BA8AD0200EF50C4 /* SliderConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBFEA351BA8AD0200EF50C4 /* SliderConfig.swift */; };
+		5FD756941BAC494800EF50C4 /* WatermarkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD756931BAC494800EF50C4 /* WatermarkConfig.swift */; settings = {ASSET_TAGS = (); }; };
 		C305DED81B21068700DD9632 /* Minimal.json in Resources */ = {isa = PBXBuildFile; fileRef = C305DED71B21068700DD9632 /* Minimal.json */; };
 		C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */; };
 		C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35497A21B70007500FDDBFF /* SkinTests.swift */; };
@@ -118,6 +119,7 @@
 		5FBFEA311BA8ACC500EF50C4 /* LabelConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelConfig.swift; sourceTree = "<group>"; };
 		5FBFEA331BA8ACDE00EF50C4 /* ToggleButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleButtonConfig.swift; sourceTree = "<group>"; };
 		5FBFEA351BA8AD0200EF50C4 /* SliderConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderConfig.swift; sourceTree = "<group>"; };
+		5FD756931BAC494800EF50C4 /* WatermarkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatermarkConfig.swift; sourceTree = "<group>"; };
 		6CCEC38BCAA197BDB85EEE44 /* Pods-MobilePlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.release.xcconfig"; sourceTree = "<group>"; };
 		AAC564F266BFE6E6667728D5 /* Pods-MobilePlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		C305DED71B21068700DD9632 /* Minimal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Minimal.json; sourceTree = "<group>"; };
@@ -204,9 +206,9 @@
 				CE554D6D1AFE6EBB00DAC7E9 /* MobilePlayerControlsView.swift */,
 				5FA92EA41BA98BE700EF50C4 /* Bar.swift */,
 				5F749C251BAB2C8900EF50C4 /* Element.swift */,
+				5FA92E9E1BA9832F00EF50C4 /* Label.swift */,
 				5F6AF36F1BA96EF000EF50C4 /* Button.swift */,
 				5FA92EA21BA9896300EF50C4 /* ToggleButton.swift */,
-				5FA92E9E1BA9832F00EF50C4 /* Label.swift */,
 				5FA92EA61BA9919D00EF50C4 /* Slider.swift */,
 				C35FDE0D1B3DEA56005C55A6 /* VolumeView.swift */,
 			);
@@ -225,11 +227,12 @@
 			isa = PBXGroup;
 			children = (
 				C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */,
+				5FD756931BAC494800EF50C4 /* WatermarkConfig.swift */,
 				5FBFEA2D1BA8AC1B00EF50C4 /* BarConfig.swift */,
 				5FA7EAB51BAAADE200EF50C4 /* ElementConfig.swift */,
+				5FBFEA311BA8ACC500EF50C4 /* LabelConfig.swift */,
 				5FA92EA01BA9839300EF50C4 /* ButtonConfig.swift */,
 				5FBFEA331BA8ACDE00EF50C4 /* ToggleButtonConfig.swift */,
-				5FBFEA311BA8ACC500EF50C4 /* LabelConfig.swift */,
 				5FBFEA351BA8AD0200EF50C4 /* SliderConfig.swift */,
 			);
 			path = Config;
@@ -730,6 +733,7 @@
 				5FBFEA341BA8ACDE00EF50C4 /* ToggleButtonConfig.swift in Sources */,
 				CE554D731AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift in Sources */,
 				5FA92EA71BA9919D00EF50C4 /* Slider.swift in Sources */,
+				5FD756941BAC494800EF50C4 /* WatermarkConfig.swift in Sources */,
 				5FA92EA31BA9896300EF50C4 /* ToggleButton.swift in Sources */,
 				C3A4069B1B27709900D1833D /* YoutubeParser.swift in Sources */,
 				5F7CFC221BA21A4700EF50C4 /* ClosureSupport.swift in Sources */,

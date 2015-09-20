@@ -56,12 +56,12 @@ public class SliderConfig: ElementConfig {
     thumbWidth = (dictionary["thumbWidth"] as? CGFloat) ?? 22
     thumbHeight = (dictionary["thumbHeight"] as? CGFloat) ?? 22
     thumbCornerRadius = (dictionary["thumbCornerRadius"] as? CGFloat) ?? 11
-    thumbBorderWidth = (dictionary["thumbBorderWidth"] as? CGFloat) ?? (1 / UIScreen.mainScreen().scale)
+    thumbBorderWidth = (dictionary["thumbBorderWidth"] as? CGFloat) ?? 0
 
     if let thumbBorderColorHex = dictionary["thumbBorderColor"] as? String {
       thumbBorderColor = UIColor(hex: thumbBorderColorHex).CGColor
     } else {
-      thumbBorderColor = UIColor.blackColor().CGColor
+      thumbBorderColor = UIColor.clearColor().CGColor
     }
 
     super.init(dictionary: dictionary)

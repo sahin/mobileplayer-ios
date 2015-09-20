@@ -22,13 +22,23 @@ class Label: UILabel {
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
+
+  override func sizeThatFits(size: CGSize) -> CGSize {
+    let superSize = super.sizeThatFits(size)
+    switch config.widthCalculation {
+    case .AsDefined:
+      return CGSize(width: config.width, height: superSize.height)
+    default:
+      return superSize
+    }
+  }
 }
 
 // MARK: - Element
 extension Label: Element {
   var type: ElementType { return config.type }
   var identifier: String? { return config.identifier }
-  var widthCalculation: ElementWidthCalculationMode { return config.widthCalculation }
+  var widthCalculation: ElementWidthCalculation { return config.widthCalculation }
   var width: CGFloat { return config.width }
   var marginLeft: CGFloat { return config.marginLeft }
   var marginRight: CGFloat { return config.marginRight }

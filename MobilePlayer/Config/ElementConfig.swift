@@ -16,7 +16,7 @@ public enum ElementType: String {
   case Slider = "slider"
 }
 
-public enum ElementWidthCalculationMode: String {
+public enum ElementWidthCalculation: String {
   case AsDefined = "asDefined"
   case Fit = "fit"
   case Fill = "fill"
@@ -25,7 +25,7 @@ public enum ElementWidthCalculationMode: String {
 public class ElementConfig {
   public let type: ElementType
   public let identifier: String?
-  public let widthCalculation: ElementWidthCalculationMode
+  public let widthCalculation: ElementWidthCalculation
   public let width: CGFloat
   public let marginLeft: CGFloat
   public let marginRight: CGFloat
@@ -43,12 +43,19 @@ public class ElementConfig {
       type = .Unknown
     }
 
-    identifier = dictionary["identifier"] as? String
+    let id = dictionary["identifier"] as? String
+    self.identifier = id
 
+    let isTitleLabel = (type == .Label && id == "title")
+    let isPlaybackSlider = (type == .Slider && id == "playback")
     if let
-      widthCalculationModeString = dictionary["widthCalculation"] as? String,
-      widthCalculationMode = ElementWidthCalculationMode(rawValue: widthCalculationModeString) {
-        widthCalculation = widthCalculationMode
+      elementWidthCalculationString = dictionary["widthCalculation"] as? String,
+      elementWidthCalculation = ElementWidthCalculation(rawValue: elementWidthCalculationString) {
+        widthCalculation = elementWidthCalculation
+    } else if isTitleLabel || isPlaybackSlider {
+      widthCalculation = .Fill
+    } else if type == .Label {
+      widthCalculation = .Fit
     } else {
       widthCalculation = .AsDefined
     }

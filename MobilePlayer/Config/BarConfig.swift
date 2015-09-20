@@ -35,20 +35,20 @@ public class BarConfig {
     }
 
     height = (dictionary["height"] as? CGFloat) ?? 40
-    topBorderHeight = (dictionary["topBorderHeight"] as? CGFloat) ?? 1
+    topBorderHeight = (dictionary["topBorderHeight"] as? CGFloat) ?? 0
 
     if let topBorderColorHex = dictionary["topBorderColor"] as? String {
       topBorderColor = UIColor(hex: topBorderColorHex)
     } else {
-      topBorderColor = UIColor(white: 1, alpha: 0.2)
+      topBorderColor = UIColor.clearColor()
     }
 
-    bottomBorderHeight = (dictionary["bottomBorderHeight"] as? CGFloat) ?? 1
+    bottomBorderHeight = (dictionary["bottomBorderHeight"] as? CGFloat) ?? 0
 
     if let bottomBorderColorHex = dictionary["bottomBorderColor"] as? String {
       bottomBorderColor = UIColor(hex: bottomBorderColorHex)
     } else {
-      bottomBorderColor = UIColor(white: 1, alpha: 0.2)
+      bottomBorderColor = UIColor.clearColor()
     }
 
     if let elementDictionaries = dictionary["elements"] as? [[String: AnyObject]] {

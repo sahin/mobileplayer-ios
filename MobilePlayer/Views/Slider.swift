@@ -111,7 +111,7 @@ class Slider: UIView {
 
   override func sizeThatFits(size: CGSize) -> CGSize {
     let biggestHeight = config.thumbHeight > config.trackHeight ? config.thumbHeight : config.trackHeight
-    let width = (config.widthCalculation == .AsDefined) ? config.width : size.width
+    let width = (config.widthCalculation == .AsDefined) ? config.width : config.thumbWidth * 2
     let height = size.height < biggestHeight ? biggestHeight : size.height
     return CGSize(width: width, height: height)
   }
@@ -140,7 +140,7 @@ class Slider: UIView {
 extension Slider: Element {
   var type: ElementType { return config.type }
   var identifier: String? { return config.identifier }
-  var widthCalculation: ElementWidthCalculationMode { return config.widthCalculation }
+  var widthCalculation: ElementWidthCalculation { return config.widthCalculation }
   var width: CGFloat { return config.width }
   var marginLeft: CGFloat { return config.marginLeft }
   var marginRight: CGFloat { return config.marginRight }

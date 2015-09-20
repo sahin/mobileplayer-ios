@@ -23,7 +23,10 @@ class Button: UIButton {
   }
 
   override func sizeThatFits(size: CGSize) -> CGSize {
-    return CGSize(width: config.width, height: config.height)
+    let superSize = super.sizeThatFits(size)
+    return CGSize(
+      width: (config.widthCalculation == .AsDefined) ? config.width : superSize.width,
+      height: config.height)
   }
 }
 
@@ -31,7 +34,7 @@ class Button: UIButton {
 extension Button: Element {
   var type: ElementType { return config.type }
   var identifier: String? { return config.identifier }
-  var widthCalculation: ElementWidthCalculationMode { return config.widthCalculation }
+  var widthCalculation: ElementWidthCalculation { return config.widthCalculation }
   var width: CGFloat { return config.width }
   var marginLeft: CGFloat { return config.marginLeft }
   var marginRight: CGFloat { return config.marginRight }

@@ -109,10 +109,7 @@ class Bar: UIView {
     for element in elements {
       element.view.sizeToFit()
       switch element.widthCalculation {
-      case .AsDefined:
-        element.view.frame.size.width = element.width
-        totalOccupiedWidth += element.width
-      case .Fit:
+      case .AsDefined, .Fit:
         totalOccupiedWidth += element.view.frame.size.width
       case .Fill:
         viewsToFillAvailableWidth.append(element.view)
