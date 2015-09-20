@@ -81,6 +81,9 @@ final class MobilePlayerControlsView: UIView {
       y: controlsHidden ? 0 : topBar.frame.size.height,
       width: size.width,
       height: size.height - (controlsHidden ? 0 : (topBar.frame.size.height + bottomBar.frame.size.height)))
+    for overlay in overlayContainerView.subviews {
+      overlay.frame = overlayContainerView.bounds
+    }
     super.layoutSubviews()
   }
 }

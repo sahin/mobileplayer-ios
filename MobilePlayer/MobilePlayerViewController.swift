@@ -78,12 +78,15 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   // MARK: - Initialization
 
-  public init(contentURL: NSURL, config: MobilePlayerConfig = MobilePlayerViewController.globalConfig, shareItems: [AnyObject]? = nil) {
-    self.config = config
-    controlsView = MobilePlayerControlsView(config: config)
-    self.shareItems = shareItems
-    super.init(contentURL: contentURL)
-    initializeMobilePlayerViewController()
+  public init(
+    contentURL: NSURL,
+    config: MobilePlayerConfig = MobilePlayerViewController.globalConfig,
+    shareItems: [AnyObject]? = nil) {
+      self.config = config
+      controlsView = MobilePlayerControlsView(config: config)
+      self.shareItems = shareItems
+      super.init(contentURL: contentURL)
+      initializeMobilePlayerViewController()
   }
 
   public required init?(coder aDecoder: NSCoder) {
@@ -453,6 +456,7 @@ extension MobilePlayerViewController {
         addChildViewController(overlayVC)
         overlayVC.view.clipsToBounds = true
         UIView.animateWithDuration(0.5, animations: {
+          overlayVC.view.frame = self.controlsView.overlayContainerView.bounds
           self.controlsView.overlayContainerView.addSubview(overlayVC.view)
           overlayVC.didMoveToParentViewController(self)
         })
