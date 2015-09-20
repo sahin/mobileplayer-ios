@@ -15,6 +15,7 @@ class ToggleButton: UIButton {
   init(config: ToggleButtonConfig = ToggleButtonConfig()) {
     self.config = config
     super.init(frame: CGRectZero)
+    accessibilityLabel = accessibilityLabel ?? config.identifier
     tintColor = config.tintColor
     setImage(config.image, forState: .Normal)
   }

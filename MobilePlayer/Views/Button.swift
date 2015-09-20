@@ -14,6 +14,7 @@ class Button: UIButton {
   init(config: ButtonConfig = ButtonConfig()) {
     self.config = config
     super.init(frame: CGRectZero)
+    accessibilityLabel = accessibilityLabel ?? config.identifier
     tintColor = config.tintColor
     setImage(config.image, forState: .Normal)
   }

@@ -14,6 +14,7 @@ class Label: UILabel {
   init(config: LabelConfig = LabelConfig()) {
     self.config = config
     super.init(frame: CGRectZero)
+    accessibilityLabel = accessibilityLabel ?? config.identifier
     text = config.text
     font = config.font
     textColor = config.textColor

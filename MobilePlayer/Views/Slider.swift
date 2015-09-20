@@ -32,6 +32,7 @@ class Slider: UIView {
   init(config: SliderConfig = SliderConfig()) {
     self.config = config
     super.init(frame: CGRectZero)
+    accessibilityLabel = accessibilityLabel ?? config.identifier
     maximumTrack.backgroundColor = config.maximumTrackTintColor
     maximumTrack.clipsToBounds = true
     addSubview(maximumTrack)
@@ -43,7 +44,7 @@ class Slider: UIView {
     minimumTrack.layer.cornerRadius = config.trackCornerRadius
     maximumTrack.addSubview(minimumTrack)
     thumb.backgroundColor = UIColor.lightGrayColor()
-    thumb.accessibilityLabel = "Thumb"
+    thumb.accessibilityLabel = "thumb"
     thumb.clipsToBounds = true
     thumb.layer.cornerRadius = config.thumbCornerRadius
     thumb.layer.borderColor = config.thumbBorderColor
