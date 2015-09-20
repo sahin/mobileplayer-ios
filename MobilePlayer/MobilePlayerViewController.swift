@@ -198,29 +198,27 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   // MARK: - Internal Helpers
 
   private func parseContentURLIfNeeded() {
-//    if let youtubeID = YoutubeParser.youtubeIDFromURL(moviePlayer.contentURL) {
-//      YoutubeParser.h264videosWithYoutubeID(youtubeID, completion: { videoInfo, error in
-//        if let error = error {
-//          // TODO: Delegate the error.
-//        } else {
-//          if self.title == nil {
-//            self.title = videoInfo.title
-//          }
-//          if let
-//            previewImageURLString = videoInfo.previewImageURL,
-//            previewImageURL = NSURL(string: previewImageURLString) {
-//              NSURLSession.sharedSession().dataTaskWithURL(previewImageURL) { data, response, error in
-//                dispatch_async(dispatch_get_main_queue()) {
-//                  self.controlsView.backgroundImageView.image = UIImage(data: data)
-//                }
-//              }.resume()
-//          }
-//          if let videoURL = videoInfo.videoURL {
-//            self.moviePlayer.contentURL = NSURL(string: videoURL)
-//          }
-//        }
-//      })
-//    }
+    guard let youtubeID = YoutubeParser.youtubeIDFromURL(moviePlayer.contentURL) else { return }
+    YoutubeParser.h264videosWithYoutubeID(youtubeID) { videoInfo, error in
+      if let error = error {
+        self.delegate?.mobilePlayerViewController(self, didEncounterError: error)
+      }
+      guard let videoInfo = videoInfo else { return }
+      self.title = self.title ?? videoInfo.title
+      if let
+        previewImageURLString = videoInfo.previewImageURL,
+        previewImageURL = NSURL(string: previewImageURLString) {
+          NSURLSession.sharedSession().dataTaskWithURL(previewImageURL) { data, response, error in
+            guard let data = data else { return }
+            dispatch_async(dispatch_get_main_queue()) {
+              self.controlsView.previewImageView.image = UIImage(data: data)
+            }
+          }
+      }
+      if let videoURL = videoInfo.videoURL {
+        self.moviePlayer.contentURL = NSURL(string: videoURL)
+      }
+    }
   }
 
   private func doFirstPlaySetupIfNeeded() {

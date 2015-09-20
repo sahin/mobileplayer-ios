@@ -16,7 +16,7 @@ struct YoutubeVideoInfo {
 }
 
 class YoutubeParser: NSObject {
-  static let infoURL = "http://www.youtube.com/get_video_info?video_id="
+  static let infoURL = "https://www.youtube.com/get_video_info?video_id="
   static let userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2)"
     + " AppleWebKit/537.4 (KHTML, like Gecko)"
     + " Chrome/22.0.1229.79 Safari/537.4"
@@ -60,7 +60,7 @@ class YoutubeParser: NSObject {
 
   static func h264videosWithYoutubeID(
     youtubeID: String,
-    completion: (videoInfo: YoutubeVideoInfo, error: NSError?) -> Void) {
+    completion: (videoInfo: YoutubeVideoInfo?, error: NSError?) -> Void) {
       let request = NSMutableURLRequest(URL: NSURL(string: "\(infoURL)\(youtubeID)")!)
       request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
       request.HTTPMethod = "GET"
@@ -69,16 +69,14 @@ class YoutubeParser: NSObject {
         queue: NSOperationQueue.mainQueue(),
         completionHandler: { response, data, error in
           if let error = error {
-            completion(
-              videoInfo: YoutubeVideoInfo(title: nil, previewImageURL: nil, videoURL: nil, isStream: nil),
-              error: error)
+            completion(videoInfo: nil, error: error)
             return
           }
           guard let
             data = data,
             dataString = NSString(data: data, encoding: NSUTF8StringEncoding) as? String else {
               completion(
-                videoInfo: YoutubeVideoInfo(title: nil, previewImageURL: nil, videoURL: nil, isStream: nil),
+                videoInfo: nil,
                 error: NSError(domain: "com.movielala.MobilePlayer.error", code: 0, userInfo: nil))
               return
           }
