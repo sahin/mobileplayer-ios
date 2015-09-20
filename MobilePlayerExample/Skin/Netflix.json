@@ -15,7 +15,7 @@
                  },
                  {
                  "type": "button",
-                 "identifier": "share"
+                 "identifier": "action"
                  }]
   },
   "bottomBar": {

@@ -11,8 +11,12 @@ import MediaPlayer
 
 public protocol MobilePlayerViewControllerDelegate: class {
   func mobilePlayerViewControllerStateDidChange(mobilePlayerViewController: MobilePlayerViewController)
-  func mobilePlayerViewController(mobilePlayerViewController: MobilePlayerViewController, didEncounterError error: NSError)
-  func mobilePlayerViewController(mobilePlayerViewController: MobilePlayerViewController, buttonWithIdentifierDidGetTapped identifier: String)
+  func mobilePlayerViewController(
+    mobilePlayerViewController: MobilePlayerViewController,
+    didEncounterError error: NSError)
+  func mobilePlayerViewController(
+    mobilePlayerViewController: MobilePlayerViewController,
+    buttonWithIdentifierDidGetTapped identifier: String)
   func mobilePlayerViewControllerPlaybackDidFinish(mobilePlayerViewController: MobilePlayerViewController)
 }
 
@@ -136,8 +140,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     (getViewForElementWithIdentifier("close") as? Button)?.addCallback(
       dismiss,
       forControlEvents: .TouchUpInside)
-    (getViewForElementWithIdentifier("share") as? Button)?.addCallback(shareContent, forControlEvents: .TouchUpInside)
-    (getViewForElementWithIdentifier("play") as? Button)?.addCallback(
+    (getViewForElementWithIdentifier("action") as? Button)?.addCallback(
+      showContentActions,
+      forControlEvents: .TouchUpInside)
+    (getViewForElementWithIdentifier("play") as? ToggleButton)?.addCallback(
       {
         self.resetHideControlsTimer()
         self.togglePlayback()
@@ -279,7 +285,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private func resetHideControlsTimer() {
     hideControlsTimer?.invalidate()
     hideControlsTimer = NSTimer.scheduledTimerWithTimeInterval(
-      2,
+      3,
       callback: {
         self.controlsView.controlsHidden = (self.state == .Playing)
       },
@@ -389,7 +395,7 @@ extension MobilePlayerViewController {
 
   // MARK: Social
 
-  public func shareContent() {
+  public func showContentActions() {
     if let items = self.shareItems as [AnyObject]? {
       moviePlayer.pause()
       let shareVC = UIActivityViewController(activityItems: items, applicationActivities: nil)

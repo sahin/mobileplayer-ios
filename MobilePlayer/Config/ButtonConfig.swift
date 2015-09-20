@@ -27,7 +27,7 @@ public class ButtonConfig: ElementConfig {
       switch identifier {
       case "close":
         image = UIImage(named: "MLCloseButton", inBundle: mobilePlayerBundle, compatibleWithTraitCollection: nil)
-      case "share":
+      case "action":
         image = UIImage(named: "MLShareButton", inBundle: mobilePlayerBundle, compatibleWithTraitCollection: nil)
       default:
         image = nil
