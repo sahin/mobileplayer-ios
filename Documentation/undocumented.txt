@@ -1,0 +1,149 @@
+SliderConfig.swift
+	public class SliderConfig: ElementConfig
+	public let trackHeight: CGFloat
+	public let trackCornerRadius: CGFloat
+	public let minimumTrackTintColor: UIColor
+	public let availableTrackTintColor: UIColor
+	public let maximumTrackTintColor: UIColor
+	public let thumbTintColor: UIColor
+	public let thumbWidth: CGFloat
+	public let thumbHeight: CGFloat
+	public let thumbCornerRadius: CGFloat
+	public let thumbBorderWidth: CGFloat
+	public let thumbBorderColor: CGColor
+	public convenience init()
+	public override init(dictionary: [String: AnyObject])
+BarConfig.swift
+	public class BarConfig
+	public let backgroundColor: [UIColor]
+	public let height: CGFloat
+	public let topBorderHeight: CGFloat
+	public let topBorderColor: UIColor
+	public let bottomBorderHeight: CGFloat
+	public let bottomBorderColor: UIColor
+	public let elements: [ElementConfig]
+	public convenience init()
+	public init(dictionary: [String: AnyObject])
+MobilePlayerConfig.swift
+	public class MobilePlayerConfig
+	public let watermark: WatermarkConfig?
+	public let topBarConfig: BarConfig
+	public let bottomBarConfig: BarConfig
+	public var prerollViewController: MobilePlayerOverlayViewController? = nil
+	public var pauseViewController: MobilePlayerOverlayViewController? = nil
+	public var postrollViewController: MobilePlayerOverlayViewController? = nil
+	public convenience init()
+	public convenience init(fileURL: NSURL)
+	public init(dictionary: [String: AnyObject])
+LabelConfig.swift
+	public class LabelConfig: ElementConfig
+	public let text: String?
+	public let font: UIFont
+	public let textColor: UIColor
+	public convenience init()
+	public override init(dictionary: [String: AnyObject])
+ToggleButtonConfig.swift
+	public class ToggleButtonConfig: ElementConfig
+	public let height: CGFloat
+	public let image: UIImage?
+	public let tintColor: UIColor
+	public let toggledImage: UIImage?
+	public let toggledTintColor: UIColor
+	public convenience init()
+	public override init(dictionary: [String: AnyObject])
+MobilePlayerOverlayViewController.swift
+	public class MobilePlayerOverlayViewController: UIViewController
+	public func dismiss()
+WatermarkConfig.swift
+	public enum WatermarkPosition: String
+	case center = "center"
+	case top = "top"
+	case topRight = "topRight"
+	case right = "right"
+	case bottomRight = "bottomRight"
+	case bottom = "bottom"
+	case bottomLeft = "bottomLeft"
+	case left = "left"
+	case topLeft = "topLeft"
+	public class WatermarkConfig
+	public let image: UIImage?
+	public let position: WatermarkPosition
+	public convenience init()
+	public init(dictionary: [String: AnyObject])
+MobilePlayerViewController.swift
+	public protocol MobilePlayerViewControllerDelegate: class
+	func mobilePlayerViewControllerStateDidChange(mobilePlayerViewController: MobilePlayerViewController)
+	func mobilePlayerViewController(
+	func mobilePlayerViewController(
+	func mobilePlayerViewControllerPlaybackDidFinish(mobilePlayerViewController: MobilePlayerViewController)
+	public class MobilePlayerViewController: MPMoviePlayerViewController
+	public var delegate: MobilePlayerViewControllerDelegate?
+	public enum State
+	case Idle, Buffering, Playing, Paused
+	case Idle, Buffering, Playing, Paused
+	case Idle, Buffering, Playing, Paused
+	case Idle, Buffering, Playing, Paused
+	public private(set) var previousState: State = .Idle
+	public private(set) var state: State = .Idle
+	public static let globalConfig = MobilePlayerConfig()
+	public var config: MobilePlayerConfig
+	public override var title: String?
+	public var shouldAutoplay: Bool
+	public var overlayController = MobilePlayerOverlayViewController()
+	public var isShowOverlay = false
+	public var timedOverlays = [[String: AnyObject]]()
+	public var shareItems: [AnyObject]?
+	public init(
+    contentURL: NSURL,
+    config: MobilePlayerConfig = MobilePlayerViewController.globalConfig,
+    shareItems: [AnyObject]? = nil)
+	public required init?(coder aDecoder: NSCoder)
+	public override func viewDidLoad()
+	public override func viewWillLayoutSubviews()
+	public override func viewWillAppear(animated: Bool)
+	public override func viewWillDisappear(animated: Bool)
+	public class MobilePlayerViewController : MPMoviePlayerViewController
+	public func play()
+	public func pause()
+	public func stop()
+	public func togglePlayback()
+	public func fitVideo()
+	public func fillVideo()
+	public func toggleVideoScalingMode()
+	public func showContentActions()
+	public func showControls()
+	public func hideControls()
+	public func toggleControls()
+	public func getViewForElementWithIdentifier(identifier: String) -> UIView?
+	public func showOverlayViewController(
+    overlayVC: MobilePlayerOverlayViewController,
+    startingAtTime presentationTime: NSTimeInterval? = nil,
+    forDuration showDuration: NSTimeInterval? = nil)
+	public func dismiss()
+ButtonConfig.swift
+	public class ButtonConfig: ElementConfig
+	public let height: CGFloat
+	public let image: UIImage?
+	public let tintColor: UIColor
+	public convenience init()
+	public override init(dictionary: [String: AnyObject])
+ElementConfig.swift
+	public enum ElementType: String
+	case Unknown = "unknown"
+	case Label = "label"
+	case Button = "button"
+	case ToggleButton = "toggleButton"
+	case Slider = "slider"
+	public enum ElementWidthCalculation: String
+	case AsDefined = "asDefined"
+	case Fit = "fit"
+	case Fill = "fill"
+	public class ElementConfig
+	public let type: ElementType
+	public let identifier: String?
+	public let widthCalculation: ElementWidthCalculation
+	public let width: CGFloat
+	public let marginLeft: CGFloat
+	public let marginRight: CGFloat
+	public convenience init()
+	public init(dictionary: [String: AnyObject])
