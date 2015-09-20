@@ -70,7 +70,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var previousStatusBarHiddenValue: Bool!
   private var previousStatusBarStyle: UIStatusBarStyle!
   private var isFirstPlay = true
-  private var isFirstPlayPreRoll = true
   private var seeking = false
   private var wasPlayingBeforeSeek = false
   private var playbackInterfaceUpdateTimer: NSTimer?
@@ -367,17 +366,7 @@ extension MobilePlayerViewController {
   }
 
   public func togglePlayback() {
-    if state == .Playing {
-      pause()
-    } else {
-      if isFirstPlayPreRoll {
-        if let preRoll = self.config.prerollViewController {
-          dismissMobilePlayerOverlay(preRoll)
-          isFirstPlayPreRoll = false
-        }
-      }
-      play()
-    }
+    state == .Playing ? pause() : play()
   }
 
   // MARK: Video Rendering
