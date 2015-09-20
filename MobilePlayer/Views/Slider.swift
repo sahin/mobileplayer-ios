@@ -87,8 +87,8 @@ class Slider: UIView {
   // MARK: - Seeking
 
   func didPanThumb(recognizer: UIPanGestureRecognizer!) {
-    let locationInTrack = recognizer.locationInView(minimumTrack)
-    let trackWidth = minimumTrack.frame.size.width
+    let locationInTrack = recognizer.locationInView(maximumTrack)
+    let trackWidth = maximumTrack.frame.size.width
     if recognizer.state == .Began {
       delegate?.sliderThumbPanDidBegin(self)
     }
