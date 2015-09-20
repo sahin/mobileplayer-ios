@@ -37,13 +37,12 @@
                  "thumbHeight": 24,
                  "thumbCornerRadius": 12,
                  "thumbBorderWidth": 0,
-                 "marginLeft": 4,
                  "marginRight": 4
                  },
                  {
                  "type": "label",
                  "identifier": "remainingTime",
-                 "text": "-:-",
+                 "text": "00:00",
                  "font": "HelveticaNeue",
                  "size": 15,
                  "marginRight": 8
