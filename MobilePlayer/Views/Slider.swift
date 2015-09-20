@@ -43,7 +43,7 @@ class Slider: UIView {
     minimumTrack.backgroundColor = config.minimumTrackTintColor
     minimumTrack.layer.cornerRadius = config.trackCornerRadius
     maximumTrack.addSubview(minimumTrack)
-    thumb.backgroundColor = UIColor.lightGrayColor()
+    thumb.backgroundColor = config.thumbTintColor
     thumb.accessibilityLabel = "thumb"
     thumb.clipsToBounds = true
     thumb.layer.cornerRadius = config.thumbCornerRadius
