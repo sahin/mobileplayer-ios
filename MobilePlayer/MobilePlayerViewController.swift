@@ -264,7 +264,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   private func textForPlaybackTime(time: NSTimeInterval) -> String {
     if !time.isNormal {
-      return "-:-"
+      return "00:00"
     }
     let hours = UInt(time / 3600)
     let minutes = UInt((time / 60) % 60)
