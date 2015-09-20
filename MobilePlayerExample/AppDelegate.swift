@@ -11,8 +11,8 @@ import MobilePlayer
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
   var window: UIWindow?
+
   func application(
     application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let skinFile = NSBundle.mainBundle().URLForResource("Netflix", withExtension: "json")!
       let playerVC = MobilePlayerViewController(
         contentURL: youtubeURL,
-        configFileURL: skinFile,
+        config: MobilePlayerConfig(fileURL: skinFile),
         shareItems: ["http://www.domain.com", "Text"])
       /*
       playerVC.config.prerollViewController = PreRollViewController()
@@ -43,14 +43,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       self.window!.makeKeyAndVisible()
       return true
   }
-
-  func applicationWillResignActive(application: UIApplication) { }
-
-  func applicationDidEnterBackground(application: UIApplication) { }
-
-  func applicationWillEnterForeground(application: UIApplication) { }
-
-  func applicationDidBecomeActive(application: UIApplication) { }
-
-  func applicationWillTerminate(application: UIApplication) { }
 }

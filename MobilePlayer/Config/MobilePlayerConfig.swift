@@ -8,75 +8,47 @@
 
 import Foundation
 
-public struct MobilePlayerConfig {
+public class MobilePlayerConfig {
+  public let watermark: WatermarkConfig?
+  public let topBarConfig: BarConfig
+  public let bottomBarConfig: BarConfig
 
-  // MARK: - Appearance
-  public let shareButtonConfig: ShareButtonConfig
-  public let closeButtonConfig: CloseButtonConfig
-  public let titleConfig: TitleConfig
-  public let controlbarConfig: ControlbarConfig
-
-  // MARK: - Layout
-  public var headerHeight = CGFloat(40)
-  public var footerHeight = CGFloat(40)
-  public var headerBorderHeight = CGFloat(1)
-  public var headerBackgroundColor = UIColor(white: 0, alpha: 0.7)
-  public var headerBorderColor = UIColor(white: 1, alpha: 0.2)
-  public var footerBorderHeight = CGFloat(1)
-  public var footerBackgroundColor = UIColor(white: 0, alpha: 0.7)
-  public var footerBorderColor = UIColor(white: 1, alpha: 0.2)
-  public var skinDictionary = [String: AnyObject]()
-
-  // MARK: - General Callbacks
-  var playCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
-  var pauseCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
-
-  // MARK: - Overlays
   public var prerollViewController: MobilePlayerOverlayViewController? = nil
   public var pauseViewController: MobilePlayerOverlayViewController? = nil
   public var postrollViewController: MobilePlayerOverlayViewController? = nil
 
-  // MARK: - Special Callbacks
-  public var firstPlayCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
-  public var endCallback: ((playerVC: MobilePlayerViewController) -> Void)? = nil
+  public convenience init() {
+    self.init(dictionary: [String: AnyObject]())
+  }
 
-  // MARK: - Not Configuration Related
-  public init() {
-    controlbarConfig = ControlbarConfig()
-    shareButtonConfig = ShareButtonConfig()
-    closeButtonConfig = CloseButtonConfig()
-    titleConfig = TitleConfig()
+  public convenience init(fileURL: NSURL) {
+    if let
+      jsonString = (try? String(contentsOfURL: fileURL, encoding: NSUTF8StringEncoding)),
+      jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
+      dictionary = (try? NSJSONSerialization.JSONObjectWithData(jsonData, options: [])) as? [String: AnyObject] {
+        self.init(dictionary: dictionary)
+    } else {
+      self.init()
+    }
   }
 
   public init(dictionary: [String: AnyObject]) {
-    skinDictionary = dictionary
-    if let controlbarConfigArray = dictionary["controlbar"] as? [[String:AnyObject]] {
-      controlbarConfig = ControlbarConfig(array: controlbarConfigArray)
+    if let watermarkDictionary = dictionary["watermark"] as? [String: AnyObject] {
+      watermark = WatermarkConfig(dictionary: watermarkDictionary)
     } else {
-      controlbarConfig = ControlbarConfig()
+      watermark = nil
     }
-    if let shareConfigArray = dictionary["header"] as? [[String:AnyObject]] {
-      shareButtonConfig = ShareButtonConfig(array: shareConfigArray)
-    } else {
-      shareButtonConfig = ShareButtonConfig()
-    }
-    if let titleConfigArray = dictionary["header"] as? [[String:AnyObject]] {
-      titleConfig = TitleConfig(array: titleConfigArray)
-    } else {
-      titleConfig = TitleConfig()
-    }
-    if let closeButtonConfigArray = dictionary["header"] as? [[String:AnyObject]] {
-      closeButtonConfig = CloseButtonConfig(array: closeButtonConfigArray)
-    } else {
-      closeButtonConfig = CloseButtonConfig()
-    }
-  }
 
-  /// Loads an image from the player's resource bundle.
-  static func loadImage(#named: String) -> UIImage {
-    return UIImage(
-      named: named,
-      inBundle: NSBundle(forClass: MobilePlayerViewController.self),
-      compatibleWithTraitCollection: nil)!
+    if let topBarDictionary = dictionary["topBar"] as? [String: AnyObject] {
+      topBarConfig = BarConfig(dictionary: topBarDictionary)
+    } else {
+      topBarConfig = BarConfig()
+    }
+
+    if let bottomBarDictionary = dictionary["bottomBar"] as? [String: AnyObject] {
+      bottomBarConfig = BarConfig(dictionary: bottomBarDictionary)
+    } else {
+      bottomBarConfig = BarConfig()
+    }
   }
 }

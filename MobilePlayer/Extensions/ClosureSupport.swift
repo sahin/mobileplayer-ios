@@ -38,7 +38,7 @@ extension UIControl {
   func addCallback(callback: () -> Void, forControlEvents controlEvents: UIControlEvents) -> UnsafePointer<Void> {
     let callbackContainer = CallbackContainer(callback: callback)
     let key = unsafeAddressOf(callbackContainer)
-    objc_setAssociatedObject(self, key, callbackContainer, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+    objc_setAssociatedObject(self, key, callbackContainer, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     addTarget(callbackContainer, action: "callCallback", forControlEvents: controlEvents)
     return key
   }
@@ -46,7 +46,7 @@ extension UIControl {
   func removeCallbackForKey(key: UnsafePointer<Void>) {
     if let callbackContainer = objc_getAssociatedObject(self, key) as? CallbackContainer {
       removeTarget(callbackContainer, action: "callCallback", forControlEvents: .AllEvents)
-      objc_setAssociatedObject(self, key, nil, 0)
+      objc_setAssociatedObject(self, key, nil, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
   }
 }
@@ -60,6 +60,6 @@ extension UIGestureRecognizer {
       self,
       unsafeAddressOf(callbackContainer),
       callbackContainer,
-      objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+      objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
   }
 }
