@@ -63,9 +63,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private let controlsView: MobilePlayerControlsView
 
   // MARK: Overlays
-  public var overlayController = MobilePlayerOverlayViewController()
-  public var isShowOverlay = false
-  public var timedOverlays = [[String: AnyObject]]()
+  private var timedOverlays = [TimedOverlayInfo]()
 
   // MARK: Sharing
   public var shareItems: [AnyObject]?
@@ -301,22 +299,14 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       if !controlsView.controlsHidden {
         resetHideControlsTimer()
       }
-      if let prerollViewController = config.prerollViewController {
-        dismissMobilePlayerOverlay(prerollViewController)
-      }
-      if let pauseViewController = config.pauseViewController {
-        dismissMobilePlayerOverlay(pauseViewController)
-      }
+      config.prerollViewController?.dismiss()
+      config.pauseViewController?.dismiss()
     } else {
       playButton?.toggled = false
       hideControlsTimer?.invalidate()
       controlsView.controlsHidden = false
       if let pauseViewController = config.pauseViewController {
-        // FIXME: Constraints.
-        addChildViewController(pauseViewController)
-        controlsView.overlayContainerView.addSubview(pauseViewController.view)
-        pauseViewController.didMoveToParentViewController(self)
-        pauseViewController.delegate = self
+        showOverlayViewController(pauseViewController)
       }
     }
   }
@@ -325,12 +315,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 // MARK: - MobilePlayerOverlayViewControllerDelegate
 extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate {
 
-  func dismissMobilePlayerOverlay(overlayVC: MobilePlayerOverlayViewController) {
-    if overlayVC.view.superview == controlsView.overlayContainerView {
-      overlayVC.willMoveToParentViewController(nil)
-      overlayVC.view.removeFromSuperview()
-      overlayVC.removeFromParentViewController()
-    }
+  func dismissMobilePlayerOverlayViewController(overlayViewController: MobilePlayerOverlayViewController) {
+    overlayViewController.willMoveToParentViewController(nil)
+    overlayViewController.view.removeFromSuperview()
+    overlayViewController.removeFromParentViewController()
   }
 }
 
@@ -442,18 +430,23 @@ extension MobilePlayerViewController {
     overlayVC: MobilePlayerOverlayViewController,
     startingAtTime presentationTime: NSTimeInterval? = nil,
     forDuration showDuration: NSTimeInterval? = nil) {
-      // FIXME: Timed overlay mechanism and constraints.
       if let presentationTime = presentationTime, showDuration = showDuration {
-        timedOverlays.append(["vc": overlayVC, "start": presentationTime, "duration": showDuration])
+        timedOverlays.append(TimedOverlayInfo(startTime: presentationTime, duration: showDuration, overlay: overlayVC))
       } else {
+        overlayVC.delegate = self
         addChildViewController(overlayVC)
         overlayVC.view.clipsToBounds = true
-        UIView.animateWithDuration(0.5, animations: {
-          overlayVC.view.frame = self.controlsView.overlayContainerView.bounds
-          self.controlsView.overlayContainerView.addSubview(overlayVC.view)
-          overlayVC.didMoveToParentViewController(self)
-        })
+        overlayVC.view.frame = controlsView.overlayContainerView.bounds
+        controlsView.overlayContainerView.addSubview(overlayVC.view)
+        overlayVC.didMoveToParentViewController(self)
       }
+  }
+
+  public func clearTimedOverlays() {
+    for timedOverlayInfo in timedOverlays {
+      timedOverlayInfo.overlay.dismiss()
+    }
+    timedOverlays.removeAll()
   }
 
   // MARK: View Controller
@@ -472,33 +465,24 @@ extension MobilePlayerViewController {
 extension MobilePlayerViewController {
 
   final func updateShownTimedOverlays() {
-    for (index, overlay) in self.timedOverlays.enumerate() {
-      if let
-        start = overlay["start"] as? NSTimeInterval,
-        duration = overlay["duration"] as? NSTimeInterval {
-          if !self.moviePlayer.currentPlaybackTime.isNaN {
-            let videoTime = Int(self.moviePlayer.currentPlaybackTime)
-            if Int(start) == videoTime {
-              if let overlayView = overlay["vc"] as? MobilePlayerOverlayViewController {
-                self.showOverlayViewController(overlayView)
-                let vc = ["val": index]
-                NSTimer.scheduledTimerWithTimeInterval(
-                  duration,
-                  target: self,
-                  selector: "dissmisBannerLayout:",
-                  userInfo: vc,
-                  repeats: false)
-              }
+    let currentTime = self.moviePlayer.currentPlaybackTime
+    if !currentTime.isNormal {
+      return
+    }
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+      for timedOverlayInfo in self.timedOverlays {
+        if timedOverlayInfo.startTime <= currentTime && currentTime <= timedOverlayInfo.startTime + timedOverlayInfo.duration {
+          if timedOverlayInfo.overlay.parentViewController == nil {
+            dispatch_async(dispatch_get_main_queue()) {
+              self.showOverlayViewController(timedOverlayInfo.overlay)
             }
           }
+        } else if timedOverlayInfo.overlay.parentViewController != nil {
+          dispatch_async(dispatch_get_main_queue()) {
+            timedOverlayInfo.overlay.dismiss()
+          }
+        }
       }
-    }
-  }
-
-  final func dissmisBannerLayout(notification: NSNotification) {
-    if let index = notification.userInfo?["val"] as? Int,
-      overlayView = timedOverlays[index]["vc"] as? MobilePlayerOverlayViewController {
-        self.dismissMobilePlayerOverlay(overlayView)
     }
   }
 }
