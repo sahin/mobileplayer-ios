@@ -9,15 +9,15 @@
 import UIKit
 
 public enum WatermarkPosition: String {
-  case center = "center"
-  case top = "top"
-  case topRight = "topRight"
-  case right = "right"
-  case bottomRight = "bottomRight"
-  case bottom = "bottom"
-  case bottomLeft = "bottomLeft"
-  case left = "left"
-  case topLeft = "topLeft"
+  case Center = "center"
+  case Top = "top"
+  case TopRight = "topRight"
+  case Right = "right"
+  case BottomRight = "bottomRight"
+  case Bottom = "bottom"
+  case BottomLeft = "bottomLeft"
+  case Left = "left"
+  case TopLeft = "topLeft"
 }
 
 public class WatermarkConfig {
@@ -39,7 +39,7 @@ public class WatermarkConfig {
       positionValue = WatermarkPosition(rawValue: positionString) {
         position = positionValue
     } else {
-      position = .bottomRight
+      position = .BottomRight
     }
   }
 }

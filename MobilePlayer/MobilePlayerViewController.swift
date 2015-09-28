@@ -100,15 +100,15 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   private func initializeMobilePlayerViewController() {
-    if config.prerollViewController != nil {
-      shouldAutoplay = false
-    }
     edgesForExtendedLayout = .None
     moviePlayer.scalingMode = .AspectFit
     moviePlayer.controlStyle = .None
     initializeNotificationObservers()
     initializeControlsView()
     parseContentURLIfNeeded()
+    if let watermarkConfig = config.watermark {
+      showOverlayViewController(WatermarkViewController(config: watermarkConfig))
+    }
   }
 
   private func initializeNotificationObservers() {

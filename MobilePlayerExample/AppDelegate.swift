@@ -24,19 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         contentURL: youtubeURL,
         config: MobilePlayerConfig(fileURL: skinFile),
         shareItems: ["http://www.domain.com", "Text"])
-      /*
-      playerVC.config.prerollViewController = PreRollViewController()
-      playerVC.showOverlayViewController(
-        ADBannerViewController(),
-        startingAtTime: 3,
-        forDuration: 3
-      )
-      playerVC.showOverlayViewController(
-        ADBannerViewController(),
-        startingAtTime: 10,
-        forDuration: 5
-      )
-      */
+//      playerVC.config.prerollViewController = PreRollViewController()
+//      playerVC.showOverlayViewController(
+//        ADBannerViewController(),
+//        startingAtTime: 3,
+//        forDuration: 3
+//      )
+//      playerVC.showOverlayViewController(
+//        ADBannerViewController(),
+//        startingAtTime: 10,
+//        forDuration: 5
+//      )
+//      playerVC.config.postrollViewController = PreRollViewController()
       self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
       self.window!.rootViewController = playerVC
       self.window!.backgroundColor = UIColor.whiteColor()
