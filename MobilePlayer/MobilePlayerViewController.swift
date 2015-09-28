@@ -300,13 +300,13 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
         resetHideControlsTimer()
       }
       config.prerollViewController?.dismiss()
-      config.pauseViewController?.dismiss()
+      config.pauseOverlayViewController?.dismiss()
     } else {
       playButton?.toggled = false
       hideControlsTimer?.invalidate()
       controlsView.controlsHidden = false
-      if let pauseViewController = config.pauseViewController {
-        showOverlayViewController(pauseViewController)
+      if let pauseOverlayViewController = config.pauseOverlayViewController where (state == .Paused && !seeking) {
+        showOverlayViewController(pauseOverlayViewController)
       }
     }
   }
