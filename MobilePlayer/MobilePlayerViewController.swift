@@ -393,15 +393,21 @@ extension MobilePlayerViewController {
 
   public func showContentActions() {
     if let items = self.shareItems as [AnyObject]? {
+      let wasPlaying = (state == .Playing)
       moviePlayer.pause()
-      let shareVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
-      shareVC.excludedActivityTypes =  [
+      let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+      activityVC.excludedActivityTypes =  [
         UIActivityTypeAssignToContact,
         UIActivityTypeSaveToCameraRoll,
         UIActivityTypePostToVimeo,
         UIActivityTypeAirDrop
       ]
-      self.presentViewController(shareVC, animated: true, completion: nil)
+      activityVC.completionWithItemsHandler = { activityType, completed, returnedItems, activityError in
+        if wasPlaying {
+          self.moviePlayer.play()
+        }
+      }
+      presentViewController(activityVC, animated: true, completion: nil)
     }
   }
 
