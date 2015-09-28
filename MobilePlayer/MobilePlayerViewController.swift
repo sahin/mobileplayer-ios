@@ -386,11 +386,7 @@ extension MobilePlayerViewController {
   }
 
   public func toggleVideoScalingMode() {
-    if moviePlayer.scalingMode != .AspectFill {
-      fillVideo()
-    } else {
-      fitVideo()
-    }
+    moviePlayer.scalingMode != .AspectFill ? fillVideo() : fitVideo()
   }
 
   // MARK: Social
@@ -400,13 +396,9 @@ extension MobilePlayerViewController {
       moviePlayer.pause()
       let shareVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
       shareVC.excludedActivityTypes =  [
-        UIActivityTypePostToWeibo,
-        UIActivityTypeCopyToPasteboard,
         UIActivityTypeAssignToContact,
         UIActivityTypeSaveToCameraRoll,
-        UIActivityTypePostToFlickr,
         UIActivityTypePostToVimeo,
-        UIActivityTypePostToTencentWeibo,
         UIActivityTypeAirDrop
       ]
       self.presentViewController(shareVC, animated: true, completion: nil)
