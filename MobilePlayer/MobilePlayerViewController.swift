@@ -427,18 +427,21 @@ extension MobilePlayerViewController {
   // MARK: Overlays
 
   public func showOverlayViewController(
-    overlayVC: MobilePlayerOverlayViewController,
+    overlayViewController: MobilePlayerOverlayViewController,
     startingAtTime presentationTime: NSTimeInterval? = nil,
     forDuration showDuration: NSTimeInterval? = nil) {
       if let presentationTime = presentationTime, showDuration = showDuration {
-        timedOverlays.append(TimedOverlayInfo(startTime: presentationTime, duration: showDuration, overlay: overlayVC))
-      } else {
-        overlayVC.delegate = self
-        addChildViewController(overlayVC)
-        overlayVC.view.clipsToBounds = true
-        overlayVC.view.frame = controlsView.overlayContainerView.bounds
-        controlsView.overlayContainerView.addSubview(overlayVC.view)
-        overlayVC.didMoveToParentViewController(self)
+        timedOverlays.append(TimedOverlayInfo(
+          startTime: presentationTime,
+          duration: showDuration,
+          overlay: overlayViewController))
+      } else if overlayViewController.parentViewController == nil {
+        overlayViewController.delegate = self
+        addChildViewController(overlayViewController)
+        overlayViewController.view.clipsToBounds = true
+        overlayViewController.view.frame = controlsView.overlayContainerView.bounds
+        controlsView.overlayContainerView.addSubview(overlayViewController.view)
+        overlayViewController.didMoveToParentViewController(self)
       }
   }
 
