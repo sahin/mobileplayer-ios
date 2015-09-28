@@ -56,15 +56,15 @@ MobilePlayerOverlayViewController.swift
 	public func dismiss()
 WatermarkConfig.swift
 	public enum WatermarkPosition: String
-	case center = "center"
-	case top = "top"
-	case topRight = "topRight"
-	case right = "right"
-	case bottomRight = "bottomRight"
-	case bottom = "bottom"
-	case bottomLeft = "bottomLeft"
-	case left = "left"
-	case topLeft = "topLeft"
+	case Center = "center"
+	case Top = "top"
+	case TopRight = "topRight"
+	case Right = "right"
+	case BottomRight = "bottomRight"
+	case Bottom = "bottom"
+	case BottomLeft = "bottomLeft"
+	case Left = "left"
+	case TopLeft = "topLeft"
 	public class WatermarkConfig
 	public let image: UIImage?
 	public let position: WatermarkPosition
@@ -89,9 +89,6 @@ MobilePlayerViewController.swift
 	public var config: MobilePlayerConfig
 	public override var title: String?
 	public var shouldAutoplay: Bool
-	public var overlayController = MobilePlayerOverlayViewController()
-	public var isShowOverlay = false
-	public var timedOverlays = [[String: AnyObject]]()
 	public var shareItems: [AnyObject]?
 	public init(
     contentURL: NSURL,
@@ -119,6 +116,7 @@ MobilePlayerViewController.swift
     overlayVC: MobilePlayerOverlayViewController,
     startingAtTime presentationTime: NSTimeInterval? = nil,
     forDuration showDuration: NSTimeInterval? = nil)
+	public func clearTimedOverlays()
 	public func dismiss()
 ButtonConfig.swift
 	public class ButtonConfig: ElementConfig
