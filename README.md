@@ -7,7 +7,7 @@ A powerful and completely customizable media player for iOS.
 [![CocoaPods](https://img.shields.io/cocoapods/v/MobilePlayer.svg?style=flat)](http://cocoapods.org/?q=MobilePlayer)
 [![Circle CI](https://circleci.com/gh/mobileplayer/ios.svg?style=svg)](https://circleci.com/gh/mobileplayer/ios)
 [![Number of Test Steps](https://img.shields.io/badge/Number%20of%20Test%20Steps-102-brightgreen.svg)]()
-
+[![Dependency Status](https://www.versioneye.com/user/projects/560ac2be5a262f0022000458/badge.svg?style=flat)](https://www.versioneye.com/user/projects/560ac2be5a262f0022000458)
 
 
 ## Issues
@@ -15,18 +15,14 @@ A powerful and completely customizable media player for iOS.
 [![Next Release](https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=Next%20Release&title=Next%20Release)](https://waffle.io/mobileplayer/mobileplayer-ios)
 [![In Progress](https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/mobileplayer/mobileplayer-ios) 
 [![In Master](https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=In%20Master&title=In%20Master)](https://waffle.io/mobileplayer/mobileplayer-ios)
-
 [![Post an issue](https://img.shields.io/badge/Bug%3F-Post%20an%20issue!-blue.svg)](https://waffle.io/mobileplayer/mobileplayer-ios)
 
 
 ## Get Support
 
 [![StackOverflow](https://img.shields.io/badge/StackOverflow-Ask%20a%20question!-blue.svg)](http://stackoverflow.com/questions/ask?tags=mobile player+ios+swift+video player) 
-
 [![Join the chat at https://gitter.im/mobileplayer/mobileplayer-ios](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mobileplayer/mobileplayer-ios?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-
-## Installation
 
 ## Usage
 
