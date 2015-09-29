@@ -7,7 +7,7 @@ A powerful and completely customizable media player for iOS.
 [![CocoaPods](https://img.shields.io/cocoapods/v/MobilePlayer.svg?style=flat)](http://cocoapods.org/?q=MobilePlayer)
 [![Circle CI](https://circleci.com/gh/mobileplayer/ios.svg?style=svg)](https://circleci.com/gh/mobileplayer/ios)
 [![Number of Test Steps](https://img.shields.io/badge/Number%20of%20Test%20Steps-102-brightgreen.svg)]()
-
+[![Dependency Status](https://www.versioneye.com/user/projects/560ac2be5a262f0022000458/badge.svg?style=flat)](https://www.versioneye.com/user/projects/560ac2be5a262f0022000458)
 
 
 ## Issues
