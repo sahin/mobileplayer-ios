@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F31B7B91BBAE39900EF50C4 /* MobilePlayerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */; settings = {ASSET_TAGS = (); }; };
 		5F6AF3701BA96EF000EF50C4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6AF36F1BA96EF000EF50C4 /* Button.swift */; };
 		5F749C261BAB2C8900EF50C4 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F749C251BAB2C8900EF50C4 /* Element.swift */; settings = {ASSET_TAGS = (); }; };
 		5F7CFC221BA21A4700EF50C4 /* ClosureSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CFC211BA21A4700EF50C4 /* ClosureSupport.swift */; };
@@ -30,7 +31,6 @@
 		C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
 		C361643D1B6725C2000CE00E /* Hulu.json in Resources */ = {isa = PBXBuildFile; fileRef = C361643C1B6725C2000CE00E /* Hulu.json */; };
 		C36164411B673D04000CE00E /* Netflix.json in Resources */ = {isa = PBXBuildFile; fileRef = C36164401B673D04000CE00E /* Netflix.json */; };
-		C384AB271B6C3BB000D5B243 /* All.json in Resources */ = {isa = PBXBuildFile; fileRef = C384AB261B6C3BB000D5B243 /* All.json */; };
 		C38833C91B266C2500918C94 /* Skin.json in Resources */ = {isa = PBXBuildFile; fileRef = C38833C81B266C2500918C94 /* Skin.json */; };
 		C38BEEA61B72DBD1009E4F64 /* PlayerStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BEEA51B72DBD1009E4F64 /* PlayerStateTest.swift */; };
 		C38E86A81B73EDAC0073B660 /* StateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38E86A71B73EDAC0073B660 /* StateHelper.swift */; };
@@ -106,6 +106,7 @@
 		0A3D625F8D46F7B3823A9927 /* Pods-MobilePlayerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		460022C3A2D4FC80A1D57D18 /* Pods-MobilePlayerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.release.xcconfig"; sourceTree = "<group>"; };
 		505CCD80FF878F8F17EC4627 /* Pods_MobilePlayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerNotification.swift; sourceTree = "<group>"; };
 		5F6AF36F1BA96EF000EF50C4 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Views/Button.swift; sourceTree = "<group>"; };
 		5F749C251BAB2C8900EF50C4 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Element.swift; path = Views/Element.swift; sourceTree = "<group>"; };
 		5F7CFC211BA21A4700EF50C4 /* ClosureSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureSupport.swift; sourceTree = "<group>"; };
@@ -130,7 +131,6 @@
 		C35FDE0D1B3DEA56005C55A6 /* VolumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolumeView.swift; sourceTree = "<group>"; };
 		C361643C1B6725C2000CE00E /* Hulu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Hulu.json; sourceTree = "<group>"; };
 		C36164401B673D04000CE00E /* Netflix.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Netflix.json; sourceTree = "<group>"; };
-		C384AB261B6C3BB000D5B243 /* All.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = All.json; sourceTree = "<group>"; };
 		C38833C81B266C2500918C94 /* Skin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Skin.json; sourceTree = "<group>"; };
 		C38BEEA51B72DBD1009E4F64 /* PlayerStateTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStateTest.swift; sourceTree = "<group>"; };
 		C38E86A71B73EDAC0073B660 /* StateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateHelper.swift; sourceTree = "<group>"; };
@@ -293,7 +293,6 @@
 				C305DED71B21068700DD9632 /* Minimal.json */,
 				C361643C1B6725C2000CE00E /* Hulu.json */,
 				C36164401B673D04000CE00E /* Netflix.json */,
-				C384AB261B6C3BB000D5B243 /* All.json */,
 			);
 			path = Skin;
 			sourceTree = "<group>";
@@ -335,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				CE554D541AFE6CCD00DAC7E9 /* MobilePlayer.h */,
+				5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */,
 				CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */,
 				CE554D6E1AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift */,
 				5FD756951BAC4AE700EF50C4 /* WatermarkViewController.swift */,
@@ -505,7 +505,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = MovieLaLa;
 				TargetAttributes = {
 					C3A9AED81B048B5600D0C842 = {
@@ -554,7 +554,6 @@
 				C361643D1B6725C2000CE00E /* Hulu.json in Resources */,
 				C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */,
 				C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */,
-				C384AB271B6C3BB000D5B243 /* All.json in Resources */,
 				C305DED81B21068700DD9632 /* Minimal.json in Resources */,
 				C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */,
 			);
@@ -731,6 +730,7 @@
 				5F7CFC221BA21A4700EF50C4 /* ClosureSupport.swift in Sources */,
 				CE554D741AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift in Sources */,
 				5FA92E9F1BA9832F00EF50C4 /* Label.swift in Sources */,
+				5F31B7B91BBAE39900EF50C4 /* MobilePlayerNotification.swift in Sources */,
 				5FA92EA11BA9839300EF50C4 /* ButtonConfig.swift in Sources */,
 				C3A406AF1B27AA8C00D1833D /* UIColor+Hex.swift in Sources */,
 				5FA7EAB61BAAADE200EF50C4 /* ElementConfig.swift in Sources */,
@@ -801,6 +801,7 @@
 				INFOPLIST_FILE = "MobilePlayerExample/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.movielala.MobilePlayer.ExampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -813,6 +814,7 @@
 				INFOPLIST_FILE = "MobilePlayerExample/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.movielala.MobilePlayer.ExampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -831,6 +833,7 @@
 				);
 				INFOPLIST_FILE = "MobilePlayerExampleTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.movielala.MobilePlayerExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobilePlayerExample.app/MobilePlayerExample";
 			};
@@ -846,6 +849,7 @@
 				);
 				INFOPLIST_FILE = "MobilePlayerExampleTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.movielala.MobilePlayerExampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobilePlayerExample.app/MobilePlayerExample";
 			};
@@ -873,6 +877,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -952,6 +957,7 @@
 				INFOPLIST_FILE = "MobilePlayer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.movielala.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -970,6 +976,7 @@
 				INFOPLIST_FILE = "MobilePlayer/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.movielala.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -992,6 +999,7 @@
 				);
 				INFOPLIST_FILE = "MobilePlayerTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.movielala.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobilePlayerExample.app/MobilePlayerExample";
 			};
@@ -1010,6 +1018,7 @@
 				);
 				INFOPLIST_FILE = "MobilePlayerTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.movielala.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobilePlayerExample.app/MobilePlayerExample";
 			};
