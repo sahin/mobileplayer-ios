@@ -30,7 +30,7 @@ MobilePlayerConfig.swift
 	public let topBarConfig: BarConfig
 	public let bottomBarConfig: BarConfig
 	public var prerollViewController: MobilePlayerOverlayViewController? = nil
-	public var pauseViewController: MobilePlayerOverlayViewController? = nil
+	public var pauseOverlayViewController: MobilePlayerOverlayViewController? = nil
 	public var postrollViewController: MobilePlayerOverlayViewController? = nil
 	public convenience init()
 	public convenience init(fileURL: NSURL)
@@ -71,13 +71,7 @@ WatermarkConfig.swift
 	public convenience init()
 	public init(dictionary: [String: AnyObject])
 MobilePlayerViewController.swift
-	public protocol MobilePlayerViewControllerDelegate: class
-	func mobilePlayerViewControllerStateDidChange(mobilePlayerViewController: MobilePlayerViewController)
-	func mobilePlayerViewController(
-	func mobilePlayerViewController(
-	func mobilePlayerViewControllerPlaybackDidFinish(mobilePlayerViewController: MobilePlayerViewController)
 	public class MobilePlayerViewController: MPMoviePlayerViewController
-	public var delegate: MobilePlayerViewControllerDelegate?
 	public enum State
 	case Idle, Buffering, Playing, Paused
 	case Idle, Buffering, Playing, Paused
@@ -88,7 +82,6 @@ MobilePlayerViewController.swift
 	public static let globalConfig = MobilePlayerConfig()
 	public var config: MobilePlayerConfig
 	public override var title: String?
-	public var shouldAutoplay: Bool
 	public var shareItems: [AnyObject]?
 	public init(
     contentURL: NSURL,
@@ -113,11 +106,14 @@ MobilePlayerViewController.swift
 	public func toggleControls()
 	public func getViewForElementWithIdentifier(identifier: String) -> UIView?
 	public func showOverlayViewController(
-    overlayVC: MobilePlayerOverlayViewController,
+    overlayViewController: MobilePlayerOverlayViewController,
     startingAtTime presentationTime: NSTimeInterval? = nil,
     forDuration showDuration: NSTimeInterval? = nil)
 	public func clearTimedOverlays()
 	public func dismiss()
+MobilePlayerNotification.swift
+	public let MobilePlayerDidEncounterErrorNotification = "MobilePlayerDidEncounterError"
+	public let MobilePlayerStateDidChangeNotification = "MobilePlayerStateDidChange"
 ButtonConfig.swift
 	public class ButtonConfig: ElementConfig
 	public let height: CGFloat

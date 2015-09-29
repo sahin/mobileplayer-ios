@@ -9,22 +9,8 @@
 import UIKit
 import MediaPlayer
 
-public protocol MobilePlayerViewControllerDelegate: class {
-  func mobilePlayerViewControllerStateDidChange(mobilePlayerViewController: MobilePlayerViewController)
-  func mobilePlayerViewController(
-    mobilePlayerViewController: MobilePlayerViewController,
-    didEncounterError error: NSError)
-  func mobilePlayerViewController(
-    mobilePlayerViewController: MobilePlayerViewController,
-    buttonWithIdentifierDidGetTapped identifier: String)
-  func mobilePlayerViewControllerPlaybackDidFinish(mobilePlayerViewController: MobilePlayerViewController)
-}
-
 public class MobilePlayerViewController: MPMoviePlayerViewController {
   // MARK: - Properties
-
-  // MARK: Delegation
-  public var delegate: MobilePlayerViewControllerDelegate?
 
   // MARK: Player State
   public enum State {
@@ -48,14 +34,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       guard let titleLabel = getViewForElementWithIdentifier("title") as? Label else { return}
       titleLabel.text = title
       titleLabel.superview?.setNeedsLayout()
-    }
-  }
-  public var shouldAutoplay: Bool {
-    get {
-      return moviePlayer.shouldAutoplay
-    }
-    set {
-      moviePlayer.shouldAutoplay = newValue
     }
   }
 
@@ -116,7 +94,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       object: moviePlayer,
       queue: NSOperationQueue.mainQueue()) { notification in
         self.handleMoviePlayerPlaybackStateDidChangeNotification()
-        self.delegate?.mobilePlayerViewControllerStateDidChange(self)
+        NSNotificationCenter.defaultCenter().postNotificationName(MobilePlayerStateDidChangeNotification, object: self)
     }
     notificationCenter.removeObserver(
       self,
@@ -126,10 +104,17 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       MPMoviePlayerPlaybackDidFinishNotification,
       object: moviePlayer,
       queue: NSOperationQueue.mainQueue()) { notification in
+        if let
+          userInfo = notification.userInfo as? [String: AnyObject],
+          error = userInfo["error"] as? NSError {
+            NSNotificationCenter.defaultCenter().postNotificationName(
+              MobilePlayerDidEncounterErrorNotification,
+              object: self,
+              userInfo: ["error": error])
+        }
         if let postrollVC = self.config.postrollViewController {
           self.showOverlayViewController(postrollVC)
         }
-        self.delegate?.mobilePlayerViewControllerPlaybackDidFinish(self)
     }
   }
 
@@ -170,7 +155,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       callback: updatePlaybackInterface,
       repeats: true)
     if let preRollVC = self.config.prerollViewController {
-      shouldAutoplay = false
+      moviePlayer.shouldAutoplay = false
       showOverlayViewController(preRollVC)
     }
   }
@@ -209,7 +194,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     guard let youtubeID = YoutubeParser.youtubeIDFromURL(moviePlayer.contentURL) else { return }
     YoutubeParser.h264videosWithYoutubeID(youtubeID) { videoInfo, error in
       if let error = error {
-        self.delegate?.mobilePlayerViewController(self, didEncounterError: error)
+        NSNotificationCenter.defaultCenter().postNotificationName(
+          MobilePlayerDidEncounterErrorNotification,
+          object: self,
+          userInfo: ["error": error])
       }
       guard let videoInfo = videoInfo else { return }
       self.title = self.title ?? videoInfo.title
