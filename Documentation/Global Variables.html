@@ -12,7 +12,7 @@
     <a title="Global Variables  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html"> Docs</a> (0% documented)</p>
+        <p><a href="index.html"> Docs</a> (2% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -67,6 +67,9 @@
                 <a href="Global Variables.html#/s:v12MobilePlayer41MobilePlayerDidEncounterErrorNotificationSS">MobilePlayerDidEncounterErrorNotification</a>
               </li>
               <li class="nav-group-task">
+                <a href="Global Variables.html#/s:v12MobilePlayer28MobilePlayerErrorUserInfoKeySS">MobilePlayerErrorUserInfoKey</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Global Variables.html#/s:v12MobilePlayer38MobilePlayerStateDidChangeNotificationSS">MobilePlayerStateDidChangeNotification</a>
               </li>
             </ul>
@@ -118,8 +121,45 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Posted when a MobilePlayerViewController encounters an error loading or playing a media file. The userInfo
+dictionary of this notification contains the MobilePlayerErrorUserInfoKey key, which indicates the error that
+was encountered.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">MobilePlayerDidEncounterErrorNotification</span> <span class="o">=</span> <span class="s">"MobilePlayerDidEncounterError"</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:v12MobilePlayer28MobilePlayerErrorUserInfoKeySS"></a>
+                    <a name="//apple_ref/swift/Global/MobilePlayerErrorUserInfoKey" class="dashAnchor"></a>
+                    <a class="token" href="#/s:v12MobilePlayer28MobilePlayerErrorUserInfoKeySS">MobilePlayerErrorUserInfoKey</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The value of this key is an NSError containing the error encountered while trying to load or play a media file.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">MobilePlayerErrorUserInfoKey</span> <span class="o">=</span> <span class="s">"error"</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -137,8 +177,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Posted when a MobilePlayerViewController changes state. There is no userInfo dictionary.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">MobilePlayerStateDidChangeNotification</span> <span class="o">=</span> <span class="s">"MobilePlayerStateDidChange"</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

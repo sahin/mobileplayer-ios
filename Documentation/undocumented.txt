@@ -111,9 +111,6 @@ MobilePlayerViewController.swift
     forDuration showDuration: NSTimeInterval? = nil)
 	public func clearTimedOverlays()
 	public func dismiss()
-MobilePlayerNotification.swift
-	public let MobilePlayerDidEncounterErrorNotification = "MobilePlayerDidEncounterError"
-	public let MobilePlayerStateDidChangeNotification = "MobilePlayerStateDidChange"
 ButtonConfig.swift
 	public class ButtonConfig: ElementConfig
 	public let height: CGFloat

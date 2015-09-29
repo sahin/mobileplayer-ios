@@ -110,7 +110,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
             NSNotificationCenter.defaultCenter().postNotificationName(
               MobilePlayerDidEncounterErrorNotification,
               object: self,
-              userInfo: ["error": error])
+              userInfo: [MobilePlayerErrorUserInfoKey: error])
         }
         if let postrollVC = self.config.postrollViewController {
           self.showOverlayViewController(postrollVC)
@@ -197,7 +197,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
         NSNotificationCenter.defaultCenter().postNotificationName(
           MobilePlayerDidEncounterErrorNotification,
           object: self,
-          userInfo: ["error": error])
+          userInfo: [MobilePlayerErrorUserInfoKey: error])
       }
       guard let videoInfo = videoInfo else { return }
       self.title = self.title ?? videoInfo.title
