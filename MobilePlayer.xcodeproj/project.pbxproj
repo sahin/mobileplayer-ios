@@ -424,7 +424,6 @@
 				C3A9AED61B048B5600D0C842 /* Frameworks */,
 				C3A9AED71B048B5600D0C842 /* Resources */,
 				C3A9AF071B0491B500D0C842 /* Embed Frameworks */,
-				5F2739FE1B2A8F6000EF50C4 /* Validate Code Style */,
 			);
 			buildRules = (
 			);
@@ -443,7 +442,6 @@
 				C3A9AEE91B048B5700D0C842 /* Sources */,
 				C3A9AEEA1B048B5700D0C842 /* Frameworks */,
 				C3A9AEEB1B048B5700D0C842 /* Resources */,
-				5F2739FF1B2A8F7400EF50C4 /* Validate Code Style */,
 			);
 			buildRules = (
 			);
@@ -463,7 +461,6 @@
 				CE554D4B1AFE6CCD00DAC7E9 /* Frameworks */,
 				CE554D4C1AFE6CCD00DAC7E9 /* Headers */,
 				CE554D4D1AFE6CCD00DAC7E9 /* Resources */,
-				5F2739FC1B2A8F3400EF50C4 /* Validate Code Style */,
 			);
 			buildRules = (
 			);
@@ -482,7 +479,6 @@
 				CE554D561AFE6CCD00DAC7E9 /* Sources */,
 				CE554D571AFE6CCD00DAC7E9 /* Frameworks */,
 				CE554D581AFE6CCD00DAC7E9 /* Resources */,
-				5F2739FD1B2A8F5100EF50C4 /* Validate Code Style */,
 				F40C37578BF721D3E7447872 /* Embed Pods Frameworks */,
 				34FBA218D2E9EFA476A8CB14 /* Copy Pods Resources */,
 			);
@@ -614,62 +610,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
-		};
-		5F2739FC1B2A8F3400EF50C4 /* Validate Code Style */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Validate Code Style";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MobilePlayer\nfi\n";
-		};
-		5F2739FD1B2A8F5100EF50C4 /* Validate Code Style */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Validate Code Style";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MobilePlayerTests\nfi\n";
-		};
-		5F2739FE1B2A8F6000EF50C4 /* Validate Code Style */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Validate Code Style";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MobilePlayer\n  /usr/local/bin/swiftlint lint --path MobilePlayerExample\nfi\n";
-		};
-		5F2739FF1B2A8F7400EF50C4 /* Validate Code Style */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Validate Code Style";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ \"$CIRCLECI\" != \"true\" ]\nthen\n  /usr/local/bin/swiftlint lint --path MobilePlayerExampleTests\nfi\n";
 		};
 		F40C37578BF721D3E7447872 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

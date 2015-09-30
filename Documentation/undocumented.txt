@@ -72,13 +72,6 @@ WatermarkConfig.swift
 	public init(dictionary: [String: AnyObject])
 MobilePlayerViewController.swift
 	public class MobilePlayerViewController: MPMoviePlayerViewController
-	public enum State
-	case Idle, Buffering, Playing, Paused
-	case Idle, Buffering, Playing, Paused
-	case Idle, Buffering, Playing, Paused
-	case Idle, Buffering, Playing, Paused
-	public private(set) var previousState: State = .Idle
-	public private(set) var state: State = .Idle
 	public static let globalConfig = MobilePlayerConfig()
 	public var config: MobilePlayerConfig
 	public override var title: String?

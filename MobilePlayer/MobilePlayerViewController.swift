@@ -12,11 +12,29 @@ import MediaPlayer
 public class MobilePlayerViewController: MPMoviePlayerViewController {
   // MARK: - Properties
 
-  // MARK: Player State
+  // MARK: Playback State
+
+  /// Playback state.
   public enum State {
-    case Idle, Buffering, Playing, Paused
+
+    /// Either playback has not started or playback was stopped due to a `stop()` call or an error. When an error
+    /// occurs, a corresponding `MobilePlayerDidEncounterErrorNotification` notification is posted.
+    case Idle
+
+    /// The video will start playing, but sufficient data to start playback has to be loaded first.
+    case Buffering
+
+    /// The video is currently playing.
+    case Playing
+
+    /// The video is currently paused.
+    case Paused
   }
+
+  /// The previous value of `state`. Default is `.Idle`.
   public private(set) var previousState: State = .Idle
+
+  /// Current `State` of the player. Default is `.Idle`.
   public private(set) var state: State = .Idle {
     didSet {
       previousState = oldValue
