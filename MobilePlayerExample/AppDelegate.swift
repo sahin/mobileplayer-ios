@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let skinFile = NSBundle.mainBundle().URLForResource("Netflix", withExtension: "json")!
       let playerVC = MobilePlayerViewController(
         contentURL: youtubeURL,
-        config: MobilePlayerConfig(fileURL: skinFile),
-        shareItems: ["http://www.domain.com", "Text"])
+        config: MobilePlayerConfig(fileURL: skinFile))
+      playerVC.shareItems = ["http://www.domain.com", "Text"]
 //      playerVC.config.prerollViewController = PreRollViewController()
 //      playerVC.showOverlayViewController(
 //        ADBannerViewController(),

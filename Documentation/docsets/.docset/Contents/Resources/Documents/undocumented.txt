@@ -29,9 +29,6 @@ MobilePlayerConfig.swift
 	public let watermark: WatermarkConfig?
 	public let topBarConfig: BarConfig
 	public let bottomBarConfig: BarConfig
-	public var prerollViewController: MobilePlayerOverlayViewController? = nil
-	public var pauseOverlayViewController: MobilePlayerOverlayViewController? = nil
-	public var postrollViewController: MobilePlayerOverlayViewController? = nil
 	public convenience init()
 	public convenience init(fileURL: NSURL)
 	public init(dictionary: [String: AnyObject])
@@ -72,11 +69,6 @@ WatermarkConfig.swift
 	public init(dictionary: [String: AnyObject])
 MobilePlayerViewController.swift
 	public class MobilePlayerViewController: MPMoviePlayerViewController
-	public init(
-    contentURL: NSURL,
-    config: MobilePlayerConfig = MobilePlayerViewController.globalConfig,
-    shareItems: [AnyObject]? = nil)
-	public required init?(coder aDecoder: NSCoder)
 	public override func viewDidLoad()
 	public override func viewWillLayoutSubviews()
 	public override func viewWillAppear(animated: Bool)

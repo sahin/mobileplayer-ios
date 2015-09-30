@@ -13,10 +13,6 @@ public class MobilePlayerConfig {
   public let topBarConfig: BarConfig
   public let bottomBarConfig: BarConfig
 
-  public var prerollViewController: MobilePlayerOverlayViewController? = nil
-  public var pauseOverlayViewController: MobilePlayerOverlayViewController? = nil
-  public var postrollViewController: MobilePlayerOverlayViewController? = nil
-
   public convenience init() {
     self.init(dictionary: [String: AnyObject]())
   }

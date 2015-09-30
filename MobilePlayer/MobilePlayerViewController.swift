@@ -71,6 +71,19 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   // MARK: Overlays
   private var timedOverlays = [TimedOverlayInfo]()
 
+  /// The `MobilePlayerOverlayViewController` that will be presented on top of the player content at start. If a
+  /// controller is set then content will not start playing automatically even if `shouldAutoplay` is `true`. The
+  /// controller will dismiss if user presses the play button or `play()` is called.
+  public let prerollViewController: MobilePlayerOverlayViewController?
+
+  /// The `MobilePlayerOverlayViewController` that will be presented on top of the player content whenever playback is
+  /// paused. Does not include pauses in playback due to buffering.
+  public let pauseOverlayViewController: MobilePlayerOverlayViewController?
+
+  /// The `MobilePlayerOverlayViewController` that will be presneted on top of the player content when playback
+  /// finishes.
+  public let postrollViewController: MobilePlayerOverlayViewController?
+
   // MARK: Sharing
 
   /// An array of activity items that will be presented via a `UIActivityViewController` when the action
@@ -90,20 +103,41 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   // MARK: - Initialization
 
+  /// Initializes a player with content given by `contentURL`. If provided, the overlay view controllers used to
+  /// initialize the player should be different instances from each other.
+  ///
+  /// - parameters:
+  ///   - contentURL: URL of the content that will be used for playback.
+  ///   - config: Player configuration. Defaults to `globalConfig`.
+  ///   - prerollViewController: Pre-roll view controller. Defaults to `nil`.
+  ///   - pauseOverlayViewController: Pause overlay view controller. Defaults to `nil`.
+  ///   - postrollViewController: Post-roll view controller. Defaults to `nil`.
   public init(
     contentURL: NSURL,
     config: MobilePlayerConfig = MobilePlayerViewController.globalConfig,
-    shareItems: [AnyObject]? = nil) {
+    prerollViewController: MobilePlayerOverlayViewController? = nil,
+    pauseOverlayViewController: MobilePlayerOverlayViewController? = nil,
+    postrollViewController: MobilePlayerOverlayViewController? = nil) {
       self.config = config
       controlsView = MobilePlayerControlsView(config: config)
-      self.shareItems = shareItems
+      self.prerollViewController = prerollViewController
+      self.pauseOverlayViewController = pauseOverlayViewController
+      self.postrollViewController = postrollViewController
       super.init(contentURL: contentURL)
       initializeMobilePlayerViewController()
   }
 
+  /// Returns a player initialized from data in a given unarchiver. `globalConfig` is used for configuration in this
+  /// case. In most cases the other intializer should be used.
+  ///
+  /// - parameters:
+  ///   - coder: An unarchiver object.
   public required init?(coder aDecoder: NSCoder) {
     config = MobilePlayerViewController.globalConfig
     controlsView = MobilePlayerControlsView(config: config)
+    self.prerollViewController = nil
+    self.pauseOverlayViewController = nil
+    self.postrollViewController = nil
     super.init(coder: aDecoder)
     initializeMobilePlayerViewController()
   }
@@ -145,7 +179,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
               object: self,
               userInfo: [MobilePlayerErrorUserInfoKey: error])
         }
-        if let postrollVC = self.config.postrollViewController {
+        if let postrollVC = self.postrollViewController {
           self.showOverlayViewController(postrollVC)
         }
     }
@@ -187,9 +221,9 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       MobilePlayerViewController.playbackInterfaceUpdateInterval,
       callback: updatePlaybackInterface,
       repeats: true)
-    if let preRollVC = self.config.prerollViewController {
+    if let prerollViewController = prerollViewController {
       moviePlayer.shouldAutoplay = false
-      showOverlayViewController(preRollVC)
+      showOverlayViewController(prerollViewController)
     }
   }
 
@@ -311,7 +345,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       repeats: false)
   }
 
-  final func handleMoviePlayerPlaybackStateDidChangeNotification() {
+  private func handleMoviePlayerPlaybackStateDidChangeNotification() {
     state = StateHelper.calculateStateUsing(previousState, andPlaybackState: moviePlayer.playbackState)
     let playButton = getViewForElementWithIdentifier("play") as? ToggleButton
     if state == .Playing {
@@ -320,13 +354,13 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       if !controlsView.controlsHidden {
         resetHideControlsTimer()
       }
-      config.prerollViewController?.dismiss()
-      config.pauseOverlayViewController?.dismiss()
+      prerollViewController?.dismiss()
+      pauseOverlayViewController?.dismiss()
     } else {
       playButton?.toggled = false
       hideControlsTimer?.invalidate()
       controlsView.controlsHidden = false
-      if let pauseOverlayViewController = config.pauseOverlayViewController where (state == .Paused && !seeking) {
+      if let pauseOverlayViewController = pauseOverlayViewController where (state == .Paused && !seeking) {
         showOverlayViewController(pauseOverlayViewController)
       }
     }
