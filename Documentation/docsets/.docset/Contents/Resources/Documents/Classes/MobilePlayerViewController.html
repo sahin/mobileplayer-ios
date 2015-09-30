@@ -13,7 +13,7 @@
     <a title="MobilePlayerViewController Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (7% documented)</p>
+        <p><a href="../index.html"> Docs</a> (11% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -222,8 +222,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The global player configuration object that is loaded by a player if none is passed for its
+initialization.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">globalConfig</span> <span class="o">=</span> <span class="kt">MobilePlayerConfig</span><span class="p">()</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -241,8 +250,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The configuration object that was used to initialize the player, may point to the global player configuration
+object.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">config</span><span class="p">:</span> <span class="kt">MobilePlayerConfig</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -271,8 +289,17 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>A localized string that represents the video this controller manages. Setting a value will update the title label
+in the user interface if one exists.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -301,8 +328,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>An array of activity items that will be presented via a <code>UIActivityViewController</code> when the action
+button is pressed (if it exists). If content is playing, it is paused automatically at presentation and will
+continue after the controller is dismissed. Override <code>showContentActions()</code> if you want to change the button&rsquo;s
+behavior.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">shareItems</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyObject</span><span class="p">]?</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

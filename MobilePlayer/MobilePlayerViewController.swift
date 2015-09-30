@@ -42,11 +42,21 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   // MARK: Player Configuration
+
   private static let playbackInterfaceUpdateInterval = 0.25
+
+  /// The global player configuration object that is loaded by a player if none is passed for its
+  /// initialization.
   public static let globalConfig = MobilePlayerConfig()
-  public var config: MobilePlayerConfig
+
+  /// The configuration object that was used to initialize the player, may point to the global player configuration
+  /// object.
+  public let config: MobilePlayerConfig
 
   // MARK: Mapped Properties
+
+  /// A localized string that represents the video this controller manages. Setting a value will update the title label
+  /// in the user interface if one exists.
   public override var title: String? {
     didSet {
       guard let titleLabel = getViewForElementWithIdentifier("title") as? Label else { return}
@@ -62,6 +72,11 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var timedOverlays = [TimedOverlayInfo]()
 
   // MARK: Sharing
+
+  /// An array of activity items that will be presented via a `UIActivityViewController` when the action
+  /// button is pressed (if it exists). If content is playing, it is paused automatically at presentation and will
+  /// continue after the controller is dismissed. Override `showContentActions()` if you want to change the button's
+  /// behavior.
   public var shareItems: [AnyObject]?
 
   // MARK: Other Properties

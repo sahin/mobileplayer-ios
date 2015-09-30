@@ -72,10 +72,6 @@ WatermarkConfig.swift
 	public init(dictionary: [String: AnyObject])
 MobilePlayerViewController.swift
 	public class MobilePlayerViewController: MPMoviePlayerViewController
-	public static let globalConfig = MobilePlayerConfig()
-	public var config: MobilePlayerConfig
-	public override var title: String?
-	public var shareItems: [AnyObject]?
 	public init(
     contentURL: NSURL,
     config: MobilePlayerConfig = MobilePlayerViewController.globalConfig,
