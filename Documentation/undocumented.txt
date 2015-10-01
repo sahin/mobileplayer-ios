@@ -48,9 +48,6 @@ ToggleButtonConfig.swift
 	public let toggledTintColor: UIColor
 	public convenience init()
 	public override init(dictionary: [String: AnyObject])
-MobilePlayerOverlayViewController.swift
-	public class MobilePlayerOverlayViewController: UIViewController
-	public func dismiss()
 WatermarkConfig.swift
 	public enum WatermarkPosition: String
 	case Center = "center"

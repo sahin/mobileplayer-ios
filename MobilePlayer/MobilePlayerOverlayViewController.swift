@@ -18,9 +18,11 @@ protocol MobilePlayerOverlayViewControllerDelegate: class {
   func dismissMobilePlayerOverlayViewController(overlayViewController: MobilePlayerOverlayViewController)
 }
 
+/// A view controller used for presenting views on top of player content. Meant to be subclassed.
 public class MobilePlayerOverlayViewController: UIViewController {
   weak var delegate: MobilePlayerOverlayViewControllerDelegate?
 
+  /// Causes the view controller's view to be removed from on top of player content if it is being displayed.
   public func dismiss() {
     delegate?.dismissMobilePlayerOverlayViewController(self)
   }
