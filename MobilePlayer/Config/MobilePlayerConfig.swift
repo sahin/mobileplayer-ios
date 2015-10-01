@@ -8,15 +8,27 @@
 
 import Foundation
 
+/// Holds player configuration values.
 public class MobilePlayerConfig {
-  public let watermark: WatermarkConfig?
+
+  /// Watermark configuration.
+  public let watermarkConfig: WatermarkConfig?
+
+  /// Top controls bar configuration.
   public let topBarConfig: BarConfig
+
+  /// Bottom controls bar configuration.
   public let bottomBarConfig: BarConfig
 
+  /// Initializes with default values.
   public convenience init() {
     self.init(dictionary: [String: AnyObject]())
   }
 
+  /// Initializes using a configuration JSON file.
+  ///
+  /// - parameters:
+  ///   - fileURL: URL indicating the location of the configuration file.
   public convenience init(fileURL: NSURL) {
     if let
       jsonString = (try? String(contentsOfURL: fileURL, encoding: NSUTF8StringEncoding)),
@@ -28,11 +40,19 @@ public class MobilePlayerConfig {
     }
   }
 
+  /// Initializes using a dictionary.
+  ///
+  /// * Key for `watermarkConfig` is `"watermark"` and its value should be a watermark configuration dictionary.
+  /// * Key for `topBarConfig` is `"topBar"` and its value should be a bar configuration dictionary.
+  /// * Key for `bottomBarConfig` is `"bottomBar"` and its value should be a bar configuration dictionary.
+  ///
+  /// - parameters:
+  ///   - dictionary: Configuration dictionary.
   public init(dictionary: [String: AnyObject]) {
     if let watermarkDictionary = dictionary["watermark"] as? [String: AnyObject] {
-      watermark = WatermarkConfig(dictionary: watermarkDictionary)
+      watermarkConfig = WatermarkConfig(dictionary: watermarkDictionary)
     } else {
-      watermark = nil
+      watermarkConfig = nil
     }
 
     if let topBarDictionary = dictionary["topBar"] as? [String: AnyObject] {

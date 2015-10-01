@@ -13,25 +13,6 @@ SliderConfig.swift
 	public let thumbBorderColor: CGColor
 	public convenience init()
 	public override init(dictionary: [String: AnyObject])
-BarConfig.swift
-	public class BarConfig
-	public let backgroundColor: [UIColor]
-	public let height: CGFloat
-	public let topBorderHeight: CGFloat
-	public let topBorderColor: UIColor
-	public let bottomBorderHeight: CGFloat
-	public let bottomBorderColor: UIColor
-	public let elements: [ElementConfig]
-	public convenience init()
-	public init(dictionary: [String: AnyObject])
-MobilePlayerConfig.swift
-	public class MobilePlayerConfig
-	public let watermark: WatermarkConfig?
-	public let topBarConfig: BarConfig
-	public let bottomBarConfig: BarConfig
-	public convenience init()
-	public convenience init(fileURL: NSURL)
-	public init(dictionary: [String: AnyObject])
 LabelConfig.swift
 	public class LabelConfig: ElementConfig
 	public let text: String?
@@ -48,22 +29,6 @@ ToggleButtonConfig.swift
 	public let toggledTintColor: UIColor
 	public convenience init()
 	public override init(dictionary: [String: AnyObject])
-WatermarkConfig.swift
-	public enum WatermarkPosition: String
-	case Center = "center"
-	case Top = "top"
-	case TopRight = "topRight"
-	case Right = "right"
-	case BottomRight = "bottomRight"
-	case Bottom = "bottom"
-	case BottomLeft = "bottomLeft"
-	case Left = "left"
-	case TopLeft = "topLeft"
-	public class WatermarkConfig
-	public let image: UIImage?
-	public let position: WatermarkPosition
-	public convenience init()
-	public init(dictionary: [String: AnyObject])
 ButtonConfig.swift
 	public class ButtonConfig: ElementConfig
 	public let height: CGFloat

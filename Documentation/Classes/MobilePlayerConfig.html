@@ -13,7 +13,7 @@
     <a title="MobilePlayerConfig Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (31% documented)</p>
+        <p><a href="../index.html"> Docs</a> (57% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -95,7 +95,13 @@
         <section>
           <section class="section">
             <h1>MobilePlayerConfig</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="Swift">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MobilePlayerConfig</span></code></pre>
+
+                </div>
+              </div>
+            <p>Holds player configuration values.</p>
 
           </section>
           <section class="section task-group-section">
@@ -104,9 +110,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vC12MobilePlayer18MobilePlayerConfig9watermarkGSqCS_15WatermarkConfig_"></a>
-                    <a name="//apple_ref/swift/Property/watermark" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC12MobilePlayer18MobilePlayerConfig9watermarkGSqCS_15WatermarkConfig_">watermark</a>
+                    <a name="/s:vC12MobilePlayer18MobilePlayerConfig15watermarkConfigGSqCS_15WatermarkConfig_"></a>
+                    <a name="//apple_ref/swift/Property/watermarkConfig" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC12MobilePlayer18MobilePlayerConfig15watermarkConfigGSqCS_15WatermarkConfig_">watermarkConfig</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -114,8 +120,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Watermark configuration.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">watermarkConfig</span><span class="p">:</span> <span class="kt">WatermarkConfig</span><span class="p">?</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -133,8 +147,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Top controls bar configuration.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">topBarConfig</span><span class="p">:</span> <span class="kt">BarConfig</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -152,8 +174,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Bottom controls bar configuration.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">bottomBarConfig</span><span class="p">:</span> <span class="kt">BarConfig</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -171,8 +201,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializes with default values.</p>
 
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -190,8 +228,44 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializes using a configuration JSON file.</p>
 
+<ul>
+<li>parameters:
+
+<ul>
+<li>fileURL: URL indicating the location of the configuration file.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">fileURL</span><span class="p">:</span> <span class="kt">NSURL</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fileURL</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>URL indicating the location of the configuration file.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -209,8 +283,47 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initializes using a dictionary.</p>
 
+<ul>
+<li>Key for <code>watermarkConfig</code> is <code>&quot;watermark&quot;</code> and its value should be a watermark configuration dictionary.</li>
+<li>Key for <code>topBarConfig</code> is <code>&quot;topBar&quot;</code> and its value should be a bar configuration dictionary.</li>
+<li><p>Key for <code>bottomBarConfig</code> is <code>&quot;bottomBar&quot;</code> and its value should be a bar configuration dictionary.</p></li>
+<li><p>parameters:</p>
+
+<ul>
+<li>dictionary: Configuration dictionary.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">dictionary</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">AnyObject</span><span class="p">])</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dictionary</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Configuration dictionary.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
