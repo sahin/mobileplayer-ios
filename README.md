@@ -4,7 +4,8 @@ A powerful and completely customizable media player for iOS.
 ## Code Status
 
 [![CocoaPods](https://img.shields.io/cocoapods/p/MobilePlayer.svg?style=flat)](https://cocoapods.org/pods/MobilePlayer)
-[![Number of Test Steps](https://img.shields.io/badge/Number%20of%20Test%20Steps-102-brightgreen.svg)]()
+[![Number of Tests](https://img.shields.io/badge/Number%20of%20Tests-100+-brightgreen.svg)](https://github.com/mobileplayer/mobileplayer-ios)
+[![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](https://github.com/mobileplayer/mobileplayer-ios)
 
 
 
