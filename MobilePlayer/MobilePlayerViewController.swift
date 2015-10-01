@@ -9,9 +9,8 @@
 import UIKit
 import MediaPlayer
 
+/// A view controller for playing media content.
 public class MobilePlayerViewController: MPMoviePlayerViewController {
-  // MARK: - Properties
-
   // MARK: Playback State
 
   /// Playback state.
@@ -43,6 +42,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   // MARK: Player Configuration
 
+  // TODO: Move inside MobilePlayerConfig
   private static let playbackInterfaceUpdateInterval = 0.25
 
   /// The global player configuration object that is loaded by a player if none is passed for its
@@ -65,34 +65,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     }
   }
 
-  // MARK: Subviews
+  // MARK: Private Properties
   private let controlsView: MobilePlayerControlsView
-
-  // MARK: Overlays
-  private var timedOverlays = [TimedOverlayInfo]()
-
-  /// The `MobilePlayerOverlayViewController` that will be presented on top of the player content at start. If a
-  /// controller is set then content will not start playing automatically even if `shouldAutoplay` is `true`. The
-  /// controller will dismiss if user presses the play button or `play()` is called.
-  public let prerollViewController: MobilePlayerOverlayViewController?
-
-  /// The `MobilePlayerOverlayViewController` that will be presented on top of the player content whenever playback is
-  /// paused. Does not include pauses in playback due to buffering.
-  public let pauseOverlayViewController: MobilePlayerOverlayViewController?
-
-  /// The `MobilePlayerOverlayViewController` that will be presneted on top of the player content when playback
-  /// finishes.
-  public let postrollViewController: MobilePlayerOverlayViewController?
-
-  // MARK: Sharing
-
-  /// An array of activity items that will be presented via a `UIActivityViewController` when the action
-  /// button is pressed (if it exists). If content is playing, it is paused automatically at presentation and will
-  /// continue after the controller is dismissed. Override `showContentActions()` if you want to change the button's
-  /// behavior.
-  public var shareItems: [AnyObject]?
-
-  // MARK: Other Properties
   private var previousStatusBarHiddenValue: Bool!
   private var previousStatusBarStyle: UIStatusBarStyle!
   private var isFirstPlay = true
@@ -101,7 +75,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private var playbackInterfaceUpdateTimer: NSTimer?
   private var hideControlsTimer: NSTimer?
 
-  // MARK: - Initialization
+  // MARK: Initialization
 
   /// Initializes a player with content given by `contentURL`. If provided, the overlay view controllers used to
   /// initialize the player should be different instances from each other.
@@ -143,6 +117,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   private func initializeMobilePlayerViewController() {
+    view.clipsToBounds = true
     edgesForExtendedLayout = .None
     moviePlayer.scalingMode = .AspectFit
     moviePlayer.controlStyle = .None
@@ -188,7 +163,13 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   private func initializeControlsView() {
     (getViewForElementWithIdentifier("playback") as? Slider)?.delegate = self
     (getViewForElementWithIdentifier("close") as? Button)?.addCallback(
-      dismiss,
+      {
+        if let navigationController = self.navigationController {
+          navigationController.popViewControllerAnimated(true)
+        } else {
+          self.dismissViewControllerAnimated(true, completion: nil)
+        }
+      },
       forControlEvents: .TouchUpInside)
     (getViewForElementWithIdentifier("action") as? Button)?.addCallback(
       showContentActions,
@@ -196,24 +177,32 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     (getViewForElementWithIdentifier("play") as? ToggleButton)?.addCallback(
       {
         self.resetHideControlsTimer()
-        self.togglePlayback()
+        self.state == .Playing ? self.pause() : self.play()
       },
       forControlEvents: .TouchUpInside)
     initializeControlsViewTapRecognizers()
   }
 
   private func initializeControlsViewTapRecognizers() {
-    let singleTapRecognizer = UITapGestureRecognizer(callback: toggleControls)
+    let singleTapRecognizer = UITapGestureRecognizer(callback: handleContentTap)
     singleTapRecognizer.numberOfTapsRequired = 1
     controlsView.addGestureRecognizer(singleTapRecognizer)
-    let doubleTapRecognizer = UITapGestureRecognizer(callback: toggleVideoScalingMode)
+    let doubleTapRecognizer = UITapGestureRecognizer(callback: handleContentDoubleTap)
     doubleTapRecognizer.numberOfTapsRequired = 2
     controlsView.addGestureRecognizer(doubleTapRecognizer)
     singleTapRecognizer.requireGestureRecognizerToFail(doubleTapRecognizer)
   }
 
-  // MARK: - View Controller Lifecycle
+  // MARK: View Controller Lifecycle
 
+  /// Called after the controller's view is loaded into memory.
+  ///
+  /// This method is called after the view controller has loaded its view hierarchy into memory. This method is
+  /// called regardless of whether the view hierarchy was loaded from a nib file or created programmatically in the
+  /// `loadView` method. You usually override this method to perform additional initialization on views that were
+  /// loaded from nib files.
+  ///
+  /// If you override this method make sure you call super's implementation.
   public override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(controlsView)
@@ -222,16 +211,30 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       callback: updatePlaybackInterface,
       repeats: true)
     if let prerollViewController = prerollViewController {
-      moviePlayer.shouldAutoplay = false
+      shouldAutoplay = false
       showOverlayViewController(prerollViewController)
     }
   }
 
+  /// Called to notify the view controller that its view is about to layout its subviews.
+  ///
+  /// When a view's bounds change, the view adjusts the position of its subviews. Your view controller can override
+  /// this method to make changes before the view lays out its subviews.
+  ///
+  /// The default implementation of this method sets the frame of the controls view.
   public override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
     controlsView.frame = view.bounds
   }
 
+  /// Notifies the view controller that its view is about to be added to a view hierarchy.
+  ///
+  /// If `true`, the view is being added to the window using an animation.
+  ///
+  /// The default implementation of this method hides the status bar.
+  ///
+  /// - parameters:
+  ///  - animated: If `true`, the view is being added to the window using an animation.
   public override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     // Force hide status bar.
@@ -240,14 +243,24 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     setNeedsStatusBarAppearanceUpdate()
   }
 
+  /// Notifies the view controller that its view is about to be removed from a view hierarchy.
+  ///
+  /// If `true`, the disappearance of the view is being animated.
+  ///
+  /// The default implementation of this method stops playback and restores status bar appearance to how it was before
+  /// the view appeared.
+  ///
+  /// - parameters:
+  ///  - animated: If `true`, the disappearance of the view is being animated.
   public override func viewWillDisappear(animated: Bool) {
     super.viewWillDisappear(animated)
+    stop()
     // Restore status bar appearance.
     UIApplication.sharedApplication().statusBarHidden = previousStatusBarHiddenValue
     setNeedsStatusBarAppearanceUpdate()
   }
 
-  // MARK: - Deinitialization
+  // MARK: Deinitialization
 
   deinit {
     playbackInterfaceUpdateTimer?.invalidate()
@@ -255,7 +268,173 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     NSNotificationCenter.defaultCenter().removeObserver(self)
   }
 
-  // MARK: - Internal Helpers
+  // MARK: Playback
+
+  /// Indicates whether content should begin playback automatically.
+  ///
+  /// The default value of this property is true. This property determines whether the playback of network-based
+  /// content begins automatically when there is enough buffered data to ensure uninterrupted playback.
+  public var shouldAutoplay: Bool {
+    get {
+      return moviePlayer.shouldAutoplay
+    }
+    set {
+      moviePlayer.shouldAutoplay = newValue
+    }
+  }
+
+  /// Initiates playback of current content.
+  public func play() {
+    moviePlayer.play()
+  }
+
+  /// Pauses playback of current content.
+  public func pause() {
+    moviePlayer.pause()
+  }
+
+  /// Ends playback of current content.
+  public func stop() {
+    moviePlayer.stop()
+  }
+
+  // MARK: Video Rendering
+
+  /// Makes playback content fit into player's view.
+  public func fitVideo() {
+    moviePlayer.scalingMode = .AspectFit
+  }
+
+  /// Makes playback content fill player's view.
+  public func fillVideo() {
+    moviePlayer.scalingMode = .AspectFill
+  }
+
+  /// Makes playback content switch between fill/fit modes when content area is double tapped. Overriding this method
+  /// is recommended if you want to change this behavior.
+  public func handleContentDoubleTap() {
+    // TODO: videoScalingMode property and enum.
+    moviePlayer.scalingMode != .AspectFill ? fillVideo() : fitVideo()
+  }
+
+  // MARK: Social
+
+  /// An array of activity items that will be used for presenting a `UIActivityViewController` when the action
+  /// button is pressed (if it exists). If content is playing, it is paused automatically at presentation and will
+  /// continue after the controller is dismissed. Override `showContentActions()` if you want to change the button's
+  /// behavior.
+  public var activityItems: [AnyObject]?
+
+  /// Method that is called when a control interface button with identifier "action" is tapped. Presents a
+  /// `UIActivityViewController` with `activityItems` set as its activity items. If content is playing, it is paused
+  /// automatically at presentation and will continue after the controller is dismissed. Overriding this method is
+  /// recommended if you want to change this behavior.
+  public func showContentActions() {
+    // FIXME: iPad crash on iOS 8+
+    guard let activityItems = activityItems else { return }
+    let wasPlaying = (state == .Playing)
+    moviePlayer.pause()
+    let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+    activityVC.excludedActivityTypes =  [
+      UIActivityTypeAssignToContact,
+      UIActivityTypeSaveToCameraRoll,
+      UIActivityTypePostToVimeo,
+      UIActivityTypeAirDrop
+    ]
+    activityVC.completionWithItemsHandler = { activityType, completed, returnedItems, activityError in
+      if wasPlaying {
+        self.moviePlayer.play()
+      }
+    }
+    presentViewController(activityVC, animated: true, completion: nil)
+  }
+
+  // MARK: Controls
+
+  /// Indicates if player controls are hidden. Setting its value will animate controls in or out.
+  public var controlsHidden: Bool {
+    get {
+      return controlsView.controlsHidden
+    }
+    set {
+      newValue ? hideControlsTimer?.invalidate() : resetHideControlsTimer()
+      controlsView.controlsHidden = newValue
+    }
+  }
+
+  /// Returns the view associated with given player control element identifier.
+  ///
+  /// - parameters:
+  ///   - identifier: Element identifier.
+  /// - returns: View or nil if element is not found.
+  public func getViewForElementWithIdentifier(identifier: String) -> UIView? {
+    if let view = controlsView.topBar.getViewForElementWithIdentifier(identifier) {
+      return view
+    }
+    return controlsView.bottomBar.getViewForElementWithIdentifier(identifier)
+  }
+
+  /// Hides/shows controls when content area is tapped once. Overriding this method is recommended if you want to change
+  /// this behavior.
+  public func handleContentTap() {
+    controlsHidden = !controlsHidden
+  }
+
+  // MARK: Overlays
+
+  private var timedOverlays = [TimedOverlayInfo]()
+
+  /// The `MobilePlayerOverlayViewController` that will be presented on top of the player content at start. If a
+  /// controller is set then content will not start playing automatically even if `shouldAutoplay` is `true`. The
+  /// controller will dismiss if user presses the play button or `play()` is called.
+  public let prerollViewController: MobilePlayerOverlayViewController?
+
+  /// The `MobilePlayerOverlayViewController` that will be presented on top of the player content whenever playback is
+  /// paused. Does not include pauses in playback due to buffering.
+  public let pauseOverlayViewController: MobilePlayerOverlayViewController?
+
+  /// The `MobilePlayerOverlayViewController` that will be presented on top of the player content when playback
+  /// finishes.
+  public let postrollViewController: MobilePlayerOverlayViewController?
+
+  /// Presents given overlay view controller on top of the player content immediately, or at a given content time for
+  /// a given duration. Both starting time and duration parameters should be provided to show a timed overlay.
+  ///
+  /// - parameters:
+  ///   - overlayViewController: The `MobilePlayerOverlayViewController` to be presented.
+  ///   - startingAtTime: Content time the overlay will be presented at.
+  ///   - forDuration: Added on top of `startingAtTime` to calculate the content time when overlay will be dismissed.
+  public func showOverlayViewController(
+    overlayViewController: MobilePlayerOverlayViewController,
+    startingAtTime presentationTime: NSTimeInterval? = nil,
+    forDuration showDuration: NSTimeInterval? = nil) {
+      if let presentationTime = presentationTime, showDuration = showDuration {
+        timedOverlays.append(TimedOverlayInfo(
+          startTime: presentationTime,
+          duration: showDuration,
+          overlay: overlayViewController))
+      } else if overlayViewController.parentViewController == nil {
+        overlayViewController.delegate = self
+        addChildViewController(overlayViewController)
+        overlayViewController.view.clipsToBounds = true
+        overlayViewController.view.frame = controlsView.overlayContainerView.bounds
+        controlsView.overlayContainerView.addSubview(overlayViewController.view)
+        overlayViewController.didMoveToParentViewController(self)
+      }
+  }
+
+  /// Dismisses all currently presented overlay view controllers and clears any timed overlays.
+  public func clearOverlays() {
+    for timedOverlayInfo in timedOverlays {
+      timedOverlayInfo.overlay.dismiss()
+    }
+    timedOverlays.removeAll()
+    for childViewController in childViewControllers {
+      (childViewController as? MobilePlayerOverlayViewController)?.dismiss()
+    }
+  }
+
+  // MARK: Private Methods
 
   private func parseContentURLIfNeeded() {
     guard let youtubeID = YoutubeParser.youtubeIDFromURL(moviePlayer.contentURL) else { return }
@@ -365,164 +544,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       }
     }
   }
-}
 
-// MARK: - MobilePlayerOverlayViewControllerDelegate
-extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate {
-
-  func dismissMobilePlayerOverlayViewController(overlayViewController: MobilePlayerOverlayViewController) {
-    overlayViewController.willMoveToParentViewController(nil)
-    overlayViewController.view.removeFromSuperview()
-    overlayViewController.removeFromParentViewController()
-  }
-}
-
-// MARK: - TimeSliderDelegate
-extension MobilePlayerViewController: SliderDelegate {
-
-  func sliderThumbPanDidBegin(slider: Slider) {
-    seeking = true
-    wasPlayingBeforeSeek = (state == .Playing)
-    moviePlayer.pause()
-  }
-
-  func sliderThumbDidPan(slider: Slider) {}
-
-  func sliderThumbPanDidEnd(slider: Slider) {
-    seeking = false
-    moviePlayer.currentPlaybackTime = NSTimeInterval(slider.value)
-    if wasPlayingBeforeSeek {
-      moviePlayer.play()
-    }
-  }
-}
-
-// MARK: - Public API
-extension MobilePlayerViewController {
-
-  // MARK: Playback
-
-  public func play() {
-    moviePlayer.play()
-  }
-
-  public func pause() {
-    moviePlayer.pause()
-  }
-
-  public func stop() {
-    moviePlayer.stop()
-  }
-
-  public func togglePlayback() {
-    state == .Playing ? pause() : play()
-  }
-
-  // MARK: Video Rendering
-
-  public func fitVideo() {
-    moviePlayer.scalingMode = .AspectFit
-  }
-
-  public func fillVideo() {
-    moviePlayer.scalingMode = .AspectFill
-  }
-
-  public func toggleVideoScalingMode() {
-    moviePlayer.scalingMode != .AspectFill ? fillVideo() : fitVideo()
-  }
-
-  // MARK: Social
-
-  public func showContentActions() {
-    if let items = self.shareItems as [AnyObject]? {
-      let wasPlaying = (state == .Playing)
-      moviePlayer.pause()
-      let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
-      activityVC.excludedActivityTypes =  [
-        UIActivityTypeAssignToContact,
-        UIActivityTypeSaveToCameraRoll,
-        UIActivityTypePostToVimeo,
-        UIActivityTypeAirDrop
-      ]
-      activityVC.completionWithItemsHandler = { activityType, completed, returnedItems, activityError in
-        if wasPlaying {
-          self.moviePlayer.play()
-        }
-      }
-      presentViewController(activityVC, animated: true, completion: nil)
-    }
-  }
-
-  // MARK: Controls
-
-  public func showControls() {
-    resetHideControlsTimer()
-    controlsView.controlsHidden = false
-  }
-
-  public func hideControls() {
-    hideControlsTimer?.invalidate()
-    controlsView.controlsHidden = true
-  }
-
-  public func toggleControls() {
-    controlsView.controlsHidden ? showControls() : hideControls()
-  }
-
-  // MARK: Elements
-
-  public func getViewForElementWithIdentifier(identifier: String) -> UIView? {
-    if let view = controlsView.topBar.getViewForElementWithIdentifier(identifier) {
-      return view
-    }
-    return controlsView.bottomBar.getViewForElementWithIdentifier(identifier)
-  }
-
-  // MARK: Overlays
-
-  public func showOverlayViewController(
-    overlayViewController: MobilePlayerOverlayViewController,
-    startingAtTime presentationTime: NSTimeInterval? = nil,
-    forDuration showDuration: NSTimeInterval? = nil) {
-      if let presentationTime = presentationTime, showDuration = showDuration {
-        timedOverlays.append(TimedOverlayInfo(
-          startTime: presentationTime,
-          duration: showDuration,
-          overlay: overlayViewController))
-      } else if overlayViewController.parentViewController == nil {
-        overlayViewController.delegate = self
-        addChildViewController(overlayViewController)
-        overlayViewController.view.clipsToBounds = true
-        overlayViewController.view.frame = controlsView.overlayContainerView.bounds
-        controlsView.overlayContainerView.addSubview(overlayViewController.view)
-        overlayViewController.didMoveToParentViewController(self)
-      }
-  }
-
-  public func clearTimedOverlays() {
-    for timedOverlayInfo in timedOverlays {
-      timedOverlayInfo.overlay.dismiss()
-    }
-    timedOverlays.removeAll()
-  }
-
-  // MARK: View Controller
-
-  public func dismiss() {
-    moviePlayer.stop()
-    if let nc = navigationController {
-      nc.popViewControllerAnimated(true)
-    } else {
-      dismissViewControllerAnimated(true, completion: nil)
-    }
-  }
-}
-
-// MARK: - Overlay Management
-extension MobilePlayerViewController {
-
-  final func updateShownTimedOverlays() {
+  private func updateShownTimedOverlays() {
     let currentTime = self.moviePlayer.currentPlaybackTime
     if !currentTime.isNormal {
       return
@@ -541,6 +564,36 @@ extension MobilePlayerViewController {
           }
         }
       }
+    }
+  }
+}
+
+// MARK: - MobilePlayerOverlayViewControllerDelegate
+extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate {
+
+  func dismissMobilePlayerOverlayViewController(overlayViewController: MobilePlayerOverlayViewController) {
+    overlayViewController.willMoveToParentViewController(nil)
+    overlayViewController.view.removeFromSuperview()
+    overlayViewController.removeFromParentViewController()
+  }
+}
+
+// MARK: - TimeSliderDelegate
+extension MobilePlayerViewController: SliderDelegate {
+
+  func sliderThumbPanDidBegin(slider: Slider) {
+    seeking = true
+    wasPlayingBeforeSeek = (state == .Playing)
+    pause()
+  }
+
+  func sliderThumbDidPan(slider: Slider) {}
+
+  func sliderThumbPanDidEnd(slider: Slider) {
+    seeking = false
+    moviePlayer.currentPlaybackTime = NSTimeInterval(slider.value)
+    if wasPlayingBeforeSeek {
+      play()
     }
   }
 }

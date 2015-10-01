@@ -13,7 +13,7 @@
     <a title="MobilePlayerViewController Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html"> Docs</a> (14% documented)</p>
+        <p><a href="../index.html"> Docs</a> (29% documented)</p>
       </div>
     </header>
     <div class="content-wrapper">
@@ -89,21 +89,19 @@
               </li>
             </ul>
           </li>
-          <li class="nav-group-name">
-          <a href="../Extensions.html">Extensions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a href="../Extensions/MobilePlayerViewController.html">MobilePlayerViewController</a>
-              </li>
-            </ul>
-          </li>
         </ul>
       </nav>
       <article class="main-content">
         <section>
           <section class="section">
             <h1>MobilePlayerViewController</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="Swift">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">MobilePlayerViewController</span><span class="p">:</span> <span class="kt">MPMoviePlayerViewController</span></code></pre>
+
+                </div>
+              </div>
+            <p>A view controller for playing media content.</p>
 
           </section>
           <section class="section task-group-section">
@@ -298,143 +296,6 @@ in the user interface if one exists.</p>
                         <div class="Swift">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="k">var</span> <span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-                <div class="task-name-container">
-                  <a name="/Overlays"></a>
-                  <a name="//apple_ref/swift/Section/Overlays" class="dashAnchor"></a>
-                  <a href="#/Overlays">
-                    <h3 class="section-name">Overlays</h3>
-                  </a>
-                </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC12MobilePlayer26MobilePlayerViewController21prerollViewControllerGSqCS_33MobilePlayerOverlayViewController_"></a>
-                    <a name="//apple_ref/swift/Property/prerollViewController" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC12MobilePlayer26MobilePlayerViewController21prerollViewControllerGSqCS_33MobilePlayerOverlayViewController_">prerollViewController</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The <code>MobilePlayerOverlayViewController</code> that will be presented on top of the player content at start. If a
-controller is set then content will not start playing automatically even if <code>shouldAutoplay</code> is <code>true</code>. The
-controller will dismiss if user presses the play button or <code>play()</code> is called.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">prerollViewController</span><span class="p">:</span> <span class="kt">MobilePlayerOverlayViewController</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC12MobilePlayer26MobilePlayerViewController26pauseOverlayViewControllerGSqCS_33MobilePlayerOverlayViewController_"></a>
-                    <a name="//apple_ref/swift/Property/pauseOverlayViewController" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC12MobilePlayer26MobilePlayerViewController26pauseOverlayViewControllerGSqCS_33MobilePlayerOverlayViewController_">pauseOverlayViewController</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The <code>MobilePlayerOverlayViewController</code> that will be presented on top of the player content whenever playback is
-paused. Does not include pauses in playback due to buffering.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">pauseOverlayViewController</span><span class="p">:</span> <span class="kt">MobilePlayerOverlayViewController</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC12MobilePlayer26MobilePlayerViewController22postrollViewControllerGSqCS_33MobilePlayerOverlayViewController_"></a>
-                    <a name="//apple_ref/swift/Property/postrollViewController" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC12MobilePlayer26MobilePlayerViewController22postrollViewControllerGSqCS_33MobilePlayerOverlayViewController_">postrollViewController</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The <code>MobilePlayerOverlayViewController</code> that will be presneted on top of the player content when playback
-finishes.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">postrollViewController</span><span class="p">:</span> <span class="kt">MobilePlayerOverlayViewController</span><span class="p">?</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-                <div class="task-name-container">
-                  <a name="/Sharing"></a>
-                  <a name="//apple_ref/swift/Section/Sharing" class="dashAnchor"></a>
-                  <a href="#/Sharing">
-                    <h3 class="section-name">Sharing</h3>
-                  </a>
-                </div>
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:vC12MobilePlayer26MobilePlayerViewController10shareItemsGSqGSaPSs9AnyObject___"></a>
-                    <a name="//apple_ref/swift/Property/shareItems" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vC12MobilePlayer26MobilePlayerViewController10shareItemsGSqGSaPSs9AnyObject___">shareItems</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>An array of activity items that will be presented via a <code>UIActivityViewController</code> when the action
-button is pressed (if it exists). If content is playing, it is paused automatically at presentation and will
-continue after the controller is dismissed. Override <code>showContentActions()</code> if you want to change the button&rsquo;s
-behavior.</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="Swift">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">shareItems</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyObject</span><span class="p">]?</span></code></pre>
 
                         </div>
                       </div>
@@ -649,8 +510,23 @@ case. In most cases the other intializer should be used.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Called after the controller&#39;s view is loaded into memory.</p>
 
+<p>This method is called after the view controller has loaded its view hierarchy into memory. This method is
+called regardless of whether the view hierarchy was loaded from a nib file or created programmatically in the
+<code>loadView</code> method. You usually override this method to perform additional initialization on views that were
+loaded from nib files.</p>
+
+<p>If you override this method make sure you call super&rsquo;s implementation.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -668,8 +544,21 @@ case. In most cases the other intializer should be used.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Called to notify the view controller that its view is about to layout its subviews.</p>
 
+<p>When a view&#39;s bounds change, the view adjusts the position of its subviews. Your view controller can override
+this method to make changes before the view lays out its subviews.</p>
+
+<p>The default implementation of this method sets the frame of the controls view.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewWillLayoutSubviews</span><span class="p">()</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -687,8 +576,28 @@ case. In most cases the other intializer should be used.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Notifies the view controller that its view is about to be added to a view hierarchy.</p>
 
+<p>If <code>true</code>, the view is being added to the window using an animation.</p>
+
+<p>The default implementation of this method hides the status bar.</p>
+
+<ul>
+<li>parameters:
+
+<ul>
+<li>animated: If <code>true</code>, the view is being added to the window using an animation.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewWillAppear</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -706,8 +615,651 @@ case. In most cases the other intializer should be used.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Notifies the view controller that its view is about to be removed from a view hierarchy.</p>
 
+<p>If <code>true</code>, the disappearance of the view is being animated.</p>
+
+<p>The default implementation of this method stops playback and restores status bar appearance to how it was before
+the view appeared.</p>
+
+<ul>
+<li>parameters:
+
+<ul>
+<li>animated: If <code>true</code>, the disappearance of the view is being animated.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">override</span> <span class="kd">func</span> <span class="nf">viewWillDisappear</span><span class="p">(</span><span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Playback"></a>
+                  <a name="//apple_ref/swift/Section/Playback" class="dashAnchor"></a>
+                  <a href="#/Playback">
+                    <h3 class="section-name">Playback</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC12MobilePlayer26MobilePlayerViewController14shouldAutoplaySb"></a>
+                    <a name="//apple_ref/swift/Property/shouldAutoplay" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC12MobilePlayer26MobilePlayerViewController14shouldAutoplaySb">shouldAutoplay</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicates whether content should begin playback automatically.</p>
+
+<p>The default value of this property is true. This property determines whether the playback of network-based
+content begins automatically when there is enough buffered data to ensure uninterrupted playback.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">shouldAutoplay</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12MobilePlayer26MobilePlayerViewController4playFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/play()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12MobilePlayer26MobilePlayerViewController4playFS0_FT_T_">play()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initiates playback of current content.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">play</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12MobilePlayer26MobilePlayerViewController5pauseFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/pause()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12MobilePlayer26MobilePlayerViewController5pauseFS0_FT_T_">pause()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Pauses playback of current content.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">pause</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12MobilePlayer26MobilePlayerViewController4stopFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/stop()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12MobilePlayer26MobilePlayerViewController4stopFS0_FT_T_">stop()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Ends playback of current content.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">stop</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Video%20Rendering"></a>
+                  <a name="//apple_ref/swift/Section/Video Rendering" class="dashAnchor"></a>
+                  <a href="#/Video%20Rendering">
+                    <h3 class="section-name">Video Rendering</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12MobilePlayer26MobilePlayerViewController8fitVideoFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/fitVideo()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12MobilePlayer26MobilePlayerViewController8fitVideoFS0_FT_T_">fitVideo()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes playback content fit into player&rsquo;s view.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fitVideo</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12MobilePlayer26MobilePlayerViewController9fillVideoFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/fillVideo()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12MobilePlayer26MobilePlayerViewController9fillVideoFS0_FT_T_">fillVideo()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes playback content fill player&rsquo;s view.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fillVideo</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12MobilePlayer26MobilePlayerViewController22handleContentDoubleTapFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/handleContentDoubleTap()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12MobilePlayer26MobilePlayerViewController22handleContentDoubleTapFS0_FT_T_">handleContentDoubleTap()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Makes playback content switch between fill/fit modes when content area is double tapped. Overriding this method
+is recommended if you want to change this behavior.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">handleContentDoubleTap</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Social"></a>
+                  <a name="//apple_ref/swift/Section/Social" class="dashAnchor"></a>
+                  <a href="#/Social">
+                    <h3 class="section-name">Social</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC12MobilePlayer26MobilePlayerViewController13activityItemsGSqGSaPSs9AnyObject___"></a>
+                    <a name="//apple_ref/swift/Property/activityItems" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC12MobilePlayer26MobilePlayerViewController13activityItemsGSqGSaPSs9AnyObject___">activityItems</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An array of activity items that will be used for presenting a <code>UIActivityViewController</code> when the action
+button is pressed (if it exists). If content is playing, it is paused automatically at presentation and will
+continue after the controller is dismissed. Override <code>showContentActions()</code> if you want to change the button&rsquo;s
+behavior.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">activityItems</span><span class="p">:</span> <span class="p">[</span><span class="kt">AnyObject</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12MobilePlayer26MobilePlayerViewController18showContentActionsFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/showContentActions()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12MobilePlayer26MobilePlayerViewController18showContentActionsFS0_FT_T_">showContentActions()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Method that is called when a control interface button with identifier <q>action</q> is tapped. Presents a
+<code>UIActivityViewController</code> with <code>activityItems</code> set as its activity items. If content is playing, it is paused
+automatically at presentation and will continue after the controller is dismissed. Overriding this method is
+recommended if you want to change this behavior.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">showContentActions</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Controls"></a>
+                  <a name="//apple_ref/swift/Section/Controls" class="dashAnchor"></a>
+                  <a href="#/Controls">
+                    <h3 class="section-name">Controls</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC12MobilePlayer26MobilePlayerViewController14controlsHiddenSb"></a>
+                    <a name="//apple_ref/swift/Property/controlsHidden" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC12MobilePlayer26MobilePlayerViewController14controlsHiddenSb">controlsHidden</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Indicates if player controls are hidden. Setting its value will animate controls in or out.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">controlsHidden</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12MobilePlayer26MobilePlayerViewController31getViewForElementWithIdentifierFS0_FSSGSqCSo6UIView_"></a>
+                    <a name="//apple_ref/swift/Method/getViewForElementWithIdentifier(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12MobilePlayer26MobilePlayerViewController31getViewForElementWithIdentifierFS0_FSSGSqCSo6UIView_">getViewForElementWithIdentifier(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the view associated with given player control element identifier.</p>
+
+<ul>
+<li>parameters:
+
+<ul>
+<li>identifier: Element identifier.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getViewForElementWithIdentifier</span><span class="p">(</span><span class="nv">identifier</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIView</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>identifier</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Element identifier.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>View or nil if element is not found.</p>
+
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12MobilePlayer26MobilePlayerViewController16handleContentTapFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/handleContentTap()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12MobilePlayer26MobilePlayerViewController16handleContentTapFS0_FT_T_">handleContentTap()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Hides/shows controls when content area is tapped once. Overriding this method is recommended if you want to change
+this behavior.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">handleContentTap</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+                <div class="task-name-container">
+                  <a name="/Overlays"></a>
+                  <a name="//apple_ref/swift/Section/Overlays" class="dashAnchor"></a>
+                  <a href="#/Overlays">
+                    <h3 class="section-name">Overlays</h3>
+                  </a>
+                </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC12MobilePlayer26MobilePlayerViewController21prerollViewControllerGSqCS_33MobilePlayerOverlayViewController_"></a>
+                    <a name="//apple_ref/swift/Property/prerollViewController" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC12MobilePlayer26MobilePlayerViewController21prerollViewControllerGSqCS_33MobilePlayerOverlayViewController_">prerollViewController</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>MobilePlayerOverlayViewController</code> that will be presented on top of the player content at start. If a
+controller is set then content will not start playing automatically even if <code>shouldAutoplay</code> is <code>true</code>. The
+controller will dismiss if user presses the play button or <code>play()</code> is called.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">prerollViewController</span><span class="p">:</span> <span class="kt">MobilePlayerOverlayViewController</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC12MobilePlayer26MobilePlayerViewController26pauseOverlayViewControllerGSqCS_33MobilePlayerOverlayViewController_"></a>
+                    <a name="//apple_ref/swift/Property/pauseOverlayViewController" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC12MobilePlayer26MobilePlayerViewController26pauseOverlayViewControllerGSqCS_33MobilePlayerOverlayViewController_">pauseOverlayViewController</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>MobilePlayerOverlayViewController</code> that will be presented on top of the player content whenever playback is
+paused. Does not include pauses in playback due to buffering.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">pauseOverlayViewController</span><span class="p">:</span> <span class="kt">MobilePlayerOverlayViewController</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vC12MobilePlayer26MobilePlayerViewController22postrollViewControllerGSqCS_33MobilePlayerOverlayViewController_"></a>
+                    <a name="//apple_ref/swift/Property/postrollViewController" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vC12MobilePlayer26MobilePlayerViewController22postrollViewControllerGSqCS_33MobilePlayerOverlayViewController_">postrollViewController</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The <code>MobilePlayerOverlayViewController</code> that will be presented on top of the player content when playback
+finishes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">postrollViewController</span><span class="p">:</span> <span class="kt">MobilePlayerOverlayViewController</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12MobilePlayer26MobilePlayerViewController25showOverlayViewControllerFS0_FTCS_33MobilePlayerOverlayViewController14startingAtTimeGSqSd_11forDurationGSqSd__T_"></a>
+                    <a name="//apple_ref/swift/Method/showOverlayViewController(_:startingAtTime:forDuration:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12MobilePlayer26MobilePlayerViewController25showOverlayViewControllerFS0_FTCS_33MobilePlayerOverlayViewController14startingAtTimeGSqSd_11forDurationGSqSd__T_">showOverlayViewController(_:startingAtTime:forDuration:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Presents given overlay view controller on top of the player content immediately, or at a given content time for
+a given duration. Both starting time and duration parameters should be provided to show a timed overlay.</p>
+
+<ul>
+<li>parameters:
+
+<ul>
+<li>overlayViewController: The <code>MobilePlayerOverlayViewController</code> to be presented.</li>
+<li>startingAtTime: Content time the overlay will be presented at.</li>
+<li>forDuration: Added on top of <code>startingAtTime</code> to calculate the content time when overlay will be dismissed.</li>
+</ul></li>
+</ul>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">showOverlayViewController</span><span class="p">(</span>
+    <span class="nv">overlayViewController</span><span class="p">:</span> <span class="kt">MobilePlayerOverlayViewController</span><span class="p">,</span>
+    <span class="n">startingAtTime</span> <span class="nv">presentationTime</span><span class="p">:</span> <span class="kt">NSTimeInterval</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+    <span class="n">forDuration</span> <span class="nv">showDuration</span><span class="p">:</span> <span class="kt">NSTimeInterval</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>overlayViewController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code>MobilePlayerOverlayViewController</code> to be presented.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>startingAtTime</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Content time the overlay will be presented at.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>forDuration</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Added on top of <code>startingAtTime</code> to calculate the content time when overlay will be dismissed.</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC12MobilePlayer26MobilePlayerViewController13clearOverlaysFS0_FT_T_"></a>
+                    <a name="//apple_ref/swift/Method/clearOverlays()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC12MobilePlayer26MobilePlayerViewController13clearOverlaysFS0_FT_T_">clearOverlays()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Dismisses all currently presented overlay view controllers and clears any timed overlays.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="Swift">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">clearOverlays</span><span class="p">()</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>
@@ -717,7 +1269,7 @@ case. In most cases the other intializer should be used.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-09-30)</p>
+          <p>&copy; 2015 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2015-10-01)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.3.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

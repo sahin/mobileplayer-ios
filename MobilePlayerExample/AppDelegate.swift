@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       let playerVC = MobilePlayerViewController(
         contentURL: youtubeURL,
         config: MobilePlayerConfig(fileURL: skinFile))
-      playerVC.shareItems = ["http://www.domain.com", "Text"]
+      playerVC.activityItems = ["http://www.domain.com", "Text"]
 //      playerVC.config.prerollViewController = PreRollViewController()
 //      playerVC.showOverlayViewController(
 //        ADBannerViewController(),
