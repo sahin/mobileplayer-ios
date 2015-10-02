@@ -8,15 +8,32 @@
 
 import UIKit
 
+/// Holds label configuration values.
 public class LabelConfig: ElementConfig {
+
+  /// Initial text for the label.
   public let text: String?
+
+  /// Label font. Default value is system font of size 14 (16 if `identifier` is `"title"`).
   public let font: UIFont
+
+  /// Color of the text. Default value is white.
   public let textColor: UIColor
 
+  /// Initializes using default values.
   public convenience init() {
     self.init(dictionary: [String: AnyObject]())
   }
 
+  /// Initializes using a dictionary.
+  ///
+  /// * Key for `text` is `"text"` and its value should be a string.
+  /// * Keys for `font` are `"font"` and `"size"`; value of `"font"` should be a font name, and `"size"` should be a
+  /// number.
+  /// * Key for `textColor` is `"textColor"` and its value should be a color hex string.
+  ///
+  /// - parameters:
+  ///   - dictionary: Label configuration dictionary.
   public override init(dictionary: [String: AnyObject]) {
     text = dictionary["text"] as? String
 

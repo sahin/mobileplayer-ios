@@ -13,13 +13,6 @@ SliderConfig.swift
 	public let thumbBorderColor: CGColor
 	public convenience init()
 	public override init(dictionary: [String: AnyObject])
-LabelConfig.swift
-	public class LabelConfig: ElementConfig
-	public let text: String?
-	public let font: UIFont
-	public let textColor: UIColor
-	public convenience init()
-	public override init(dictionary: [String: AnyObject])
 ToggleButtonConfig.swift
 	public class ToggleButtonConfig: ElementConfig
 	public let height: CGFloat
