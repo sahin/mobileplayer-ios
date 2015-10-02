@@ -36,23 +36,3 @@ ButtonConfig.swift
 	public let tintColor: UIColor
 	public convenience init()
 	public override init(dictionary: [String: AnyObject])
-ElementConfig.swift
-	public enum ElementType: String
-	case Unknown = "unknown"
-	case Label = "label"
-	case Button = "button"
-	case ToggleButton = "toggleButton"
-	case Slider = "slider"
-	public enum ElementWidthCalculation: String
-	case AsDefined = "asDefined"
-	case Fit = "fit"
-	case Fill = "fill"
-	public class ElementConfig
-	public let type: ElementType
-	public let identifier: String?
-	public let widthCalculation: ElementWidthCalculation
-	public let width: CGFloat
-	public let marginLeft: CGFloat
-	public let marginRight: CGFloat
-	public convenience init()
-	public init(dictionary: [String: AnyObject])

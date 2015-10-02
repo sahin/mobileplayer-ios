@@ -124,7 +124,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     initializeNotificationObservers()
     initializeControlsView()
     parseContentURLIfNeeded()
-    if let watermarkConfig = config.watermark {
+    if let watermarkConfig = config.watermarkConfig {
       showOverlayViewController(WatermarkViewController(config: watermarkConfig))
     }
   }
