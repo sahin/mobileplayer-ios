@@ -8,23 +8,64 @@
 
 import UIKit
 
+/// Holds slider configuration values.
 public class SliderConfig: ElementConfig {
+
+  /// Height of the slider track.
   public let trackHeight: CGFloat
+
+  /// Corner radius of the slider track.
   public let trackCornerRadius: CGFloat
+
+  /// Color of the track to the left of slider thumb.
   public let minimumTrackTintColor: UIColor
+
+  /// Color of the parts of the track which fall to the right side of slider thumb and represent available value
+  /// (e.g. buffered duration of a video).
   public let availableTrackTintColor: UIColor
+
+  /// Color of the track to the right of slider thumb.
   public let maximumTrackTintColor: UIColor
+
+  /// Color of the slider thumb.
   public let thumbTintColor: UIColor
+
+  /// Width of the slider thumb.
   public let thumbWidth: CGFloat
+
+  /// Height of the slider thumb.
   public let thumbHeight: CGFloat
+
+  /// Corner radius of the slider thumb.
   public let thumbCornerRadius: CGFloat
+
+  /// Border width of the slider thumb.
   public let thumbBorderWidth: CGFloat
+
+  /// Border color of the slider thumb.
   public let thumbBorderColor: CGColor
 
+  /// Initializes using default values.
   public convenience init() {
     self.init(dictionary: [String: AnyObject]())
   }
 
+  /// Initializes using a dictionary.
+  ///
+  /// * Key for `trackHeight` is `"trackHeight"` and its value should be a number.
+  /// * Key for `trackCornerRadius` is `"trackCornerRadius"` and its value should be a number.
+  /// * Key for `minimumTrackTintColor` is `"minimumTrackTintColor"` and its value should be a color hex string.
+  /// * Key for `availableTrackTintColor` is `"availableTrackTintColor"` and its value should be a color hex string.
+  /// * Key for `maximumTrackTintColor` is `"maximumTrackTintColor"` and its value should be a color hex string.
+  /// * Key for `thumbTintColor` is `"thumbTintColor"` and its value should be a color hex string.
+  /// * Key for `thumbWidth` is `"thumbWidth"` and its value should be a number.
+  /// * Key for `thumbHeight` is `"thumbHeight"` and its value should be a number.
+  /// * Key for `thumbCornerRadius` is `"thumbCornerRadius"` and its value should be a number.
+  /// * Key for `thumbBorderWidth` is `"thumbBorderWidth"` and its value should be a number.
+  /// * Key for `thumbBorderColor` is `"thumbBorderColor"` and its value should be a color hex string.
+  ///
+  /// - parameters:
+  ///   - dictionary: Toggle button configuration dictionary.
   public override init(dictionary: [String: AnyObject]) {
     trackHeight = (dictionary["trackHeight"] as? CGFloat) ?? 4
     trackCornerRadius = (dictionary["trackCornerRadius"] as? CGFloat) ?? 2
