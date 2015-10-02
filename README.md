@@ -71,15 +71,50 @@ import MobilePlayer
 
 ## Customizing the Player
 
-In most cases though you would want to customize the player. You can do this by creating a configuration .json file or programmatically.
+In most cases though you would want to customize the player. You can do this by creating a configuration JSON file or programmatically.
 
 ### Configuration File
 
-Coming soon.
+Here is a sample configuration file if you just want to add a watermark to the bottom right corner of the player.
+
+```JSON
+{
+  "watermark": {
+    "image": "CompanyLogo"
+  }
+}
+```
+
+In this case you need to have an image asset named CompanyLogo in your project. After that you create a configuration object using the file and initialize your player using that.
+
+```swift
+guard let configFileURL = NSBundle.mainBundle().URLForResource("PlayerConfig", withExtension: "json") else {
+  fatalError("Unable to load player configuration file")
+}
+let playerVC = MobilePlayerViewController(contentURL: videoURL, config: MobilePlayerConfig(fileURL: configFileURL))
+```
 
 ### Programmatic Configuration
 
-Coming soon.
+The above example done without using any JSON files looks like the following.
+
+```swift
+let playerVC = MobilePlayerViewController(
+  contentURL: videoURL,
+  config: MobilePlayerConfig(dictionary: [
+    "watermark": WaterMarkConfig(dictionary: [
+      "image": "CompanyLogo"
+    ])
+  ])
+)
+```
+
+### Advanced Configuration
+
+You can edit the player interface completely, add new buttons with custom actions, and way more using configuration
+objects and files. Check the MobilePlayerConfig class and other configuration class documentations for a full list of things you can do.
+
+A fully customized player configuration file can look like [this](https://github.com/mobileplayer/mobileplayer-ios/blob/master/MobilePlayerExample/Skin/Netflix.json).
 
 # Documentation
 
