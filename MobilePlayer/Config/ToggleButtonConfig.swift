@@ -8,17 +8,39 @@
 
 import UIKit
 
+/// Holds toggle button configuration values.
 public class ToggleButtonConfig: ElementConfig {
+
+  /// Button height. Default value is 40.
   public let height: CGFloat
+
+  /// Button image when it's not toggled.
   public let image: UIImage?
+
+  /// Button tint color when it's not toggled. Default value is white.
   public let tintColor: UIColor
+
+  /// Button image when it's toggled.
   public let toggledImage: UIImage?
+
+  /// Button tint color when it's toggled. Default value is white.
   public let toggledTintColor: UIColor
 
+  /// Initializes using default values.
   public convenience init() {
     self.init(dictionary: [String: AnyObject]())
   }
 
+  /// Initializes using a dictionary.
+  ///
+  /// * Key for `height` is `"height"` and its value should be a number.
+  /// * Key for `image` is `"image"` and its value should be an image asset name.
+  /// * Key for `tintColor` is `"tintColor"` and its value should be a color hex string.
+  /// * Key for `toggledImage` is `"toggledImage"` and its value should be an image asset name.
+  /// * Key for `toggledTintColor` is `"toggledTintColor"` and its value should be a color hex string.
+  ///
+  /// - parameters:
+  ///   - dictionary: Toggle button configuration dictionary.
   public override init(dictionary: [String: AnyObject]) {
     let identifier = dictionary["identifier"] as? String
     

@@ -13,19 +13,3 @@ SliderConfig.swift
 	public let thumbBorderColor: CGColor
 	public convenience init()
 	public override init(dictionary: [String: AnyObject])
-ToggleButtonConfig.swift
-	public class ToggleButtonConfig: ElementConfig
-	public let height: CGFloat
-	public let image: UIImage?
-	public let tintColor: UIColor
-	public let toggledImage: UIImage?
-	public let toggledTintColor: UIColor
-	public convenience init()
-	public override init(dictionary: [String: AnyObject])
-ButtonConfig.swift
-	public class ButtonConfig: ElementConfig
-	public let height: CGFloat
-	public let image: UIImage?
-	public let tintColor: UIColor
-	public convenience init()
-	public override init(dictionary: [String: AnyObject])
