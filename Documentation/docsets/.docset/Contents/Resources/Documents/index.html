@@ -94,25 +94,47 @@
         <section>
           <section class="section">
             
-            <a href='#mobile_player' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='mobile_player'>Mobile Player</h1>
+            <a href='#mobileplayer_a_href_https_cocoapods_org_pods_mobileplayer_img_src_https_img_shields_io_cocoapods_p_mobileplayer_svg_style_flat_alt_cocoapods_a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='mobileplayer_a_href_https_cocoapods_org_pods_mobileplayer_img_src_https_img_shields_io_cocoapods_p_mobileplayer_svg_style_flat_alt_cocoapods_a'> MobilePlayer <a href="https://cocoapods.org/pods/MobilePlayer"><img src="https://img.shields.io/cocoapods/p/MobilePlayer.svg?style=flat" alt="CocoaPods"></a></h2>
 
-<p>A powerful and completely customizable media player for iOS.</p>
-<a href='#code_status' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='code_status'>Code Status</h2>
-
-<p><a href="https://cocoapods.org/pods/MobilePlayer"><img src="https://img.shields.io/cocoapods/p/MobilePlayer.svg?style=flat" alt="CocoaPods"></a>
-<a href="https://github.com/mobileplayer/mobileplayer-ios"><img src="https://img.shields.io/badge/Number%20of%20Tests-100+-brightgreen.svg" alt="Number of Tests"></a>
-<a href="https://github.com/mobileplayer/mobileplayer-ios"><img src="https://img.shields.io/badge/dependencies-none-brightgreen.svg" alt="Dependencies"></a></p>
-<a href='#issues' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='issues'>Issues</h2>
-
-<p><a href="https://waffle.io/mobileplayer/mobileplayer-ios"><img src="https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=Next%20Release&amp;title=Next%20Release" alt="Next Release"></a>
-<a href="https://waffle.io/mobileplayer/mobileplayer-ios"><img src="https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=In%20Progress&amp;title=In%20Progress" alt="In Progress"></a> 
+<p><a href="https://github.com/mobileplayer/mobileplayer-ios"><img src="https://img.shields.io/badge/Number%20of%20Tests-100+-brightgreen.svg" alt="Number of Tests"></a>
+<a href="https://github.com/mobileplayer/mobileplayer-ios"><img src="https://img.shields.io/badge/dependencies-none-brightgreen.svg" alt="Dependencies"></a>
 <a href="https://waffle.io/mobileplayer/mobileplayer-ios"><img src="https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=Ready&amp;title=Ready" alt="Ready"></a>
+<a href="https://waffle.io/mobileplayer/mobileplayer-ios"><img src="https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=In%20Progress&amp;title=In%20Progress" alt="In Progress"></a>
 <a href="https://waffle.io/mobileplayer/mobileplayer-ios"><img src="https://img.shields.io/badge/Bug%3F-Post%20an%20issue!-blue.svg" alt="Post an issue"></a></p>
-<a href='#get_support' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='get_support'>Get Support</h2>
 
 <p><a href="http://stackoverflow.com/questions/ask?tags=mobile%20player+ios+swift+video%20player"><img src="https://img.shields.io/badge/StackOverflow-Ask%20a%20question!-blue.svg" alt="StackOverflow"></a> 
 <a href="https://gitter.im/mobileplayer/mobileplayer-ios?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/mobileplayer/mobileplayer-ios"></a></p>
-<a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='usage'>Usage</h2>
+
+<p>A powerful and completely customizable media player for iOS.</p>
+<a href='#table_of_contents' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='table_of_contents'>Table of Contents</h1>
+
+<ol>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#usage">Usage</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#software-license">Software License</a></li>
+</ol>
+<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='installation'>Installation</h1>
+
+<p>There are various ways you can get started with using MobilePlayer in your projects.</p>
+<a href='#a_href_https_github_com_cocoapods_cocoapods_cocoapods_a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='a_href_https_github_com_cocoapods_cocoapods_cocoapods_a'><a href="https://github.com/CocoaPods/CocoaPods">Cocoapods</a></h3>
+
+<p>Add the following line in your <code>Podfile</code>.</p>
+<pre class="highlight plaintext"><code>pod "MobilePlayer"
+</code></pre>
+<a href='#a_href_https_github_com_carthage_carthage_installing_carthage_carthage_a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='a_href_https_github_com_carthage_carthage_installing_carthage_carthage_a'><a href="https://github.com/Carthage/Carthage#installing-carthage">Carthage</a></h3>
+
+<p>Add the following line to your <a href="https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile">Cartfile</a>.</p>
+<pre class="highlight plaintext"><code>github "mobileplayer/mobileplayer-ios"
+</code></pre>
+<a href='#git_submodule' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='git_submodule'>Git Submodule</h3>
+
+<p>Open the Terminal app and <code>cd</code> to your project directory. Then run</p>
+<pre class="highlight plaintext"><code>git submodule add git@github.com:mobileplayer/mobileplayer-ios.git
+</code></pre>
+
+<p>This should create a folder named MobilePlayer inside your project directory. After that, drag and drop MobilePlayer/MobilePlayer.xcodeproj into your project in Xcode and add the MobilePlayer.framework in the Embedded Binaries section of your target settings under the General tab.</p>
+<a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='usage'>Usage</h1>
 
 <p>If you were previously using MPMoviePlayerViewController, changing</p>
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">playerVC</span> <span class="o">=</span> <span class="kt">MPMoviePlayerViewController</span><span class="p">(</span><span class="nv">contentURL</span><span class="p">:</span> <span class="n">videoURL</span><span class="p">)</span>
@@ -122,22 +144,52 @@
 <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">playerVC</span> <span class="o">=</span> <span class="kt">MobilePlayerViewController</span><span class="p">(</span><span class="nv">contentURL</span><span class="p">:</span> <span class="n">videoURL</span><span class="p">)</span>
 </code></pre>
 
-<p>is enough.</p>
-<a href='#customizing_the_player' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='customizing_the_player'>Customizing the Player</h3>
+<p>is enough. Make sure you don&rsquo;t forget to</p>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">MobilePlayer</span>
+</code></pre>
+<a href='#customizing_the_player' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='customizing_the_player'>Customizing the Player</h2>
 
-<p>In most cases though you would want to customize the player. You can do this by creating a configuration .json file or programmatically.</p>
+<p>In most cases though you would want to customize the player. You can do this by creating a configuration JSON file or programmatically.</p>
 <a href='#configuration_file' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='configuration_file'>Configuration File</h3>
 
-<p>Coming soon.</p>
+<p>Here is a sample configuration file if you just want to add a watermark to the bottom right corner of the player.</p>
+<pre class="highlight plaintext"><code>{
+  "watermark": {
+    "image": "CompanyLogo"
+  }
+}
+</code></pre>
+
+<p>In this case you need to have an image asset named CompanyLogo in your project. After that you create a configuration object using the file and initialize your player using that.</p>
+<pre class="highlight swift"><code><span class="n">guard</span> <span class="k">let</span> <span class="nv">configFileURL</span> <span class="o">=</span> <span class="kt">NSBundle</span><span class="o">.</span><span class="nf">mainBundle</span><span class="p">()</span><span class="o">.</span><span class="kt">URLForResource</span><span class="p">(</span><span class="s">"PlayerConfig"</span><span class="p">,</span> <span class="nv">withExtension</span><span class="p">:</span> <span class="s">"json"</span><span class="p">)</span> <span class="k">else</span> <span class="p">{</span>
+  <span class="nf">fatalError</span><span class="p">(</span><span class="s">"Unable to load player configuration file"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">let</span> <span class="nv">playerVC</span> <span class="o">=</span> <span class="kt">MobilePlayerViewController</span><span class="p">(</span><span class="nv">contentURL</span><span class="p">:</span> <span class="n">videoURL</span><span class="p">,</span> <span class="nv">config</span><span class="p">:</span> <span class="kt">MobilePlayerConfig</span><span class="p">(</span><span class="nv">fileURL</span><span class="p">:</span> <span class="n">configFileURL</span><span class="p">))</span>
+</code></pre>
 <a href='#programmatic_configuration' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='programmatic_configuration'>Programmatic Configuration</h3>
 
-<p>Coming soon.</p>
-<a href='#documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='documentation'>Documentation</h2>
+<p>The above example done without using any JSON files looks like the following.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">playerVC</span> <span class="o">=</span> <span class="kt">MobilePlayerViewController</span><span class="p">(</span>
+  <span class="nv">contentURL</span><span class="p">:</span> <span class="n">videoURL</span><span class="p">,</span>
+  <span class="nv">config</span><span class="p">:</span> <span class="kt">MobilePlayerConfig</span><span class="p">(</span><span class="nv">dictionary</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s">"watermark"</span><span class="p">:</span> <span class="kt">WaterMarkConfig</span><span class="p">(</span><span class="nv">dictionary</span><span class="p">:</span> <span class="p">[</span>
+      <span class="s">"image"</span><span class="p">:</span> <span class="s">"CompanyLogo"</span>
+    <span class="p">])</span>
+  <span class="p">])</span>
+<span class="p">)</span>
+</code></pre>
+<a href='#advanced_configuration' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='advanced_configuration'>Advanced Configuration</h3>
+
+<p>You can edit the player interface completely, add new buttons with custom actions, and way more using configuration
+objects and files. Check the MobilePlayerConfig class and other configuration class documentations for a full list of things you can do.</p>
+
+<p>A fully customized player configuration file can look like <a href="https://github.com/mobileplayer/mobileplayer-ios/blob/master/MobilePlayerExample/Skin/Netflix.json">this</a>.</p>
+<a href='#documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='documentation'>Documentation</h1>
 
 <p>The entire documentation for the library can be found <a href="https://htmlpreview.github.io/?https://github.com/movielala/mobileplayer-ios/blob/master/Documentation/index.html">here</a>.</p>
-<a href='#software_license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='software_license'>Software License</h2>
+<a href='#software_license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='software_license'>Software License</h1>
 
-<p>The use of the Mobile Player Open Source edition is governed by a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons license</a>. You can use, modify, copy, and distribute this edition as long as it’s for non-commercial use, you provide attribution, and share under a similar license.
+<p>The use of the MobilePlayer open source edition is governed by a <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons license</a>. You can use, modify, copy, and distribute this edition as long as it’s for non-commercial use, you provide attribution, and share under a similar license.
 <a href="http://mobileplayer.io/license/">http://mobileplayer.io/license/</a></p>
 
           </section>
