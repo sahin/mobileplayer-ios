@@ -1,51 +1,55 @@
 {
-  "watermark": {
-    "image": "Logo"
+  "watermark":{
+    "image":"Logo"
   },
-  "topBar": {
-    "backgroundColor": ["#000000ff", "#00000000"],
-    "elements": [{
-                 "type": "button",
-                 "identifier": "close"
-                 },
-                 {
-                 "type": "label",
-                 "identifier": "title",
-                 "font": "HelveticaNeue"
-                 },
-                 {
-                 "type": "button",
-                 "identifier": "action"
-                 }]
+  "topBar":{
+    "backgroundColor":["#000000ff", "#00000000"],
+    "elements":[
+      {
+        "type":"button",
+        "identifier":"close"
+      },
+      {
+        "type":"label",
+        "identifier":"title",
+        "font":"HelveticaNeue"
+      },
+      {
+        "type":"button",
+        "identifier":"action"
+      }
+    ]
   },
-  "bottomBar": {
-    "backgroundColor": ["#00000000", "#000000ff"],
-    "elements": [{
-                 "type": "toggleButton",
-                 "identifier": "play"
-                 },
-                 {
-                 "type": "slider",
-                 "identifier": "playback",
-                 "trackHeight": 10,
-                 "trackCornerRadius": 5,
-                 "minimumTrackTintColor": "#ae3f1c",
-                 "availableTrackTintColor": "#9e9b9a",
-                 "maximumTrackTintColor": "#cccccc",
-                 "thumbTintColor": "#e54918",
-                 "thumbWidth": 24,
-                 "thumbHeight": 24,
-                 "thumbCornerRadius": 12,
-                 "thumbBorderWidth": 0,
-                 "marginRight": 4
-                 },
-                 {
-                 "type": "label",
-                 "identifier": "remainingTime",
-                 "text": "00:00",
-                 "font": "HelveticaNeue",
-                 "size": 15,
-                 "marginRight": 8
-                 }]
+  "bottomBar":{
+    "backgroundColor":["#00000000", "#000000ff"],
+    "elements":[
+      {
+        "type":"toggleButton",
+        "identifier":"play"
+      },
+      {
+        "type":"slider",
+        "identifier":"playback",
+        "trackHeight":10,
+        "trackCornerRadius":5,
+        "minimumTrackTintColor":"#ae3f1c",
+        "availableTrackTintColor":"#9e9b9a",
+        "maximumTrackTintColor":"#cccccc",
+        "thumbTintColor":"#e54918",
+        "thumbWidth":24,
+        "thumbHeight":24,
+        "thumbCornerRadius":12,
+        "thumbBorderWidth":0,
+        "marginRight":4
+      },
+      {
+        "type":"label",
+        "identifier":"remainingTime",
+        "text":"00:00",
+        "font":"HelveticaNeue",
+        "size":15,
+        "marginRight":8
+      }
+    ]
   }
 }
