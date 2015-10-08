@@ -430,6 +430,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     }
     timedOverlays.removeAll()
     for childViewController in childViewControllers {
+      if childViewController is WatermarkViewController { continue }
       (childViewController as? MobilePlayerOverlayViewController)?.dismiss()
     }
   }
