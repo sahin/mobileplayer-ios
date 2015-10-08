@@ -38,8 +38,7 @@
 		C38BEEA61B72DBD1009E4F64 /* PlayerStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BEEA51B72DBD1009E4F64 /* PlayerStateTest.swift */; };
 		C38FA6511B33279600BE17E8 /* ADBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */; };
 		C38FA6531B33530C00BE17E8 /* PreRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */; };
-		C39C749F1B75400700E6CD21 /* KIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39C749E1B75400700E6CD21 /* KIF.framework */; };
-		C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */; };
+		C3A406AD1B27A8DE00D1833D /* YoutubeParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AC1B27A8DE00D1833D /* YoutubeParserTests.swift */; };
 		C3A406AF1B27AA8C00D1833D /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */; };
 		C3A406B01B27AA9500D1833D /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */; };
 		C3A9AEDE1B048B5600D0C842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */; };
@@ -53,17 +52,9 @@
 		CE554D731AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6E1AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift */; };
 		CE554D741AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */; };
 		CE554D761AFE6EE400DAC7E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
-		EEA04B28926490156EB2A4F1 /* Pods_MobilePlayerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505CCD80FF878F8F17EC4627 /* Pods_MobilePlayerTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C38BEEA71B72E2AD009E4F64 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CE554D461AFE6CCD00DAC7E9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C3A9AED81B048B5600D0C842;
-			remoteInfo = MobilePlayerExample;
-		};
 		C3A9AEEE1B048B5700D0C842 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CE554D461AFE6CCD00DAC7E9 /* Project object */;
@@ -138,7 +129,7 @@
 		C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADBannerViewController.swift; sourceTree = "<group>"; };
 		C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreRollViewController.swift; sourceTree = "<group>"; };
 		C39C749E1B75400700E6CD21 /* KIF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KIF.framework; path = "Pods/../build/Debug-iphoneos/KIF.framework"; sourceTree = "<group>"; };
-		C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeTests.swift; sourceTree = "<group>"; };
+		C3A406AC1B27A8DE00D1833D /* YoutubeParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeParserTests.swift; sourceTree = "<group>"; };
 		C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		C3A9AED91B048B5600D0C842 /* MobilePlayerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobilePlayerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A9AEDC1B048B5600D0C842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -190,9 +181,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C39C749F1B75400700E6CD21 /* KIF.framework in Frameworks */,
 				CE554D5B1AFE6CCD00DAC7E9 /* MobilePlayer.framework in Frameworks */,
-				EEA04B28926490156EB2A4F1 /* Pods_MobilePlayerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +348,7 @@
 		CE554D5E1AFE6CCD00DAC7E9 /* MobilePlayerTests */ = {
 			isa = PBXGroup;
 			children = (
-				C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */,
+				C3A406AC1B27A8DE00D1833D /* YoutubeParserTests.swift */,
 				C35497A21B70007500FDDBFF /* SkinTests.swift */,
 				C38BEEA51B72DBD1009E4F64 /* PlayerStateTest.swift */,
 				CE554D5F1AFE6CCD00DAC7E9 /* Supporting Files */,
@@ -474,18 +463,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE554D681AFE6CCD00DAC7E9 /* Build configuration list for PBXNativeTarget "MobilePlayerTests" */;
 			buildPhases = (
-				39BE5A6F582542962733FA2B /* Check Pods Manifest.lock */,
 				CE554D561AFE6CCD00DAC7E9 /* Sources */,
 				CE554D571AFE6CCD00DAC7E9 /* Frameworks */,
 				CE554D581AFE6CCD00DAC7E9 /* Resources */,
-				F40C37578BF721D3E7447872 /* Embed Pods Frameworks */,
-				34FBA218D2E9EFA476A8CB14 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				CE554D5D1AFE6CCD00DAC7E9 /* PBXTargetDependency */,
-				C38BEEA81B72E2AD009E4F64 /* PBXTargetDependency */,
 			);
 			name = MobilePlayerTests;
 			productName = MobilePlayerTests;
@@ -579,54 +564,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		34FBA218D2E9EFA476A8CB14 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		39BE5A6F582542962733FA2B /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		F40C37578BF721D3E7447872 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		C3A9AED51B048B5600D0C842 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -685,18 +622,13 @@
 				C3A406B01B27AA9500D1833D /* UIColor+Hex.swift in Sources */,
 				C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */,
 				C38BEEA61B72DBD1009E4F64 /* PlayerStateTest.swift in Sources */,
-				C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */,
+				C3A406AD1B27A8DE00D1833D /* YoutubeParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C38BEEA81B72E2AD009E4F64 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C3A9AED81B048B5600D0C842 /* MobilePlayerExample */;
-			targetProxy = C38BEEA71B72E2AD009E4F64 /* PBXContainerItemProxy */;
-		};
 		C3A9AEEF1B048B5700D0C842 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C3A9AED81B048B5600D0C842 /* MobilePlayerExample */;
