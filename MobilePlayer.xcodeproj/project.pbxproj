@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F31B7B91BBAE39900EF50C4 /* MobilePlayerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */; settings = {ASSET_TAGS = (); }; };
+		5F4FDFD71BC6EB6200EF50C4 /* LabelConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4FDFD61BC6EB6200EF50C4 /* LabelConfigTests.swift */; settings = {ASSET_TAGS = (); }; };
 		5F6AF3701BA96EF000EF50C4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6AF36F1BA96EF000EF50C4 /* Button.swift */; };
 		5F749C261BAB2C8900EF50C4 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F749C251BAB2C8900EF50C4 /* Element.swift */; settings = {ASSET_TAGS = (); }; };
 		5F7CDF471BBEB6C400EF50C4 /* YoutubeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF461BBEB6C400EF50C4 /* YoutubeParser.swift */; settings = {ASSET_TAGS = (); }; };
@@ -29,7 +30,6 @@
 		5FD756961BAC4AE700EF50C4 /* WatermarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD756951BAC4AE700EF50C4 /* WatermarkViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		C305DED81B21068700DD9632 /* Minimal.json in Resources */ = {isa = PBXBuildFile; fileRef = C305DED71B21068700DD9632 /* Minimal.json */; };
 		C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */; };
-		C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35497A21B70007500FDDBFF /* SkinTests.swift */; };
 		C35E68BF1B7D06F700594CE6 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */; };
 		C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
 		C361643D1B6725C2000CE00E /* Hulu.json in Resources */ = {isa = PBXBuildFile; fileRef = C361643C1B6725C2000CE00E /* Hulu.json */; };
@@ -38,8 +38,7 @@
 		C38BEEA61B72DBD1009E4F64 /* PlayerStateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38BEEA51B72DBD1009E4F64 /* PlayerStateTest.swift */; };
 		C38FA6511B33279600BE17E8 /* ADBannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */; };
 		C38FA6531B33530C00BE17E8 /* PreRollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */; };
-		C39C749F1B75400700E6CD21 /* KIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39C749E1B75400700E6CD21 /* KIF.framework */; };
-		C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */; };
+		C3A406AD1B27A8DE00D1833D /* YoutubeParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AC1B27A8DE00D1833D /* YoutubeParserTests.swift */; };
 		C3A406AF1B27AA8C00D1833D /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */; };
 		C3A406B01B27AA9500D1833D /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */; };
 		C3A9AEDE1B048B5600D0C842 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A9AEDD1B048B5600D0C842 /* AppDelegate.swift */; };
@@ -53,17 +52,9 @@
 		CE554D731AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6E1AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift */; };
 		CE554D741AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */; };
 		CE554D761AFE6EE400DAC7E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
-		EEA04B28926490156EB2A4F1 /* Pods_MobilePlayerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505CCD80FF878F8F17EC4627 /* Pods_MobilePlayerTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C38BEEA71B72E2AD009E4F64 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CE554D461AFE6CCD00DAC7E9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C3A9AED81B048B5600D0C842;
-			remoteInfo = MobilePlayerExample;
-		};
 		C3A9AEEE1B048B5700D0C842 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CE554D461AFE6CCD00DAC7E9 /* Project object */;
@@ -106,6 +97,7 @@
 		460022C3A2D4FC80A1D57D18 /* Pods-MobilePlayerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.release.xcconfig"; sourceTree = "<group>"; };
 		505CCD80FF878F8F17EC4627 /* Pods_MobilePlayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerNotification.swift; sourceTree = "<group>"; };
+		5F4FDFD61BC6EB6200EF50C4 /* LabelConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabelConfigTests.swift; path = ConfigTests/LabelConfigTests.swift; sourceTree = "<group>"; };
 		5F6AF36F1BA96EF000EF50C4 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Views/Button.swift; sourceTree = "<group>"; };
 		5F749C251BAB2C8900EF50C4 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Element.swift; path = Views/Element.swift; sourceTree = "<group>"; };
 		5F7CDF461BBEB6C400EF50C4 /* YoutubeParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YoutubeParser.swift; path = MobilePlayer/Parsers/YoutubeParser.swift; sourceTree = SOURCE_ROOT; };
@@ -129,7 +121,6 @@
 		AAC564F266BFE6E6667728D5 /* Pods-MobilePlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		C305DED71B21068700DD9632 /* Minimal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Minimal.json; sourceTree = "<group>"; };
 		C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerConfig.swift; sourceTree = "<group>"; };
-		C35497A21B70007500FDDBFF /* SkinTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinTests.swift; sourceTree = "<group>"; };
 		C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		C361643C1B6725C2000CE00E /* Hulu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Hulu.json; sourceTree = "<group>"; };
 		C36164401B673D04000CE00E /* Netflix.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Netflix.json; sourceTree = "<group>"; };
@@ -138,7 +129,7 @@
 		C38FA6501B33279600BE17E8 /* ADBannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADBannerViewController.swift; sourceTree = "<group>"; };
 		C38FA6521B33530C00BE17E8 /* PreRollViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreRollViewController.swift; sourceTree = "<group>"; };
 		C39C749E1B75400700E6CD21 /* KIF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KIF.framework; path = "Pods/../build/Debug-iphoneos/KIF.framework"; sourceTree = "<group>"; };
-		C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeTests.swift; sourceTree = "<group>"; };
+		C3A406AC1B27A8DE00D1833D /* YoutubeParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeParserTests.swift; sourceTree = "<group>"; };
 		C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		C3A9AED91B048B5600D0C842 /* MobilePlayerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobilePlayerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3A9AEDC1B048B5600D0C842 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -190,15 +181,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C39C749F1B75400700E6CD21 /* KIF.framework in Frameworks */,
 				CE554D5B1AFE6CCD00DAC7E9 /* MobilePlayer.framework in Frameworks */,
-				EEA04B28926490156EB2A4F1 /* Pods_MobilePlayerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F4FDFD51BC6EB2F00EF50C4 /* ConfigTests */ = {
+			isa = PBXGroup;
+			children = (
+				5F4FDFD61BC6EB6200EF50C4 /* LabelConfigTests.swift */,
+			);
+			name = ConfigTests;
+			sourceTree = "<group>";
+		};
 		5F7CFC251BA22A3100EF50C4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,8 +356,8 @@
 		CE554D5E1AFE6CCD00DAC7E9 /* MobilePlayerTests */ = {
 			isa = PBXGroup;
 			children = (
-				C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */,
-				C35497A21B70007500FDDBFF /* SkinTests.swift */,
+				C3A406AC1B27A8DE00D1833D /* YoutubeParserTests.swift */,
+				5F4FDFD51BC6EB2F00EF50C4 /* ConfigTests */,
 				C38BEEA51B72DBD1009E4F64 /* PlayerStateTest.swift */,
 				CE554D5F1AFE6CCD00DAC7E9 /* Supporting Files */,
 			);
@@ -474,18 +471,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE554D681AFE6CCD00DAC7E9 /* Build configuration list for PBXNativeTarget "MobilePlayerTests" */;
 			buildPhases = (
-				39BE5A6F582542962733FA2B /* Check Pods Manifest.lock */,
 				CE554D561AFE6CCD00DAC7E9 /* Sources */,
 				CE554D571AFE6CCD00DAC7E9 /* Frameworks */,
 				CE554D581AFE6CCD00DAC7E9 /* Resources */,
-				F40C37578BF721D3E7447872 /* Embed Pods Frameworks */,
-				34FBA218D2E9EFA476A8CB14 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				CE554D5D1AFE6CCD00DAC7E9 /* PBXTargetDependency */,
-				C38BEEA81B72E2AD009E4F64 /* PBXTargetDependency */,
 			);
 			name = MobilePlayerTests;
 			productName = MobilePlayerTests;
@@ -579,54 +572,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		34FBA218D2E9EFA476A8CB14 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		39BE5A6F582542962733FA2B /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		F40C37578BF721D3E7447872 /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		C3A9AED51B048B5600D0C842 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -683,20 +628,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3A406B01B27AA9500D1833D /* UIColor+Hex.swift in Sources */,
-				C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */,
 				C38BEEA61B72DBD1009E4F64 /* PlayerStateTest.swift in Sources */,
-				C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */,
+				5F4FDFD71BC6EB6200EF50C4 /* LabelConfigTests.swift in Sources */,
+				C3A406AD1B27A8DE00D1833D /* YoutubeParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C38BEEA81B72E2AD009E4F64 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C3A9AED81B048B5600D0C842 /* MobilePlayerExample */;
-			targetProxy = C38BEEA71B72E2AD009E4F64 /* PBXContainerItemProxy */;
-		};
 		C3A9AEEF1B048B5700D0C842 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C3A9AED81B048B5600D0C842 /* MobilePlayerExample */;
