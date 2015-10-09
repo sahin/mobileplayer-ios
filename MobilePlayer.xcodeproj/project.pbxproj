@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F31B7B91BBAE39900EF50C4 /* MobilePlayerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */; settings = {ASSET_TAGS = (); }; };
+		5F4FDFD71BC6EB6200EF50C4 /* LabelConfigTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F4FDFD61BC6EB6200EF50C4 /* LabelConfigTests.swift */; settings = {ASSET_TAGS = (); }; };
 		5F6AF3701BA96EF000EF50C4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6AF36F1BA96EF000EF50C4 /* Button.swift */; };
 		5F749C261BAB2C8900EF50C4 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F749C251BAB2C8900EF50C4 /* Element.swift */; settings = {ASSET_TAGS = (); }; };
 		5F7CDF471BBEB6C400EF50C4 /* YoutubeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF461BBEB6C400EF50C4 /* YoutubeParser.swift */; settings = {ASSET_TAGS = (); }; };
@@ -29,7 +30,6 @@
 		5FD756961BAC4AE700EF50C4 /* WatermarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD756951BAC4AE700EF50C4 /* WatermarkViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		C305DED81B21068700DD9632 /* Minimal.json in Resources */ = {isa = PBXBuildFile; fileRef = C305DED71B21068700DD9632 /* Minimal.json */; };
 		C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */; };
-		C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35497A21B70007500FDDBFF /* SkinTests.swift */; };
 		C35E68BF1B7D06F700594CE6 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */; };
 		C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
 		C361643D1B6725C2000CE00E /* Hulu.json in Resources */ = {isa = PBXBuildFile; fileRef = C361643C1B6725C2000CE00E /* Hulu.json */; };
@@ -97,6 +97,7 @@
 		460022C3A2D4FC80A1D57D18 /* Pods-MobilePlayerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.release.xcconfig"; sourceTree = "<group>"; };
 		505CCD80FF878F8F17EC4627 /* Pods_MobilePlayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerNotification.swift; sourceTree = "<group>"; };
+		5F4FDFD61BC6EB6200EF50C4 /* LabelConfigTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LabelConfigTests.swift; path = ConfigTests/LabelConfigTests.swift; sourceTree = "<group>"; };
 		5F6AF36F1BA96EF000EF50C4 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Views/Button.swift; sourceTree = "<group>"; };
 		5F749C251BAB2C8900EF50C4 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Element.swift; path = Views/Element.swift; sourceTree = "<group>"; };
 		5F7CDF461BBEB6C400EF50C4 /* YoutubeParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YoutubeParser.swift; path = MobilePlayer/Parsers/YoutubeParser.swift; sourceTree = SOURCE_ROOT; };
@@ -120,7 +121,6 @@
 		AAC564F266BFE6E6667728D5 /* Pods-MobilePlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		C305DED71B21068700DD9632 /* Minimal.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Minimal.json; sourceTree = "<group>"; };
 		C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerConfig.swift; sourceTree = "<group>"; };
-		C35497A21B70007500FDDBFF /* SkinTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinTests.swift; sourceTree = "<group>"; };
 		C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		C361643C1B6725C2000CE00E /* Hulu.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Hulu.json; sourceTree = "<group>"; };
 		C36164401B673D04000CE00E /* Netflix.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Netflix.json; sourceTree = "<group>"; };
@@ -188,6 +188,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F4FDFD51BC6EB2F00EF50C4 /* ConfigTests */ = {
+			isa = PBXGroup;
+			children = (
+				5F4FDFD61BC6EB6200EF50C4 /* LabelConfigTests.swift */,
+			);
+			name = ConfigTests;
+			sourceTree = "<group>";
+		};
 		5F7CFC251BA22A3100EF50C4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -349,7 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				C3A406AC1B27A8DE00D1833D /* YoutubeParserTests.swift */,
-				C35497A21B70007500FDDBFF /* SkinTests.swift */,
+				5F4FDFD51BC6EB2F00EF50C4 /* ConfigTests */,
 				C38BEEA51B72DBD1009E4F64 /* PlayerStateTest.swift */,
 				CE554D5F1AFE6CCD00DAC7E9 /* Supporting Files */,
 			);
@@ -620,8 +628,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3A406B01B27AA9500D1833D /* UIColor+Hex.swift in Sources */,
-				C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */,
 				C38BEEA61B72DBD1009E4F64 /* PlayerStateTest.swift in Sources */,
+				5F4FDFD71BC6EB6200EF50C4 /* LabelConfigTests.swift in Sources */,
 				C3A406AD1B27A8DE00D1833D /* YoutubeParserTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
