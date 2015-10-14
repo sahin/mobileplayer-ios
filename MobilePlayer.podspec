@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "MobilePlayer"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.summary          = "A powerful and completely customizable media player for iOS."
   s.homepage         = "https://github.com/mobileplayer/mobileplayer-ios"
   s.license          = 'CC'
@@ -13,4 +13,5 @@ Pod::Spec.new do |s|
   s.requires_arc     = true
   s.frameworks       = 'UIKit', 'MediaPlayer'
   s.source_files     = 'MobilePlayer/**/*.swift'
+  s.resource_bundle  = { 'MobilePlayer' => 'MobilePlayer/Images.xcassets' }
 end
