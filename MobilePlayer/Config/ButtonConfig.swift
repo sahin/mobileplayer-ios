@@ -39,12 +39,11 @@ public class ButtonConfig: ElementConfig {
     if let imageName = dictionary["image"] as? String {
       image = UIImage(named: imageName)
     } else if let identifier = dictionary["identifier"] as? String {
-      let mobilePlayerBundle = NSBundle(forClass: ButtonConfig.self)
       switch identifier {
       case "close":
-        image = UIImage(named: "MLCloseButton", inBundle: mobilePlayerBundle, compatibleWithTraitCollection: nil)
+        image = UIImage(named: "MLCloseButton.pdf")
       case "action":
-        image = UIImage(named: "MLShareButton", inBundle: mobilePlayerBundle, compatibleWithTraitCollection: nil)
+        image = UIImage(named: "MLShareButton.pdf")
       default:
         image = nil
       }
