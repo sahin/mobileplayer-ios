@@ -918,6 +918,7 @@
 		};
 		CE554D691AFE6CCD00DAC7E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A3D625F8D46F7B3823A9927 /* Pods-MobilePlayerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -940,6 +941,7 @@
 		};
 		CE554D6A1AFE6CCD00DAC7E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 460022C3A2D4FC80A1D57D18 /* Pods-MobilePlayerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
