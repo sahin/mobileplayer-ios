@@ -13,12 +13,6 @@ Pod::Spec.new do |s|
   s.requires_arc     = true
   s.frameworks       = 'UIKit', 'MediaPlayer'
   s.source_files     = 'MobilePlayer/**/*.swift'
-+  #s.resource_bundle  = { 'MobilePlayer' => 'MobilePlayer/Images.xcassets' }
-+  s.resources        = ["MobilePlayer/Images.xcassets/MLCloseButton.imageset/MLCloseButton.pdf", 
-+                        "MobilePlayer/Images.xcassets/MLIncreaseVolume.imageset/MLIncreaseVolume.pdf", 
-+                        "MobilePlayer/Images.xcassets/MLPauseButton.imageset/MLPauseButton.pdf",
-+                        "MobilePlayer/Images.xcassets/MLPlayButton.imageset/MLPlayButton.pdf",
-+                        "MobilePlayer/Images.xcassets/MLReduceVolume.imageset/MLReduceVolume.pdf",
-+                        "MobilePlayer/Images.xcassets/MLShareButton.imageset/MLShareButton.pdf",
-+                        "MobilePlayer/Images.xcassets/MLVolumeButton.imageset/MLVolumeButton.pdf"]
+  #s.resource_bundle  = { 'MobilePlayer' => 'MobilePlayer/Images.xcassets' }
+  s.resources        = ["MobilePlayer/Images.xcassets/MLCloseButton.imageset/MLCloseButton.pdf",  "MobilePlayer/Images.xcassets/MLIncreaseVolume.imageset/MLIncreaseVolume.pdf", "MobilePlayer/Images.xcassets/MLPauseButton.imageset/MLPauseButton.pdf", "MobilePlayer/Images.xcassets/MLPlayButton.imageset/MLPlayButton.pdf", "MobilePlayer/Images.xcassets/MLReduceVolume.imageset/MLReduceVolume.pdf", "MobilePlayer/Images.xcassets/MLShareButton.imageset/MLShareButton.pdf", "MobilePlayer/Images.xcassets/MLVolumeButton.imageset/MLVolumeButton.pdf"]
 end
