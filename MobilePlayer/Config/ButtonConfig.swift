@@ -41,9 +41,9 @@ public class ButtonConfig: ElementConfig {
     } else if let identifier = dictionary["identifier"] as? String {
       switch identifier {
       case "close":
-        image = UIImage(named: "MLCloseButton.pdf")
+        image = UIImage(podResourceNamed: "MLCloseButton.png")?.template
       case "action":
-        image = UIImage(named: "MLShareButton.pdf")
+        image = UIImage(podResourceNamed: "MLShareButton")?.template
       default:
         image = nil
       }

@@ -49,7 +49,7 @@ public class ToggleButtonConfig: ElementConfig {
     if let imageName = dictionary["image"] as? String {
       image = UIImage(named: imageName)
     } else if identifier == "play" {
-      image = UIImage(named: "MLPlayButton.pdf")
+      image = UIImage(podResourceNamed: "MLPlayButton")?.template
     } else {
       image = nil
     }
@@ -63,7 +63,7 @@ public class ToggleButtonConfig: ElementConfig {
     if let toggledImageName = dictionary["toggledImage"] as? String {
       toggledImage = UIImage(named: toggledImageName)
     } else if identifier == "play" {
-      toggledImage = UIImage(named: "MLPauseButton.pdf")
+      toggledImage = UIImage(podResourceNamed: "MLPauseButton")?.template
     } else {
       toggledImage = nil
     }

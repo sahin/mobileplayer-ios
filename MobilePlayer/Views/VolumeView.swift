@@ -30,11 +30,11 @@ class VolumeView: UIView {
       volumeSlider.showsRouteButton = false
       addSubview(volumeSlider)
       increaseVolumeImage.contentMode = .ScaleAspectFit;
-      increaseVolumeImage.image = UIImage(named: "MLIncreaseVolume.pdf")
+      increaseVolumeImage.image = UIImage(podResourceNamed: "MLIncreaseVolume")?.template
       increaseVolumeImage.tintColor = increaseVolumeTintColor
       addSubview(increaseVolumeImage)
       reduceVolumeImage.contentMode = .ScaleAspectFit;
-      reduceVolumeImage.image = UIImage(named: "MLReduceVolume.pdf")
+      reduceVolumeImage.image = UIImage(podResourceNamed: "MLReduceVolume")?.template
       reduceVolumeImage.tintColor = reduceVolumeTintColor
       addSubview(reduceVolumeImage)
   }
