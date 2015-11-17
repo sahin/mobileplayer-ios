@@ -7,14 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F31B7B91BBAE39900EF50C4 /* MobilePlayerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */; settings = {ASSET_TAGS = (); }; };
+		5F31B7B91BBAE39900EF50C4 /* MobilePlayerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */; };
 		5F6AF3701BA96EF000EF50C4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6AF36F1BA96EF000EF50C4 /* Button.swift */; };
-		5F749C261BAB2C8900EF50C4 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F749C251BAB2C8900EF50C4 /* Element.swift */; settings = {ASSET_TAGS = (); }; };
-		5F7CDF471BBEB6C400EF50C4 /* YoutubeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF461BBEB6C400EF50C4 /* YoutubeParser.swift */; settings = {ASSET_TAGS = (); }; };
-		5F7CDF491BBEB6DD00EF50C4 /* StateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF481BBEB6DD00EF50C4 /* StateHelper.swift */; settings = {ASSET_TAGS = (); }; };
-		5F7CDF4B1BBEB6F900EF50C4 /* VolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF4A1BBEB6F900EF50C4 /* VolumeView.swift */; settings = {ASSET_TAGS = (); }; };
-		5F7CDF4D1BBEB70A00EF50C4 /* MobilePlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF4C1BBEB70A00EF50C4 /* MobilePlayerControlsView.swift */; settings = {ASSET_TAGS = (); }; };
+		5F749C261BAB2C8900EF50C4 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F749C251BAB2C8900EF50C4 /* Element.swift */; };
+		5F7CDF471BBEB6C400EF50C4 /* YoutubeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF461BBEB6C400EF50C4 /* YoutubeParser.swift */; };
+		5F7CDF491BBEB6DD00EF50C4 /* StateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF481BBEB6DD00EF50C4 /* StateHelper.swift */; };
+		5F7CDF4B1BBEB6F900EF50C4 /* VolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF4A1BBEB6F900EF50C4 /* VolumeView.swift */; };
+		5F7CDF4D1BBEB70A00EF50C4 /* MobilePlayerControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF4C1BBEB70A00EF50C4 /* MobilePlayerControlsView.swift */; };
 		5F7CFC221BA21A4700EF50C4 /* ClosureSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CFC211BA21A4700EF50C4 /* ClosureSupport.swift */; };
+		5F8272741BFA9F0600EF50C4 /* UIImage+CocoaPods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8272731BFA9F0600EF50C4 /* UIImage+CocoaPods.swift */; };
+		5F82728B1BFAC3BD00EF50C4 /* MLCloseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272761BFAC3BD00EF50C4 /* MLCloseButton.png */; };
+		5F82728C1BFAC3BD00EF50C4 /* MLCloseButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272771BFAC3BD00EF50C4 /* MLCloseButton@2x.png */; };
+		5F82728D1BFAC3BD00EF50C4 /* MLCloseButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272781BFAC3BD00EF50C4 /* MLCloseButton@3x.png */; };
+		5F82728E1BFAC3BD00EF50C4 /* MLIncreaseVolume.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272791BFAC3BD00EF50C4 /* MLIncreaseVolume.png */; };
+		5F82728F1BFAC3BD00EF50C4 /* MLIncreaseVolume@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F82727A1BFAC3BD00EF50C4 /* MLIncreaseVolume@2x.png */; };
+		5F8272901BFAC3BD00EF50C4 /* MLIncreaseVolume@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F82727B1BFAC3BD00EF50C4 /* MLIncreaseVolume@3x.png */; };
+		5F8272911BFAC3BD00EF50C4 /* MLPauseButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F82727C1BFAC3BD00EF50C4 /* MLPauseButton.png */; };
+		5F8272921BFAC3BD00EF50C4 /* MLPauseButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F82727D1BFAC3BD00EF50C4 /* MLPauseButton@2x.png */; };
+		5F8272931BFAC3BD00EF50C4 /* MLPauseButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F82727E1BFAC3BD00EF50C4 /* MLPauseButton@3x.png */; };
+		5F8272941BFAC3BD00EF50C4 /* MLPlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F82727F1BFAC3BD00EF50C4 /* MLPlayButton.png */; };
+		5F8272951BFAC3BD00EF50C4 /* MLPlayButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272801BFAC3BD00EF50C4 /* MLPlayButton@2x.png */; };
+		5F8272961BFAC3BD00EF50C4 /* MLPlayButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272811BFAC3BD00EF50C4 /* MLPlayButton@3x.png */; };
+		5F8272971BFAC3BD00EF50C4 /* MLReduceVolume.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272821BFAC3BD00EF50C4 /* MLReduceVolume.png */; };
+		5F8272981BFAC3BD00EF50C4 /* MLReduceVolume@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272831BFAC3BD00EF50C4 /* MLReduceVolume@2x.png */; };
+		5F8272991BFAC3BD00EF50C4 /* MLReduceVolume@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272841BFAC3BD00EF50C4 /* MLReduceVolume@3x.png */; };
+		5F82729A1BFAC3BD00EF50C4 /* MLShareButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272851BFAC3BD00EF50C4 /* MLShareButton.png */; };
+		5F82729B1BFAC3BD00EF50C4 /* MLShareButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272861BFAC3BD00EF50C4 /* MLShareButton@2x.png */; };
+		5F82729C1BFAC3BD00EF50C4 /* MLShareButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272871BFAC3BD00EF50C4 /* MLShareButton@3x.png */; };
+		5F82729D1BFAC3BD00EF50C4 /* MLVolumeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272881BFAC3BD00EF50C4 /* MLVolumeButton.png */; };
+		5F82729E1BFAC3BD00EF50C4 /* MLVolumeButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F8272891BFAC3BD00EF50C4 /* MLVolumeButton@2x.png */; };
+		5F82729F1BFAC3BD00EF50C4 /* MLVolumeButton@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5F82728A1BFAC3BD00EF50C4 /* MLVolumeButton@3x.png */; };
 		5FA7EAB61BAAADE200EF50C4 /* ElementConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA7EAB51BAAADE200EF50C4 /* ElementConfig.swift */; };
 		5FA92E9F1BA9832F00EF50C4 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA92E9E1BA9832F00EF50C4 /* Label.swift */; };
 		5FA92EA11BA9839300EF50C4 /* ButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA92EA01BA9839300EF50C4 /* ButtonConfig.swift */; };
@@ -25,13 +47,12 @@
 		5FBFEA321BA8ACC500EF50C4 /* LabelConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBFEA311BA8ACC500EF50C4 /* LabelConfig.swift */; };
 		5FBFEA341BA8ACDE00EF50C4 /* ToggleButtonConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBFEA331BA8ACDE00EF50C4 /* ToggleButtonConfig.swift */; };
 		5FBFEA361BA8AD0200EF50C4 /* SliderConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBFEA351BA8AD0200EF50C4 /* SliderConfig.swift */; };
-		5FD756941BAC494800EF50C4 /* WatermarkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD756931BAC494800EF50C4 /* WatermarkConfig.swift */; settings = {ASSET_TAGS = (); }; };
-		5FD756961BAC4AE700EF50C4 /* WatermarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD756951BAC4AE700EF50C4 /* WatermarkViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		5FD756941BAC494800EF50C4 /* WatermarkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD756931BAC494800EF50C4 /* WatermarkConfig.swift */; };
+		5FD756961BAC4AE700EF50C4 /* WatermarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD756951BAC4AE700EF50C4 /* WatermarkViewController.swift */; };
 		C305DED81B21068700DD9632 /* Minimal.json in Resources */ = {isa = PBXBuildFile; fileRef = C305DED71B21068700DD9632 /* Minimal.json */; };
 		C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */; };
 		C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35497A21B70007500FDDBFF /* SkinTests.swift */; };
 		C35E68BF1B7D06F700594CE6 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35E68BE1B7D06F700594CE6 /* PlayerViewController.swift */; };
-		C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
 		C361643D1B6725C2000CE00E /* Hulu.json in Resources */ = {isa = PBXBuildFile; fileRef = C361643C1B6725C2000CE00E /* Hulu.json */; };
 		C36164411B673D04000CE00E /* Netflix.json in Resources */ = {isa = PBXBuildFile; fileRef = C36164401B673D04000CE00E /* Netflix.json */; };
 		C38833C91B266C2500918C94 /* Skin.json in Resources */ = {isa = PBXBuildFile; fileRef = C38833C81B266C2500918C94 /* Skin.json */; };
@@ -52,7 +73,6 @@
 		CE554D5B1AFE6CCD00DAC7E9 /* MobilePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MobilePlayer.framework */; };
 		CE554D731AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6E1AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift */; };
 		CE554D741AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */; };
-		CE554D761AFE6EE400DAC7E9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE554D751AFE6EE400DAC7E9 /* Images.xcassets */; };
 		EEA04B28926490156EB2A4F1 /* Pods_MobilePlayerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505CCD80FF878F8F17EC4627 /* Pods_MobilePlayerTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -113,6 +133,28 @@
 		5F7CDF4A1BBEB6F900EF50C4 /* VolumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VolumeView.swift; path = Views/VolumeView.swift; sourceTree = "<group>"; };
 		5F7CDF4C1BBEB70A00EF50C4 /* MobilePlayerControlsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MobilePlayerControlsView.swift; path = Views/MobilePlayerControlsView.swift; sourceTree = "<group>"; };
 		5F7CFC211BA21A4700EF50C4 /* ClosureSupport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosureSupport.swift; sourceTree = "<group>"; };
+		5F8272731BFA9F0600EF50C4 /* UIImage+CocoaPods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+CocoaPods.swift"; sourceTree = "<group>"; };
+		5F8272761BFAC3BD00EF50C4 /* MLCloseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLCloseButton.png; sourceTree = "<group>"; };
+		5F8272771BFAC3BD00EF50C4 /* MLCloseButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLCloseButton@2x.png"; sourceTree = "<group>"; };
+		5F8272781BFAC3BD00EF50C4 /* MLCloseButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLCloseButton@3x.png"; sourceTree = "<group>"; };
+		5F8272791BFAC3BD00EF50C4 /* MLIncreaseVolume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLIncreaseVolume.png; sourceTree = "<group>"; };
+		5F82727A1BFAC3BD00EF50C4 /* MLIncreaseVolume@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLIncreaseVolume@2x.png"; sourceTree = "<group>"; };
+		5F82727B1BFAC3BD00EF50C4 /* MLIncreaseVolume@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLIncreaseVolume@3x.png"; sourceTree = "<group>"; };
+		5F82727C1BFAC3BD00EF50C4 /* MLPauseButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLPauseButton.png; sourceTree = "<group>"; };
+		5F82727D1BFAC3BD00EF50C4 /* MLPauseButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLPauseButton@2x.png"; sourceTree = "<group>"; };
+		5F82727E1BFAC3BD00EF50C4 /* MLPauseButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLPauseButton@3x.png"; sourceTree = "<group>"; };
+		5F82727F1BFAC3BD00EF50C4 /* MLPlayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLPlayButton.png; sourceTree = "<group>"; };
+		5F8272801BFAC3BD00EF50C4 /* MLPlayButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLPlayButton@2x.png"; sourceTree = "<group>"; };
+		5F8272811BFAC3BD00EF50C4 /* MLPlayButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLPlayButton@3x.png"; sourceTree = "<group>"; };
+		5F8272821BFAC3BD00EF50C4 /* MLReduceVolume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLReduceVolume.png; sourceTree = "<group>"; };
+		5F8272831BFAC3BD00EF50C4 /* MLReduceVolume@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLReduceVolume@2x.png"; sourceTree = "<group>"; };
+		5F8272841BFAC3BD00EF50C4 /* MLReduceVolume@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLReduceVolume@3x.png"; sourceTree = "<group>"; };
+		5F8272851BFAC3BD00EF50C4 /* MLShareButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLShareButton.png; sourceTree = "<group>"; };
+		5F8272861BFAC3BD00EF50C4 /* MLShareButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLShareButton@2x.png"; sourceTree = "<group>"; };
+		5F8272871BFAC3BD00EF50C4 /* MLShareButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLShareButton@3x.png"; sourceTree = "<group>"; };
+		5F8272881BFAC3BD00EF50C4 /* MLVolumeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MLVolumeButton.png; sourceTree = "<group>"; };
+		5F8272891BFAC3BD00EF50C4 /* MLVolumeButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLVolumeButton@2x.png"; sourceTree = "<group>"; };
+		5F82728A1BFAC3BD00EF50C4 /* MLVolumeButton@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MLVolumeButton@3x.png"; sourceTree = "<group>"; };
 		5FA7EAB51BAAADE200EF50C4 /* ElementConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElementConfig.swift; sourceTree = "<group>"; };
 		5FA92E9E1BA9832F00EF50C4 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Label.swift; path = Views/Label.swift; sourceTree = "<group>"; };
 		5FA92EA01BA9839300EF50C4 /* ButtonConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonConfig.swift; sourceTree = "<group>"; };
@@ -156,7 +198,6 @@
 		CE554D601AFE6CCD00DAC7E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE554D6E1AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerOverlayViewController.swift; sourceTree = "<group>"; };
 		CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerViewController.swift; sourceTree = "<group>"; };
-		CE554D751AFE6EE400DAC7E9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E4BB3AE1437BCF90E942E120 /* Pods_MobilePlayerExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayerExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7D73B451E88B493F3D4298C /* Pods_MobilePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8AD4F2FB52026C487C3B5A7 /* Pods-MobilePlayerExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerExample/Pods-MobilePlayerExample.release.xcconfig"; sourceTree = "<group>"; };
@@ -222,6 +263,34 @@
 			name = Helpers;
 			sourceTree = "<group>";
 		};
+		5F8272751BFAC3BD00EF50C4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5F8272761BFAC3BD00EF50C4 /* MLCloseButton.png */,
+				5F8272771BFAC3BD00EF50C4 /* MLCloseButton@2x.png */,
+				5F8272781BFAC3BD00EF50C4 /* MLCloseButton@3x.png */,
+				5F8272791BFAC3BD00EF50C4 /* MLIncreaseVolume.png */,
+				5F82727A1BFAC3BD00EF50C4 /* MLIncreaseVolume@2x.png */,
+				5F82727B1BFAC3BD00EF50C4 /* MLIncreaseVolume@3x.png */,
+				5F82727C1BFAC3BD00EF50C4 /* MLPauseButton.png */,
+				5F82727D1BFAC3BD00EF50C4 /* MLPauseButton@2x.png */,
+				5F82727E1BFAC3BD00EF50C4 /* MLPauseButton@3x.png */,
+				5F82727F1BFAC3BD00EF50C4 /* MLPlayButton.png */,
+				5F8272801BFAC3BD00EF50C4 /* MLPlayButton@2x.png */,
+				5F8272811BFAC3BD00EF50C4 /* MLPlayButton@3x.png */,
+				5F8272821BFAC3BD00EF50C4 /* MLReduceVolume.png */,
+				5F8272831BFAC3BD00EF50C4 /* MLReduceVolume@2x.png */,
+				5F8272841BFAC3BD00EF50C4 /* MLReduceVolume@3x.png */,
+				5F8272851BFAC3BD00EF50C4 /* MLShareButton.png */,
+				5F8272861BFAC3BD00EF50C4 /* MLShareButton@2x.png */,
+				5F8272871BFAC3BD00EF50C4 /* MLShareButton@3x.png */,
+				5F8272881BFAC3BD00EF50C4 /* MLVolumeButton.png */,
+				5F8272891BFAC3BD00EF50C4 /* MLVolumeButton@2x.png */,
+				5F82728A1BFAC3BD00EF50C4 /* MLVolumeButton@3x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		C308B3B71B14F98700CB1515 /* Config */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +311,7 @@
 			children = (
 				C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */,
 				5F7CFC211BA21A4700EF50C4 /* ClosureSupport.swift */,
+				5F8272731BFA9F0600EF50C4 /* UIImage+CocoaPods.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -342,7 +412,7 @@
 				C3A9AF0F1B04C89D00D0C842 /* Parsers */,
 				5F7CFC261BA22A6B00EF50C4 /* Helpers */,
 				C3A4069C1B278A4900D1833D /* Extensions */,
-				CE554D751AFE6EE400DAC7E9 /* Images.xcassets */,
+				5F8272751BFAC3BD00EF50C4 /* Resources */,
 				CE554D521AFE6CCD00DAC7E9 /* Supporting Files */,
 			);
 			path = MobilePlayer;
@@ -548,7 +618,6 @@
 				C36164411B673D04000CE00E /* Netflix.json in Resources */,
 				C361643D1B6725C2000CE00E /* Hulu.json in Resources */,
 				C3A9AF0E1B049A4D00D0C842 /* Images.xcassets in Resources */,
-				C35FDE0F1B3E0918005C55A6 /* Images.xcassets in Resources */,
 				C305DED81B21068700DD9632 /* Minimal.json in Resources */,
 				C3A9AEE81B048B5600D0C842 /* LaunchScreen.xib in Resources */,
 			);
@@ -565,7 +634,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE554D761AFE6EE400DAC7E9 /* Images.xcassets in Resources */,
+				5F82728D1BFAC3BD00EF50C4 /* MLCloseButton@3x.png in Resources */,
+				5F8272971BFAC3BD00EF50C4 /* MLReduceVolume.png in Resources */,
+				5F8272911BFAC3BD00EF50C4 /* MLPauseButton.png in Resources */,
+				5F82728C1BFAC3BD00EF50C4 /* MLCloseButton@2x.png in Resources */,
+				5F8272931BFAC3BD00EF50C4 /* MLPauseButton@3x.png in Resources */,
+				5F8272961BFAC3BD00EF50C4 /* MLPlayButton@3x.png in Resources */,
+				5F82728F1BFAC3BD00EF50C4 /* MLIncreaseVolume@2x.png in Resources */,
+				5F8272991BFAC3BD00EF50C4 /* MLReduceVolume@3x.png in Resources */,
+				5F8272981BFAC3BD00EF50C4 /* MLReduceVolume@2x.png in Resources */,
+				5F8272921BFAC3BD00EF50C4 /* MLPauseButton@2x.png in Resources */,
+				5F82728E1BFAC3BD00EF50C4 /* MLIncreaseVolume.png in Resources */,
+				5F8272901BFAC3BD00EF50C4 /* MLIncreaseVolume@3x.png in Resources */,
+				5F82729D1BFAC3BD00EF50C4 /* MLVolumeButton.png in Resources */,
+				5F82729A1BFAC3BD00EF50C4 /* MLShareButton.png in Resources */,
+				5F8272951BFAC3BD00EF50C4 /* MLPlayButton@2x.png in Resources */,
+				5F82729F1BFAC3BD00EF50C4 /* MLVolumeButton@3x.png in Resources */,
+				5F8272941BFAC3BD00EF50C4 /* MLPlayButton.png in Resources */,
+				5F82728B1BFAC3BD00EF50C4 /* MLCloseButton.png in Resources */,
+				5F82729C1BFAC3BD00EF50C4 /* MLShareButton@3x.png in Resources */,
+				5F82729B1BFAC3BD00EF50C4 /* MLShareButton@2x.png in Resources */,
+				5F82729E1BFAC3BD00EF50C4 /* MLVolumeButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,6 +744,7 @@
 				5FBFEA361BA8AD0200EF50C4 /* SliderConfig.swift in Sources */,
 				5FBFEA2E1BA8AC1B00EF50C4 /* BarConfig.swift in Sources */,
 				C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */,
+				5F8272741BFA9F0600EF50C4 /* UIImage+CocoaPods.swift in Sources */,
 				5F7CDF471BBEB6C400EF50C4 /* YoutubeParser.swift in Sources */,
 				5FD756961BAC4AE700EF50C4 /* WatermarkViewController.swift in Sources */,
 				5FBFEA321BA8ACC500EF50C4 /* LabelConfig.swift in Sources */,
@@ -918,6 +1008,7 @@
 		};
 		CE554D691AFE6CCD00DAC7E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A3D625F8D46F7B3823A9927 /* Pods-MobilePlayerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -940,6 +1031,7 @@
 		};
 		CE554D6A1AFE6CCD00DAC7E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 460022C3A2D4FC80A1D57D18 /* Pods-MobilePlayerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
