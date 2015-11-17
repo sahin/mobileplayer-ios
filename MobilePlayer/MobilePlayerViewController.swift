@@ -494,7 +494,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       currentTimeLabel.superview?.setNeedsLayout()
     }
     if let remainingTimeLabel = getViewForElementWithIdentifier("remainingTime") as? Label {
-      remainingTimeLabel.text = textForPlaybackTime(moviePlayer.duration - moviePlayer.currentPlaybackTime)
+      remainingTimeLabel.text = "-\(textForPlaybackTime(moviePlayer.duration - moviePlayer.currentPlaybackTime))"
       remainingTimeLabel.superview?.setNeedsLayout()
     }
     updateShownTimedOverlays()
