@@ -1,4 +1,4 @@
 language: objective-c
 osx_image: xcode7.1
-xcode_project: MobilePlayer.xcodeproj
-xcode_scheme: MobilePlayer
+
+script: xctool -project MobilePlayer.xcodeproj -scheme MobilePlayer build  CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
