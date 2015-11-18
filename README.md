@@ -1,8 +1,9 @@
  MobilePlayer [![CocoaPods](https://img.shields.io/cocoapods/p/MobilePlayer.svg?style=flat)](https://cocoapods.org/pods/MobilePlayer)
------
-
+==================
+[![CocoaPods](http://img.shields.io/cocoapods/v/MobilePlayer.svg?style=flat)](http://cocoapods.org/?q=MobilePlayer) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Number of Tests](https://img.shields.io/badge/Number%20of%20Tests-100+-brightgreen.svg)](https://github.com/mobileplayer/mobileplayer-ios)
 [![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](https://github.com/mobileplayer/mobileplayer-ios)
+
 [![Ready](https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=Ready&title=Ready)](https://waffle.io/mobileplayer/mobileplayer-ios)
 [![In Progress](https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/mobileplayer/mobileplayer-ios)
 [![Post an issue](https://img.shields.io/badge/Bug%3F-Post%20an%20issue!-blue.svg)](https://waffle.io/mobileplayer/mobileplayer-ios)
@@ -14,59 +15,21 @@ A powerful and completely customizable media player for iOS.
 
 ![](https://raw.github.com/mobileplayer/mobileplayer-ios/chore/beautiful-readme/introduction.gif)
 
-# Table of Contents
+Features
+==================
 
-1. [Installation](#installation)
-2. [Usage](#usage)
-3. [Documentation](#documentation)
-4. [Software License](#software-license)
-
-# Installation
-
-There are various ways you can get started with using MobilePlayer in your projects.
-
-### [Cocoapods](https://github.com/CocoaPods/CocoaPods)
-
-Add the following line in your `Podfile`.
-
-```
-pod "MobilePlayer"
-```
-
-### [Carthage](https://github.com/Carthage/Carthage#installing-carthage)
-
-Add the following line to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
-
-```
-github "mobileplayer/mobileplayer-ios"
-```
-
-### Git Submodule
-
-Open the Terminal app and `cd` to your project directory. Then run
-
-```
-git submodule add git@github.com:mobileplayer/mobileplayer-ios.git
-```
-
-This should create a folder named MobilePlayer inside your project directory. After that, drag and drop MobilePlayer/MobilePlayer.xcodeproj into your project in Xcode and add the MobilePlayer.framework in the Embedded Binaries section of your target settings under the General tab.
-
-# Usage
+Usage
+==================
 
 If you were previously using MPMoviePlayerViewController, changing
-
 ```swift
 let playerVC = MPMoviePlayerViewController(contentURL: videoURL)
 ```
-
 to
-
 ```swift
 let playerVC = MobilePlayerViewController(contentURL: videoURL)
 ```
-
 is enough. Make sure you don't forget to
-
 ```swift
 import MobilePlayer
 ```
@@ -118,11 +81,36 @@ objects and files. Check the MobilePlayerConfig class and other configuration cl
 
 A fully customized player configuration file can look like [this](https://github.com/mobileplayer/mobileplayer-ios/blob/master/MobilePlayerExample/Skin/Netflix.json).
 
-# Documentation
+Installation
+==================
+There are various ways you can get started with using MobilePlayer in your projects.
+
+### [Cocoapods](https://github.com/CocoaPods/CocoaPods)
+Add the following line in your `Podfile`.
+```
+pod "MobilePlayer"
+```
+
+### [Carthage](https://github.com/Carthage/Carthage#installing-carthage)
+Add the following line to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
+```
+github "mobileplayer/mobileplayer-ios"
+```
+
+### Git Submodule
+Open the Terminal app and `cd` to your project directory. Then run
+```
+git submodule add git@github.com:mobileplayer/mobileplayer-ios.git
+```
+This should create a folder named MobilePlayer inside your project directory. After that, drag and drop MobilePlayer/MobilePlayer.xcodeproj into your project in Xcode and add the MobilePlayer.framework in the Embedded Binaries section of your target settings under the General tab.
+
+Documentation
+==================
 
 The entire documentation for the library can be found [here](https://htmlpreview.github.io/?https://github.com/movielala/mobileplayer-ios/blob/master/Documentation/index.html).
 
-# Software License
+License
+==================
 
 The use of the MobilePlayer open source edition is governed by a [Creative Commons license](http://creativecommons.org/licenses/by-nc-sa/3.0/). You can use, modify, copy, and distribute this edition as long as it’s for non-commercial use, you provide attribution, and share under a similar license.
 http://mobileplayer.io/license/
