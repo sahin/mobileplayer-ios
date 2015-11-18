@@ -17,10 +17,17 @@ A powerful and completely customizable media player for iOS.
 
 Features
 ==================
+- Customizable UI. Add a watermark, add/remove/move/resize interface elements, change their appearances and much more.
+- Manage multiple player skins and configurations easily. Player view controllers can load configuration data from a local JSON file or remote JSON data. You also have the option to initialize and pass configuration objects programmatically, which allows for greater flexibility.
+- 100% documented.
+
+### Future plans
+- Well defined and extensive `NSNotification`s.
+- Plugin support.
+- Pre-bundled analytics plugins for various platforms.
 
 Usage
 ==================
-
 If you were previously using MPMoviePlayerViewController, changing
 ```swift
 let playerVC = MPMoviePlayerViewController(contentURL: videoURL)
@@ -106,11 +113,9 @@ This should create a folder named MobilePlayer inside your project directory. Af
 
 Documentation
 ==================
-
 The entire documentation for the library can be found [here](https://htmlpreview.github.io/?https://github.com/movielala/mobileplayer-ios/blob/master/Documentation/index.html).
 
 License
 ==================
-
 The use of the MobilePlayer open source edition is governed by a [Creative Commons license](http://creativecommons.org/licenses/by-nc-sa/3.0/). You can use, modify, copy, and distribute this edition as long as it’s for non-commercial use, you provide attribution, and share under a similar license.
 http://mobileplayer.io/license/
