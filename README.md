@@ -19,46 +19,31 @@ Features
 ==================
 - Customizable UI. Add a watermark, add/remove/move/resize interface elements, change their appearances and much more.
 - Manage multiple player skins and configurations easily. Player view controllers can load configuration data from a local JSON file or remote JSON data. You also have the option to initialize and pass configuration objects programmatically, which allows for greater flexibility.
+- Powerful overlay system. Add any view controller as an overlay to your video, set them to appear in a certain playback time interval or just make them permanently visible.
 - 100% documented.
 
 ### Future plans
 - Well defined and extensive `NSNotification`s.
 - Plugin support.
 - Pre-bundled analytics plugins for various platforms.
+- Monetization.
 
 Usage
 ==================
-If you were previously using MPMoviePlayerViewController, changing
-```swift
-let playerVC = MPMoviePlayerViewController(contentURL: videoURL)
-```
-to
-```swift
-let playerVC = MobilePlayerViewController(contentURL: videoURL)
-```
-is enough. Make sure you don't forget to
 ```swift
 import MobilePlayer
 ```
 
-## Customizing the Player
-
-In most cases though you would want to customize the player. You can do this by creating a configuration JSON file or programmatically.
-
-### Configuration File
-
-Here is a sample configuration file if you just want to add a watermark to the bottom right corner of the player.
-
-```JSON
-{
-  "watermark": {
-    "image": "CompanyLogo"
-  }
-}
+### Create a player view controller and present it
+```swift
+let playerVC = MobilePlayerViewController(contentURL: videoURL)
+presentMoviePlayerViewControllerAnimated(playerVC)
 ```
 
-In this case you need to have an image asset named CompanyLogo in your project. After that you create a configuration object using the file and initialize your player using that.
+### Create a customized player view controller
+*Screenshot here*
 
+**Initialize using local JSON file**
 ```swift
 guard let configFileURL = NSBundle.mainBundle().URLForResource("PlayerConfig", withExtension: "json") else {
   fatalError("Unable to load player configuration file")
@@ -66,10 +51,48 @@ guard let configFileURL = NSBundle.mainBundle().URLForResource("PlayerConfig", w
 let playerVC = MobilePlayerViewController(contentURL: videoURL, config: MobilePlayerConfig(fileURL: configFileURL))
 ```
 
+**Initialize using remote JSON data**
+```swift
+guard let configFileURL = NSURL(string: "https://api.mysite.com/configuration/player.json?app=myapp&theme=simple") else {
+  fatalError("Invalid configuration file URL")
+}
+let playerVC = MobilePlayerViewController(contentURL: videoURL, config: MobilePlayerConfig(fileURL: configFileURL))
+```
+
+**JSON**
+```json
+{
+  "watermark": {
+    "image": "CompanyLogo"
+  }
+}
+```
+
+### Personalize
+*Screenshot here*
+```json
+{
+  "watermark": {
+    "image": "CompanyLogo"
+  }
+}
+```
+
+### Personalize further
+*Screenshot here*
+```json
+{
+  "watermark": {
+    "image": "CompanyLogo"
+  }
+}
+```
+
+###
+
+
 ### Programmatic Configuration
-
-The above example done without using any JSON files looks like the following.
-
+The watermark example done without using a JSON configuration file url looks like the following.
 ```swift
 let playerVC = MobilePlayerViewController(
   contentURL: videoURL,
@@ -80,13 +103,6 @@ let playerVC = MobilePlayerViewController(
   ])
 )
 ```
-
-### Advanced Configuration
-
-You can edit the player interface completely, add new buttons with custom actions, and way more using configuration
-objects and files. Check the MobilePlayerConfig class and other configuration class documentations for a full list of things you can do.
-
-A fully customized player configuration file can look like [this](https://github.com/mobileplayer/mobileplayer-ios/blob/master/MobilePlayerExample/Skin/Netflix.json).
 
 Installation
 ==================
