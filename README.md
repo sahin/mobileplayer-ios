@@ -3,9 +3,7 @@
 [![CocoaPods](http://img.shields.io/cocoapods/v/MobilePlayer.svg?style=flat)](http://cocoapods.org/?q=MobilePlayer) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Number of Tests](https://img.shields.io/badge/Number%20of%20Tests-100+-brightgreen.svg)](https://github.com/mobileplayer/mobileplayer-ios)
 [![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](https://github.com/mobileplayer/mobileplayer-ios)
-
 [![Ready](https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=Ready&title=Ready)](https://waffle.io/mobileplayer/mobileplayer-ios)
-[![In Progress](https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/mobileplayer/mobileplayer-ios)
 [![Post an issue](https://img.shields.io/badge/Bug%3F-Post%20an%20issue!-blue.svg)](https://waffle.io/mobileplayer/mobileplayer-ios)
 
 [![StackOverflow](https://img.shields.io/badge/StackOverflow-Ask%20a%20question!-blue.svg)](http://stackoverflow.com/questions/ask?tags=mobile player+ios+swift+video player) 
@@ -19,13 +17,15 @@ Features
 ==================
 - Customizable UI. Add a watermark, add/remove/move/resize interface elements, change their appearances and much more.
 - Manage multiple player skins and configurations easily. Player view controllers can load configuration data from a local JSON file or remote JSON data. You also have the option to initialize and pass configuration objects programmatically, which allows for greater flexibility.
-- Powerful overlay system. Add any view controller as an overlay to your video, set them to appear in a certain playback time interval or just make them permanently visible.
+- Powerful overlay system. Add any view controller as an overlay to your video. Make them permanently visible, set them to appear in defined playback time intervals, or while playback is paused.
+- Assign and show any view controller as pre-roll or post-roll content.
 - 100% documented.
 
 ### Future plans
 - Well defined and extensive `NSNotification`s.
 - Plugin support.
 - Pre-bundled analytics plugins for various platforms.
+- VAST support.
 - Monetization.
 
 Usage
@@ -143,7 +143,7 @@ let playerVC = MobilePlayerViewController(
         "type": "label",
         "text": "Now Watching",
         "font": "Baskerville",
-        "textColor: "#ccc",
+        "textColor": "#ccc",
         "marginLeft": 8,
         "marginRight": 8
       },
@@ -193,7 +193,6 @@ For all available `identifier`s, check the documentation or [here](https://githu
 
 Installation
 ==================
-There are various ways you can get started with using MobilePlayer in your projects.
 
 ### [Cocoapods](https://github.com/CocoaPods/CocoaPods)
 Add the following line in your `Podfile`.
