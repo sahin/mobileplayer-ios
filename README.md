@@ -43,7 +43,7 @@ presentMoviePlayerViewControllerAnimated(playerVC)
 ### Create a customized player view controller
 *Screenshot here*
 
-**Initialize using local JSON file**
+**Initialize using local configuration file**
 ```swift
 guard let configFileURL = NSBundle.mainBundle().URLForResource("PlayerConfig", withExtension: "json") else {
   fatalError("Unable to load player configuration file")
@@ -51,7 +51,7 @@ guard let configFileURL = NSBundle.mainBundle().URLForResource("PlayerConfig", w
 let playerVC = MobilePlayerViewController(contentURL: videoURL, config: MobilePlayerConfig(fileURL: configFileURL))
 ```
 
-**Initialize using remote JSON data**
+**Initialize using remote configuration data**
 ```swift
 guard let configFileURL = NSURL(string: "https://api.mysite.com/configuration/player.json?app=myapp&theme=simple") else {
   fatalError("Invalid configuration file URL")
@@ -59,7 +59,7 @@ guard let configFileURL = NSURL(string: "https://api.mysite.com/configuration/pl
 let playerVC = MobilePlayerViewController(contentURL: videoURL, config: MobilePlayerConfig(fileURL: configFileURL))
 ```
 
-**JSON**
+**Configuration**
 ```json
 {
   "watermark": {
@@ -68,31 +68,7 @@ let playerVC = MobilePlayerViewController(contentURL: videoURL, config: MobilePl
 }
 ```
 
-### Personalize
-*Screenshot here*
-```json
-{
-  "watermark": {
-    "image": "CompanyLogo"
-  }
-}
-```
-
-### Personalize further
-*Screenshot here*
-```json
-{
-  "watermark": {
-    "image": "CompanyLogo"
-  }
-}
-```
-
-###
-
-
-### Programmatic Configuration
-The watermark example done without using a JSON configuration file url looks like the following.
+### Customize without JSON
 ```swift
 let playerVC = MobilePlayerViewController(
   contentURL: videoURL,
@@ -102,6 +78,117 @@ let playerVC = MobilePlayerViewController(
     ])
   ])
 )
+```
+
+### Personalize
+*Screenshot here*
+
+**Configuration**
+```json
+{
+  "watermark": {
+    "image": "CompanyLogo"
+  },
+  "topBar": {
+    "backgroundColor": "#000"
+  },
+  "bottomBar": {
+    "backgroundColor": "#000"
+  }
+}
+```
+
+### Change everything
+*Screenshot here*
+
+**Configuration**
+```json
+{
+  "watermark": {
+    "image": "CompanyLogo",
+    "position": "topLeft"
+  },
+  "topBar": {
+    "backgroundColor": ["#000f", "#0000"],
+    "elements": [
+      {
+        "type": "button",
+        "identifier": "close"
+      },
+      {
+        "type": "slider",
+        "identifier": "playback",
+        "trackHeight": 10,
+        "trackCornerRadius": 5,
+        "minimumTrackTintColor": "#ae3f1c",
+        "availableTrackTintColor": "#9e9b9a",
+        "maximumTrackTintColor": "#cccccc",
+        "thumbTintColor": "#e54918",
+        "thumbWidth": 24,
+        "thumbHeight": 24,
+        "thumbCornerRadius": 12,
+        "thumbBorderWidth": 0,
+        "marginRight": 4
+      },
+      {
+        "type": "button",
+        "identifier": "action"
+      }
+    ]
+  },
+  "bottomBar": {
+    "backgroundColor": ["#0000", "#000f"],
+    "elements": [
+      {
+        "type": "label",
+        "text": "Now Watching",
+        "font": "Baskerville",
+        "textColor: "#ccc",
+        "marginLeft": 8,
+        "marginRight": 8
+      },
+      {
+        "type": "label",
+        "identifier": "title"
+      },
+      {
+        "type": "toggleButton",
+        "identifier": "play"
+      }
+    ]
+  }
+}
+```
+For all available `identifier`s, check the documentation or [here](https://github.com/mobileplayer/mobileplayer-ios/blob/master/MobilePlayer/Config/ElementConfig.swift#L51). Same `identifier` value shouldn't be used more than once in a single configuration.
+
+### Show overlays
+*Screenshot here*
+```swift
+// TODO
+```
+
+### Show timed overlays
+*GIF here*
+```swift
+// TODO
+```
+
+### Pause overlays
+*GIF here*
+```swift
+// TODO
+```
+
+### Pre-roll
+*GIF here*
+```swift
+// TODO
+```
+
+### Post-roll
+*GIF here*
+```swift
+// TODO
 ```
 
 Installation
