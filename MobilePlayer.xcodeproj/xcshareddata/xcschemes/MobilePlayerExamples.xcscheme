@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0710"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,23 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C3A9AED81B048B5600D0C842"
-               BuildableName = "MobilePlayerExample.app"
-               BlueprintName = "MobilePlayerExample"
-               ReferencedContainer = "container:MobilePlayer.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C3A9AEEC1B048B5700D0C842"
-               BuildableName = "MobilePlayerExampleTests.xctest"
-               BlueprintName = "MobilePlayerExampleTests"
+               BlueprintIdentifier = "5F56CB801C040E8D00EF50C4"
+               BuildableName = "MobilePlayerExamples.app"
+               BlueprintName = "MobilePlayerExamples"
                ReferencedContainer = "container:MobilePlayer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C3A9AEEC1B048B5700D0C842"
-               BuildableName = "MobilePlayerExampleTests.xctest"
-               BlueprintName = "MobilePlayerExampleTests"
+               BlueprintIdentifier = "5F56CB951C040E8E00EF50C4"
+               BuildableName = "MobilePlayerExamplesUITests.xctest"
+               BlueprintName = "MobilePlayerExamplesUITests"
                ReferencedContainer = "container:MobilePlayer.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -56,9 +42,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C3A9AED81B048B5600D0C842"
-            BuildableName = "MobilePlayerExample.app"
-            BlueprintName = "MobilePlayerExample"
+            BlueprintIdentifier = "5F56CB801C040E8D00EF50C4"
+            BuildableName = "MobilePlayerExamples.app"
+            BlueprintName = "MobilePlayerExamples"
             ReferencedContainer = "container:MobilePlayer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -79,9 +65,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C3A9AED81B048B5600D0C842"
-            BuildableName = "MobilePlayerExample.app"
-            BlueprintName = "MobilePlayerExample"
+            BlueprintIdentifier = "5F56CB801C040E8D00EF50C4"
+            BuildableName = "MobilePlayerExamples.app"
+            BlueprintName = "MobilePlayerExamples"
             ReferencedContainer = "container:MobilePlayer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -98,9 +84,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "C3A9AED81B048B5600D0C842"
-            BuildableName = "MobilePlayerExample.app"
-            BlueprintName = "MobilePlayerExample"
+            BlueprintIdentifier = "5F56CB801C040E8D00EF50C4"
+            BuildableName = "MobilePlayerExamples.app"
+            BlueprintName = "MobilePlayerExamples"
             ReferencedContainer = "container:MobilePlayer.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
