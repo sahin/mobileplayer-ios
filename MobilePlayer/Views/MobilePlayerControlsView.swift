@@ -38,16 +38,16 @@ final class MobilePlayerControlsView: UIView {
     addSubview(activityIndicatorView)
     addSubview(overlayContainerView)
     if topBar.elements.count == 0 {
-      topBar.addElementUsingConfig(ElementConfig(dictionary: ["type": "button", "identifier": "close"]))
-      topBar.addElementUsingConfig(ElementConfig(dictionary: ["type": "label", "identifier": "title"]))
-      topBar.addElementUsingConfig(ElementConfig(dictionary: ["type": "button", "identifier": "action"]))
+      topBar.addElementUsingConfig(ButtonConfig(dictionary: ["type": "button", "identifier": "close"]))
+      topBar.addElementUsingConfig(LabelConfig(dictionary: ["type": "label", "identifier": "title"]))
+      topBar.addElementUsingConfig(ButtonConfig(dictionary: ["type": "button", "identifier": "action"]))
     }
     addSubview(topBar)
     if bottomBar.elements.count == 0 {
-      bottomBar.addElementUsingConfig(ElementConfig(dictionary: ["type": "toggleButton", "identifier": "play"]))
-      bottomBar.addElementUsingConfig(ElementConfig(dictionary: ["type": "label", "identifier": "currentTime"]))
-      bottomBar.addElementUsingConfig(ElementConfig(dictionary: ["type": "slider", "identifier": "playback"]))
-      bottomBar.addElementUsingConfig(ElementConfig(dictionary: ["type": "label", "identifier": "duration"]))
+      bottomBar.addElementUsingConfig(ToggleButtonConfig(dictionary: ["type": "toggleButton", "identifier": "play"]))
+      bottomBar.addElementUsingConfig(LabelConfig(dictionary: ["type": "label", "identifier": "currentTime"]))
+      bottomBar.addElementUsingConfig(SliderConfig(dictionary: ["type": "slider", "identifier": "playback"]))
+      bottomBar.addElementUsingConfig(LabelConfig(dictionary: ["type": "label", "identifier": "duration"]))
     }
     addSubview(bottomBar)
   }
