@@ -21,7 +21,10 @@ class ConfigExampleViewController: ExampleViewController {
   }
 
   override func showButtonDidGetTapped() {
-    let videoURL = NSURL(string: "https://www.youtube.com/watch?v=ZR95iii14l8")!
-    presentMoviePlayerViewControllerAnimated(MobilePlayerViewController(contentURL: videoURL))
+    let config = MobilePlayerConfig(fileURL: NSBundle.mainBundle().URLForResource("SimplePlayer", withExtension: "json")!)
+    let playerVC = MobilePlayerViewController(contentURL: videoURL, config: config)
+    playerVC.title = "Planet Earth - Watermarked"
+    playerVC.activityItems = [videoURL]
+    presentMoviePlayerViewControllerAnimated(playerVC)
   }
 }

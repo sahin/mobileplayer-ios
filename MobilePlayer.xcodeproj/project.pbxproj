@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5F31B7B91BBAE39900EF50C4 /* MobilePlayerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */; };
+		5F4CED431C054A5200EF50C4 /* WatermarkedPlayer.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F4CED421C054A5200EF50C4 /* WatermarkedPlayer.json */; };
 		5F56CB721C0407F200EF50C4 /* MobilePlayerExampleStores.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F56CB711C0407F200EF50C4 /* MobilePlayerExampleStores.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5F56CB7C1C04080500EF50C4 /* ProductStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F56CB7B1C04080500EF50C4 /* ProductStore.swift */; };
 		5F56CB841C040E8D00EF50C4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F56CB831C040E8D00EF50C4 /* AppDelegate.swift */; };
@@ -129,6 +130,7 @@
 		460022C3A2D4FC80A1D57D18 /* Pods-MobilePlayerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.release.xcconfig"; sourceTree = "<group>"; };
 		505CCD80FF878F8F17EC4627 /* Pods_MobilePlayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerNotification.swift; sourceTree = "<group>"; };
+		5F4CED421C054A5200EF50C4 /* WatermarkedPlayer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WatermarkedPlayer.json; path = Resources/WatermarkedPlayer.json; sourceTree = "<group>"; };
 		5F56CB6F1C0407F200EF50C4 /* MobilePlayerExampleStores.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MobilePlayerExampleStores.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F56CB711C0407F200EF50C4 /* MobilePlayerExampleStores.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobilePlayerExampleStores.h; sourceTree = "<group>"; };
 		5F56CB731C0407F200EF50C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -256,6 +258,7 @@
 		5F01D5191C041EF400EF50C4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5F4CED421C054A5200EF50C4 /* WatermarkedPlayer.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F4CED431C054A5200EF50C4 /* WatermarkedPlayer.json in Resources */,
 				5F56CB901C040E8D00EF50C4 /* LaunchScreen.storyboard in Resources */,
 				5F56CB8D1C040E8D00EF50C4 /* Assets.xcassets in Resources */,
 			);

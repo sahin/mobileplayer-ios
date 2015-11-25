@@ -21,7 +21,9 @@ class PlainExampleViewController: ExampleViewController {
   }
 
   override func showButtonDidGetTapped() {
-    let videoURL = NSURL(string: "https://www.youtube.com/watch?v=ZR95iii14l8")!
-    presentMoviePlayerViewControllerAnimated(MobilePlayerViewController(contentURL: videoURL))
+    let playerVC = MobilePlayerViewController(contentURL: videoURL)
+    playerVC.title = "Planet Earth"
+    playerVC.activityItems = [videoURL]
+    presentMoviePlayerViewControllerAnimated(playerVC)
   }
 }
