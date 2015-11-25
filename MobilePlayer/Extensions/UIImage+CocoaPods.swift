@@ -11,7 +11,9 @@ import UIKit
 extension UIImage {
 
   convenience init?(podResourceNamed name: String) {
-    let bundleUrl = NSBundle(forClass: MobilePlayerViewController.self).URLForResource("MobilePlayer", withExtension: "bundle")!
+    let bundleUrl =
+      NSBundle(forClass: MobilePlayerViewController.self).URLForResource("MobilePlayer", withExtension: "bundle") ??
+      NSBundle(forClass: MobilePlayerViewController.self).bundleURL
     let bundle = NSBundle(URL: bundleUrl)
     self.init(named: name, inBundle: bundle, compatibleWithTraitCollection:nil)
   }
