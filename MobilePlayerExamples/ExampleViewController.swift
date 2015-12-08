@@ -16,7 +16,7 @@ class ExampleViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = UIColor.whiteColor()
+    view.backgroundColor = UIColor(red: 0.11, green: 0.11, blue: 0.11, alpha: 1)
     view.addSubview(codeImageView)
     showButton.setTitle("Show Player", forState: .Normal)
     showButton.addTarget(self, action: "showButtonDidGetTapped", forControlEvents: .TouchUpInside)
