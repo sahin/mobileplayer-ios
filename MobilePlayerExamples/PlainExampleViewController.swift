@@ -14,6 +14,7 @@ class PlainExampleViewController: ExampleViewController {
   init() {
     super.init(nibName: nil, bundle: nil)
     title = "Plain"
+    codeImageView.image = UIImage(named: "PlainExampleCode")
   }
 
   required init?(coder aDecoder: NSCoder) {
