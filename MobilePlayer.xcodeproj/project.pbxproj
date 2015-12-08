@@ -65,6 +65,7 @@
 		5FBFEA361BA8AD0200EF50C4 /* SliderConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBFEA351BA8AD0200EF50C4 /* SliderConfig.swift */; };
 		5FD756941BAC494800EF50C4 /* WatermarkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD756931BAC494800EF50C4 /* WatermarkConfig.swift */; };
 		5FD756961BAC4AE700EF50C4 /* WatermarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD756951BAC4AE700EF50C4 /* WatermarkViewController.swift */; };
+		5FF829671C168E4700EF50C4 /* ProgConfigExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF829661C168E4700EF50C4 /* ProgConfigExampleViewController.swift */; };
 		C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */; };
 		C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35497A21B70007500FDDBFF /* SkinTests.swift */; };
 		C38833C91B266C2500918C94 /* Skin.json in Resources */ = {isa = PBXBuildFile; fileRef = C38833C81B266C2500918C94 /* Skin.json */; };
@@ -189,6 +190,7 @@
 		5FBFEA351BA8AD0200EF50C4 /* SliderConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderConfig.swift; sourceTree = "<group>"; };
 		5FD756931BAC494800EF50C4 /* WatermarkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatermarkConfig.swift; sourceTree = "<group>"; };
 		5FD756951BAC4AE700EF50C4 /* WatermarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatermarkViewController.swift; sourceTree = "<group>"; };
+		5FF829661C168E4700EF50C4 /* ProgConfigExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgConfigExampleViewController.swift; sourceTree = "<group>"; };
 		6CCEC38BCAA197BDB85EEE44 /* Pods-MobilePlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.release.xcconfig"; sourceTree = "<group>"; };
 		AAC564F266BFE6E6667728D5 /* Pods-MobilePlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerConfig.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				5F56CBB01C04178C00EF50C4 /* PlainExampleViewController.swift */,
 				5F56CBB41C041DA200EF50C4 /* ConfigExampleViewController.swift */,
 				5F56CBB61C041DAE00EF50C4 /* RemoteConfigExampleViewController.swift */,
+				5FF829661C168E4700EF50C4 /* ProgConfigExampleViewController.swift */,
 				5F56CB8C1C040E8D00EF50C4 /* Assets.xcassets */,
 				5F56CB8E1C040E8D00EF50C4 /* LaunchScreen.storyboard */,
 				5F56CB911C040E8D00EF50C4 /* Info.plist */,
@@ -724,6 +727,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F56CB841C040E8D00EF50C4 /* AppDelegate.swift in Sources */,
+				5FF829671C168E4700EF50C4 /* ProgConfigExampleViewController.swift in Sources */,
 				5F56CBB71C041DAE00EF50C4 /* RemoteConfigExampleViewController.swift in Sources */,
 				5F56CBB31C04179700EF50C4 /* ExampleViewController.swift in Sources */,
 				5F56CBB11C04178C00EF50C4 /* PlainExampleViewController.swift in Sources */,

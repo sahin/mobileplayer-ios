@@ -10,7 +10,12 @@ import UIKit
 
 class ExamplesTableViewController: UITableViewController {
   private let cellReuseIdentifier = "exampleCell"
-  private let examples = [PlainExampleViewController(), ConfigExampleViewController(), RemoteConfigExampleViewController()]
+  private let examples = [
+    PlainExampleViewController(),
+    ConfigExampleViewController(),
+    RemoteConfigExampleViewController(),
+    ProgConfigExampleViewController()
+  ]
 
   init() {
     super.init(nibName: nil, bundle: nil)
