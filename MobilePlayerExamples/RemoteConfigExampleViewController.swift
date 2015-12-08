@@ -14,6 +14,7 @@ class RemoteConfigExampleViewController: ExampleViewController {
   init() {
     super.init(nibName: nil, bundle: nil)
     title = "Remote Configuration"
+    codeImageView.image = UIImage(named: "RemoteConfigExampleCode")
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -21,9 +22,10 @@ class RemoteConfigExampleViewController: ExampleViewController {
   }
 
   override func showButtonDidGetTapped() {
-    // TODO
-    let config = MobilePlayerConfig(fileURL: NSURL(string: "")!)
-    let playerVC = MobilePlayerViewController(contentURL: videoURL, config: config)
+    guard let configURL = NSURL(string: "https://goo.gl/c73ANK") else { return }
+    let playerVC = MobilePlayerViewController(
+      contentURL: videoURL,
+      config: MobilePlayerConfig(fileURL: configURL))
     playerVC.title = "Remote Player - \(videoTitle)"
     playerVC.activityItems = [videoURL]
     presentMoviePlayerViewControllerAnimated(playerVC)
