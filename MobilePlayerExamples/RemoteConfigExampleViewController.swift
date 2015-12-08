@@ -24,7 +24,7 @@ class RemoteConfigExampleViewController: ExampleViewController {
     // TODO
     let config = MobilePlayerConfig(fileURL: NSURL(string: "")!)
     let playerVC = MobilePlayerViewController(contentURL: videoURL, config: config)
-    playerVC.title = "Planet Earth - Watermarked"
+    playerVC.title = "Remote Player - \(videoTitle)"
     playerVC.activityItems = [videoURL]
     presentMoviePlayerViewControllerAnimated(playerVC)
   }

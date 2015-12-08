@@ -21,9 +21,9 @@ class ConfigExampleViewController: ExampleViewController {
   }
 
   override func showButtonDidGetTapped() {
-    let config = MobilePlayerConfig(fileURL: NSBundle.mainBundle().URLForResource("SimplePlayer", withExtension: "json")!)
+    let config = MobilePlayerConfig(fileURL: NSBundle.mainBundle().URLForResource("WatermarkedPlayer", withExtension: "json")!)
     let playerVC = MobilePlayerViewController(contentURL: videoURL, config: config)
-    playerVC.title = "Planet Earth - Watermarked"
+    playerVC.title = "Watermarked Player - \(videoTitle)"
     playerVC.activityItems = [videoURL]
     presentMoviePlayerViewControllerAnimated(playerVC)
   }
