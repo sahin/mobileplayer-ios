@@ -14,6 +14,7 @@ class ConfigExampleViewController: ExampleViewController {
   init() {
     super.init(nibName: nil, bundle: nil)
     title = "Configuration"
+    codeImageView.image = UIImage(named: "ConfigExampleCode")
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -21,8 +22,13 @@ class ConfigExampleViewController: ExampleViewController {
   }
 
   override func showButtonDidGetTapped() {
-    let config = MobilePlayerConfig(fileURL: NSBundle.mainBundle().URLForResource("WatermarkedPlayer", withExtension: "json")!)
-    let playerVC = MobilePlayerViewController(contentURL: videoURL, config: config)
+    let bundle = NSBundle.mainBundle()
+    let config = MobilePlayerConfig(fileURL: bundle.URLForResource(
+      "WatermarkedPlayer",
+      withExtension: "json")!)
+    let playerVC = MobilePlayerViewController(
+      contentURL: videoURL,
+      config: config)
     playerVC.title = "Watermarked Player - \(videoTitle)"
     playerVC.activityItems = [videoURL]
     presentMoviePlayerViewControllerAnimated(playerVC)
