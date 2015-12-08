@@ -11,8 +11,8 @@ import MobilePlayer
 
 class PlainExampleViewController: ExampleViewController {
 
-  init() {
-    super.init(nibName: nil, bundle: nil)
+  override init() {
+    super.init()
     title = "Plain"
     codeImageView.image = UIImage(named: "PlainExampleCode")
   }

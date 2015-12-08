@@ -11,8 +11,8 @@ import MobilePlayer
 
 class RemoteConfigExampleViewController: ExampleViewController {
 
-  init() {
-    super.init(nibName: nil, bundle: nil)
+  override init() {
+    super.init()
     title = "Remote Configuration"
     codeImageView.image = UIImage(named: "RemoteConfigExampleCode")
   }
@@ -26,7 +26,7 @@ class RemoteConfigExampleViewController: ExampleViewController {
     let playerVC = MobilePlayerViewController(
       contentURL: videoURL,
       config: MobilePlayerConfig(fileURL: configURL))
-    playerVC.title = "Remote Player - \(videoTitle)"
+    playerVC.title = "Watermarked Player - \(videoTitle)"
     playerVC.activityItems = [videoURL]
     presentMoviePlayerViewControllerAnimated(playerVC)
   }

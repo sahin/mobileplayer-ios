@@ -11,8 +11,8 @@ import MobilePlayer
 
 class ConfigExampleViewController: ExampleViewController {
 
-  init() {
-    super.init(nibName: nil, bundle: nil)
+  override init() {
+    super.init()
     title = "Configuration"
     codeImageView.image = UIImage(named: "ConfigExampleCode")
   }
