@@ -26,6 +26,7 @@
 		5F56CBB71C041DAE00EF50C4 /* RemoteConfigExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F56CBB61C041DAE00EF50C4 /* RemoteConfigExampleViewController.swift */; };
 		5F6AF3701BA96EF000EF50C4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6AF36F1BA96EF000EF50C4 /* Button.swift */; };
 		5F749C261BAB2C8900EF50C4 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F749C251BAB2C8900EF50C4 /* Element.swift */; };
+		5F7974781C17B02200EF50C4 /* OverlayExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7974771C17B02200EF50C4 /* OverlayExampleViewController.swift */; };
 		5F7CDF471BBEB6C400EF50C4 /* YoutubeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF461BBEB6C400EF50C4 /* YoutubeParser.swift */; };
 		5F7CDF491BBEB6DD00EF50C4 /* StateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF481BBEB6DD00EF50C4 /* StateHelper.swift */; };
 		5F7CDF4B1BBEB6F900EF50C4 /* VolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF4A1BBEB6F900EF50C4 /* VolumeView.swift */; };
@@ -65,7 +66,9 @@
 		5FBFEA361BA8AD0200EF50C4 /* SliderConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FBFEA351BA8AD0200EF50C4 /* SliderConfig.swift */; };
 		5FD756941BAC494800EF50C4 /* WatermarkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD756931BAC494800EF50C4 /* WatermarkConfig.swift */; };
 		5FD756961BAC4AE700EF50C4 /* WatermarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD756951BAC4AE700EF50C4 /* WatermarkViewController.swift */; };
+		5FF829651C168ACC00EF50C4 /* AdvancedConfigExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF829641C168ACC00EF50C4 /* AdvancedConfigExampleViewController.swift */; };
 		5FF829671C168E4700EF50C4 /* ProgConfigExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF829661C168E4700EF50C4 /* ProgConfigExampleViewController.swift */; };
+		5FF829691C16924400EF50C4 /* MovielalaPlayer.json in Resources */ = {isa = PBXBuildFile; fileRef = 5FF829681C16924400EF50C4 /* MovielalaPlayer.json */; };
 		C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */; };
 		C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35497A21B70007500FDDBFF /* SkinTests.swift */; };
 		C38833C91B266C2500918C94 /* Skin.json in Resources */ = {isa = PBXBuildFile; fileRef = C38833C81B266C2500918C94 /* Skin.json */; };
@@ -151,6 +154,7 @@
 		5F56CBB61C041DAE00EF50C4 /* RemoteConfigExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteConfigExampleViewController.swift; sourceTree = "<group>"; };
 		5F6AF36F1BA96EF000EF50C4 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button.swift; path = Views/Button.swift; sourceTree = "<group>"; };
 		5F749C251BAB2C8900EF50C4 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Element.swift; path = Views/Element.swift; sourceTree = "<group>"; };
+		5F7974771C17B02200EF50C4 /* OverlayExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayExampleViewController.swift; sourceTree = "<group>"; };
 		5F7CDF461BBEB6C400EF50C4 /* YoutubeParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YoutubeParser.swift; path = MobilePlayer/Parsers/YoutubeParser.swift; sourceTree = SOURCE_ROOT; };
 		5F7CDF481BBEB6DD00EF50C4 /* StateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StateHelper.swift; path = Helpers/StateHelper.swift; sourceTree = "<group>"; };
 		5F7CDF4A1BBEB6F900EF50C4 /* VolumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VolumeView.swift; path = Views/VolumeView.swift; sourceTree = "<group>"; };
@@ -190,7 +194,9 @@
 		5FBFEA351BA8AD0200EF50C4 /* SliderConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SliderConfig.swift; sourceTree = "<group>"; };
 		5FD756931BAC494800EF50C4 /* WatermarkConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatermarkConfig.swift; sourceTree = "<group>"; };
 		5FD756951BAC4AE700EF50C4 /* WatermarkViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatermarkViewController.swift; sourceTree = "<group>"; };
+		5FF829641C168ACC00EF50C4 /* AdvancedConfigExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedConfigExampleViewController.swift; sourceTree = "<group>"; };
 		5FF829661C168E4700EF50C4 /* ProgConfigExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgConfigExampleViewController.swift; sourceTree = "<group>"; };
+		5FF829681C16924400EF50C4 /* MovielalaPlayer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = MovielalaPlayer.json; path = Resources/MovielalaPlayer.json; sourceTree = "<group>"; };
 		6CCEC38BCAA197BDB85EEE44 /* Pods-MobilePlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.release.xcconfig"; sourceTree = "<group>"; };
 		AAC564F266BFE6E6667728D5 /* Pods-MobilePlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerConfig.swift; sourceTree = "<group>"; };
@@ -261,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				5F4CED421C054A5200EF50C4 /* WatermarkedPlayer.json */,
+				5FF829681C16924400EF50C4 /* MovielalaPlayer.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -286,6 +293,8 @@
 				5F56CBB41C041DA200EF50C4 /* ConfigExampleViewController.swift */,
 				5F56CBB61C041DAE00EF50C4 /* RemoteConfigExampleViewController.swift */,
 				5FF829661C168E4700EF50C4 /* ProgConfigExampleViewController.swift */,
+				5FF829641C168ACC00EF50C4 /* AdvancedConfigExampleViewController.swift */,
+				5F7974771C17B02200EF50C4 /* OverlayExampleViewController.swift */,
 				5F56CB8C1C040E8D00EF50C4 /* Assets.xcassets */,
 				5F56CB8E1C040E8D00EF50C4 /* LaunchScreen.storyboard */,
 				5F56CB911C040E8D00EF50C4 /* Info.plist */,
@@ -664,6 +673,7 @@
 			files = (
 				5F4CED431C054A5200EF50C4 /* WatermarkedPlayer.json in Resources */,
 				5F56CB901C040E8D00EF50C4 /* LaunchScreen.storyboard in Resources */,
+				5FF829691C16924400EF50C4 /* MovielalaPlayer.json in Resources */,
 				5F56CB8D1C040E8D00EF50C4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -728,9 +738,11 @@
 			files = (
 				5F56CB841C040E8D00EF50C4 /* AppDelegate.swift in Sources */,
 				5FF829671C168E4700EF50C4 /* ProgConfigExampleViewController.swift in Sources */,
+				5F7974781C17B02200EF50C4 /* OverlayExampleViewController.swift in Sources */,
 				5F56CBB71C041DAE00EF50C4 /* RemoteConfigExampleViewController.swift in Sources */,
 				5F56CBB31C04179700EF50C4 /* ExampleViewController.swift in Sources */,
 				5F56CBB11C04178C00EF50C4 /* PlainExampleViewController.swift in Sources */,
+				5FF829651C168ACC00EF50C4 /* AdvancedConfigExampleViewController.swift in Sources */,
 				5F56CBB51C041DA200EF50C4 /* ConfigExampleViewController.swift in Sources */,
 				5F56CBA91C04102300EF50C4 /* ExamplesTableViewController.swift in Sources */,
 			);

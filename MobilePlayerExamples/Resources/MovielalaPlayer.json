@@ -1,0 +1,54 @@
+{
+  "watermark": {
+    "image": "MovielalaLogo",
+    "position": "topRight"
+  },
+  "topBar": {
+    "backgroundColor": ["#a60500b0", "#a60500a0"],
+    "elements": [
+      {
+        "type": "button",
+        "identifier": "close"
+      },
+      {
+        "type": "slider",
+        "identifier": "playback",
+        "trackHeight": 6,
+        "trackCornerRadius": 3,
+        "minimumTrackTintColor": "#eee",
+        "availableTrackTintColor": "#9e9b9a",
+        "maximumTrackTintColor": "#cccccc",
+        "thumbTintColor": "#f9f9f9",
+        "thumbBorderWidth": 1,
+        "thumbBorderColor": "#fff",
+        "marginRight": 4
+      }
+    ]
+  },
+  "bottomBar": {
+    "backgroundColor": ["#a60500a0", "#a60500b0"],
+    "elements": [
+      {
+        "type": "label",
+        "text": "Now Watching",
+        "font": "Baskerville",
+        "size": 12,
+        "marginLeft": 8,
+        "marginRight": 8
+      },
+      {
+        "type": "label",
+        "identifier": "title",
+        "size": 14
+      },
+      {
+        "type": "button",
+        "identifier": "action"
+      },
+      {
+        "type": "toggleButton",
+        "identifier": "play"
+      }
+    ]
+  }
+}

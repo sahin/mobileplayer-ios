@@ -14,12 +14,13 @@ class ExamplesTableViewController: UITableViewController {
     PlainExampleViewController(),
     ConfigExampleViewController(),
     RemoteConfigExampleViewController(),
-    ProgConfigExampleViewController()
+    ProgConfigExampleViewController(),
+    AdvancedConfigExampleViewController()
   ]
 
   init() {
     super.init(nibName: nil, bundle: nil)
-    title = "Examples"
+    title = "MobilePlayer Examples"
     tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
   }
 
