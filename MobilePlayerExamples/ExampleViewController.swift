@@ -31,10 +31,11 @@ class ExampleViewController: UIViewController {
 
   override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
-    let size = view.frame.size;
+    let size = view.frame.size
+    let top = topLayoutGuide.length
     codeImageView.sizeToFit()
     codeImageView.frame.origin.x = (size.width - codeImageView.frame.size.width) / 2
-    codeImageView.frame.origin.y = (size.height - codeImageView.frame.size.height) / 2
+    codeImageView.frame.origin.y = top + (size.height - top - codeImageView.frame.size.height) / 2
   }
 
   func showButtonDidGetTapped() {
