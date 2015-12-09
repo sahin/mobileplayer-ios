@@ -9,22 +9,27 @@
 import Foundation
 
 public class ProductStore {
-  private let products = [
-    "1": Product(id: "1", name: "", description: "", price: 9.99, link: ""),
+  private static let products = [
+    "1": Product(
+      id: "1",
+      name: "Dark Side Galactic Clubs",
+      description: "Limited time offer! Pay once for a life time membership in our exclusive club!",
+      price: 9.99,
+      link: "http://google.com"),
     "2": Product(id: "2", name: "", description: "", price: 19.99, link: ""),
     "3": Product(id: "3", name: "", description: "", price: 40.49, link: "")]
-  private let placements = [
+  private static let placements = [
     "1": [
-      ProductPlacement(productID: "1", startTime: 4.49, endTime: 7.45),
-      ProductPlacement(productID: "2", startTime: 3, endTime: 10)],
+      ProductPlacement(productID: "1", startTime: nil, endTime: nil)],
     "2": [
-      ProductPlacement(productID: "3", startTime: 6, endTime: 9)]]
-
-  public func getProduct(productID: String, success: (Product? -> Void), failure: ((NSError) -> Void)?) {
+      ProductPlacement(productID: "2", startTime: 4.49, endTime: 7.45),
+      ProductPlacement(productID: "3", startTime: 3, endTime: 10)]]
+  
+  public static func getProduct(productID: String, success: Product? -> Void, failure: (NSError -> Void)? = nil) {
     success(products[productID])
   }
-
-  public func getProductPlacementsForVideo(videoID: String, success: ([ProductPlacement]? -> Void), failure: ((NSError) -> Void)?) {
+  
+  public static func getProductPlacementsForVideo(videoID: String, success: [ProductPlacement]? -> Void, failure: (NSError -> Void)? = nil) {
     success(placements[videoID])
   }
 }
@@ -35,7 +40,7 @@ public struct Product {
   public let description: String
   public let price: Double
   public let link: String
-
+  
   public var linkURL: NSURL? {
     return NSURL(string: link)
   }
@@ -43,6 +48,6 @@ public struct Product {
 
 public struct ProductPlacement {
   public let productID: String
-  public let startTime: NSTimeInterval
-  public let endTime: NSTimeInterval
+  public let startTime: NSTimeInterval?
+  public let endTime: NSTimeInterval?
 }
