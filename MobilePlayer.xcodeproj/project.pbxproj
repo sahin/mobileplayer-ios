@@ -28,6 +28,7 @@
 		5F749C261BAB2C8900EF50C4 /* Element.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F749C251BAB2C8900EF50C4 /* Element.swift */; };
 		5F7974781C17B02200EF50C4 /* OverlayExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7974771C17B02200EF50C4 /* OverlayExampleViewController.swift */; };
 		5F79747A1C17B67F00EF50C4 /* BuyOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7974791C17B67F00EF50C4 /* BuyOverlayViewController.swift */; };
+		5F79747C1C17ED7800EF50C4 /* TimedOverlayExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F79747B1C17ED7800EF50C4 /* TimedOverlayExampleViewController.swift */; };
 		5F7CDF471BBEB6C400EF50C4 /* YoutubeParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF461BBEB6C400EF50C4 /* YoutubeParser.swift */; };
 		5F7CDF491BBEB6DD00EF50C4 /* StateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF481BBEB6DD00EF50C4 /* StateHelper.swift */; };
 		5F7CDF4B1BBEB6F900EF50C4 /* VolumeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7CDF4A1BBEB6F900EF50C4 /* VolumeView.swift */; };
@@ -157,6 +158,7 @@
 		5F749C251BAB2C8900EF50C4 /* Element.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Element.swift; path = Views/Element.swift; sourceTree = "<group>"; };
 		5F7974771C17B02200EF50C4 /* OverlayExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverlayExampleViewController.swift; sourceTree = "<group>"; };
 		5F7974791C17B67F00EF50C4 /* BuyOverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BuyOverlayViewController.swift; sourceTree = "<group>"; };
+		5F79747B1C17ED7800EF50C4 /* TimedOverlayExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimedOverlayExampleViewController.swift; sourceTree = "<group>"; };
 		5F7CDF461BBEB6C400EF50C4 /* YoutubeParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = YoutubeParser.swift; path = MobilePlayer/Parsers/YoutubeParser.swift; sourceTree = SOURCE_ROOT; };
 		5F7CDF481BBEB6DD00EF50C4 /* StateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StateHelper.swift; path = Helpers/StateHelper.swift; sourceTree = "<group>"; };
 		5F7CDF4A1BBEB6F900EF50C4 /* VolumeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VolumeView.swift; path = Views/VolumeView.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 				5FF829641C168ACC00EF50C4 /* AdvancedConfigExampleViewController.swift */,
 				5F7974771C17B02200EF50C4 /* OverlayExampleViewController.swift */,
 				5F7974791C17B67F00EF50C4 /* BuyOverlayViewController.swift */,
+				5F79747B1C17ED7800EF50C4 /* TimedOverlayExampleViewController.swift */,
 				5F56CB8C1C040E8D00EF50C4 /* Assets.xcassets */,
 				5F56CB8E1C040E8D00EF50C4 /* LaunchScreen.storyboard */,
 				5F56CB911C040E8D00EF50C4 /* Info.plist */,
@@ -740,6 +743,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F56CB841C040E8D00EF50C4 /* AppDelegate.swift in Sources */,
+				5F79747C1C17ED7800EF50C4 /* TimedOverlayExampleViewController.swift in Sources */,
 				5FF829671C168E4700EF50C4 /* ProgConfigExampleViewController.swift in Sources */,
 				5F7974781C17B02200EF50C4 /* OverlayExampleViewController.swift in Sources */,
 				5F56CBB71C041DAE00EF50C4 /* RemoteConfigExampleViewController.swift in Sources */,

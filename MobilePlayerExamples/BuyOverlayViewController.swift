@@ -17,7 +17,8 @@ class BuyOverlayViewController: MobilePlayerOverlayViewController {
   let nameLabel = UILabel(frame: CGRectZero)
   let buyButton = UIButton(frame: CGRectZero)
   let buyLink: NSURL?
-  
+  var containerOffset = CGPointZero
+
   init(product: Product) {
     buyLink = product.linkURL
     super.init(nibName: nil, bundle: nil)
@@ -28,7 +29,7 @@ class BuyOverlayViewController: MobilePlayerOverlayViewController {
     containerView.addSubview(descriptionLabel)
     nameLabel.text = product.name
     nameLabel.textColor = UIColor.whiteColor()
-    nameLabel.font = UIFont.systemFontOfSize(8, weight: UIFontWeightUltraLight)
+    nameLabel.font = UIFont.systemFontOfSize(7, weight: UIFontWeightUltraLight)
     containerView.addSubview(nameLabel)
     buyButton.setTitle("Get Now", forState: .Normal)
     buyButton.titleLabel?.font = UIFont.systemFontOfSize(8, weight: UIFontWeightBold)
@@ -37,16 +38,30 @@ class BuyOverlayViewController: MobilePlayerOverlayViewController {
     buyButton.addTarget(self, action: "buyButtonDidGetTapped", forControlEvents: .TouchUpInside)
     containerView.addSubview(buyButton)
   }
-  
+
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
-  
+
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(containerView)
   }
-  
+
+  override func didMoveToParentViewController(parent: UIViewController?) {
+    super.didMoveToParentViewController(parent)
+    // Update container offset so as not to intersect with other overlays' containers
+    containerOffset = CGPointZero
+    guard let superview = view.superview else { return }
+    for (index, overlayView) in superview.subviews.enumerate() {
+      if (parentViewController?.childViewControllers[index] == self)
+        || !CGRectIntersectsRect(overlayView.subviews[0].frame, view.frame) {
+        return
+      }
+      containerOffset.x += overlayView.subviews[0].frame.size.width + 8
+    }
+  }
+
   override func viewWillLayoutSubviews() {
     super.viewWillLayoutSubviews()
     let availableSize = CGSize(width: BuyOverlayViewController.maxWidth - 16, height: CGFloat.infinity)
@@ -63,8 +78,9 @@ class BuyOverlayViewController: MobilePlayerOverlayViewController {
     buyButton.frame.origin.y = totalHeight
     totalHeight += buyButton.frame.size.height + 8
     containerView.frame.size = CGSize(width: descriptionLabel.frame.size.width + 16, height: totalHeight)
+    containerView.frame.origin = containerOffset
   }
-  
+
   func buyButtonDidGetTapped() {
     guard let buyLink = buyLink else { return }
     UIApplication.sharedApplication().openURL(buyLink)
