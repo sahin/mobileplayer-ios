@@ -12,6 +12,7 @@ class ExampleViewController: UIViewController {
   let codeImageView = UIImageView(frame: CGRectZero)
   let videoURL = NSURL(string: "https://movielalavideos.blob.core.windows.net/videos/563cb51788b8c6db4b000376.mp4")!
   let videoTitle = "Star Wars: Episode VII - The Force Awakens - International Trailer"
+  let videoID = "1"
 
   init() {
     super.init(nibName: nil, bundle: nil)
