@@ -81,17 +81,12 @@
 		5FF829671C168E4700EF50C4 /* ProgConfigExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF829661C168E4700EF50C4 /* ProgConfigExampleViewController.swift */; };
 		5FF829691C16924400EF50C4 /* MovielalaPlayer.json in Resources */ = {isa = PBXBuildFile; fileRef = 5FF829681C16924400EF50C4 /* MovielalaPlayer.json */; };
 		C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */; };
-		C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C35497A21B70007500FDDBFF /* SkinTests.swift */; };
-		C38833C91B266C2500918C94 /* Skin.json in Resources */ = {isa = PBXBuildFile; fileRef = C38833C81B266C2500918C94 /* Skin.json */; };
-		C39C749F1B75400700E6CD21 /* KIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39C749E1B75400700E6CD21 /* KIF.framework */; };
-		C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */; };
 		C3A406AF1B27AA8C00D1833D /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */; };
 		C3A406B01B27AA9500D1833D /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */; };
 		CE554D551AFE6CCD00DAC7E9 /* MobilePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = CE554D541AFE6CCD00DAC7E9 /* MobilePlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CE554D5B1AFE6CCD00DAC7E9 /* MobilePlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE554D4F1AFE6CCD00DAC7E9 /* MobilePlayer.framework */; };
 		CE554D731AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6E1AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift */; };
 		CE554D741AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE554D6F1AFE6EBB00DAC7E9 /* MobilePlayerViewController.swift */; };
-		EEA04B28926490156EB2A4F1 /* Pods_MobilePlayerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 505CCD80FF878F8F17EC4627 /* Pods_MobilePlayerTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,10 +217,8 @@
 		6CCEC38BCAA197BDB85EEE44 /* Pods-MobilePlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.release.xcconfig"; sourceTree = "<group>"; };
 		AAC564F266BFE6E6667728D5 /* Pods-MobilePlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayer/Pods-MobilePlayer.debug.xcconfig"; sourceTree = "<group>"; };
 		C308B3BE1B150F7600CB1515 /* MobilePlayerConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerConfig.swift; sourceTree = "<group>"; };
-		C35497A21B70007500FDDBFF /* SkinTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkinTests.swift; sourceTree = "<group>"; };
 		C38833C81B266C2500918C94 /* Skin.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Skin.json; sourceTree = "<group>"; };
 		C39C749E1B75400700E6CD21 /* KIF.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KIF.framework; path = "Pods/../build/Debug-iphoneos/KIF.framework"; sourceTree = "<group>"; };
-		C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YoutubeTests.swift; sourceTree = "<group>"; };
 		C3A406AE1B27AA8C00D1833D /* UIColor+Hex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Hex.swift"; sourceTree = "<group>"; };
 		C3ADD7B61B6C327E00E82C3B /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = "Pods/../build/Debug-iphoneos/Pods-MobilePlayerExample/SnapKit.framework"; sourceTree = "<group>"; };
 		CE554D4F1AFE6CCD00DAC7E9 /* MobilePlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MobilePlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -276,9 +269,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C39C749F1B75400700E6CD21 /* KIF.framework in Frameworks */,
 				CE554D5B1AFE6CCD00DAC7E9 /* MobilePlayer.framework in Frameworks */,
-				EEA04B28926490156EB2A4F1 /* Pods_MobilePlayerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,8 +492,6 @@
 		CE554D5E1AFE6CCD00DAC7E9 /* MobilePlayerTests */ = {
 			isa = PBXGroup;
 			children = (
-				C3A406AC1B27A8DE00D1833D /* YoutubeTests.swift */,
-				C35497A21B70007500FDDBFF /* SkinTests.swift */,
 				CE554D5F1AFE6CCD00DAC7E9 /* Supporting Files */,
 			);
 			path = MobilePlayerTests;
@@ -853,8 +842,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3A406B01B27AA9500D1833D /* UIColor+Hex.swift in Sources */,
-				C35497A31B70007500FDDBFF /* SkinTests.swift in Sources */,
-				C3A406AD1B27A8DE00D1833D /* YoutubeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1117,7 +1104,6 @@
 		};
 		CE554D691AFE6CCD00DAC7E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A3D625F8D46F7B3823A9927 /* Pods-MobilePlayerTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1140,7 +1126,6 @@
 		};
 		CE554D6A1AFE6CCD00DAC7E9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 460022C3A2D4FC80A1D57D18 /* Pods-MobilePlayerTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
