@@ -469,9 +469,6 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       isFirstPlay = false
       controlsView.previewImageView.hidden = true
       controlsView.activityIndicatorView.stopAnimating()
-      guard let durationLabel = getViewForElementWithIdentifier("duration") as? Label else { return }
-      durationLabel.text = textForPlaybackTime(moviePlayer.duration)
-      durationLabel.superview?.setNeedsLayout()
     }
   }
 
@@ -496,6 +493,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     if let remainingTimeLabel = getViewForElementWithIdentifier("remainingTime") as? Label {
       remainingTimeLabel.text = "-\(textForPlaybackTime(moviePlayer.duration - moviePlayer.currentPlaybackTime))"
       remainingTimeLabel.superview?.setNeedsLayout()
+    }
+    if let durationLabel = getViewForElementWithIdentifier("duration") as? Label {
+      durationLabel.text = textForPlaybackTime(moviePlayer.duration)
+      durationLabel.superview?.setNeedsLayout()
     }
     updateShownTimedOverlays()
   }
