@@ -67,36 +67,36 @@ public class SliderConfig: ElementConfig {
   /// - parameters:
   ///   - dictionary: Toggle button configuration dictionary.
   public override init(dictionary: [String: AnyObject]) {
-    trackHeight = (dictionary["trackHeight"] as? CGFloat) ?? 4
-    trackCornerRadius = (dictionary["trackCornerRadius"] as? CGFloat) ?? 2
+    trackHeight = (dictionary["trackHeight"] as? CGFloat) ?? 6
+    trackCornerRadius = (dictionary["trackCornerRadius"] as? CGFloat) ?? 3
 
     if let minimumTrackTintColorHex = dictionary["minimumTrackTintColor"] as? String {
       minimumTrackTintColor = UIColor(hex: minimumTrackTintColorHex)
     } else {
-      minimumTrackTintColor = UIColor.blueColor()
+      minimumTrackTintColor = UIColor(white: 0.9, alpha: 1)
     }
 
     if let availableTrackTintColorHex = dictionary["availableTrackTintColor"] as? String {
       availableTrackTintColor = UIColor(hex: availableTrackTintColorHex)
     } else {
-      availableTrackTintColor = UIColor.grayColor()
+      availableTrackTintColor = UIColor(white: 0.6, alpha: 1)
     }
 
     if let maximumTrackTintColorHex = dictionary["maximumTrackTintColor"] as? String {
       maximumTrackTintColor = UIColor(hex: maximumTrackTintColorHex)
     } else {
-      maximumTrackTintColor = UIColor.darkGrayColor()
+      maximumTrackTintColor = UIColor(white: 0.3, alpha: 1)
     }
 
     if let thumbTintColorHex = dictionary["thumbTintColor"] as? String {
       thumbTintColor = UIColor(hex: thumbTintColorHex)
     } else {
-      thumbTintColor = UIColor.lightGrayColor()
+      thumbTintColor = UIColor.whiteColor()
     }
 
-    thumbWidth = (dictionary["thumbWidth"] as? CGFloat) ?? 22
-    thumbHeight = (dictionary["thumbHeight"] as? CGFloat) ?? 22
-    thumbCornerRadius = (dictionary["thumbCornerRadius"] as? CGFloat) ?? 11
+    thumbWidth = (dictionary["thumbWidth"] as? CGFloat) ?? 16
+    thumbHeight = (dictionary["thumbHeight"] as? CGFloat) ?? 16
+    thumbCornerRadius = (dictionary["thumbCornerRadius"] as? CGFloat) ?? 8
     thumbBorderWidth = (dictionary["thumbBorderWidth"] as? CGFloat) ?? 0
 
     if let thumbBorderColorHex = dictionary["thumbBorderColor"] as? String {
