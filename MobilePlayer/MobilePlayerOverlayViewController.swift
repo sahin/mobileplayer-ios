@@ -22,6 +22,12 @@ protocol MobilePlayerOverlayViewControllerDelegate: class {
 public class MobilePlayerOverlayViewController: UIViewController {
   weak var delegate: MobilePlayerOverlayViewControllerDelegate?
 
+  /// The MobilePlayerViewController instance that the overlay is being shown by.
+  /// It's value is nil if the overlay is not being shown at the time this property is accessed.
+  public var mobilePlayer: MobilePlayerViewController? {
+    return delegate as? MobilePlayerViewController
+  }
+
   /// Causes the view controller's view to be removed from on top of player content if it is being displayed.
   public func dismiss() {
     delegate?.dismissMobilePlayerOverlayViewController(self)
