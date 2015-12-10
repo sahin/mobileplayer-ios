@@ -15,6 +15,8 @@
 		5F3F03CD1C18EA4900EF50C4 /* PrerollOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F3F03CC1C18EA4900EF50C4 /* PrerollOverlayViewController.xib */; };
 		5F3F03CF1C18F3DA00EF50C4 /* PauseOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3F03CE1C18F3DA00EF50C4 /* PauseOverlayViewController.swift */; };
 		5F3F03D11C18FED600EF50C4 /* PauseOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F3F03D01C18FED600EF50C4 /* PauseOverlayViewController.xib */; };
+		5F3F03D31C1903E200EF50C4 /* PostrollOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3F03D21C1903E200EF50C4 /* PostrollOverlayViewController.swift */; };
+		5F3F03D51C1903EF00EF50C4 /* PostrollOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F3F03D41C1903EF00EF50C4 /* PostrollOverlayViewController.xib */; };
 		5F4CED431C054A5200EF50C4 /* WatermarkedPlayer.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F4CED421C054A5200EF50C4 /* WatermarkedPlayer.json */; };
 		5F56CB721C0407F200EF50C4 /* MobilePlayerExampleStores.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F56CB711C0407F200EF50C4 /* MobilePlayerExampleStores.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5F56CB7C1C04080500EF50C4 /* ProductStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F56CB7B1C04080500EF50C4 /* ProductStore.swift */; };
@@ -150,6 +152,8 @@
 		5F3F03CC1C18EA4900EF50C4 /* PrerollOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrerollOverlayViewController.xib; sourceTree = "<group>"; };
 		5F3F03CE1C18F3DA00EF50C4 /* PauseOverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseOverlayViewController.swift; sourceTree = "<group>"; };
 		5F3F03D01C18FED600EF50C4 /* PauseOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PauseOverlayViewController.xib; sourceTree = "<group>"; };
+		5F3F03D21C1903E200EF50C4 /* PostrollOverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostrollOverlayViewController.swift; sourceTree = "<group>"; };
+		5F3F03D41C1903EF00EF50C4 /* PostrollOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostrollOverlayViewController.xib; sourceTree = "<group>"; };
 		5F4CED421C054A5200EF50C4 /* WatermarkedPlayer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WatermarkedPlayer.json; path = Resources/WatermarkedPlayer.json; sourceTree = "<group>"; };
 		5F56CB6F1C0407F200EF50C4 /* MobilePlayerExampleStores.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MobilePlayerExampleStores.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F56CB711C0407F200EF50C4 /* MobilePlayerExampleStores.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobilePlayerExampleStores.h; sourceTree = "<group>"; };
@@ -315,6 +319,8 @@
 				5F3F03CC1C18EA4900EF50C4 /* PrerollOverlayViewController.xib */,
 				5F3F03CE1C18F3DA00EF50C4 /* PauseOverlayViewController.swift */,
 				5F3F03D01C18FED600EF50C4 /* PauseOverlayViewController.xib */,
+				5F3F03D21C1903E200EF50C4 /* PostrollOverlayViewController.swift */,
+				5F3F03D41C1903EF00EF50C4 /* PostrollOverlayViewController.xib */,
 			);
 			name = Overlays;
 			sourceTree = "<group>";
@@ -718,6 +724,7 @@
 				5F4CED431C054A5200EF50C4 /* WatermarkedPlayer.json in Resources */,
 				5F3F03CD1C18EA4900EF50C4 /* PrerollOverlayViewController.xib in Resources */,
 				5F56CB901C040E8D00EF50C4 /* LaunchScreen.storyboard in Resources */,
+				5F3F03D51C1903EF00EF50C4 /* PostrollOverlayViewController.xib in Resources */,
 				5FF829691C16924400EF50C4 /* MovielalaPlayer.json in Resources */,
 				5F56CB8D1C040E8D00EF50C4 /* Assets.xcassets in Resources */,
 			);
@@ -787,6 +794,7 @@
 				5F79747C1C17ED7800EF50C4 /* TimedOverlayExampleViewController.swift in Sources */,
 				5F3F03CF1C18F3DA00EF50C4 /* PauseOverlayViewController.swift in Sources */,
 				5FF829671C168E4700EF50C4 /* ProgConfigExampleViewController.swift in Sources */,
+				5F3F03D31C1903E200EF50C4 /* PostrollOverlayViewController.swift in Sources */,
 				5F7974781C17B02200EF50C4 /* OverlayExampleViewController.swift in Sources */,
 				5F56CBB71C041DAE00EF50C4 /* RemoteConfigExampleViewController.swift in Sources */,
 				5F56CBB31C04179700EF50C4 /* ExampleViewController.swift in Sources */,
