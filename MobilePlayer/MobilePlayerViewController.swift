@@ -585,6 +585,9 @@ extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate 
     overlayViewController.willMoveToParentViewController(nil)
     overlayViewController.view.removeFromSuperview()
     overlayViewController.removeFromParentViewController()
+    if overlayViewController == prerollViewController {
+      play()
+    }
   }
 }
 
