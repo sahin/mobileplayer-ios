@@ -286,11 +286,16 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   /// Initiates playback of current content.
+  ///
+  /// Starting playback causes dismiss to be called on prerollViewController, pauseOverlayViewController
+  /// and postrollViewController.
   public func play() {
     moviePlayer.play()
   }
 
   /// Pauses playback of current content.
+  ///
+  /// Pausing playback causes pauseOverlayViewController to be shown.
   public func pause() {
     moviePlayer.pause()
   }
