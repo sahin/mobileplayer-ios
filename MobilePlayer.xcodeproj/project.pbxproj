@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		5F31B7B91BBAE39900EF50C4 /* MobilePlayerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */; };
+		5F3F03C31C18E73200EF50C4 /* PrerollExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3F03C21C18E73200EF50C4 /* PrerollExampleViewController.swift */; };
+		5F3F03C51C18E74000EF50C4 /* PauseOverlayExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3F03C41C18E74000EF50C4 /* PauseOverlayExampleViewController.swift */; };
+		5F3F03C71C18E75300EF50C4 /* PostrollExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3F03C61C18E75300EF50C4 /* PostrollExampleViewController.swift */; };
+		5F3F03CB1C18EA2A00EF50C4 /* PrerollOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3F03CA1C18EA2A00EF50C4 /* PrerollOverlayViewController.swift */; };
+		5F3F03CD1C18EA4900EF50C4 /* PrerollOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F3F03CC1C18EA4900EF50C4 /* PrerollOverlayViewController.xib */; };
+		5F3F03CF1C18F3DA00EF50C4 /* PauseOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3F03CE1C18F3DA00EF50C4 /* PauseOverlayViewController.swift */; };
+		5F3F03D11C18FED600EF50C4 /* PauseOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F3F03D01C18FED600EF50C4 /* PauseOverlayViewController.xib */; };
 		5F4CED431C054A5200EF50C4 /* WatermarkedPlayer.json in Resources */ = {isa = PBXBuildFile; fileRef = 5F4CED421C054A5200EF50C4 /* WatermarkedPlayer.json */; };
 		5F56CB721C0407F200EF50C4 /* MobilePlayerExampleStores.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F56CB711C0407F200EF50C4 /* MobilePlayerExampleStores.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5F56CB7C1C04080500EF50C4 /* ProductStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F56CB7B1C04080500EF50C4 /* ProductStore.swift */; };
@@ -136,6 +143,13 @@
 		460022C3A2D4FC80A1D57D18 /* Pods-MobilePlayerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.release.xcconfig"; sourceTree = "<group>"; };
 		505CCD80FF878F8F17EC4627 /* Pods_MobilePlayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobilePlayerNotification.swift; sourceTree = "<group>"; };
+		5F3F03C21C18E73200EF50C4 /* PrerollExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrerollExampleViewController.swift; sourceTree = "<group>"; };
+		5F3F03C41C18E74000EF50C4 /* PauseOverlayExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseOverlayExampleViewController.swift; sourceTree = "<group>"; };
+		5F3F03C61C18E75300EF50C4 /* PostrollExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostrollExampleViewController.swift; sourceTree = "<group>"; };
+		5F3F03CA1C18EA2A00EF50C4 /* PrerollOverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrerollOverlayViewController.swift; sourceTree = "<group>"; };
+		5F3F03CC1C18EA4900EF50C4 /* PrerollOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrerollOverlayViewController.xib; sourceTree = "<group>"; };
+		5F3F03CE1C18F3DA00EF50C4 /* PauseOverlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseOverlayViewController.swift; sourceTree = "<group>"; };
+		5F3F03D01C18FED600EF50C4 /* PauseOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PauseOverlayViewController.xib; sourceTree = "<group>"; };
 		5F4CED421C054A5200EF50C4 /* WatermarkedPlayer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = WatermarkedPlayer.json; path = Resources/WatermarkedPlayer.json; sourceTree = "<group>"; };
 		5F56CB6F1C0407F200EF50C4 /* MobilePlayerExampleStores.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MobilePlayerExampleStores.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F56CB711C0407F200EF50C4 /* MobilePlayerExampleStores.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MobilePlayerExampleStores.h; sourceTree = "<group>"; };
@@ -276,6 +290,35 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		5F3F03C81C18E9EE00EF50C4 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				5F56CBB01C04178C00EF50C4 /* PlainExampleViewController.swift */,
+				5F56CBB41C041DA200EF50C4 /* ConfigExampleViewController.swift */,
+				5F56CBB61C041DAE00EF50C4 /* RemoteConfigExampleViewController.swift */,
+				5FF829661C168E4700EF50C4 /* ProgConfigExampleViewController.swift */,
+				5FF829641C168ACC00EF50C4 /* AdvancedConfigExampleViewController.swift */,
+				5F7974771C17B02200EF50C4 /* OverlayExampleViewController.swift */,
+				5F79747B1C17ED7800EF50C4 /* TimedOverlayExampleViewController.swift */,
+				5F3F03C21C18E73200EF50C4 /* PrerollExampleViewController.swift */,
+				5F3F03C41C18E74000EF50C4 /* PauseOverlayExampleViewController.swift */,
+				5F3F03C61C18E75300EF50C4 /* PostrollExampleViewController.swift */,
+			);
+			name = Examples;
+			sourceTree = "<group>";
+		};
+		5F3F03C91C18EA0300EF50C4 /* Overlays */ = {
+			isa = PBXGroup;
+			children = (
+				5F7974791C17B67F00EF50C4 /* BuyOverlayViewController.swift */,
+				5F3F03CA1C18EA2A00EF50C4 /* PrerollOverlayViewController.swift */,
+				5F3F03CC1C18EA4900EF50C4 /* PrerollOverlayViewController.xib */,
+				5F3F03CE1C18F3DA00EF50C4 /* PauseOverlayViewController.swift */,
+				5F3F03D01C18FED600EF50C4 /* PauseOverlayViewController.xib */,
+			);
+			name = Overlays;
+			sourceTree = "<group>";
+		};
 		5F56CB701C0407F200EF50C4 /* MobilePlayerExampleStores */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,14 +336,8 @@
 				5F56CB831C040E8D00EF50C4 /* AppDelegate.swift */,
 				5F56CBA81C04102300EF50C4 /* ExamplesTableViewController.swift */,
 				5F56CBB21C04179700EF50C4 /* ExampleViewController.swift */,
-				5F56CBB01C04178C00EF50C4 /* PlainExampleViewController.swift */,
-				5F56CBB41C041DA200EF50C4 /* ConfigExampleViewController.swift */,
-				5F56CBB61C041DAE00EF50C4 /* RemoteConfigExampleViewController.swift */,
-				5FF829661C168E4700EF50C4 /* ProgConfigExampleViewController.swift */,
-				5FF829641C168ACC00EF50C4 /* AdvancedConfigExampleViewController.swift */,
-				5F7974771C17B02200EF50C4 /* OverlayExampleViewController.swift */,
-				5F7974791C17B67F00EF50C4 /* BuyOverlayViewController.swift */,
-				5F79747B1C17ED7800EF50C4 /* TimedOverlayExampleViewController.swift */,
+				5F3F03C81C18E9EE00EF50C4 /* Examples */,
+				5F3F03C91C18EA0300EF50C4 /* Overlays */,
 				5F56CB8C1C040E8D00EF50C4 /* Assets.xcassets */,
 				5F56CB8E1C040E8D00EF50C4 /* LaunchScreen.storyboard */,
 				5F56CB911C040E8D00EF50C4 /* Info.plist */,
@@ -677,7 +714,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F3F03D11C18FED600EF50C4 /* PauseOverlayViewController.xib in Resources */,
 				5F4CED431C054A5200EF50C4 /* WatermarkedPlayer.json in Resources */,
+				5F3F03CD1C18EA4900EF50C4 /* PrerollOverlayViewController.xib in Resources */,
 				5F56CB901C040E8D00EF50C4 /* LaunchScreen.storyboard in Resources */,
 				5FF829691C16924400EF50C4 /* MovielalaPlayer.json in Resources */,
 				5F56CB8D1C040E8D00EF50C4 /* Assets.xcassets in Resources */,
@@ -742,17 +781,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F3F03C51C18E74000EF50C4 /* PauseOverlayExampleViewController.swift in Sources */,
+				5F3F03C31C18E73200EF50C4 /* PrerollExampleViewController.swift in Sources */,
 				5F56CB841C040E8D00EF50C4 /* AppDelegate.swift in Sources */,
 				5F79747C1C17ED7800EF50C4 /* TimedOverlayExampleViewController.swift in Sources */,
+				5F3F03CF1C18F3DA00EF50C4 /* PauseOverlayViewController.swift in Sources */,
 				5FF829671C168E4700EF50C4 /* ProgConfigExampleViewController.swift in Sources */,
 				5F7974781C17B02200EF50C4 /* OverlayExampleViewController.swift in Sources */,
 				5F56CBB71C041DAE00EF50C4 /* RemoteConfigExampleViewController.swift in Sources */,
 				5F56CBB31C04179700EF50C4 /* ExampleViewController.swift in Sources */,
+				5F3F03C71C18E75300EF50C4 /* PostrollExampleViewController.swift in Sources */,
 				5F79747A1C17B67F00EF50C4 /* BuyOverlayViewController.swift in Sources */,
 				5F56CBB11C04178C00EF50C4 /* PlainExampleViewController.swift in Sources */,
 				5FF829651C168ACC00EF50C4 /* AdvancedConfigExampleViewController.swift in Sources */,
 				5F56CBB51C041DA200EF50C4 /* ConfigExampleViewController.swift in Sources */,
 				5F56CBA91C04102300EF50C4 /* ExamplesTableViewController.swift in Sources */,
+				5F3F03CB1C18EA2A00EF50C4 /* PrerollOverlayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

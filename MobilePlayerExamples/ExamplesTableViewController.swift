@@ -17,7 +17,10 @@ class ExamplesTableViewController: UITableViewController {
     ProgConfigExampleViewController(),
     AdvancedConfigExampleViewController(),
     OverlayExampleViewController(),
-    TimedOverlayExampleViewController()
+    TimedOverlayExampleViewController(),
+    PrerollExampleViewController(),
+    PauseOverlayExampleViewController(),
+    PostrollExampleViewController()
   ]
   
   init() {
