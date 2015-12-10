@@ -1,125 +1,282 @@
- MobilePlayer [![CocoaPods](https://img.shields.io/cocoapods/p/MobilePlayer.svg?style=flat)](https://cocoapods.org/pods/MobilePlayer)
------
+![logo](http://i.imgur.com/W9QtXEp.png)
 
-[![Number of Tests](https://img.shields.io/badge/Number%20of%20Tests-100+-brightgreen.svg)](https://github.com/mobileplayer/mobileplayer-ios)
+MobilePlayer [![CocoaPods](https://img.shields.io/cocoapods/p/MobilePlayer.svg?style=flat)](https://cocoapods.org/pods/MobilePlayer)
+==================
+[![CocoaPods](http://img.shields.io/cocoapods/v/MobilePlayer.svg?style=flat)](http://cocoapods.org/?q=MobilePlayer) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](https://github.com/mobileplayer/mobileplayer-ios)
 [![Ready](https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=Ready&title=Ready)](https://waffle.io/mobileplayer/mobileplayer-ios)
-[![In Progress](https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=In%20Progress&title=In%20Progress)](https://waffle.io/mobileplayer/mobileplayer-ios)
-[![Post an issue](https://img.shields.io/badge/Bug%3F-Post%20an%20issue!-blue.svg)](https://waffle.io/mobileplayer/mobileplayer-ios)
-
 [![StackOverflow](https://img.shields.io/badge/StackOverflow-Ask%20a%20question!-blue.svg)](http://stackoverflow.com/questions/ask?tags=mobile player+ios+swift+video player) 
 [![Join the chat at https://gitter.im/mobileplayer/mobileplayer-ios](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mobileplayer/mobileplayer-ios?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 A powerful and completely customizable media player for iOS.
 
-# Table of Contents
+![introduction](http://imgur.com/uDq19mw.gif)
 
-1. [Installation](#installation)
+Table of Contents
+==================
+
+1. [Features](#features)
 2. [Usage](#usage)
-3. [Documentation](#documentation)
-4. [Software License](#software-license)
+3. [Advanced Usage](#advanced-usage)
+  - [Customizing the player](#customizing-the-player)
+  - [Further customization](#further-customization)
+  - [Showing overlays](#showing-overlay)
+  - [Showing timed overlays](#showing-timed-overlays)
+  - [Pre-roll](#pre-roll)
+  - [Pause overlay](#pause-overlay)
+  - [Post-roll](#post-roll)
+4. [Installation](#installation)
+5. [Examples](#examples)
+6. [Documentation](#documentation)
+7. [License](#license)
 
-# Installation
+Features
+==================
+- Branding
+  - Customizable UI. Add a watermark, add/remove/move/resize interface elements, change their appearances and much more.
+  - Manage multiple player skins and configurations easily. Player view controllers can load configuration data from a local JSON file or remote JSON data. You also have the option to initialize and pass configuration objects programmatically, which allows for greater flexibility.
+- Engagement
+  - Comes with a built-in share button.
+  - Standard sharing behavior can easily be modified.
+  - Show any view controller as pre-roll or post-roll content.
+  - Powerful overlay system. Add any view controller as an overlay to your video. Make them permanently visible, set them to appear in defined playback time intervals, or while playback is paused.
+- 100% documented.
 
-There are various ways you can get started with using MobilePlayer in your projects.
+### Future plans
+- Well defined and extensive `NSNotification`s.
+- Volume button and volume slider elements.
+- Airplay support.
+- Plugin support.
+- Pre-bundled analytics plugins for various platforms.
+- VAST support.
+- Monetization.
+
+Usage
+==================
+![example-plain](http://i.imgur.com/J6QpSKb.gif)
+```swift
+import MobilePlayer
+
+let playerVC = MobilePlayerViewController(contentURL: videoURL)
+playerVC.title = "Vanilla Player - \(videoTitle)"
+playerVC.activityItems = [videoURL] // Check the documentation for more information.
+presentMoviePlayerViewControllerAnimated(playerVC)
+```
+
+Advanced Usage
+==================
+
+### Customizing the player
+![example-customization](http://i.imgur.com/tGodgQx.png)
+
+**Initialize using local configuration file**
+```swift
+let bundle = NSBundle.mainBundle()
+let config = MobilePlayerConfig(fileURL: bundle.URLForResource(
+  "WatermarkedPlayer",
+  withExtension: "json")!)
+let playerVC = MobilePlayerViewController(
+  contentURL: videoURL,
+  config: config)
+playerVC.title = "Watermarked Player - \(videoTitle)"
+playerVC.activityItems = [videoURL]
+presentMoviePlayerViewControllerAnimated(playerVC)
+```
+
+**Initialize using remote configuration data**
+```swift
+guard let configURL = NSURL(string: "https://goo.gl/c73ANK") else { return }
+let playerVC = MobilePlayerViewController(
+  contentURL: videoURL,
+  config: MobilePlayerConfig(fileURL: configURL))
+playerVC.title = "Watermarked Player - \(videoTitle)"
+playerVC.activityItems = [videoURL]
+presentMoviePlayerViewControllerAnimated(playerVC)
+```
+
+**Configuration data**
+```json
+{
+  "watermark": {
+    "image": "MovielalaLogo"
+  }
+}
+```
+
+**Without a configuration file URL**
+```swift
+let playerVC = MobilePlayerViewController(
+  contentURL: videoURL,
+  config: MobilePlayerConfig(
+    dictionary: ["watermark": ["image": "MovielalaLogo"]]))
+playerVC.title = "Watermarked Player - \(videoTitle)"
+playerVC.activityItems = [videoURL]
+presentMoviePlayerViewControllerAnimated(playerVC)
+```
+
+### Further customization
+![example-further-customization](http://i.imgur.com/YyiYJCc.png)
+
+**Configuration data**
+```json
+{
+  "watermark": {
+    "image": "MovielalaLogo",
+    "position": "topRight"
+  },
+  "topBar": {
+    "backgroundColor": ["#a60500b0", "#a60500a0"],
+    "elements": [
+      {
+        "type": "button",
+        "identifier": "close"
+      },
+      {
+        "type": "slider",
+        "identifier": "playback",
+        "trackHeight": 6,
+        "trackCornerRadius": 3,
+        "minimumTrackTintColor": "#eee",
+        "availableTrackTintColor": "#9e9b9a",
+        "maximumTrackTintColor": "#cccccc",
+        "thumbTintColor": "#f9f9f9",
+        "thumbBorderWidth": 1,
+        "thumbBorderColor": "#fff",
+        "marginRight": 4
+      }
+    ]
+  },
+  "bottomBar": {
+    "backgroundColor": ["#a60500a0", "#a60500b0"],
+    "elements": [
+      {
+        "type": "label",
+        "text": "Now Watching",
+        "font": "Baskerville",
+        "size": 12,
+        "marginLeft": 8,
+        "marginRight": 8
+      },
+      {
+        "type": "label",
+        "identifier": "title",
+        "size": 14
+      },
+      {
+        "type": "button",
+        "identifier": "action"
+      },
+      {
+        "type": "toggleButton",
+        "identifier": "play"
+      }
+    ]
+  }
+}
+```
+For all available `identifier`s, check the documentation or [here](https://github.com/mobileplayer/mobileplayer-ios/blob/master/MobilePlayer/Config/ElementConfig.swift#L51). Same `identifier` value shouldn't be used more than once in a single configuration.
+
+### Showing overlays
+![example-overlay](http://i.imgur.com/wAtNYjE.png)
+```swift
+let playerVC = MobilePlayerViewController(contentURL: videoURL)
+playerVC.title = videoTitle
+playerVC.activityItems = [videoURL]
+presentMoviePlayerViewControllerAnimated(playerVC)
+ProductStore.getProduct("1", success: { product in
+  guard let product = product else { return }
+  playerVC.showOverlayViewController(
+    BuyOverlayViewController(product: product))
+})
+```
+
+### Showing timed overlays
+![example-timed-overlays](http://i.imgur.com/FuaJB7O.gif)
+```swift
+let playerVC = MobilePlayerViewController(contentURL: videoURL)
+playerVC.title = videoTitle
+playerVC.activityItems = [videoURL]
+presentMoviePlayerViewControllerAnimated(playerVC)
+ProductStore.getProductPlacementsForVideo(
+  videoID,
+  success: { productPlacements in
+    guard let productPlacements = productPlacements else { return }
+    for placement in productPlacements {
+      ProductStore.getProduct(placement.productID, success: { product in
+        guard let product = product else { return }
+        playerVC.showOverlayViewController(
+          BuyOverlayViewController(product: product),
+          startingAtTime: placement.startTime,
+          forDuration: placement.duration)
+      })
+    }
+})
+```
+
+### Pre-roll
+![example-preroll](http://i.imgur.com/oBV0HCF.png)
+```swift
+let playerVC = MobilePlayerViewController(
+  contentURL: videoURL,
+  prerollViewController: PrerollOverlayViewController())
+playerVC.title = videoTitle
+playerVC.activityItems = [videoURL]
+presentMoviePlayerViewControllerAnimated(playerVC)
+```
+
+### Pause overlay
+![example-pause-overlay](http://i.imgur.com/wfC9a7t.gif)
+```swift
+let playerVC = MobilePlayerViewController(
+  contentURL: videoURL,
+  pauseOverlayViewController: PauseOverlayViewController())
+playerVC.title = videoTitle
+playerVC.activityItems = [videoURL]
+presentMoviePlayerViewControllerAnimated(playerVC)
+```
+
+### Post-roll
+![example-postroll](http://i.imgur.com/Hp8NEfg.png)
+```swift
+let playerVC = MobilePlayerViewController(
+  contentURL: videoURL,
+  postrollViewController: PostrollOverlayViewController())
+playerVC.title = videoTitle
+playerVC.activityItems = [videoURL]
+presentMoviePlayerViewControllerAnimated(playerVC)
+```
+
+Installation
+==================
 
 ### [Cocoapods](https://github.com/CocoaPods/CocoaPods)
-
 Add the following line in your `Podfile`.
-
 ```
 pod "MobilePlayer"
 ```
 
 ### [Carthage](https://github.com/Carthage/Carthage#installing-carthage)
-
 Add the following line to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
-
 ```
 github "mobileplayer/mobileplayer-ios"
 ```
 
 ### Git Submodule
-
 Open the Terminal app and `cd` to your project directory. Then run
-
 ```
 git submodule add git@github.com:mobileplayer/mobileplayer-ios.git
 ```
-
 This should create a folder named MobilePlayer inside your project directory. After that, drag and drop MobilePlayer/MobilePlayer.xcodeproj into your project in Xcode and add the MobilePlayer.framework in the Embedded Binaries section of your target settings under the General tab.
 
-# Usage
+Examples
+==================
+After cloning the repo, run the `MobilePlayerExamples` target to see examples for many use cases.
 
-If you were previously using MPMoviePlayerViewController, changing
-
-```swift
-let playerVC = MPMoviePlayerViewController(contentURL: videoURL)
-```
-
-to
-
-```swift
-let playerVC = MobilePlayerViewController(contentURL: videoURL)
-```
-
-is enough. Make sure you don't forget to
-
-```swift
-import MobilePlayer
-```
-
-## Customizing the Player
-
-In most cases though you would want to customize the player. You can do this by creating a configuration JSON file or programmatically.
-
-### Configuration File
-
-Here is a sample configuration file if you just want to add a watermark to the bottom right corner of the player.
-
-```JSON
-{
-  "watermark": {
-    "image": "CompanyLogo"
-  }
-}
-```
-
-In this case you need to have an image asset named CompanyLogo in your project. After that you create a configuration object using the file and initialize your player using that.
-
-```swift
-guard let configFileURL = NSBundle.mainBundle().URLForResource("PlayerConfig", withExtension: "json") else {
-  fatalError("Unable to load player configuration file")
-}
-let playerVC = MobilePlayerViewController(contentURL: videoURL, config: MobilePlayerConfig(fileURL: configFileURL))
-```
-
-### Programmatic Configuration
-
-The above example done without using any JSON files looks like the following.
-
-```swift
-let playerVC = MobilePlayerViewController(
-  contentURL: videoURL,
-  config: MobilePlayerConfig(dictionary: [
-    "watermark": WaterMarkConfig(dictionary: [
-      "image": "CompanyLogo"
-    ])
-  ])
-)
-```
-
-### Advanced Configuration
-
-You can edit the player interface completely, add new buttons with custom actions, and way more using configuration
-objects and files. Check the MobilePlayerConfig class and other configuration class documentations for a full list of things you can do.
-
-A fully customized player configuration file can look like [this](https://github.com/mobileplayer/mobileplayer-ios/blob/master/MobilePlayerExample/Skin/Netflix.json).
-
-# Documentation
-
+Documentation
+==================
 The entire documentation for the library can be found [here](https://htmlpreview.github.io/?https://github.com/movielala/mobileplayer-ios/blob/master/Documentation/index.html).
 
-# Software License
+License
+==================
 The use of the MobilePlayer open source edition is governed by a [Creative Commons license](http://creativecommons.org/licenses/by-nc-sa/3.0/). You can use, modify, copy, and distribute this edition as long as it’s for non-commercial use, you provide attribution, and share under a similar license.
 http://mobileplayer.io/license/
