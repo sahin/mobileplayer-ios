@@ -155,6 +155,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
               userInfo: [MobilePlayerErrorUserInfoKey: error])
         }
         if let postrollVC = self.postrollViewController {
+          self.prerollViewController?.dismiss()
+          self.pauseOverlayViewController?.dismiss()
           self.showOverlayViewController(postrollVC)
         }
     }
@@ -537,6 +539,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       }
       prerollViewController?.dismiss()
       pauseOverlayViewController?.dismiss()
+      postrollViewController?.dismiss()
     } else {
       playButton?.toggled = false
       hideControlsTimer?.invalidate()
