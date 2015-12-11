@@ -164,6 +164,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   private func initializeControlsView() {
     (getViewForElementWithIdentifier("playback") as? Slider)?.delegate = self
+
     (getViewForElementWithIdentifier("close") as? Button)?.addCallback(
       {
         if let navigationController = self.navigationController {
@@ -173,15 +174,22 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
         }
       },
       forControlEvents: .TouchUpInside)
-    (getViewForElementWithIdentifier("action") as? Button)?.addCallback(
-      showContentActions,
-      forControlEvents: .TouchUpInside)
+
+    if let actionButton = getViewForElementWithIdentifier("action") as? Button {
+      actionButton.addCallback(
+        {
+          self.showContentActions(actionButton)
+        },
+        forControlEvents: .TouchUpInside)
+    }
+
     (getViewForElementWithIdentifier("play") as? ToggleButton)?.addCallback(
       {
         self.resetHideControlsTimer()
         self.state == .Playing ? self.pause() : self.play()
       },
       forControlEvents: .TouchUpInside)
+
     initializeControlsViewTapRecognizers()
   }
 
@@ -336,8 +344,11 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   /// `UIActivityViewController` with `activityItems` set as its activity items. If content is playing, it is paused
   /// automatically at presentation and will continue after the controller is dismissed. Overriding this method is
   /// recommended if you want to change this behavior.
-  public func showContentActions() {
-    // FIXME: iPad crash on iOS 8+
+  ///
+  /// parameters:
+  ///   - sourceView: On iPads the activity view controller is presented as a popover and a source view needs to
+  ///     provided or a crash will occur.
+  public func showContentActions(sourceView: UIView? = nil) {
     guard let activityItems = activityItems else { return }
     let wasPlaying = (state == .Playing)
     moviePlayer.pause()
@@ -352,6 +363,12 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       if wasPlaying {
         self.moviePlayer.play()
       }
+    }
+    if let sourceView = sourceView {
+      activityVC.popoverPresentationController?.sourceView = controlsView
+      activityVC.popoverPresentationController?.sourceRect = sourceView.convertRect(
+        sourceView.bounds,
+        toView: controlsView)
     }
     presentViewController(activityVC, animated: true, completion: nil)
   }
