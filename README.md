@@ -14,27 +14,25 @@ A powerful and completely customizable media player for iOS.
 
 Table of Contents
 ==================
-
 1. [Features](#features)
-2. [Usage](#usage)
-3. [Advanced Usage](#advanced-usage)
-  - [Customizing the player](#customizing-the-player)
-  - [Further customization](#further-customization)
-  - [Showing overlays](#showing-overlay)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [Customization](#customization)
+  - [Skinning](#skinning)
+  - [Showing overlays](#showing-overlays)
   - [Showing timed overlays](#showing-timed-overlays)
   - [Pre-roll](#pre-roll)
   - [Pause overlay](#pause-overlay)
   - [Post-roll](#post-roll)
-4. [Installation](#installation)
-5. [Examples](#examples)
-6. [Documentation](#documentation)
-7. [License](#license)
+6. [Examples](#examples)
+7. [Documentation](#documentation)
+8. [License](#license)
 
 Features
 ==================
 - Branding
-  - Customizable UI. Add a watermark, add/remove/move/resize interface elements, change their appearances and much more.
-  - Manage multiple player skins and configurations easily. Player view controllers can load configuration data from a local JSON file or remote JSON data. You also have the option to initialize and pass configuration objects programmatically, which allows for greater flexibility.
+  - Flexible skinning. Add a watermark, add/remove/move/resize interface elements, change their appearances and much more.
+  - Easily set up A/B tests. You can manage multiple player skins and configurations. Player view controllers can load configuration data from a local JSON file or remote JSON data. You also have the option to initialize and pass configuration objects programmatically, which allows for greater flexibility.
 - Engagement
   - Comes with a built-in share button.
   - Standard sharing behavior can easily be modified.
@@ -51,9 +49,23 @@ Features
 - VAST support.
 - Monetization.
 
+Installation
+==================
+
+### [Cocoapods](https://github.com/CocoaPods/CocoaPods)
+Add the following line in your `Podfile`.
+```
+pod "MobilePlayer"
+```
+
+### [Carthage](https://github.com/Carthage/Carthage#installing-carthage)
+Add the following line to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
+```
+github "mobileplayer/mobileplayer-ios"
+```
+
 Usage
 ==================
-![example-plain](http://i.imgur.com/J6QpSKb.gif)
 ```swift
 import MobilePlayer
 
@@ -62,12 +74,10 @@ playerVC.title = "Vanilla Player - \(videoTitle)"
 playerVC.activityItems = [videoURL] // Check the documentation for more information.
 presentMoviePlayerViewControllerAnimated(playerVC)
 ```
+![example-plain](http://i.imgur.com/J6QpSKb.gif)
 
-Advanced Usage
+Customization
 ==================
-
-### Customizing the player
-![example-customization](http://i.imgur.com/tGodgQx.png)
 
 **Initialize using local configuration file**
 ```swift
@@ -114,10 +124,10 @@ playerVC.activityItems = [videoURL]
 presentMoviePlayerViewControllerAnimated(playerVC)
 ```
 
-### Further customization
-![example-further-customization](http://i.imgur.com/YyiYJCc.png)
+**Result**
+![example-customization](http://i.imgur.com/tGodgQx.png)
 
-**Configuration data**
+### Skinning
 ```json
 {
   "watermark": {
@@ -176,8 +186,13 @@ presentMoviePlayerViewControllerAnimated(playerVC)
 ```
 For all available `identifier`s, check the documentation or [here](https://github.com/mobileplayer/mobileplayer-ios/blob/master/MobilePlayer/Config/ElementConfig.swift#L51). Same `identifier` value shouldn't be used more than once in a single configuration.
 
+**Result**
+![example-skinning](http://i.imgur.com/YyiYJCc.png)
+
+**Example designs**
+![example-designs-skinning](http://i.imgur.com/qNDrx9T.gif)
+
 ### Showing overlays
-![example-overlay](http://i.imgur.com/wAtNYjE.png)
 ```swift
 let playerVC = MobilePlayerViewController(contentURL: videoURL)
 playerVC.title = videoTitle
@@ -189,9 +204,9 @@ ProductStore.getProduct("1", success: { product in
     BuyOverlayViewController(product: product))
 })
 ```
+![example-overlay](http://i.imgur.com/wAtNYjE.png)
 
 ### Showing timed overlays
-![example-timed-overlays](http://i.imgur.com/FuaJB7O.gif)
 ```swift
 let playerVC = MobilePlayerViewController(contentURL: videoURL)
 playerVC.title = videoTitle
@@ -212,9 +227,9 @@ ProductStore.getProductPlacementsForVideo(
     }
 })
 ```
+![example-timed-overlays](http://i.imgur.com/FuaJB7O.gif)
 
 ### Pre-roll
-![example-preroll](http://i.imgur.com/oBV0HCF.png)
 ```swift
 let playerVC = MobilePlayerViewController(
   contentURL: videoURL,
@@ -223,9 +238,9 @@ playerVC.title = videoTitle
 playerVC.activityItems = [videoURL]
 presentMoviePlayerViewControllerAnimated(playerVC)
 ```
+![example-preroll](http://i.imgur.com/oBV0HCF.png)
 
 ### Pause overlay
-![example-pause-overlay](http://i.imgur.com/wfC9a7t.gif)
 ```swift
 let playerVC = MobilePlayerViewController(
   contentURL: videoURL,
@@ -235,8 +250,13 @@ playerVC.activityItems = [videoURL]
 presentMoviePlayerViewControllerAnimated(playerVC)
 ```
 
+**Result**
+![example-pause-overlay](http://i.imgur.com/wfC9a7t.gif)
+
+**Example designs**
+![example-designs-pause-overlay](http://i.imgur.com/3Kfi1IZ.gif)
+
 ### Post-roll
-![example-postroll](http://i.imgur.com/Hp8NEfg.png)
 ```swift
 let playerVC = MobilePlayerViewController(
   contentURL: videoURL,
@@ -246,30 +266,15 @@ playerVC.activityItems = [videoURL]
 presentMoviePlayerViewControllerAnimated(playerVC)
 ```
 
-Installation
-==================
+**Result**
+![example-postroll](http://i.imgur.com/Hp8NEfg.png)
 
-### [Cocoapods](https://github.com/CocoaPods/CocoaPods)
-Add the following line in your `Podfile`.
-```
-pod "MobilePlayer"
-```
-
-### [Carthage](https://github.com/Carthage/Carthage#installing-carthage)
-Add the following line to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
-```
-github "mobileplayer/mobileplayer-ios"
-```
-
-### Git Submodule
-Open the Terminal app and `cd` to your project directory. Then run
-```
-git submodule add git@github.com:mobileplayer/mobileplayer-ios.git
-```
-This should create a folder named MobilePlayer inside your project directory. After that, drag and drop MobilePlayer/MobilePlayer.xcodeproj into your project in Xcode and add the MobilePlayer.framework in the Embedded Binaries section of your target settings under the General tab.
+**Example designs**
+![example-designs-postroll](http://i.imgur.com/qnVs7pa.gif)
 
 Examples
 ==================
+![examples](http://i.imgur.com/ztOPUW6.gif)
 After cloning the repo, run the `MobilePlayerExamples` target to see examples for many use cases.
 
 Documentation
