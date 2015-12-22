@@ -5,7 +5,7 @@ MobilePlayer [![CocoaPods](https://img.shields.io/cocoapods/p/MobilePlayer.svg?s
 [![CocoaPods](http://img.shields.io/cocoapods/v/MobilePlayer.svg?style=flat)](http://cocoapods.org/?q=MobilePlayer) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen.svg)](https://github.com/mobileplayer/mobileplayer-ios)
 [![Ready](https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=Ready&title=Ready)](https://waffle.io/mobileplayer/mobileplayer-ios)
-[![StackOverflow](https://img.shields.io/badge/StackOverflow-Ask%20a%20question!-blue.svg)](http://stackoverflow.com/questions/ask?tags=mobile player+ios+swift+video player) 
+[![StackOverflow](https://img.shields.io/badge/StackOverflow-Ask%20a%20question!-blue.svg)](http://stackoverflow.com/questions/ask?tags=mobile player+ios+swift+video player)
 [![Join the chat at https://gitter.im/mobileplayer/mobileplayer-ios](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mobileplayer/mobileplayer-ios?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 A powerful and completely customizable media player for iOS.
@@ -274,8 +274,8 @@ presentMoviePlayerViewControllerAnimated(playerVC)
 
 Examples
 ==================
-![examples](http://i.imgur.com/ztOPUW6.gif)
 After cloning the repo, run the `MobilePlayerExamples` target to see examples for many use cases.
+![examples](http://i.imgur.com/ztOPUW6.gif)
 
 Documentation
 ==================
