@@ -190,7 +190,7 @@ For all available `identifier`s, check the documentation or [here](https://githu
 ![example-skinning](http://i.imgur.com/YyiYJCc.png)
 
 **Example designs**
-![example-designs-skinning](http://i.imgur.com/qNDrx9T.gif)
+![example-design-skinning](http://i.imgur.com/qNDrx9T.gif)
 
 ### Showing overlays
 ```swift
@@ -254,7 +254,7 @@ presentMoviePlayerViewControllerAnimated(playerVC)
 ![example-pause-overlay](http://i.imgur.com/wfC9a7t.gif)
 
 **Example designs**
-![example-designs-pause-overlay](http://i.imgur.com/3Kfi1IZ.gif)
+![example-design-pause-overlay](http://i.imgur.com/ectKEwy.gif)
 
 ### Post-roll
 ```swift
@@ -270,7 +270,7 @@ presentMoviePlayerViewControllerAnimated(playerVC)
 ![example-postroll](http://i.imgur.com/Hp8NEfg.png)
 
 **Example designs**
-![example-designs-postroll](http://i.imgur.com/qnVs7pa.gif)
+![example-design-postroll](http://i.imgur.com/MRVxNAt.gif)
 
 Examples
 ==================
