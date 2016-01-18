@@ -529,14 +529,14 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     if !time.isNormal {
       return "00:00"
     }
-    let hours = UInt(time / 3600)
-    let minutes = UInt((time / 60) % 60)
-    let seconds = UInt(time % 60)
-    let text = NSString(format: "%02lu:%02lu", minutes, seconds) as String
+    let hours = Int(floor(time / 3600))
+    let minutes = Int(floor((time / 60) % 60))
+    let seconds = Int(round(time % 60))
+    let minutesAndSeconds = NSString(format: "%02d:%02d", minutes, seconds) as String
     if hours > 0 {
-      return NSString(format: "%02lu:%@", hours, text) as String
+      return NSString(format: "%02d:%@", hours, minutesAndSeconds) as String
     } else {
-      return text
+      return minutesAndSeconds
     }
   }
 
