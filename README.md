@@ -52,7 +52,7 @@ Features
 Installation
 ==================
 
-### [Cocoapods](https://github.com/CocoaPods/CocoaPods)
+### [CocoaPods](https://github.com/CocoaPods/CocoaPods)
 Add the following line in your `Podfile`.
 ```
 pod "MobilePlayer"
