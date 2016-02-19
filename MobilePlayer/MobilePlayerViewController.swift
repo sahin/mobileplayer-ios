@@ -174,14 +174,8 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
         }
       },
       forControlEvents: .TouchUpInside)
-
-    if let actionButton = getViewForElementWithIdentifier("action") as? Button {
-      actionButton.addCallback(
-        {
-          self.showContentActions(actionButton)
-        },
-        forControlEvents: .TouchUpInside)
-    }
+    
+    getViewForElementWithIdentifier("action")?.hidden = true
 
     (getViewForElementWithIdentifier("play") as? ToggleButton)?.addCallback(
       {
@@ -338,7 +332,22 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   /// button is pressed (if it exists). If content is playing, it is paused automatically at presentation and will
   /// continue after the controller is dismissed. Override `showContentActions()` if you want to change the button's
   /// behavior.
-  public var activityItems: [AnyObject]?
+    public var activityItems: [AnyObject]? {
+        didSet {
+            if let items = self.activityItems, let actionButton = getViewForElementWithIdentifier("action") as? Button {
+                if !items.isEmpty {
+                    actionButton.hidden = false
+                    actionButton.addCallback(
+                        {
+                            self.showContentActions(actionButton)
+                        },
+                        forControlEvents: .TouchUpInside)
+                } else {
+                    actionButton.hidden = true
+                }
+            }
+        }
+    }
 
   /// Method that is called when a control interface button with identifier "action" is tapped. Presents a
   /// `UIActivityViewController` with `activityItems` set as its activity items. If content is playing, it is paused
@@ -349,7 +358,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   ///   - sourceView: On iPads the activity view controller is presented as a popover and a source view needs to
   ///     provided or a crash will occur.
   public func showContentActions(sourceView: UIView? = nil) {
-    guard let activityItems = activityItems else { return }
+    guard let activityItems = activityItems where !activityItems.isEmpty else { return }
     let wasPlaying = (state == .Playing)
     moviePlayer.pause()
     let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
