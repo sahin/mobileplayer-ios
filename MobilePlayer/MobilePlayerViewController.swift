@@ -174,8 +174,15 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
         }
       },
       forControlEvents: .TouchUpInside)
-    
-    getViewForElementWithIdentifier("action")?.hidden = true
+
+    if let actionButton = getViewForElementWithIdentifier("action") as? Button {
+      actionButton.hidden = true // Initially hidden until 1 or more `activityItems` are set.
+      actionButton.addCallback(
+        {
+          self.showContentActions(actionButton)
+        },
+        forControlEvents: .TouchUpInside)
+    }
 
     (getViewForElementWithIdentifier("play") as? ToggleButton)?.addCallback(
       {
@@ -332,22 +339,12 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   /// button is pressed (if it exists). If content is playing, it is paused automatically at presentation and will
   /// continue after the controller is dismissed. Override `showContentActions()` if you want to change the button's
   /// behavior.
-    public var activityItems: [AnyObject]? {
-        didSet {
-            if let items = self.activityItems, let actionButton = getViewForElementWithIdentifier("action") as? Button {
-                if !items.isEmpty {
-                    actionButton.hidden = false
-                    actionButton.addCallback(
-                        {
-                            self.showContentActions(actionButton)
-                        },
-                        forControlEvents: .TouchUpInside)
-                } else {
-                    actionButton.hidden = true
-                }
-            }
-        }
+  public var activityItems: [AnyObject]? {
+    didSet {
+      let isEmpty = activityItems?.isEmpty
+      getViewForElementWithIdentifier("action")?.hidden = (isEmpty == nil || isEmpty == true)
     }
+  }
 
   /// Method that is called when a control interface button with identifier "action" is tapped. Presents a
   /// `UIActivityViewController` with `activityItems` set as its activity items. If content is playing, it is paused
