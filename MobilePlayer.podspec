@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "MobilePlayer"
-  s.version = "1.1.2"
+  s.version = "1.1.3"
   s.summary = "A powerful and completely customizable media player for iOS."
   s.homepage = "https://github.com/mobileplayer/mobileplayer-ios"
   s.license = 'CC'
