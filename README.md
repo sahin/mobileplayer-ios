@@ -7,6 +7,7 @@ MobilePlayer [![CocoaPods](https://img.shields.io/cocoapods/p/MobilePlayer.svg?s
 [![Ready](https://badge.waffle.io/mobileplayer/mobileplayer-ios.png?label=Ready&title=Ready)](https://waffle.io/mobileplayer/mobileplayer-ios)
 [![StackOverflow](https://img.shields.io/badge/StackOverflow-Ask%20a%20question!-blue.svg)](http://stackoverflow.com/questions/ask?tags=mobile player+ios+swift+video player)
 [![Join the chat at https://gitter.im/mobileplayer/mobileplayer-ios](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/mobileplayer/mobileplayer-ios?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![codebeat badge](https://codebeat.co/badges/d9492bce-7a4b-4221-b7e0-9b5abf6dda6a)](https://codebeat.co/projects/github-com-mobileplayer-mobileplayer-ios)
 
 A powerful and completely customizable media player for iOS.
 
