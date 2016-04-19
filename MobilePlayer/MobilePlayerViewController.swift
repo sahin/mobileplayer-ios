@@ -134,9 +134,12 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     notificationCenter.addObserverForName(
       MPMoviePlayerPlaybackStateDidChangeNotification,
       object: moviePlayer,
-      queue: NSOperationQueue.mainQueue()) { notification in
-        self.handleMoviePlayerPlaybackStateDidChangeNotification()
-        NSNotificationCenter.defaultCenter().postNotificationName(MobilePlayerStateDidChangeNotification, object: self)
+      queue: NSOperationQueue.mainQueue()) { [weak self] notification in
+        guard let slf = self else {
+          return
+        }
+        slf.handleMoviePlayerPlaybackStateDidChangeNotification()
+        NSNotificationCenter.defaultCenter().postNotificationName(MobilePlayerStateDidChangeNotification, object: slf)
     }
     notificationCenter.removeObserver(
       self,
@@ -145,19 +148,22 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     notificationCenter.addObserverForName(
       MPMoviePlayerPlaybackDidFinishNotification,
       object: moviePlayer,
-      queue: NSOperationQueue.mainQueue()) { notification in
+      queue: NSOperationQueue.mainQueue()) { [weak self] notification in
+        guard let slf = self else {
+          return
+        }
         if let
           userInfo = notification.userInfo as? [String: AnyObject],
           error = userInfo["error"] as? NSError {
             NSNotificationCenter.defaultCenter().postNotificationName(
               MobilePlayerDidEncounterErrorNotification,
-              object: self,
+              object: slf,
               userInfo: [MobilePlayerErrorUserInfoKey: error])
         }
-        if let postrollVC = self.postrollViewController {
-          self.prerollViewController?.dismiss()
-          self.pauseOverlayViewController?.dismiss()
-          self.showOverlayViewController(postrollVC)
+        if let postrollVC = slf.postrollViewController {
+          slf.prerollViewController?.dismiss()
+          slf.pauseOverlayViewController?.dismiss()
+          slf.showOverlayViewController(postrollVC)
         }
     }
   }
@@ -166,11 +172,14 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     (getViewForElementWithIdentifier("playback") as? Slider)?.delegate = self
 
     (getViewForElementWithIdentifier("close") as? Button)?.addCallback(
-      {
-        if let navigationController = self.navigationController {
+      { [weak self] in
+        guard let slf = self else {
+          return
+        }
+        if let navigationController = slf.navigationController {
           navigationController.popViewControllerAnimated(true)
-        } else {
-          self.dismissViewControllerAnimated(true, completion: nil)
+        } else if let presentingController = slf.presentingViewController {
+          presentingController.dismissMoviePlayerViewControllerAnimated()
         }
       },
       forControlEvents: .TouchUpInside)
@@ -178,16 +187,22 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     if let actionButton = getViewForElementWithIdentifier("action") as? Button {
       actionButton.hidden = true // Initially hidden until 1 or more `activityItems` are set.
       actionButton.addCallback(
-        {
-          self.showContentActions(actionButton)
+        { [weak self] in
+          guard let slf = self else {
+            return
+          }
+          slf.showContentActions(actionButton)
         },
         forControlEvents: .TouchUpInside)
     }
 
     (getViewForElementWithIdentifier("play") as? ToggleButton)?.addCallback(
-      {
-        self.resetHideControlsTimer()
-        self.state == .Playing ? self.pause() : self.play()
+      { [weak self] in
+        guard let slf = self else {
+          return
+        }
+        slf.resetHideControlsTimer()
+        slf.state == .Playing ? slf.pause() : slf.play()
       },
       forControlEvents: .TouchUpInside)
 
@@ -195,10 +210,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   private func initializeControlsViewTapRecognizers() {
-    let singleTapRecognizer = UITapGestureRecognizer(callback: handleContentTap)
+    let singleTapRecognizer = UITapGestureRecognizer { [weak self] in self?.handleContentTap() }
     singleTapRecognizer.numberOfTapsRequired = 1
     controlsView.addGestureRecognizer(singleTapRecognizer)
-    let doubleTapRecognizer = UITapGestureRecognizer(callback: handleContentDoubleTap)
+    let doubleTapRecognizer = UITapGestureRecognizer { [weak self] in self?.handleContentDoubleTap() }
     doubleTapRecognizer.numberOfTapsRequired = 2
     controlsView.addGestureRecognizer(doubleTapRecognizer)
     singleTapRecognizer.requireGestureRecognizerToFail(doubleTapRecognizer)
@@ -219,7 +234,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     view.addSubview(controlsView)
     playbackInterfaceUpdateTimer = NSTimer.scheduledTimerWithTimeInterval(
       MobilePlayerViewController.playbackInterfaceUpdateInterval,
-      callback: updatePlaybackInterface,
+      callback: { [weak self] in self?.updatePlaybackInterface() },
       repeats: true)
     if let prerollViewController = prerollViewController {
       shouldAutoplay = false

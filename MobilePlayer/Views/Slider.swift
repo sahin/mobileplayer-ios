@@ -16,7 +16,7 @@ protocol SliderDelegate: class {
 
 class Slider: UIView {
   let config: SliderConfig
-  var delegate: SliderDelegate?
+  weak var delegate: SliderDelegate?
   var minimumValue = Float(0)    { didSet { setNeedsLayout() } }
   var value = Float(0)           { didSet { setNeedsLayout() } }
   var availableValue = Float(0)  { didSet { setNeedsLayout() } }
