@@ -67,8 +67,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
 
   // MARK: Private Properties
   private let controlsView: MobilePlayerControlsView
-  private var previousStatusBarHiddenValue: Bool!
-  private var previousStatusBarStyle: UIStatusBarStyle!
+  private var previousStatusBarHiddenValue: Bool?
   private var isFirstPlay = true
   private var seeking = false
   private var wasPlayingBeforeSeek = false
@@ -282,8 +281,10 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
     super.viewWillDisappear(animated)
     stop()
     // Restore status bar appearance.
-    UIApplication.sharedApplication().statusBarHidden = previousStatusBarHiddenValue
-    setNeedsStatusBarAppearanceUpdate()
+	if let previousStatusBarHiddenValue = previousStatusBarHiddenValue {
+		UIApplication.sharedApplication().statusBarHidden = previousStatusBarHiddenValue
+		setNeedsStatusBarAppearanceUpdate()
+	}
   }
 
   // MARK: Deinitialization
