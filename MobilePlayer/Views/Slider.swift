@@ -8,12 +8,14 @@
 
 import UIKit
 
+// MARK: - Delegate
 protocol SliderDelegate: class {
   func sliderThumbPanDidBegin(slider: Slider)
   func sliderThumbDidPan(slider: Slider)
   func sliderThumbPanDidEnd(slider: Slider)
 }
 
+// MARK: - Class
 class Slider: UIView {
   let config: SliderConfig
   weak var delegate: SliderDelegate?
@@ -27,7 +29,7 @@ class Slider: UIView {
   let minimumTrack = UIView(frame: CGRectZero)
   let thumb = UIView(frame: CGRectZero)
 
-  // MARK: - Initialization
+  // MARK: Initialization
 
   init(config: SliderConfig = SliderConfig()) {
     self.config = config
@@ -57,7 +59,7 @@ class Slider: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  // MARK: - Setters
+  // MARK: Setters
 
   func setValue(value: Float, animatedForDuration duration: NSTimeInterval) {
     self.value = value
@@ -84,7 +86,7 @@ class Slider: UIView {
     }
   }
 
-  // MARK: - Seeking
+  // MARK: Seeking
 
   func didPanThumb(recognizer: UIPanGestureRecognizer!) {
     let locationInTrack = recognizer.locationInView(maximumTrack)
@@ -108,32 +110,45 @@ class Slider: UIView {
     }
   }
 
-  // MARK: - Layout
+  // MARK: Layout
 
   override func sizeThatFits(size: CGSize) -> CGSize {
-    let biggestHeight = config.thumbHeight > config.trackHeight ? config.thumbHeight : config.trackHeight
-    let width = (config.widthCalculation == .AsDefined) ? config.width : config.thumbWidth * 2
-    let height = size.height < biggestHeight ? biggestHeight : size.height
+    let width = (config.widthCalculation == .AsDefined) ? config.width : size.width
+
+    let minHeight = max(config.thumbHeight, config.trackHeight)
+    let height    = (size.height < minHeight) ? minHeight : size.height
+
     return CGSize(width: width, height: height)
   }
 
   override func layoutSubviews() {
-    let size = bounds.size
+    let realMaximumValue   = max(0.00001, CGFloat(maximumValue - minimumValue))
+    let realAvailableValue = max(0, min(realMaximumValue, CGFloat(availableValue - minimumValue)))
+    let realValue          = max(0, min(realMaximumValue, CGFloat(value - minimumValue)))
+
     maximumTrack.frame = CGRect(
-      x: config.thumbWidth / 2,
-      y: (size.height - config.trackHeight) / 2,
-      width: size.width - config.thumbWidth,
+      x: 0,
+      y: (bounds.height - config.trackHeight) / 2,
+      width: bounds.width,
       height: config.trackHeight)
-    let realMaximumValue = maximumValue - minimumValue
-    let minimumTrackWidth = realMaximumValue != 0 ? maximumTrack.frame.size.width * CGFloat((value - minimumValue) / realMaximumValue) : 0
-    minimumTrack.frame = CGRect(x: 0, y: 0, width: minimumTrackWidth, height: config.trackHeight)
-    let availableTrackWidth = realMaximumValue != 0 ? maximumTrack.frame.size.width * CGFloat((availableValue - minimumValue) / realMaximumValue) : 0
-    availableTrack.frame = CGRect(x: 0, y: 0, width: availableTrackWidth, height: config.trackHeight)
+
+    availableTrack.frame = CGRect(
+      x: 0,
+      y: 0,
+      width: maximumTrack.frame.width * (realAvailableValue / realMaximumValue),
+      height: config.trackHeight)
+
     thumb.frame = CGRect(
-      x: minimumTrackWidth,
-      y: (size.height - config.thumbHeight) / 2,
+      x: (bounds.width - config.thumbWidth) * (realValue / realMaximumValue),
+      y: (bounds.height - config.thumbHeight) / 2,
       width: config.thumbWidth,
       height: config.thumbHeight)
+
+    minimumTrack.frame = CGRect(
+      x: 0,
+      y: 0,
+      width: thumb.frame.midX,
+      height: config.trackHeight)
   }
 }
 
