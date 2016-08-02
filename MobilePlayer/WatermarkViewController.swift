@@ -10,7 +10,7 @@ import UIKit
 
 class WatermarkViewController: MobilePlayerOverlayViewController {
   let config: WatermarkConfig
-  let watermarkImageView = UIImageView(frame: CGRectZero)
+  let watermarkImageView = UIImageView(frame: CGRect.zero)
 
   init(config: WatermarkConfig) {
     self.config = config
@@ -26,7 +26,7 @@ class WatermarkViewController: MobilePlayerOverlayViewController {
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     let size = view.frame.size
-    let watermarkSize = watermarkImageView.image?.size ?? CGSizeZero
+    let watermarkSize = watermarkImageView.image?.size ?? CGSize.zero
     watermarkImageView.frame.size = watermarkSize
     switch config.position {
     case .Center:

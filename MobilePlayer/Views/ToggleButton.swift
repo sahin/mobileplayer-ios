@@ -14,10 +14,10 @@ class ToggleButton: UIButton {
 
   init(config: ToggleButtonConfig = ToggleButtonConfig()) {
     self.config = config
-    super.init(frame: CGRectZero)
+    super.init(frame: CGRect.zero)
     accessibilityLabel = accessibilityLabel ?? config.identifier
     tintColor = config.tintColor
-    setImage(config.image, forState: .Normal)
+    setImage(config.image, for: UIControlState())
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -27,14 +27,14 @@ class ToggleButton: UIButton {
   func update() {
     if toggled {
       tintColor = config.toggledTintColor
-      setImage(config.toggledImage, forState: .Normal)
+      setImage(config.toggledImage, for: UIControlState())
     } else {
       tintColor = config.tintColor
-      setImage(config.image, forState: .Normal)
+      setImage(config.image, for: UIControlState())
     }
   }
 
-  override func sizeThatFits(size: CGSize) -> CGSize {
+  override func sizeThatFits(_ size: CGSize) -> CGSize {
     let superSize = super.sizeThatFits(size)
     return CGSize(
       width: (config.widthCalculation == .AsDefined) ? config.width : superSize.width,
