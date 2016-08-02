@@ -69,7 +69,7 @@ public class BarConfig {
     if let topBorderColorHex = dictionary["topBorderColor"] as? String {
       topBorderColor = UIColor(hex: topBorderColorHex)
     } else {
-      topBorderColor = UIColor.clearColor()
+      topBorderColor = UIColor.clear()
     }
 
     bottomBorderHeight = (dictionary["bottomBorderHeight"] as? CGFloat) ?? 0
@@ -77,7 +77,7 @@ public class BarConfig {
     if let bottomBorderColorHex = dictionary["bottomBorderColor"] as? String {
       bottomBorderColor = UIColor(hex: bottomBorderColorHex)
     } else {
-      bottomBorderColor = UIColor.clearColor()
+      bottomBorderColor = UIColor.clear()
     }
 
     if let elementDictionaries = dictionary["elements"] as? [[String: AnyObject]] {

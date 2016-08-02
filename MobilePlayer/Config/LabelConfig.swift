@@ -42,13 +42,13 @@ public class LabelConfig: ElementConfig {
     if let fontName = fontName, font = UIFont(name: fontName, size: size) {
       self.font = font
     } else {
-      font = UIFont.systemFontOfSize(size)
+      font = UIFont.systemFont(ofSize: size)
     }
 
     if let textColorHex = dictionary["textColor"] as? String {
       textColor = UIColor(hex: textColorHex)
     } else {
-      textColor = UIColor.whiteColor()
+      textColor = UIColor.white()
     }
 
     super.init(dictionary: dictionary)

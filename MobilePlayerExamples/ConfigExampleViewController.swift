@@ -22,8 +22,8 @@ class ConfigExampleViewController: ExampleViewController {
   }
 
   override func showButtonDidGetTapped() {
-    let bundle = NSBundle.mainBundle()
-    let config = MobilePlayerConfig(fileURL: bundle.URLForResource(
+    let bundle = Bundle.main
+    let config = MobilePlayerConfig(fileURL: bundle.urlForResource(
       "WatermarkedPlayer",
       withExtension: "json")!)
     let playerVC = MobilePlayerViewController(

@@ -13,17 +13,17 @@ class Button: UIButton {
 
   init(config: ButtonConfig = ButtonConfig()) {
     self.config = config
-    super.init(frame: CGRectZero)
+    super.init(frame: CGRect.zero)
     accessibilityLabel = accessibilityLabel ?? config.identifier
     tintColor = config.tintColor
-    setImage(config.image, forState: .Normal)
+    setImage(config.image, for: UIControlState())
   }
 
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
-  override func sizeThatFits(size: CGSize) -> CGSize {
+  override func sizeThatFits(_ size: CGSize) -> CGSize {
     let superSize = super.sizeThatFits(size)
     return CGSize(
       width: (config.widthCalculation == .AsDefined) ? config.width : superSize.width,

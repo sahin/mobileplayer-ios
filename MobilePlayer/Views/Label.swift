@@ -13,7 +13,7 @@ class Label: UILabel {
 
   init(config: LabelConfig = LabelConfig()) {
     self.config = config
-    super.init(frame: CGRectZero)
+    super.init(frame: CGRect.zero)
     accessibilityLabel = accessibilityLabel ?? config.identifier
     text = config.text
     font = config.font
@@ -24,7 +24,7 @@ class Label: UILabel {
     fatalError("init(coder:) has not been implemented")
   }
 
-  override func sizeThatFits(size: CGSize) -> CGSize {
+  override func sizeThatFits(_ size: CGSize) -> CGSize {
     let superSize = super.sizeThatFits(size)
     switch config.widthCalculation {
     case .AsDefined:

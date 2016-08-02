@@ -16,11 +16,11 @@ extension UIColor {
     var blue = CGFloat(0)
     var alpha = CGFloat(1)
     if hex.hasPrefix("#") {
-      let index   = hex.startIndex.advancedBy(1)
-      let hex     = hex.substringFromIndex(index)
-      let scanner = NSScanner(string: hex)
+      let index   = hex.characters.index(hex.startIndex, offsetBy: 1)
+      let hex     = hex.substring(from: index)
+      let scanner = Scanner(string: hex)
       var hexValue = CUnsignedLongLong(0)
-      if scanner.scanHexLongLong(&hexValue) {
+      if scanner.scanHexInt64(&hexValue) {
         switch (hex.characters.count) {
         case 3:
           red   = CGFloat((hexValue & 0xF00) >> 8)       / 15.0
