@@ -661,8 +661,6 @@
 					};
 					5F56CB801C040E8D00EF50C4 = {
 						CreatedOnToolsVersion = 7.1.1;
-						DevelopmentTeam = 9E43V6CC9L;
-						DevelopmentTeamName = "Guillaume Bellut";
 					};
 					5F56CB951C040E8E00EF50C4 = {
 						CreatedOnToolsVersion = 7.1.1;
@@ -674,8 +672,6 @@
 					};
 					CE554D591AFE6CCD00DAC7E9 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = 9E43V6CC9L;
-						DevelopmentTeamName = "Guillaume Bellut";
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 						TestTargetID = C3A9AED81B048B5600D0C842;
