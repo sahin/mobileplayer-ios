@@ -573,6 +573,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
   }
 
   private func handleMoviePlayerPlaybackStateDidChangeNotification() {
+	guard !seeking else { return }
     state = StateHelper.calculateStateUsing(previousState, andPlaybackState: moviePlayer.playbackState)
     let playButton = getViewForElementWithIdentifier("play") as? ToggleButton
     if state == .Playing {
@@ -588,7 +589,7 @@ public class MobilePlayerViewController: MPMoviePlayerViewController {
       playButton?.toggled = false
       hideControlsTimer?.invalidate()
       controlsView.controlsHidden = false
-      if let pauseOverlayViewController = pauseOverlayViewController where (state == .Paused && !seeking) {
+      if let pauseOverlayViewController = pauseOverlayViewController where state == .Paused {
         showOverlayViewController(pauseOverlayViewController)
       }
     }
@@ -639,7 +640,10 @@ extension MobilePlayerViewController: SliderDelegate {
     pause()
   }
 
-  func sliderThumbDidPan(slider: Slider) {}
+  func sliderThumbDidPan(slider: Slider) {
+    moviePlayer.currentPlaybackTime = NSTimeInterval(slider.value)
+	resetHideControlsTimer()
+  }
 
   func sliderThumbPanDidEnd(slider: Slider) {
     seeking = false
