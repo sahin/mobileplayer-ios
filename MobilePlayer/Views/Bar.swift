@@ -11,8 +11,8 @@ import UIKit
 class Bar: UIView {
   let config: BarConfig
   let gradientLayer: CAGradientLayer?
-  let topBorderView = UIView(frame: CGRectZero)
-  let bottomBorderView = UIView(frame: CGRectZero)
+  let topBorderView = UIView(frame: .zero)
+  let bottomBorderView = UIView(frame: .zero)
   var elements = [Element]()
   private var elementFindCache = [String: UIView]()
 
@@ -20,13 +20,13 @@ class Bar: UIView {
     self.config = config
     if config.backgroundColor.count > 1 {
       let gradientLayer = CAGradientLayer()
-      gradientLayer.colors = [config.backgroundColor.first!.CGColor, config.backgroundColor.last!.CGColor]
+      gradientLayer.colors = [config.backgroundColor.first!.cgColor, config.backgroundColor.last!.cgColor]
       gradientLayer.locations = [0, 1]
       self.gradientLayer = gradientLayer
     } else {
       gradientLayer = nil
     }
-    super.init(frame: CGRectZero)
+    super.init(frame: .zero)
     if config.backgroundColor.count == 1 {
       backgroundColor = config.backgroundColor[0]
     } else if let gradientLayer = gradientLayer {
@@ -37,7 +37,7 @@ class Bar: UIView {
     bottomBorderView.backgroundColor = config.bottomBorderColor
     addSubview(bottomBorderView)
     for elementConfig in config.elements {
-      addElementUsingConfig(elementConfig)
+      addElementUsingConfig(config: elementConfig)
     }
   }
 
@@ -65,7 +65,7 @@ class Bar: UIView {
     }
     if let
       elementView = elementView,
-      element = elementView as? Element {
+      let element = elementView as? Element {
         addSubview(elementView)
         elements.append(element)
         setNeedsLayout()
@@ -85,7 +85,7 @@ class Bar: UIView {
     return nil
   }
 
-  override func sizeThatFits(size: CGSize) -> CGSize {
+  override func sizeThatFits(_ size: CGSize) -> CGSize {
     return CGSize(width: size.width, height: config.height + config.bottomBorderHeight + config.topBorderHeight)
   }
 

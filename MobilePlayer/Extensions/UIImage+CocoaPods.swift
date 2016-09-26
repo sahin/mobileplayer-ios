@@ -12,13 +12,13 @@ extension UIImage {
 
   convenience init?(podResourceNamed name: String) {
     let bundleUrl =
-      NSBundle(forClass: MobilePlayerViewController.self).URLForResource("MobilePlayer", withExtension: "bundle") ??
-      NSBundle(forClass: MobilePlayerViewController.self).bundleURL
-    let bundle = NSBundle(URL: bundleUrl)
-    self.init(named: name, inBundle: bundle, compatibleWithTraitCollection:nil)
+      Bundle(for: MobilePlayerViewController.self).url(forResource: "MobilePlayer", withExtension: "bundle") ??
+      Bundle(for: MobilePlayerViewController.self).bundleURL
+    let bundle = Bundle(url: bundleUrl)
+    self.init(named: name, in: bundle, compatibleWith:nil)
   }
 
   var template: UIImage {
-    return imageWithRenderingMode(.AlwaysTemplate)
+    return withRenderingMode(.alwaysTemplate)
   }
 }

@@ -22,7 +22,7 @@ public class LabelConfig: ElementConfig {
 
   /// Initializes using default values.
   public convenience init() {
-    self.init(dictionary: [String: AnyObject]())
+    self.init(dictionary: [String: Any]())
   }
 
   /// Initializes using a dictionary.
@@ -34,21 +34,24 @@ public class LabelConfig: ElementConfig {
   ///
   /// - parameters:
   ///   - dictionary: Label configuration dictionary.
-  public override init(dictionary: [String: AnyObject]) {
+  public override init(dictionary: [String: Any]) {
+    // Values need to be AnyObject for type conversions to work correctly.
+    let dictionary = dictionary as [String: AnyObject]
+    
     text = dictionary["text"] as? String
 
     let fontName = dictionary["font"] as? String
     let size = (dictionary["size"] as? CGFloat) ?? ((dictionary["identifier"] as? String) == "title" ? 16 : 14)
-    if let fontName = fontName, font = UIFont(name: fontName, size: size) {
+    if let fontName = fontName, let font = UIFont(name: fontName, size: size) {
       self.font = font
     } else {
-      font = UIFont.systemFontOfSize(size)
+      font = UIFont.systemFont(ofSize: size)
     }
 
     if let textColorHex = dictionary["textColor"] as? String {
       textColor = UIColor(hex: textColorHex)
     } else {
-      textColor = UIColor.whiteColor()
+      textColor = UIColor.white
     }
 
     super.init(dictionary: dictionary)

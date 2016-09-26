@@ -22,9 +22,9 @@ class AdvancedConfigExampleViewController: ExampleViewController {
   }
 
   override func showButtonDidGetTapped() {
-    let bundle = NSBundle.mainBundle()
-    let config = MobilePlayerConfig(fileURL: bundle.URLForResource(
-      "MovielalaPlayer",
+    let bundle = Bundle.main
+    let config = MobilePlayerConfig(fileURL: bundle.url(
+        forResource: "MovielalaPlayer",
       withExtension: "json")!)
     let playerVC = MobilePlayerViewController(
       contentURL: videoURL,
