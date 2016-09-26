@@ -29,11 +29,11 @@ public class MobilePlayerConfig {
   ///
   /// - parameters:
   ///   - fileURL: URL indicating the location of the configuration file.
-  public convenience init(fileURL: NSURL) {
+  public convenience init(fileURL: URL) {
     if let
-      jsonString = (try? String(contentsOfURL: fileURL, encoding: NSUTF8StringEncoding)),
-      jsonData = jsonString.dataUsingEncoding(NSUTF8StringEncoding),
-      dictionary = (try? NSJSONSerialization.JSONObjectWithData(jsonData, options: [])) as? [String: AnyObject] {
+      jsonString = (try? String(contentsOf: fileURL, encoding: String.Encoding.utf8)),
+      let jsonData = jsonString.data(using: String.Encoding.utf8),
+      let dictionary = (try? JSONSerialization.jsonObject(with: jsonData, options: [])) as? [String: AnyObject] {
         self.init(dictionary: dictionary)
     } else {
       self.init()

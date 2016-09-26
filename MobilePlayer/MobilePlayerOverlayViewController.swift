@@ -9,8 +9,8 @@
 import UIKit
 
 struct TimedOverlayInfo {
-  let startTime: NSTimeInterval
-  let duration: NSTimeInterval
+  let startTime: TimeInterval
+  let duration: TimeInterval
   let overlay: MobilePlayerOverlayViewController
 }
 
@@ -30,6 +30,6 @@ public class MobilePlayerOverlayViewController: UIViewController {
 
   /// Causes the view controller's view to be removed from on top of player content if it is being displayed.
   public func dismiss() {
-    delegate?.dismissMobilePlayerOverlayViewController(self)
+    delegate?.dismissMobilePlayerOverlayViewController(overlayViewController: self)
   }
 }

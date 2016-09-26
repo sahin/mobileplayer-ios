@@ -11,16 +11,16 @@ import MediaPlayer
 
 final class MobilePlayerControlsView: UIView {
   let config: MobilePlayerConfig
-  let previewImageView = UIImageView(frame: CGRectZero)
-  let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .White)
-  let overlayContainerView = UIView(frame: CGRectZero)
+  let previewImageView = UIImageView(frame: .zero)
+  let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
+  let overlayContainerView = UIView(frame: .zero)
   let topBar: Bar
   let bottomBar: Bar
 
   var controlsHidden: Bool = false {
     didSet {
       if oldValue != controlsHidden {
-        UIView.animateWithDuration(0.2) {
+        UIView.animate(withDuration: 0.2) {
           self.layoutSubviews()
         }
       }
@@ -31,23 +31,23 @@ final class MobilePlayerControlsView: UIView {
     self.config = config
     topBar = Bar(config: config.topBarConfig)
     bottomBar = Bar(config: config.bottomBarConfig)
-    super.init(frame: CGRectZero)
-    previewImageView.contentMode = .ScaleAspectFit
+    super.init(frame: .zero)
+    previewImageView.contentMode = .scaleAspectFit
     addSubview(previewImageView)
     activityIndicatorView.startAnimating()
     addSubview(activityIndicatorView)
     addSubview(overlayContainerView)
     if topBar.elements.count == 0 {
-      topBar.addElementUsingConfig(ButtonConfig(dictionary: ["type": "button", "identifier": "close"]))
-      topBar.addElementUsingConfig(LabelConfig(dictionary: ["type": "label", "identifier": "title"]))
-      topBar.addElementUsingConfig(ButtonConfig(dictionary: ["type": "button", "identifier": "action"]))
+      topBar.addElementUsingConfig(config: ButtonConfig(dictionary: ["type": "button" as AnyObject, "identifier": "close" as AnyObject]))
+      topBar.addElementUsingConfig(config: LabelConfig(dictionary: ["type": "label" as AnyObject, "identifier": "title" as AnyObject]))
+      topBar.addElementUsingConfig(config: ButtonConfig(dictionary: ["type": "button" as AnyObject, "identifier": "action" as AnyObject]))
     }
     addSubview(topBar)
     if bottomBar.elements.count == 0 {
-      bottomBar.addElementUsingConfig(ToggleButtonConfig(dictionary: ["type": "toggleButton", "identifier": "play"]))
-      bottomBar.addElementUsingConfig(LabelConfig(dictionary: ["type": "label", "identifier": "currentTime"]))
-      bottomBar.addElementUsingConfig(SliderConfig(dictionary: ["type": "slider", "identifier": "playback", "marginLeft": 8, "marginRight": 8]))
-      bottomBar.addElementUsingConfig(LabelConfig(dictionary: ["type": "label", "identifier": "duration", "marginRight": 8]))
+      bottomBar.addElementUsingConfig(config: ToggleButtonConfig(dictionary: ["type": "toggleButton" as AnyObject, "identifier": "play" as AnyObject]))
+      bottomBar.addElementUsingConfig(config: LabelConfig(dictionary: ["type": "label" as AnyObject, "identifier": "currentTime" as AnyObject]))
+      bottomBar.addElementUsingConfig(config: SliderConfig(dictionary: ["type": "slider" as AnyObject, "identifier": "playback" as AnyObject, "marginLeft": 8 as AnyObject, "marginRight": 8 as AnyObject]))
+      bottomBar.addElementUsingConfig(config: LabelConfig(dictionary: ["type": "label" as AnyObject, "identifier": "duration" as AnyObject, "marginRight": 8 as AnyObject]))
     }
     addSubview(bottomBar)
   }

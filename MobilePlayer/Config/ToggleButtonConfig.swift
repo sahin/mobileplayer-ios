@@ -57,7 +57,7 @@ public class ToggleButtonConfig: ElementConfig {
     if let tintColorHex = dictionary["tintColor"] as? String {
       tintColor = UIColor(hex: tintColorHex)
     } else {
-      tintColor = UIColor.whiteColor()
+      tintColor = UIColor.white
     }
 
     if let toggledImageName = dictionary["toggledImage"] as? String {
@@ -71,7 +71,7 @@ public class ToggleButtonConfig: ElementConfig {
     if let toggledTintColorHex = dictionary["toggledTintColor"] as? String {
       toggledTintColor = UIColor(hex: toggledTintColorHex)
     } else {
-      toggledTintColor = UIColor.whiteColor()
+      toggledTintColor = UIColor.white
     }
 
     super.init(dictionary: dictionary)

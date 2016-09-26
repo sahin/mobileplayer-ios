@@ -68,7 +68,7 @@ public class WatermarkConfig {
     }
     if let
       positionString = dictionary["position"] as? String,
-      positionValue = WatermarkPosition(rawValue: positionString) {
+      let positionValue = WatermarkPosition(rawValue: positionString) {
         position = positionValue
     } else {
       position = .BottomRight

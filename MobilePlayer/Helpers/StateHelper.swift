@@ -15,15 +15,15 @@ struct StateHelper {
     previousState: MobilePlayerViewController.State,
     andPlaybackState playbackState: MPMoviePlaybackState) -> MobilePlayerViewController.State {
       switch playbackState {
-      case .Stopped:
+      case .stopped:
         return .Idle
-      case .Playing:
+      case .playing:
         return .Playing
-      case .Paused:
+      case .paused:
         return .Paused
-      case .Interrupted:
+      case .interrupted:
         return .Buffering
-      case .SeekingForward, .SeekingBackward:
+      case .seekingForward, .seekingBackward:
         return previousState
       }
   }

@@ -96,7 +96,7 @@ public class ElementConfig {
   public init(dictionary: [String: AnyObject]) {
     if let
       elementTypeString = dictionary["type"] as? String,
-      elementType = ElementType(rawValue: elementTypeString) {
+      let elementType = ElementType(rawValue: elementTypeString) {
         type = elementType
     } else {
       type = .Unknown
@@ -109,7 +109,7 @@ public class ElementConfig {
     let isPlaybackSlider = (type == .Slider && id == "playback")
     if let
       elementWidthCalculationString = dictionary["widthCalculation"] as? String,
-      elementWidthCalculation = ElementWidthCalculation(rawValue: elementWidthCalculationString) {
+      let elementWidthCalculation = ElementWidthCalculation(rawValue: elementWidthCalculationString) {
         widthCalculation = elementWidthCalculation
     } else if isTitleLabel || isPlaybackSlider {
       widthCalculation = .Fill
