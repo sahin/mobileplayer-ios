@@ -18,23 +18,23 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
         
         /// Either playback has not started or playback was stopped due to a `stop()` call or an error. When an error
         /// occurs, a corresponding `MobilePlayerDidEncounterErrorNotification` notification is posted.
-        case Idle
+        case idle
         
         /// The video will start playing, but sufficient data to start playback has to be loaded first.
-        case Buffering
+        case buffering
         
         /// The video is currently playing.
-        case Playing
+        case playing
         
         /// The video is currently paused.
-        case Paused
+        case paused
     }
     
     /// The previous value of `state`. Default is `.Idle`.
-    public private(set) var previousState: State = .Idle
+    public private(set) var previousState: State = .idle
     
     /// Current `State` of the player. Default is `.Idle`.
-    public private(set) var state: State = .Idle {
+    public private(set) var state: State = .idle {
         didSet {
             previousState = oldValue
         }
@@ -199,7 +199,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
                     return
                 }
                 slf.resetHideControlsTimer()
-                slf.state == .Playing ? slf.pause() : slf.play()
+                slf.state == .playing ? slf.pause() : slf.play()
             },
             forControlEvents: .touchUpInside)
         
@@ -368,7 +368,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
     ///     provided or a crash will occur.
     public func showContentActions(sourceView: UIView? = nil) {
         guard let activityItems = activityItems , !activityItems.isEmpty else { return }
-        let wasPlaying = (state == .Playing)
+        let wasPlaying = (state == .playing)
         moviePlayer.pause()
         let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
         activityVC.excludedActivityTypes =  [
@@ -558,7 +558,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
         hideControlsTimer = Timer.scheduledTimerWithTimeInterval(
             ti: 3,
             callback: {
-                self.controlsView.controlsHidden = (self.state == .Playing)
+                self.controlsView.controlsHidden = (self.state == .playing)
             },
             repeats: false)
     }
@@ -566,7 +566,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
     private func handleMoviePlayerPlaybackStateDidChangeNotification() {
         state = StateHelper.calculateStateUsing(previousState: previousState, andPlaybackState: moviePlayer.playbackState)
         let playButton = getViewForElementWithIdentifier("play") as? ToggleButton
-        if state == .Playing {
+        if state == .playing {
             doFirstPlaySetupIfNeeded()
             playButton?.toggled = true
             if !controlsView.controlsHidden {
@@ -579,7 +579,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
             playButton?.toggled = false
             hideControlsTimer?.invalidate()
             controlsView.controlsHidden = false
-            if let pauseOverlayViewController = pauseOverlayViewController, (state == .Paused && !seeking) {
+            if let pauseOverlayViewController = pauseOverlayViewController, (state == .paused && !seeking) {
                 showOverlayViewController(pauseOverlayViewController)
             }
         }
@@ -626,7 +626,7 @@ extension MobilePlayerViewController: SliderDelegate {
     
     func sliderThumbPanDidBegin(slider: Slider) {
         seeking = true
-        wasPlayingBeforeSeek = (state == .Playing)
+        wasPlayingBeforeSeek = (state == .playing)
         pause()
     }
     
