@@ -16,7 +16,7 @@ class ExampleViewController: UIViewController {
 
   init() {
     super.init(nibName: nil, bundle: nil)
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Show Player", style: .plain, target: self, action: #selector(ExampleViewController.showButtonDidGetTapped))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Show Player", style: .plain, target: self, action: #selector(showButtonDidGetTapped))
   }
 
   required init?(coder aDecoder: NSCoder) {

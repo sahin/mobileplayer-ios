@@ -38,16 +38,16 @@ final class MobilePlayerControlsView: UIView {
     addSubview(activityIndicatorView)
     addSubview(overlayContainerView)
     if topBar.elements.count == 0 {
-      topBar.addElementUsingConfig(config: ButtonConfig(dictionary: ["type": "button" as AnyObject, "identifier": "close" as AnyObject]))
-      topBar.addElementUsingConfig(config: LabelConfig(dictionary: ["type": "label" as AnyObject, "identifier": "title" as AnyObject]))
-      topBar.addElementUsingConfig(config: ButtonConfig(dictionary: ["type": "button" as AnyObject, "identifier": "action" as AnyObject]))
+      topBar.addElementUsingConfig(config: ButtonConfig(dictionary: ["type": "button", "identifier": "close"]))
+      topBar.addElementUsingConfig(config: LabelConfig(dictionary: ["type": "label", "identifier": "title"]))
+      topBar.addElementUsingConfig(config: ButtonConfig(dictionary: ["type": "button", "identifier": "action"]))
     }
     addSubview(topBar)
     if bottomBar.elements.count == 0 {
-      bottomBar.addElementUsingConfig(config: ToggleButtonConfig(dictionary: ["type": "toggleButton" as AnyObject, "identifier": "play" as AnyObject]))
-      bottomBar.addElementUsingConfig(config: LabelConfig(dictionary: ["type": "label" as AnyObject, "identifier": "currentTime" as AnyObject]))
-      bottomBar.addElementUsingConfig(config: SliderConfig(dictionary: ["type": "slider" as AnyObject, "identifier": "playback" as AnyObject, "marginLeft": 8 as AnyObject, "marginRight": 8 as AnyObject]))
-      bottomBar.addElementUsingConfig(config: LabelConfig(dictionary: ["type": "label" as AnyObject, "identifier": "duration" as AnyObject, "marginRight": 8 as AnyObject]))
+      bottomBar.addElementUsingConfig(config: ToggleButtonConfig(dictionary: ["type": "toggleButton", "identifier": "play"]))
+      bottomBar.addElementUsingConfig(config: LabelConfig(dictionary: ["type": "label", "identifier": "currentTime"]))
+      bottomBar.addElementUsingConfig(config: SliderConfig(dictionary: ["type": "slider", "identifier": "playback", "marginLeft": 8, "marginRight": 8]))
+      bottomBar.addElementUsingConfig(config: LabelConfig(dictionary: ["type": "label", "identifier": "duration", "marginRight": 8]))
     }
     addSubview(bottomBar)
   }

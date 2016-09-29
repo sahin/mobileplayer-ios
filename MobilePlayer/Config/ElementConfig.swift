@@ -78,7 +78,7 @@ public class ElementConfig {
 
   /// Initializes using default values.
   public convenience init() {
-    self.init(dictionary: [String: AnyObject]())
+    self.init(dictionary: [String: Any]())
   }
 
   /// Initializes using a dictionary.
@@ -93,7 +93,7 @@ public class ElementConfig {
   ///
   /// - parameters:
   ///   - dictionary: Element configuration dictionary.
-  public init(dictionary: [String: AnyObject]) {
+  public init(dictionary: [String: Any]) {
     if let
       elementTypeString = dictionary["type"] as? String,
       let elementType = ElementType(rawValue: elementTypeString) {

@@ -47,7 +47,7 @@ public class SliderConfig: ElementConfig {
 
   /// Initializes using default values.
   public convenience init() {
-    self.init(dictionary: [String: AnyObject]())
+    self.init(dictionary: [String: Any]())
   }
 
   /// Initializes using a dictionary.
@@ -66,7 +66,7 @@ public class SliderConfig: ElementConfig {
   ///
   /// - parameters:
   ///   - dictionary: Toggle button configuration dictionary.
-  public override init(dictionary: [String: AnyObject]) {
+  public override init(dictionary: [String: Any]) {
     trackHeight = (dictionary["trackHeight"] as? CGFloat) ?? 6
     trackCornerRadius = (dictionary["trackCornerRadius"] as? CGFloat) ?? 3
 

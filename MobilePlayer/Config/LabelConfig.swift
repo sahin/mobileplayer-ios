@@ -22,7 +22,7 @@ public class LabelConfig: ElementConfig {
 
   /// Initializes using default values.
   public convenience init() {
-    self.init(dictionary: [String: AnyObject]())
+    self.init(dictionary: [String: Any]())
   }
 
   /// Initializes using a dictionary.
@@ -34,7 +34,7 @@ public class LabelConfig: ElementConfig {
   ///
   /// - parameters:
   ///   - dictionary: Label configuration dictionary.
-  public override init(dictionary: [String: AnyObject]) {
+  public override init(dictionary: [String: Any]) {
     text = dictionary["text"] as? String
 
     let fontName = dictionary["font"] as? String
