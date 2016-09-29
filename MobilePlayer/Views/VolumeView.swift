@@ -9,8 +9,8 @@
 import UIKit
 import MediaPlayer
 
-private let defaultIncreaseVolumeTintColor = UIColor.blackColor()
-private let defaultReduceVolumeTintColor = UIColor.blackColor()
+private let defaultIncreaseVolumeTintColor = UIColor.black
+private let defaultReduceVolumeTintColor = UIColor.black
 
 class VolumeView: UIView {
   let volumeSlider = MPVolumeView(frame: CGRect(x: -22, y: 50, width: 110, height: 50))
@@ -20,20 +20,20 @@ class VolumeView: UIView {
   init(
     increaseVolumeTintColor: UIColor = defaultIncreaseVolumeTintColor,
     reduceVolumeTintColor: UIColor = defaultReduceVolumeTintColor) {
-      super.init(frame: CGRectZero)
+      super.init(frame: .zero)
       layer.cornerRadius = 5
-      layer.borderColor = UIColor.grayColor().CGColor
+      layer.borderColor = UIColor.gray.cgColor
       layer.borderWidth = 0.5
       layer.masksToBounds = true
-      backgroundColor = UIColor.whiteColor()
-      volumeSlider.transform = CGAffineTransformMakeRotation(CGFloat(-M_PI_2))
+      backgroundColor = UIColor.white
+      volumeSlider.transform = CGAffineTransform(rotationAngle: .pi / -2)
       volumeSlider.showsRouteButton = false
       addSubview(volumeSlider)
-      increaseVolumeImage.contentMode = .ScaleAspectFit;
+      increaseVolumeImage.contentMode = .scaleAspectFit
       increaseVolumeImage.image = UIImage(podResourceNamed: "MLIncreaseVolume")?.template
       increaseVolumeImage.tintColor = increaseVolumeTintColor
       addSubview(increaseVolumeImage)
-      reduceVolumeImage.contentMode = .ScaleAspectFit;
+      reduceVolumeImage.contentMode = .scaleAspectFit
       reduceVolumeImage.image = UIImage(podResourceNamed: "MLReduceVolume")?.template
       reduceVolumeImage.tintColor = reduceVolumeTintColor
       addSubview(reduceVolumeImage)

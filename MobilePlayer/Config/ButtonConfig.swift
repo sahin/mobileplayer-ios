@@ -22,7 +22,7 @@ public class ButtonConfig: ElementConfig {
 
   /// Initializes using default values.
   public convenience init() {
-    self.init(dictionary: [String: AnyObject]())
+    self.init(dictionary: [String: Any]())
   }
 
   /// Initializes using a dictionary.
@@ -33,7 +33,7 @@ public class ButtonConfig: ElementConfig {
   ///
   /// - parameters:
   ///   - dictionary: Button configuration dictionary.
-  public override init(dictionary: [String: AnyObject]) {
+  public override init(dictionary: [String: Any]) {
     height = (dictionary["height"] as? CGFloat) ?? 40
 
     if let imageName = dictionary["image"] as? String {
@@ -54,7 +54,7 @@ public class ButtonConfig: ElementConfig {
     if let tintColorHex = dictionary["tintColor"] as? String {
       tintColor = UIColor(hex: tintColorHex)
     } else {
-      tintColor = UIColor.whiteColor()
+      tintColor = UIColor.white
     }
 
     super.init(dictionary: dictionary)

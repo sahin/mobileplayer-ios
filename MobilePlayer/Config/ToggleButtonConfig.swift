@@ -28,7 +28,7 @@ public class ToggleButtonConfig: ElementConfig {
 
   /// Initializes using default values.
   public convenience init() {
-    self.init(dictionary: [String: AnyObject]())
+    self.init(dictionary: [String: Any]())
   }
 
   /// Initializes using a dictionary.
@@ -41,7 +41,7 @@ public class ToggleButtonConfig: ElementConfig {
   ///
   /// - parameters:
   ///   - dictionary: Toggle button configuration dictionary.
-  public override init(dictionary: [String: AnyObject]) {
+  public override init(dictionary: [String: Any]) {
     let identifier = dictionary["identifier"] as? String
     
     height = (dictionary["height"] as? CGFloat) ?? 40
@@ -57,7 +57,7 @@ public class ToggleButtonConfig: ElementConfig {
     if let tintColorHex = dictionary["tintColor"] as? String {
       tintColor = UIColor(hex: tintColorHex)
     } else {
-      tintColor = UIColor.whiteColor()
+      tintColor = UIColor.white
     }
 
     if let toggledImageName = dictionary["toggledImage"] as? String {
@@ -71,7 +71,7 @@ public class ToggleButtonConfig: ElementConfig {
     if let toggledTintColorHex = dictionary["toggledTintColor"] as? String {
       toggledTintColor = UIColor(hex: toggledTintColorHex)
     } else {
-      toggledTintColor = UIColor.whiteColor()
+      toggledTintColor = UIColor.white
     }
 
     super.init(dictionary: dictionary)
