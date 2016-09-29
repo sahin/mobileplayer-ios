@@ -26,14 +26,14 @@ class VolumeView: UIView {
       layer.borderWidth = 0.5
       layer.masksToBounds = true
       backgroundColor = UIColor.white
-      volumeSlider.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI_2))
+      volumeSlider.transform = CGAffineTransform(rotationAngle: .pi / -2)
       volumeSlider.showsRouteButton = false
       addSubview(volumeSlider)
-      increaseVolumeImage.contentMode = .scaleAspectFit;
+      increaseVolumeImage.contentMode = .scaleAspectFit
       increaseVolumeImage.image = UIImage(podResourceNamed: "MLIncreaseVolume")?.template
       increaseVolumeImage.tintColor = increaseVolumeTintColor
       addSubview(increaseVolumeImage)
-      reduceVolumeImage.contentMode = .scaleAspectFit;
+      reduceVolumeImage.contentMode = .scaleAspectFit
       reduceVolumeImage.image = UIImage(podResourceNamed: "MLReduceVolume")?.template
       reduceVolumeImage.tintColor = reduceVolumeTintColor
       addSubview(reduceVolumeImage)

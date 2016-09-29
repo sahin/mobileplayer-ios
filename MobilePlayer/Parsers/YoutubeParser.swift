@@ -64,7 +64,7 @@ class YoutubeParser: NSObject {
       request.httpMethod = "GET"
       NSURLConnection.sendAsynchronousRequest(
         request,
-        queue: OperationQueue.main,
+        queue: .main,
         completionHandler: { response, data, error in
           if let error = error {
             completion(nil, error as NSError?)
