@@ -26,7 +26,7 @@ class PauseOverlayExampleViewController: ExampleViewController {
       contentURL: videoURL,
       pauseOverlayViewController: PauseOverlayViewController())
     playerVC.title = videoTitle
-    playerVC.activityItems = [videoURL as AnyObject]
+    playerVC.activityItems = [videoURL]
     presentMoviePlayerViewControllerAnimated(playerVC)
   }
 }

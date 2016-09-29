@@ -192,7 +192,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
                 },
                 forControlEvents: .touchUpInside)
         }
-        
+
         (getViewForElementWithIdentifier("play") as? ToggleButton)?.addCallback(
             callback: { [weak self] in
                 guard let slf = self else {

@@ -35,7 +35,7 @@ class BuyOverlayViewController: MobilePlayerOverlayViewController {
     buyButton.titleLabel?.font = UIFont.systemFont(ofSize: 8, weight: UIFontWeightBold)
     buyButton.backgroundColor = UIColor(red: 0.85, green: 0.12, blue: 0.09, alpha: 1)
     buyButton.layer.cornerRadius = 4
-    buyButton.addTarget(self, action: "buyButtonDidGetTapped", for: .touchUpInside)
+    buyButton.addTarget(self, action: #selector(buyButtonDidGetTapped), for: .touchUpInside)
     containerView.addSubview(buyButton)
   }
 

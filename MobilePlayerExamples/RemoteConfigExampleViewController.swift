@@ -27,7 +27,7 @@ class RemoteConfigExampleViewController: ExampleViewController {
       contentURL: videoURL,
       config: MobilePlayerConfig(fileURL: configURL))
     playerVC.title = "Watermarked Player - \(videoTitle)"
-    playerVC.activityItems = [videoURL as AnyObject]
+    playerVC.activityItems = [videoURL]
     presentMoviePlayerViewControllerAnimated(playerVC)
   }
 }

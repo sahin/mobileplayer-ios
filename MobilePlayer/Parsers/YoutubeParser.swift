@@ -26,8 +26,8 @@ class YoutubeParser: NSObject {
     return withSpaces.removingPercentEncoding ?? withSpaces
   }
 
-  private static func queryStringToDictionary(queryString: String) -> [String: AnyObject] {
-    var parameters = [String: AnyObject]()
+  private static func queryStringToDictionary(queryString: String) -> [String: Any] {
+    var parameters = [String: Any]()
     
     for keyValuePair in queryString.components(separatedBy: "&") {
       let keyValueArray = keyValuePair.components(separatedBy: "=")
@@ -36,7 +36,7 @@ class YoutubeParser: NSObject {
       }
       let key = decodeURLEncodedString(urlString: keyValueArray[0])
       let value = decodeURLEncodedString(urlString: keyValueArray[1])
-      parameters[key] = value as AnyObject?
+      parameters[key] = value
     }
     return parameters
   }

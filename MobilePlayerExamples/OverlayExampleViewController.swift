@@ -25,7 +25,7 @@ class OverlayExampleViewController: ExampleViewController {
   override func showButtonDidGetTapped() {
     let playerVC = MobilePlayerViewController(contentURL: videoURL)
     playerVC.title = videoTitle
-    playerVC.activityItems = [videoURL as AnyObject]
+    playerVC.activityItems = [videoURL]
     presentMoviePlayerViewControllerAnimated(playerVC)
     ProductStore.getProduct("1", success: { product in
       guard let product = product else { return }

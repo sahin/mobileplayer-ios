@@ -34,7 +34,7 @@ public class BarConfig {
 
   /// Initializes using default values.
   public convenience init() {
-    self.init(dictionary: [String: AnyObject]())
+    self.init(dictionary: [String: Any]())
   }
 
   /// Initializes using a dictionary.
@@ -50,7 +50,7 @@ public class BarConfig {
   ///
   /// - parameters:
   ///   - dictionary: Bar configuration dictionary.
-  public init(dictionary: [String: AnyObject]) {
+  public init(dictionary: [String: Any]) {
     if let backgroundColorHexes = dictionary["backgroundColor"] as? [String] {
       var colors = [UIColor]()
       for hex in backgroundColorHexes {
