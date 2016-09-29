@@ -52,7 +52,7 @@ class Slider: UIView {
     thumb.layer.borderColor = config.thumbBorderColor
     thumb.layer.borderWidth = config.thumbBorderWidth
     addSubview(thumb)
-    thumb.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "didPanThumb:"))
+    thumb.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(didPanThumb)))
   }
 
   required init?(coder aDecoder: NSCoder) {

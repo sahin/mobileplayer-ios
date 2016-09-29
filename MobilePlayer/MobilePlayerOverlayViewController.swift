@@ -19,7 +19,7 @@ protocol MobilePlayerOverlayViewControllerDelegate: class {
 }
 
 /// A view controller used for presenting views on top of player content. Meant to be subclassed.
-public class MobilePlayerOverlayViewController: UIViewController {
+open class MobilePlayerOverlayViewController: UIViewController {
   weak var delegate: MobilePlayerOverlayViewControllerDelegate?
 
   /// The MobilePlayerViewController instance that the overlay is being shown by.

@@ -26,7 +26,7 @@ class PrerollExampleViewController: ExampleViewController {
       contentURL: videoURL,
       prerollViewController: PrerollOverlayViewController())
     playerVC.title = videoTitle
-    playerVC.activityItems = [videoURL]
+    playerVC.activityItems = [videoURL as AnyObject]
     presentMoviePlayerViewControllerAnimated(playerVC)
   }
 }

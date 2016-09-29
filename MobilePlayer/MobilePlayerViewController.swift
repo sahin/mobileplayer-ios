@@ -351,7 +351,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
     /// button is pressed (if it exists). If content is playing, it is paused automatically at presentation and will
     /// continue after the controller is dismissed. Override `showContentActions()` if you want to change the button's
     /// behavior.
-    public var activityItems: [AnyObject]? {
+    public var activityItems: [Any]? {
         didSet {
             let isEmpty = activityItems?.isEmpty
             getViewForElementWithIdentifier("action")?.isHidden = (isEmpty == nil || isEmpty == true)

@@ -8,8 +8,8 @@
 
 import Foundation
 
-public class ProductStore {
-  private static let products = [
+open class ProductStore {
+  fileprivate static let products = [
     "1": Product(
       id: "1",
       name: "Dark Side Galactic Clubs Life Time Membership",
@@ -28,16 +28,16 @@ public class ProductStore {
       description: "Cut and cook your meat at the same time!",
       price: 20.49,
       link: "http://google.com")]
-  private static let placements = [
+  fileprivate static let placements = [
     "1": [
       ProductPlacement(productID: "2", startTime: 4.49, duration: 7.45),
       ProductPlacement(productID: "3", startTime: 3, duration: 6)]]
 
-  public static func getProduct(productID: String, success: Product? -> Void, failure: (NSError -> Void)? = nil) {
+  open static func getProduct(_ productID: String, success: (Product?) -> Void, failure: ((NSError) -> Void)? = nil) {
     success(products[productID])
   }
 
-  public static func getProductPlacementsForVideo(videoID: String, success: [ProductPlacement]? -> Void, failure: (NSError -> Void)? = nil) {
+  open static func getProductPlacementsForVideo(_ videoID: String, success: ([ProductPlacement]?) -> Void, failure: ((NSError) -> Void)? = nil) {
     success(placements[videoID])
   }
 }
@@ -49,13 +49,13 @@ public struct Product {
   public let price: Double
   public let link: String
 
-  public var linkURL: NSURL? {
-    return NSURL(string: link)
+  public var linkURL: URL? {
+    return URL(string: link)
   }
 }
 
 public struct ProductPlacement {
   public let productID: String
-  public let startTime: NSTimeInterval?
-  public let duration: NSTimeInterval?
+  public let startTime: TimeInterval?
+  public let duration: TimeInterval?
 }
