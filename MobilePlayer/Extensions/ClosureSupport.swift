@@ -11,7 +11,7 @@ import UIKit
 class CallbackContainer {
   let callback: () -> Void
 
-  init(callback: () -> Void) {
+  init(callback: @escaping () -> Void) {
     self.callback = callback
   }
 
@@ -20,14 +20,14 @@ class CallbackContainer {
   }
 }
 
-extension NSTimer {
+extension Timer {
 
-  class func scheduledTimerWithTimeInterval(ti: NSTimeInterval, callback: () -> Void, repeats: Bool) -> NSTimer {
+  class func scheduledTimerWithTimeInterval(ti: TimeInterval, callback: @escaping () -> Void, repeats: Bool) -> Timer {
     let callbackContainer = CallbackContainer(callback: callback)
-    return scheduledTimerWithTimeInterval(
-      ti,
+    return scheduledTimer(
+      timeInterval: ti,
       target: callbackContainer,
-      selector: "callCallback",
+      selector: #selector(CallbackContainer.callCallback),
       userInfo: nil,
       repeats: repeats)
   }
@@ -35,17 +35,18 @@ extension NSTimer {
 
 extension UIControl {
 
-  func addCallback(callback: () -> Void, forControlEvents controlEvents: UIControlEvents) -> UnsafePointer<Void> {
+  @discardableResult
+  func addCallback(callback: @escaping () -> Void, forControlEvents controlEvents: UIControlEvents) -> UnsafeMutableRawPointer {
     let callbackContainer = CallbackContainer(callback: callback)
-    let key = unsafeAddressOf(callbackContainer)
+    let key = Unmanaged.passUnretained(callbackContainer).toOpaque()
     objc_setAssociatedObject(self, key, callbackContainer, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-    addTarget(callbackContainer, action: "callCallback", forControlEvents: controlEvents)
+    addTarget(callbackContainer, action: #selector(CallbackContainer.callCallback), for: controlEvents)
     return key
   }
 
-  func removeCallbackForKey(key: UnsafePointer<Void>) {
+  func removeCallbackForKey(key: UnsafeRawPointer) {
     if let callbackContainer = objc_getAssociatedObject(self, key) as? CallbackContainer {
-      removeTarget(callbackContainer, action: "callCallback", forControlEvents: .AllEvents)
+      removeTarget(callbackContainer, action: #selector(CallbackContainer.callCallback), for: .allEvents)
       objc_setAssociatedObject(self, key, nil, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
   }
@@ -53,12 +54,12 @@ extension UIControl {
 
 extension UIGestureRecognizer {
 
-  convenience init(callback: () -> Void) {
+  convenience init(callback: @escaping () -> Void) {
     let callbackContainer = CallbackContainer(callback: callback)
-    self.init(target: callbackContainer, action: "callCallback")
+    self.init(target: callbackContainer, action: #selector(CallbackContainer.callCallback))
     objc_setAssociatedObject(
       self,
-      unsafeAddressOf(callbackContainer),
+      Unmanaged.passUnretained(callbackContainer).toOpaque(),
       callbackContainer,
       objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
   }

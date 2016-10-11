@@ -50,7 +50,7 @@ public class WatermarkConfig {
 
   /// Initializes using default values.
   public convenience init() {
-    self.init(dictionary: [String: AnyObject]())
+    self.init(dictionary: [String: Any]())
   }
 
   /// Initializes using a dictionary.
@@ -60,15 +60,18 @@ public class WatermarkConfig {
   ///
   /// - parameters:
   ///   - dictionary: Watermark configuration dictionary.
-  public init(dictionary: [String: AnyObject]) {
+  public init(dictionary: [String: Any]) {
+    // Values need to be AnyObject for type conversions to work correctly.
+    let dictionary = dictionary as [String: AnyObject]
+    
     if let imageName = dictionary["image"] as? String {
       image = UIImage(named: imageName)
     } else {
       image = nil
     }
-    if let
-      positionString = dictionary["position"] as? String,
-      positionValue = WatermarkPosition(rawValue: positionString) {
+    if
+      let positionString = dictionary["position"] as? String,
+      let positionValue = WatermarkPosition(rawValue: positionString) {
         position = positionValue
     } else {
       position = .BottomRight

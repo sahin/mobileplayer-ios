@@ -19,21 +19,21 @@ protocol SliderDelegate: class {
 class Slider: UIView {
   let config: SliderConfig
   weak var delegate: SliderDelegate?
-  var minimumValue = Float(0)    { didSet { setNeedsLayout() } }
-  var value = Float(0)           { didSet { setNeedsLayout() } }
-  var availableValue = Float(0)  { didSet { setNeedsLayout() } }
-  var maximumValue = Float(1)    { didSet { setNeedsLayout() } }
+  var minimumValue: Float = 0    { didSet { setNeedsLayout() } }
+  var value: Float = 0           { didSet { setNeedsLayout() } }
+  var availableValue: Float = 0  { didSet { setNeedsLayout() } }
+  var maximumValue: Float = 1    { didSet { setNeedsLayout() } }
 
-  let maximumTrack = UIView(frame: CGRectZero)
-  let availableTrack = UIView(frame: CGRectZero)
-  let minimumTrack = UIView(frame: CGRectZero)
-  let thumb = UIView(frame: CGRectZero)
+  let maximumTrack = UIView(frame: .zero)
+  let availableTrack = UIView(frame: .zero)
+  let minimumTrack = UIView(frame: .zero)
+  let thumb = UIView(frame: .zero)
 
   // MARK: Initialization
 
   init(config: SliderConfig = SliderConfig()) {
     self.config = config
-    super.init(frame: CGRectZero)
+    super.init(frame: .zero)
     accessibilityLabel = accessibilityLabel ?? config.identifier
     maximumTrack.backgroundColor = config.maximumTrackTintColor
     maximumTrack.clipsToBounds = true
@@ -52,7 +52,7 @@ class Slider: UIView {
     thumb.layer.borderColor = config.thumbBorderColor
     thumb.layer.borderWidth = config.thumbBorderWidth
     addSubview(thumb)
-    thumb.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: "didPanThumb:"))
+    thumb.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(didPanThumb)))
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -61,13 +61,13 @@ class Slider: UIView {
 
   // MARK: Setters
 
-  func setValue(value: Float, animatedForDuration duration: NSTimeInterval) {
+  func setValue(value: Float, animatedForDuration duration: TimeInterval) {
     self.value = value
     if duration > 0 {
-      UIView.animateWithDuration(
-        duration,
+      UIView.animate(
+        withDuration: duration,
         delay: 0,
-        options: .AllowUserInteraction,
+        options: .allowUserInteraction,
         animations: {
           self.layoutIfNeeded()
         },
@@ -75,11 +75,11 @@ class Slider: UIView {
     }
   }
 
-  func setAvailableValue(availableValue: Float, animatedForDuration duration: NSTimeInterval) {
+  func setAvailableValue(availableValue: Float, animatedForDuration duration: TimeInterval) {
     self.availableValue = availableValue
     if duration > 0 {
-      UIView.animateWithDuration(
-        duration,
+      UIView.animate(
+        withDuration: duration,
         animations: {
           self.layoutIfNeeded()
       })
@@ -89,12 +89,12 @@ class Slider: UIView {
   // MARK: Seeking
 
   func didPanThumb(recognizer: UIPanGestureRecognizer!) {
-    let locationInTrack = recognizer.locationInView(maximumTrack)
+    let locationInTrack = recognizer.location(in: maximumTrack)
     let trackWidth = maximumTrack.frame.size.width
-    if recognizer.state == .Began {
-      delegate?.sliderThumbPanDidBegin(self)
+    if recognizer.state == .began {
+      delegate?.sliderThumbPanDidBegin(slider: self)
     }
-    if recognizer.state == .Changed || recognizer.state == .Ended || recognizer.state == .Cancelled {
+    if recognizer.state == .changed || recognizer.state == .ended || recognizer.state == .cancelled {
       var targetX = locationInTrack.x
       if targetX < 0 {
         targetX = 0
@@ -102,17 +102,17 @@ class Slider: UIView {
         targetX = trackWidth
       }
       value = minimumValue + (maximumValue - minimumValue) * Float(targetX / trackWidth)
-      if recognizer.state == .Changed {
-        delegate?.sliderThumbDidPan(self)
+      if recognizer.state == .changed {
+        delegate?.sliderThumbDidPan(slider: self)
       } else {
-        delegate?.sliderThumbPanDidEnd(self)
+        delegate?.sliderThumbPanDidEnd(slider: self)
       }
     }
   }
 
   // MARK: Layout
 
-  override func sizeThatFits(size: CGSize) -> CGSize {
+  override func sizeThatFits(_ size: CGSize) -> CGSize {
     let width = (config.widthCalculation == .AsDefined) ? config.width : size.width
 
     let minHeight = max(config.thumbHeight, config.trackHeight)

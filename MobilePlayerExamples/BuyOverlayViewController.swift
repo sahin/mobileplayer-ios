@@ -12,30 +12,30 @@ import MobilePlayerExampleStores
 
 class BuyOverlayViewController: MobilePlayerOverlayViewController {
   private static let maxWidth = CGFloat(200)
-  let containerView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark))
-  let descriptionLabel = UILabel(frame: CGRectZero)
-  let nameLabel = UILabel(frame: CGRectZero)
-  let buyButton = UIButton(frame: CGRectZero)
-  let buyLink: NSURL?
-  var containerOffset = CGPointZero
+  let containerView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+  let descriptionLabel = UILabel(frame: CGRect.zero)
+  let nameLabel = UILabel(frame: CGRect.zero)
+  let buyButton = UIButton(frame: CGRect.zero)
+  let buyLink: URL?
+  var containerOffset = CGPoint.zero
 
   init(product: Product) {
     buyLink = product.linkURL
     super.init(nibName: nil, bundle: nil)
     descriptionLabel.text = product.description
     descriptionLabel.numberOfLines = 2
-    descriptionLabel.textColor = UIColor.whiteColor()
-    descriptionLabel.font = UIFont.systemFontOfSize(8, weight: UIFontWeightHeavy)
+    descriptionLabel.textColor = UIColor.white
+    descriptionLabel.font = UIFont.systemFont(ofSize: 8, weight: UIFontWeightHeavy)
     containerView.addSubview(descriptionLabel)
     nameLabel.text = product.name
-    nameLabel.textColor = UIColor.whiteColor()
-    nameLabel.font = UIFont.systemFontOfSize(7, weight: UIFontWeightUltraLight)
+    nameLabel.textColor = UIColor.white
+    nameLabel.font = UIFont.systemFont(ofSize: 7, weight: UIFontWeightUltraLight)
     containerView.addSubview(nameLabel)
-    buyButton.setTitle("Get Now", forState: .Normal)
-    buyButton.titleLabel?.font = UIFont.systemFontOfSize(8, weight: UIFontWeightBold)
+    buyButton.setTitle("Get Now", for: .normal)
+    buyButton.titleLabel?.font = UIFont.systemFont(ofSize: 8, weight: UIFontWeightBold)
     buyButton.backgroundColor = UIColor(red: 0.85, green: 0.12, blue: 0.09, alpha: 1)
     buyButton.layer.cornerRadius = 4
-    buyButton.addTarget(self, action: "buyButtonDidGetTapped", forControlEvents: .TouchUpInside)
+    buyButton.addTarget(self, action: #selector(buyButtonDidGetTapped), for: .touchUpInside)
     containerView.addSubview(buyButton)
   }
 
@@ -48,14 +48,14 @@ class BuyOverlayViewController: MobilePlayerOverlayViewController {
     view.addSubview(containerView)
   }
 
-  override func didMoveToParentViewController(parent: UIViewController?) {
-    super.didMoveToParentViewController(parent)
+  override func didMove(toParentViewController parent: UIViewController?) {
+    super.didMove(toParentViewController: parent)
     // Update container offset so as not to intersect with other overlays' containers
-    containerOffset = CGPointZero
+    containerOffset = CGPoint.zero
     guard let superview = view.superview else { return }
-    for (index, overlayView) in superview.subviews.enumerate() {
-      if (parentViewController?.childViewControllers[index] == self)
-        || !CGRectIntersectsRect(overlayView.subviews[0].frame, view.frame) {
+    for (index, overlayView) in superview.subviews.enumerated() {
+      if (parent?.childViewControllers[index] == self)
+        || !overlayView.subviews[0].frame.intersects(view.frame) {
         return
       }
       containerOffset.x += overlayView.subviews[0].frame.size.width + 8
@@ -83,6 +83,6 @@ class BuyOverlayViewController: MobilePlayerOverlayViewController {
 
   func buyButtonDidGetTapped() {
     guard let buyLink = buyLink else { return }
-    UIApplication.sharedApplication().openURL(buyLink)
+    UIApplication.shared.openURL(buyLink)
   }
 }

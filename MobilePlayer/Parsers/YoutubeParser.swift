@@ -22,85 +22,83 @@ class YoutubeParser: NSObject {
     + " Chrome/22.0.1229.79 Safari/537.4"
 
   private static func decodeURLEncodedString(urlString: String) -> String {
-    let withSpaces = urlString.stringByReplacingOccurrencesOfString("+", withString:" ")
-    return withSpaces.stringByRemovingPercentEncoding ?? withSpaces
+    let withSpaces = urlString.replacingOccurrences(of: "+", with: " ")
+    return withSpaces.removingPercentEncoding ?? withSpaces
   }
 
-  private static func queryStringToDictionary(queryString: String) -> [String: AnyObject] {
-    var parameters = [String: AnyObject]()
-    for keyValuePair in queryString.componentsSeparatedByString("&") {
-      let keyValueArray = keyValuePair.componentsSeparatedByString("=")
+  private static func queryStringToDictionary(queryString: String) -> [String: Any] {
+    var parameters = [String: Any]()
+    for keyValuePair in queryString.components(separatedBy: "&") {
+      let keyValueArray = keyValuePair.components(separatedBy: "=")
       if keyValueArray.count < 2 {
         continue
       }
-      let key = decodeURLEncodedString(keyValueArray[0])
-      let value = decodeURLEncodedString(keyValueArray[1])
+      let key = decodeURLEncodedString(urlString: keyValueArray[0])
+      let value = decodeURLEncodedString(urlString: keyValueArray[1])
       parameters[key] = value
     }
     return parameters
   }
 
-  static func youtubeIDFromURL(url: NSURL) -> String? {
-    if let
-      host = url.host,
-      pathComponents = url.pathComponents {
-        if host.rangeOfString("youtu.be") != nil {
-          return pathComponents[1]
-        } else if (host.rangeOfString("youtube.com") != nil && pathComponents[1] == "embed") || (host == "youtube.googleapis.com") {
-          return pathComponents[2]
-        } else if let
-          queryString = url.query,
-          videoParam = queryStringToDictionary(queryString)["v"] as? String
-          where (host.rangeOfString("youtube.com") != nil) {
-            return videoParam
-        }
+  static func youtubeIDFromURL(url: URL) -> String? {
+    guard let host = url.host else { return nil }
+
+    if host.range(of: "youtu.be") != nil {
+      return url.pathComponents[1]
+    } else if (host.range(of: "youtube.com") != nil && url.pathComponents[1] == "embed") || (host == "youtube.googleapis.com") {
+      return url.pathComponents[2]
+    } else if
+      host.range(of: "youtube.com") != nil,
+      let queryString = url.query,
+      let videoParam = queryStringToDictionary(queryString: queryString)["v"] as? String {
+        return videoParam
     }
+
     return nil
   }
 
-  static func h264videosWithYoutubeID(
-    youtubeID: String,
-    completion: (videoInfo: YoutubeVideoInfo?, error: NSError?) -> Void) {
-      let request = NSMutableURLRequest(URL: NSURL(string: "\(infoURL)\(youtubeID)")!)
-      request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-      request.HTTPMethod = "GET"
-      NSURLConnection.sendAsynchronousRequest(
-        request,
-        queue: NSOperationQueue.mainQueue(),
-        completionHandler: { response, data, error in
-          if let error = error {
-            completion(videoInfo: nil, error: error)
+  static func h264videosWithYoutubeID(_ youtubeID: String,
+                                      completion: @escaping (_ videoInfo: YoutubeVideoInfo?, _ error: NSError?) -> Void) {
+    var request = URLRequest(url: URL(string: "\(infoURL)\(youtubeID)")!)
+    request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+    request.httpMethod = "GET"
+    NSURLConnection.sendAsynchronousRequest(
+      request,
+      queue: .main,
+      completionHandler: { response, data, error in
+        if let error = error {
+          completion(nil, error as NSError?)
+          return
+        }
+        guard let
+          data = data,
+          let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String else {
+            completion(
+              nil,
+              NSError(domain: "com.movielala.MobilePlayer.error", code: 0, userInfo: nil))
             return
-          }
-          guard let
-            data = data,
-            dataString = NSString(data: data, encoding: NSUTF8StringEncoding) as? String else {
-              completion(
-                videoInfo: nil,
-                error: NSError(domain: "com.movielala.MobilePlayer.error", code: 0, userInfo: nil))
-              return
-          }
-          let parts = self.queryStringToDictionary(dataString)
-          let title = parts["title"] as? String
-          let previewImageURL = parts["iurl"] as? String
-          if parts["live_playback"] != nil {
-            completion(
-              videoInfo: YoutubeVideoInfo(
-                title: title,
-                previewImageURL: previewImageURL,
-                videoURL: parts["hlsvp"] as? String,
-                isStream: true),
-              error: nil)
-          } else if let fmtStreamMap = parts["url_encoded_fmt_stream_map"] as? String {
-            let videoComponents = self.queryStringToDictionary(fmtStreamMap.componentsSeparatedByString(",")[0])
-            completion(
-              videoInfo: YoutubeVideoInfo(
-                title: title,
-                previewImageURL: previewImageURL,
-                videoURL: videoComponents["url"] as? String,
-                isStream: false),
-              error: nil)
-          }
-      })
+        }
+        let parts = self.queryStringToDictionary(queryString: dataString)
+        let title = parts["title"] as? String
+        let previewImageURL = parts["iurl"] as? String
+        if parts["live_playback"] != nil {
+          completion(
+            YoutubeVideoInfo(
+              title: title,
+              previewImageURL: previewImageURL,
+              videoURL: parts["hlsvp"] as? String,
+              isStream: true),
+            nil)
+        } else if let fmtStreamMap = parts["url_encoded_fmt_stream_map"] as? String {
+          let videoComponents = self.queryStringToDictionary(queryString: fmtStreamMap.components(separatedBy: ",")[0])
+          completion(
+            YoutubeVideoInfo(
+              title: title,
+              previewImageURL: previewImageURL,
+              videoURL: videoComponents["url"] as? String,
+              isStream: false),
+            nil)
+        }
+    })
   }
 }

@@ -34,7 +34,7 @@ public class BarConfig {
 
   /// Initializes using default values.
   public convenience init() {
-    self.init(dictionary: [String: AnyObject]())
+    self.init(dictionary: [String: Any]())
   }
 
   /// Initializes using a dictionary.
@@ -50,7 +50,10 @@ public class BarConfig {
   ///
   /// - parameters:
   ///   - dictionary: Bar configuration dictionary.
-  public init(dictionary: [String: AnyObject]) {
+  public init(dictionary: [String: Any]) {
+    // Values need to be AnyObject for type conversions to work correctly.
+    let dictionary = dictionary as [String: AnyObject]
+    
     if let backgroundColorHexes = dictionary["backgroundColor"] as? [String] {
       var colors = [UIColor]()
       for hex in backgroundColorHexes {
@@ -69,7 +72,7 @@ public class BarConfig {
     if let topBorderColorHex = dictionary["topBorderColor"] as? String {
       topBorderColor = UIColor(hex: topBorderColorHex)
     } else {
-      topBorderColor = UIColor.clearColor()
+      topBorderColor = UIColor.clear
     }
 
     bottomBorderHeight = (dictionary["bottomBorderHeight"] as? CGFloat) ?? 0
@@ -77,7 +80,7 @@ public class BarConfig {
     if let bottomBorderColorHex = dictionary["bottomBorderColor"] as? String {
       bottomBorderColor = UIColor(hex: bottomBorderColorHex)
     } else {
-      bottomBorderColor = UIColor.clearColor()
+      bottomBorderColor = UIColor.clear
     }
 
     if let elementDictionaries = dictionary["elements"] as? [[String: AnyObject]] {
