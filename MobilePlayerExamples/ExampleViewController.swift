@@ -10,7 +10,7 @@ import UIKit
 
 class ExampleViewController: UIViewController {
   let codeImageView = UIImageView(frame: CGRect.zero)
-  let videoURL = URL(string: "https://movielalavideos.blob.core.windows.net/videos/563cb51788b8c6db4b000376.mp4")!
+  let videoURL = URL(string: "https://player.vimeo.com/external/186497194.hd.mp4?s=5b9ae54ba4cc6e325e7ad880e3cd795a29426d1d")!
   let videoTitle = "Star Wars: Episode VII - The Force Awakens - International Trailer"
   let videoID = "1"
 
