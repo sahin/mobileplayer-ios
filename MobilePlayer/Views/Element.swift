@@ -6,6 +6,8 @@
 //  Copyright © 2015 MovieLaLa. All rights reserved.
 //
 
+import UIKit
+
 protocol Element {
   var type: ElementType { get }
   var identifier: String? { get }
