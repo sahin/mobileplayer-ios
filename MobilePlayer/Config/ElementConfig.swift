@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /// Determines the type of an element.
 public enum ElementType: String {
