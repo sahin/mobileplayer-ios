@@ -227,6 +227,12 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
   /// If you override this method make sure you call super's implementation.
   open override func viewDidLoad() {
     super.viewDidLoad()
+    
+    // Force hide status bar.
+    previousStatusBarHiddenValue = UIApplication.shared.isStatusBarHidden
+    UIApplication.shared.isStatusBarHidden = true
+    setNeedsStatusBarAppearanceUpdate()
+    
     view.addSubview(controlsView)
     playbackInterfaceUpdateTimer = Timer.scheduledTimerWithTimeInterval(
       ti: MobilePlayerViewController.playbackInterfaceUpdateInterval,
@@ -260,9 +266,9 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
   open override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     // Force hide status bar.
-    previousStatusBarHiddenValue = UIApplication.shared.isStatusBarHidden
-    UIApplication.shared.isStatusBarHidden = true
-    setNeedsStatusBarAppearanceUpdate()
+//    previousStatusBarHiddenValue = UIApplication.shared.isStatusBarHidden
+//    UIApplication.shared.isStatusBarHidden = true
+//    setNeedsStatusBarAppearanceUpdate()
   }
 
   /// Notifies the view controller that its view is about to be removed from a view hierarchy.
