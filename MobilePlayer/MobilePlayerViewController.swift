@@ -156,7 +156,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
           let error = userInfo["error"] as? NSError {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: MobilePlayerDidEncounterErrorNotification), object: self, userInfo: [MobilePlayerErrorUserInfoKey: error])
         }
-        if let postrollVC = slf.postrollViewController {
+        if let postrollVC = slf.postrollViewController, !slf.isBeingDismissed {
           slf.prerollViewController?.dismiss()
           slf.pauseOverlayViewController?.dismiss()
           slf.showOverlayViewController(postrollVC)
