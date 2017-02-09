@@ -230,8 +230,6 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
     
     // Force hide status bar.
     previousStatusBarHiddenValue = UIApplication.shared.isStatusBarHidden
-    UIApplication.shared.isStatusBarHidden = true
-    setNeedsStatusBarAppearanceUpdate()
     
     view.addSubview(controlsView)
     playbackInterfaceUpdateTimer = Timer.scheduledTimerWithTimeInterval(
@@ -270,6 +268,11 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
 //    UIApplication.shared.isStatusBarHidden = true
 //    setNeedsStatusBarAppearanceUpdate()
   }
+    open override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIApplication.shared.isStatusBarHidden = true
+        setNeedsStatusBarAppearanceUpdate()
+    }
 
   /// Notifies the view controller that its view is about to be removed from a view hierarchy.
   ///

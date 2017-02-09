@@ -15,6 +15,21 @@ protocol SliderDelegate: class {
   func sliderThumbPanDidEnd(slider: Slider)
 }
 
+class LargeTouchAreaUIView: UIView {
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if self.isHidden || !self.isUserInteractionEnabled || self.alpha < 0.01 { return nil }
+        
+        let minimumHitArea = CGSize(width: 800, height: 800)
+        let buttonSize = self.bounds.size
+        let widthToAdd = max(minimumHitArea.width - buttonSize.width, 0)
+        let heightToAdd = max(minimumHitArea.height - buttonSize.height, 0)
+        let largerFrame = self.bounds.insetBy(dx: -widthToAdd / 2, dy: -heightToAdd / 2)
+        
+        // perform hit test on larger frame
+        return (largerFrame.contains(point)) ? self : nil
+    }
+}
+
 // MARK: - Class
 class Slider: UIView {
   let config: SliderConfig
@@ -27,7 +42,7 @@ class Slider: UIView {
   let maximumTrack = UIView(frame: .zero)
   let availableTrack = UIView(frame: .zero)
   let minimumTrack = UIView(frame: .zero)
-  let thumb = UIView(frame: .zero)
+  let thumb = LargeTouchAreaUIView(frame: .zero)
 
   // MARK: Initialization
 
