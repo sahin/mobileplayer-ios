@@ -96,6 +96,8 @@ public class BarConfig {
             validElements.append(LabelConfig(dictionary: elementDictionary))
           case "slider":
             validElements.append(SliderConfig(dictionary: elementDictionary))
+          case "airplay":
+            validElements.append(AirplayConfig(dictionary: elementDictionary))
           default:
             break
           }

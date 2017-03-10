@@ -25,6 +25,9 @@ public enum ElementType: String {
 
   /// Element is a slider.
   case Slider = "slider"
+    
+  /// Element is airplay button
+  case Airplay = "airplay"
 }
 
 /// Determines how an element's width will be calculated.
@@ -61,6 +64,8 @@ public class ElementConfig {
   ///     * "play"
   ///   * Sliders
   ///     * "playback"
+  ///   * Airplay
+  ///     * "router"
   public let identifier: String?
 
   /// How the width of the element will be calculated. Default value is `.Fill` for title label and playback slider,

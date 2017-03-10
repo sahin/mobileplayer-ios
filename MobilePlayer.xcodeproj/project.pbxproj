@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		049568191E733437006E4937 /* Airplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049568181E733437006E4937 /* Airplay.swift */; };
+		0495681B1E733563006E4937 /* AirplayConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495681A1E733563006E4937 /* AirplayConfig.swift */; };
+		0495681D1E733904006E4937 /* Airplay.json in Resources */ = {isa = PBXBuildFile; fileRef = 0495681C1E733904006E4937 /* Airplay.json */; };
+		0495681F1E73484A006E4937 /* AdvancedConfigAirplayExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0495681E1E73484A006E4937 /* AdvancedConfigAirplayExampleViewController.swift */; };
 		5F31B7B91BBAE39900EF50C4 /* MobilePlayerNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F31B7B81BBAE39900EF50C4 /* MobilePlayerNotification.swift */; };
 		5F3F03C31C18E73200EF50C4 /* PrerollExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3F03C21C18E73200EF50C4 /* PrerollExampleViewController.swift */; };
 		5F3F03C51C18E74000EF50C4 /* PauseOverlayExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F3F03C41C18E74000EF50C4 /* PauseOverlayExampleViewController.swift */; };
@@ -136,6 +140,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		049568181E733437006E4937 /* Airplay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Airplay.swift; path = Views/Airplay.swift; sourceTree = "<group>"; };
+		0495681A1E733563006E4937 /* AirplayConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AirplayConfig.swift; sourceTree = "<group>"; };
+		0495681C1E733904006E4937 /* Airplay.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Airplay.json; path = Resources/Airplay.json; sourceTree = "<group>"; };
+		0495681E1E73484A006E4937 /* AdvancedConfigAirplayExampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvancedConfigAirplayExampleViewController.swift; sourceTree = "<group>"; };
 		0A3D625F8D46F7B3823A9927 /* Pods-MobilePlayerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		460022C3A2D4FC80A1D57D18 /* Pods-MobilePlayerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MobilePlayerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MobilePlayerTests/Pods-MobilePlayerTests.release.xcconfig"; sourceTree = "<group>"; };
 		505CCD80FF878F8F17EC4627 /* Pods_MobilePlayerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MobilePlayerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -281,6 +289,7 @@
 			children = (
 				5F4CED421C054A5200EF50C4 /* WatermarkedPlayer.json */,
 				5FF829681C16924400EF50C4 /* MovielalaPlayer.json */,
+				0495681C1E733904006E4937 /* Airplay.json */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -298,6 +307,7 @@
 				5F3F03C21C18E73200EF50C4 /* PrerollExampleViewController.swift */,
 				5F3F03C41C18E74000EF50C4 /* PauseOverlayExampleViewController.swift */,
 				5F3F03C61C18E75300EF50C4 /* PostrollExampleViewController.swift */,
+				0495681E1E73484A006E4937 /* AdvancedConfigAirplayExampleViewController.swift */,
 			);
 			name = Examples;
 			sourceTree = "<group>";
@@ -362,6 +372,7 @@
 				5FA92EA21BA9896300EF50C4 /* ToggleButton.swift */,
 				5FA92EA61BA9919D00EF50C4 /* Slider.swift */,
 				5F7CDF4A1BBEB6F900EF50C4 /* VolumeView.swift */,
+				049568181E733437006E4937 /* Airplay.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -413,6 +424,7 @@
 				5FA92EA01BA9839300EF50C4 /* ButtonConfig.swift */,
 				5FBFEA331BA8ACDE00EF50C4 /* ToggleButtonConfig.swift */,
 				5FBFEA351BA8AD0200EF50C4 /* SliderConfig.swift */,
+				0495681A1E733563006E4937 /* AirplayConfig.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -721,6 +733,7 @@
 				5F56CB901C040E8D00EF50C4 /* LaunchScreen.storyboard in Resources */,
 				5F3F03D51C1903EF00EF50C4 /* PostrollOverlayViewController.xib in Resources */,
 				5FF829691C16924400EF50C4 /* MovielalaPlayer.json in Resources */,
+				0495681D1E733904006E4937 /* Airplay.json in Resources */,
 				5F56CB8D1C040E8D00EF50C4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -788,6 +801,7 @@
 				5F79747C1C17ED7800EF50C4 /* TimedOverlayExampleViewController.swift in Sources */,
 				5F3F03CF1C18F3DA00EF50C4 /* PauseOverlayViewController.swift in Sources */,
 				5FF829671C168E4700EF50C4 /* ProgConfigExampleViewController.swift in Sources */,
+				0495681F1E73484A006E4937 /* AdvancedConfigAirplayExampleViewController.swift in Sources */,
 				5F3F03D31C1903E200EF50C4 /* PostrollOverlayViewController.swift in Sources */,
 				5F7974781C17B02200EF50C4 /* OverlayExampleViewController.swift in Sources */,
 				5F56CBB71C041DAE00EF50C4 /* RemoteConfigExampleViewController.swift in Sources */,
@@ -817,11 +831,13 @@
 				5FA92EA51BA98BE700EF50C4 /* Bar.swift in Sources */,
 				5FBFEA361BA8AD0200EF50C4 /* SliderConfig.swift in Sources */,
 				5FBFEA2E1BA8AC1B00EF50C4 /* BarConfig.swift in Sources */,
+				0495681B1E733563006E4937 /* AirplayConfig.swift in Sources */,
 				C308B3C01B150F7600CB1515 /* MobilePlayerConfig.swift in Sources */,
 				5F8272741BFA9F0600EF50C4 /* UIImage+CocoaPods.swift in Sources */,
 				5F7CDF471BBEB6C400EF50C4 /* YoutubeParser.swift in Sources */,
 				5FD756961BAC4AE700EF50C4 /* WatermarkViewController.swift in Sources */,
 				5FBFEA321BA8ACC500EF50C4 /* LabelConfig.swift in Sources */,
+				049568191E733437006E4937 /* Airplay.swift in Sources */,
 				5F6AF3701BA96EF000EF50C4 /* Button.swift in Sources */,
 				5FBFEA341BA8ACDE00EF50C4 /* ToggleButtonConfig.swift in Sources */,
 				CE554D731AFE6EBB00DAC7E9 /* MobilePlayerOverlayViewController.swift in Sources */,
@@ -935,6 +951,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MobilePlayerExamples/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -950,6 +967,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MobilePlayerExamples/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -963,6 +981,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MobilePlayerExamplesUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -978,6 +997,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = MobilePlayerExamplesUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1129,6 +1149,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1150,6 +1171,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"BUNDLE_LOADER[arch=*]" = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
