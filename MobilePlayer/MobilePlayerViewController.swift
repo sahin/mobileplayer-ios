@@ -366,7 +366,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
   /// parameters:
   ///   - sourceView: On iPads the activity view controller is presented as a popover and a source view needs to
   ///     provided or a crash will occur.
-  public func showContentActions(sourceView: UIView? = nil) {
+  open func showContentActions(sourceView: UIView? = nil) {
     guard let activityItems = activityItems, !activityItems.isEmpty else { return }
     let wasPlaying = (state == .playing)
     moviePlayer.pause()
