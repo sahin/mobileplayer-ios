@@ -275,12 +275,13 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
   /// - parameters:
   ///  - animated: If `true`, the disappearance of the view is being animated.
   open override func viewWillDisappear(_ animated: Bool) {
+    // Restore status bar appearance.
+    if let previousStatusBarHidden = previousStatusBarHiddenValue {
+        UIApplication.shared.isStatusBarHidden = previousStatusBarHidden
+        setNeedsStatusBarAppearanceUpdate()
+    }
     super.viewWillDisappear(animated)
     stop()
-    // Restore status bar appearance.
-    guard let previousStatusBarHiddenValue = previousStatusBarHiddenValue else { return }
-    UIApplication.shared.isStatusBarHidden = previousStatusBarHiddenValue
-    setNeedsStatusBarAppearanceUpdate()
   }
 
   // MARK: Deinitialization
