@@ -64,6 +64,14 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
       titleLabel.superview?.setNeedsLayout()
     }
   }
+    
+    open var shouldPlayOnDlna = false
+    open var airPlayState = 0
+    open var airPlayPlay: (() -> Void)?
+    open var airPlayPause: (() -> Void)?
+    open var airPlayStop: (() -> Void)?
+    open var airPlaySeek: ((Float) -> Void)?
+    
 
   // MARK: Private Properties
   private let controlsView: MobilePlayerControlsView
@@ -198,7 +206,13 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
           return
         }
         slf.resetHideControlsTimer()
-        slf.state == .playing ? slf.pause() : slf.play()
+        if slf.shouldPlayOnDlna {
+            if let playBtn = slf.getViewForElementWithIdentifier("play") as? ToggleButton {
+                playBtn.toggled ? slf.pause() : slf.play()
+            }
+        }else {
+            slf.state == .playing ? slf.pause() : slf.play()
+        }
       },
       forControlEvents: .touchUpInside)
 
@@ -320,14 +334,22 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
   /// Starting playback causes dismiss to be called on prerollViewController, pauseOverlayViewController
   /// and postrollViewController.
   public func play() {
-    moviePlayer.play()
+    if shouldPlayOnDlna {
+        airPlayPlay?()
+    }else {
+        moviePlayer.play()
+    }
   }
 
   /// Pauses playback of current content.
   ///
   /// Pausing playback causes pauseOverlayViewController to be shown.
   public func pause() {
-    moviePlayer.pause()
+    if shouldPlayOnDlna {
+        airPlayPause?()
+    }else {
+        moviePlayer.pause()
+    }
   }
 
   /// Ends playback of current content.
@@ -519,7 +541,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
     }
   }
 
-  private func updatePlaybackInterface() {
+  open func updatePlaybackInterface() {
     if let playbackSlider = getViewForElementWithIdentifier("playback") as? Slider {
       playbackSlider.maximumValue = Float(moviePlayer.duration.isNormal ? moviePlayer.duration : 0)
       if !seeking {
@@ -545,6 +567,41 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
     }
     updateShownTimedOverlays()
   }
+    
+    open func updatePlaybackInterface(maximumValue: Float,
+                                      sliderValue: Float,
+                                      availableValue: Float,
+                                      currentTime: String,
+                                      remainingTime: String,
+                                      duration: String) {
+        if let playbackSlider = getViewForElementWithIdentifier("playback") as? Slider {
+            playbackSlider.maximumValue = maximumValue
+            if !seeking {
+                playbackSlider.setValue(value: sliderValue, animatedForDuration: MobilePlayerViewController.playbackInterfaceUpdateInterval)
+            }
+            playbackSlider.setAvailableValue(
+                availableValue: availableValue,
+                animatedForDuration: MobilePlayerViewController.playbackInterfaceUpdateInterval)
+        }
+        if let currentTimeLabel = getViewForElementWithIdentifier("currentTime") as? Label {
+            currentTimeLabel.text = currentTime
+            currentTimeLabel.superview?.setNeedsLayout()
+        }
+        if let remainingTimeLabel = getViewForElementWithIdentifier("remainingTime") as? Label {
+            remainingTimeLabel.text = "-\(remainingTime)"
+            remainingTimeLabel.superview?.setNeedsLayout()
+        }
+        if let durationLabel = getViewForElementWithIdentifier("duration") as? Label {
+            durationLabel.text = duration
+            durationLabel.superview?.setNeedsLayout()
+        }
+        updateShownTimedOverlays()
+    }
+    
+    open func togglePlayBtn(toggled: Bool) {
+        let playButton = getViewForElementWithIdentifier("play") as? ToggleButton
+        playButton?.toggled = toggled
+    }
 
   private func textForPlaybackTime(time: TimeInterval) -> String {
     if !time.isNormal {
@@ -561,7 +618,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
     }
   }
 
-  private func resetHideControlsTimer() {
+  open func resetHideControlsTimer() {
     hideControlsTimer?.invalidate()
     hideControlsTimer = Timer.scheduledTimerWithTimeInterval(
       ti: 3,
@@ -614,6 +671,13 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
       }
     }
   }
+    
+    open func updatePosWithSliderPos() {
+        if let playbackSlider = getViewForElementWithIdentifier("playback") as? Slider {
+            moviePlayer.currentPlaybackTime = TimeInterval(playbackSlider.value)
+        }
+        
+    }
 }
 
 // MARK: - MobilePlayerOverlayViewControllerDelegate
@@ -634,7 +698,12 @@ extension MobilePlayerViewController: SliderDelegate {
 
   func sliderThumbPanDidBegin(slider: Slider) {
     seeking = true
-    wasPlayingBeforeSeek = (state == .playing)
+    if shouldPlayOnDlna {
+        wasPlayingBeforeSeek = airPlayState == 4
+    }else {
+        wasPlayingBeforeSeek = (state == .playing)
+    }
+    
     pause()
   }
 
@@ -642,9 +711,14 @@ extension MobilePlayerViewController: SliderDelegate {
 
   func sliderThumbPanDidEnd(slider: Slider) {
     seeking = false
-    moviePlayer.currentPlaybackTime = TimeInterval(slider.value)
-    if wasPlayingBeforeSeek {
-      play()
+    if shouldPlayOnDlna {
+        airPlaySeek?(slider.value)
+        play()
+    }else {
+        moviePlayer.currentPlaybackTime = TimeInterval(slider.value)
+        if wasPlayingBeforeSeek {
+            play()
+        }
     }
   }
 }

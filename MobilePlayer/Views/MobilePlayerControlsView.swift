@@ -40,7 +40,8 @@ final class MobilePlayerControlsView: UIView {
     if topBar.elements.count == 0 {
       topBar.addElement(usingConfig: ButtonConfig(dictionary: ["type": "button", "identifier": "close"]))
       topBar.addElement(usingConfig: LabelConfig(dictionary: ["type": "label", "identifier": "title"]))
-      topBar.addElement(usingConfig: ButtonConfig(dictionary: ["type": "button", "identifier": "action"]))
+//      topBar.addElement(usingConfig: ButtonConfig(dictionary: ["type": "button", "identifier": "action"]))
+      topBar.addElement(usingConfig: VolumeConfig(dictionary: ["type": "volumeView", "identifier": "volumeView"]))
     }
     addSubview(topBar)
     if bottomBar.elements.count == 0 {
@@ -77,11 +78,16 @@ final class MobilePlayerControlsView: UIView {
       width: size.width,
       height: bottomBar.frame.size.height)
     bottomBar.alpha = controlsHidden ? 0 : 1
+//    overlayContainerView.frame = CGRect(
+//      x: 0,
+//      y: controlsHidden ? 0 : topBar.frame.size.height,
+//      width: size.width,
+//      height: size.height - (controlsHidden ? 0 : (topBar.frame.size.height + bottomBar.frame.size.height)))
     overlayContainerView.frame = CGRect(
-      x: 0,
-      y: controlsHidden ? 0 : topBar.frame.size.height,
-      width: size.width,
-      height: size.height - (controlsHidden ? 0 : (topBar.frame.size.height + bottomBar.frame.size.height)))
+        x: 0,
+        y: 0,
+        width: size.width,
+        height: size.height)
     for overlay in overlayContainerView.subviews {
       overlay.frame = overlayContainerView.bounds
     }

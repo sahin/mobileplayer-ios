@@ -31,7 +31,7 @@ class LargeTouchAreaUIView: UIView {
 }
 
 // MARK: - Class
-class Slider: UIView {
+open class Slider: UIView {
   let config: SliderConfig
   weak var delegate: SliderDelegate?
   var minimumValue: Float = 0    { didSet { setNeedsLayout() } }
@@ -70,7 +70,7 @@ class Slider: UIView {
     thumb.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(didPanThumb)))
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -127,7 +127,7 @@ class Slider: UIView {
 
   // MARK: Layout
 
-  override func sizeThatFits(_ size: CGSize) -> CGSize {
+  override open func sizeThatFits(_ size: CGSize) -> CGSize {
     let width = (config.widthCalculation == .AsDefined) ? config.width : size.width
 
     let minHeight = max(config.thumbHeight, config.trackHeight)
@@ -136,7 +136,7 @@ class Slider: UIView {
     return CGSize(width: width, height: height)
   }
 
-  override func layoutSubviews() {
+  override open func layoutSubviews() {
     let realMaximumValue   = max(0.00001, CGFloat(maximumValue - minimumValue))
     let realAvailableValue = max(0, min(realMaximumValue, CGFloat(availableValue - minimumValue)))
     let realValue          = max(0, min(realMaximumValue, CGFloat(value - minimumValue)))

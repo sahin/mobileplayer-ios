@@ -60,6 +60,9 @@ class Bar: UIView {
     case .Slider:
       guard let sliderConfig = config as? SliderConfig else { return }
       elementView = Slider(config: sliderConfig)
+    case .VolumeView:
+        guard let volumeConfig = config as? VolumeConfig else { return }
+        elementView = VolumeView(config: volumeConfig)
     case .Unknown:
       elementView = nil
     }
