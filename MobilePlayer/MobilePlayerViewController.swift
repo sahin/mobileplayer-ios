@@ -358,6 +358,14 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
       getViewForElementWithIdentifier("action")?.isHidden = isEmpty
     }
   }
+    
+  /// An array of activity types that will be excluded when presenting a `UIActivityViewController`
+  public var excludedActivityTypes: [UIActivityType]? = [
+      .assignToContact,
+      .saveToCameraRoll,
+      .postToVimeo,
+      .airDrop
+  ]
 
   /// Method that is called when a control interface button with identifier "action" is tapped. Presents a
   /// `UIActivityViewController` with `activityItems` set as its activity items. If content is playing, it is paused
@@ -372,12 +380,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
     let wasPlaying = (state == .playing)
     moviePlayer.pause()
     let activityVC = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-    activityVC.excludedActivityTypes =  [
-      .assignToContact,
-      .saveToCameraRoll,
-      .postToVimeo,
-      .airDrop
-    ]
+    activityVC.excludedActivityTypes =  excludedActivityTypes
     activityVC.completionWithItemsHandler = { activityType, completed, returnedItems, activityError in
       if wasPlaying {
         self.moviePlayer.play()
@@ -640,3 +643,4 @@ extension MobilePlayerViewController: SliderDelegate {
     }
   }
 }
+
