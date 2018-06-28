@@ -38,7 +38,7 @@ class ExampleViewController: UIViewController {
     codeImageView.frame.origin.y = top + (size.height - top - codeImageView.frame.size.height) / 2
   }
 
-  func showButtonDidGetTapped() {
+  @objc func showButtonDidGetTapped() {
     fatalError("showButtonDidGetTapped() has not been implemented")
   }
 }
