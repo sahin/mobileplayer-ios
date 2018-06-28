@@ -57,25 +57,34 @@ final class MobilePlayerControlsView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 
+  let isIPhoneX = UIScreen.main.bounds.size.equalTo(CGSize(width: 375, height: 812))
+    
   override func layoutSubviews() {
     let size = bounds.size
+    
+    let isP = UIApplication.shared.statusBarOrientation == .portrait
+    
     previewImageView.frame = bounds
     activityIndicatorView.sizeToFit()
     activityIndicatorView.frame.origin = CGPoint(
       x: (size.width - activityIndicatorView.frame.size.width) / 2,
       y: (size.height - activityIndicatorView.frame.size.height) / 2)
     topBar.sizeToFit()
+    let safeMargin:CGFloat = isP ? 0:(isIPhoneX ? 88:0)
+    let topBarSafeMarign: CGFloat = controlsHidden ? (-topBar.frame.size.height - (isIPhoneX ? 20:0)):(isIPhoneX ? 20:0)
     topBar.frame = CGRect(
-      x: 0,
-      y: controlsHidden ? -topBar.frame.size.height : 0,
-      width: size.width,
-      height: topBar.frame.size.height)
+        x: safeMargin,
+        y: topBarSafeMarign,
+        width: (size.width - 2 * safeMargin),
+        height: topBar.frame.size.height)
+   
     topBar.alpha = controlsHidden ? 0 : 1
     bottomBar.sizeToFit()
+    let bottomBarSafeMarign: CGFloat = controlsHidden ? 0: (bottomBar.frame.size.height + (isIPhoneX ? 30:0))
     bottomBar.frame = CGRect(
-      x: 0,
-      y: size.height - (controlsHidden ? 0 : bottomBar.frame.size.height),
-      width: size.width,
+      x: safeMargin,
+      y: size.height - bottomBarSafeMarign,
+      width: (size.width - 2 * safeMargin),
       height: bottomBar.frame.size.height)
     bottomBar.alpha = controlsHidden ? 0 : 1
 //    overlayContainerView.frame = CGRect(
