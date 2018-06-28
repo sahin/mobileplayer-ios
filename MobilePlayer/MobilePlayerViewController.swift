@@ -171,6 +171,16 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
         }
     }
   }
+    
+ func dismissSelf() {
+        if let navigationController = navigationController {
+            navigationController.popViewController(animated: true)
+        } else if let presentingController = presentingViewController {
+            presentingController.dismissMoviePlayerViewControllerAnimated()
+        }
+    }
+    
+  public var dismissBlock:(()->())?
 
   private func initializeControlsView() {
     (getViewForElementWithIdentifier("playback") as? Slider)?.delegate = self
@@ -180,11 +190,16 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
         guard let slf = self else {
           return
         }
-        if let navigationController = slf.navigationController {
-          navigationController.popViewController(animated: true)
-        } else if let presentingController = slf.presentingViewController {
-          presentingController.dismissMoviePlayerViewControllerAnimated()
+        
+        if let dismiss = slf.dismissBlock {
+            dismiss()
+            NSObject.cancelPreviousPerformRequests(withTarget: slf)
+            slf.perform(#selector(MobilePlayerViewController.dismissSelf), with: nil, afterDelay: 0.5)
+        }else {
+            slf.dismissSelf()
         }
+        
+        
       },
       forControlEvents: .touchUpInside)
 
