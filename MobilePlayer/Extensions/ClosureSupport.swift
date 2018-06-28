@@ -36,7 +36,7 @@ extension Timer {
 extension UIControl {
 
   @discardableResult
-  func addCallback(callback: @escaping () -> Void, forControlEvents controlEvents: UIControlEvents) -> UnsafeMutableRawPointer {
+    func addCallback(callback: @escaping () -> Void, forControlEvents controlEvents: UIControl.Event) -> UnsafeMutableRawPointer {
     let callbackContainer = CallbackContainer(callback: callback)
     let key = Unmanaged.passUnretained(callbackContainer).toOpaque()
     objc_setAssociatedObject(self, key, callbackContainer, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)

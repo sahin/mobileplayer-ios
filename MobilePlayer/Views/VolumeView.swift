@@ -52,7 +52,7 @@ class VolumeView: UIButton {
     init(config: VolumeConfig = VolumeConfig()) {
         self.config = config
         super.init(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        self.setImage(UIImage(named: "AirPlayBtn"), for: UIControlState.normal)
+        self.setImage(UIImage(named: "AirPlayBtn"), for: UIControl.State.normal)
         sizeToFit()
     }
     
@@ -79,7 +79,7 @@ class VolumeViewAirPlay: MPVolumeView {
         self.config = config
         super.init(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         self.showsVolumeSlider = false
-        self.setRouteButtonImage(UIImage(named: "AirPlayBtn"), for: UIControlState.normal)
+        self.setRouteButtonImage(UIImage(named: "AirPlayBtn"), for: UIControl.State.normal)
         sizeToFit()
     }
     
