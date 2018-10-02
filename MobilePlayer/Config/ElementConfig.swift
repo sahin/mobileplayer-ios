@@ -25,6 +25,8 @@ public enum ElementType: String {
 
   /// Element is a slider.
   case Slider = "slider"
+    
+    case VolumeView = "volumeView"
 }
 
 /// Determines how an element's width will be calculated.

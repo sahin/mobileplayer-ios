@@ -15,8 +15,23 @@ protocol SliderDelegate: class {
   func sliderThumbPanDidEnd(slider: Slider)
 }
 
+class LargeTouchAreaUIView: UIView {
+    open override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if self.isHidden || !self.isUserInteractionEnabled || self.alpha < 0.01 { return nil }
+        
+        let minimumHitArea = CGSize(width: 800, height: 800)
+        let buttonSize = self.bounds.size
+        let widthToAdd = max(minimumHitArea.width - buttonSize.width, 0)
+        let heightToAdd = max(minimumHitArea.height - buttonSize.height, 0)
+        let largerFrame = self.bounds.insetBy(dx: -widthToAdd / 2, dy: -heightToAdd / 2)
+        
+        // perform hit test on larger frame
+        return (largerFrame.contains(point)) ? self : nil
+    }
+}
+
 // MARK: - Class
-class Slider: UIView {
+open class Slider: UIView {
   let config: SliderConfig
   weak var delegate: SliderDelegate?
   var minimumValue: Float = 0    { didSet { setNeedsLayout() } }
@@ -27,7 +42,7 @@ class Slider: UIView {
   let maximumTrack = UIView(frame: .zero)
   let availableTrack = UIView(frame: .zero)
   let minimumTrack = UIView(frame: .zero)
-  let thumb = UIView(frame: .zero)
+  let thumb = LargeTouchAreaUIView(frame: .zero)
 
   // MARK: Initialization
 
@@ -55,7 +70,7 @@ class Slider: UIView {
     thumb.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(didPanThumb)))
   }
 
-  required init?(coder aDecoder: NSCoder) {
+  required public init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
   }
 
@@ -88,7 +103,7 @@ class Slider: UIView {
 
   // MARK: Seeking
 
-  func didPanThumb(recognizer: UIPanGestureRecognizer!) {
+    @objc func didPanThumb(recognizer: UIPanGestureRecognizer!) {
     let locationInTrack = recognizer.location(in: maximumTrack)
     let trackWidth = maximumTrack.frame.size.width
     if recognizer.state == .began {
@@ -112,7 +127,7 @@ class Slider: UIView {
 
   // MARK: Layout
 
-  override func sizeThatFits(_ size: CGSize) -> CGSize {
+  override open func sizeThatFits(_ size: CGSize) -> CGSize {
     let width = (config.widthCalculation == .AsDefined) ? config.width : size.width
 
     let minHeight = max(config.thumbHeight, config.trackHeight)
@@ -121,7 +136,7 @@ class Slider: UIView {
     return CGSize(width: width, height: height)
   }
 
-  override func layoutSubviews() {
+  override open func layoutSubviews() {
     let realMaximumValue   = max(0.00001, CGFloat(maximumValue - minimumValue))
     let realAvailableValue = max(0, min(realMaximumValue, CGFloat(availableValue - minimumValue)))
     let realValue          = max(0, min(realMaximumValue, CGFloat(value - minimumValue)))
