@@ -72,7 +72,7 @@ class YoutubeParser: NSObject {
         }
         guard let
           data = data,
-          let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String else {
+            let dataString = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String? else {
             completion(
               nil,
               NSError(domain: "com.movielala.MobilePlayer.error", code: 0, userInfo: nil))

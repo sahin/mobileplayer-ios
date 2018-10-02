@@ -12,7 +12,7 @@ import MediaPlayer
 final class MobilePlayerControlsView: UIView {
   let config: MobilePlayerConfig
   let previewImageView = UIImageView(frame: .zero)
-  let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .white)
+    let activityIndicatorView = UIActivityIndicatorView(style: .white)
   let overlayContainerView = UIView(frame: .zero)
   let topBar: Bar
   let bottomBar: Bar
