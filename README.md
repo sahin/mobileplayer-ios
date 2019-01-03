@@ -92,7 +92,7 @@ let playerVC = MobilePlayerViewController(
   config: config)
 playerVC.title = "Watermarked Player - \(videoTitle)"
 playerVC.activityItems = [videoURL]
-presentMoviePlayerViewControllerAnimated(playerVC)
+present(playerVC, animated: true, completion: nil)
 ```
 
 **Initialize using remote configuration data**
@@ -103,7 +103,7 @@ let playerVC = MobilePlayerViewController(
   config: MobilePlayerConfig(fileURL: configURL))
 playerVC.title = "Watermarked Player - \(videoTitle)"
 playerVC.activityItems = [videoURL]
-presentMoviePlayerViewControllerAnimated(playerVC)
+present(playerVC, animated: true, completion: nil)
 ```
 
 **Configuration data**
@@ -123,7 +123,7 @@ let playerVC = MobilePlayerViewController(
     dictionary: ["watermark": ["image": "MovielalaLogo"]]))
 playerVC.title = "Watermarked Player - \(videoTitle)"
 playerVC.activityItems = [videoURL]
-presentMoviePlayerViewControllerAnimated(playerVC)
+present(playerVC, animated: true, completion: nil)
 ```
 
 **Result**
@@ -199,7 +199,7 @@ For all available `identifier`s, check the documentation or [here](https://githu
 let playerVC = MobilePlayerViewController(contentURL: videoURL)
 playerVC.title = videoTitle
 playerVC.activityItems = [videoURL]
-presentMoviePlayerViewControllerAnimated(playerVC)
+present(playerVC, animated: true, completion: nil)
 ProductStore.getProduct("1", success: { product in
   guard let product = product else { return }
   playerVC.showOverlayViewController(
@@ -213,7 +213,7 @@ ProductStore.getProduct("1", success: { product in
 let playerVC = MobilePlayerViewController(contentURL: videoURL)
 playerVC.title = videoTitle
 playerVC.activityItems = [videoURL]
-presentMoviePlayerViewControllerAnimated(playerVC)
+present(playerVC, animated: true, completion: nil)
 ProductStore.getProductPlacementsForVideo(
   videoID,
   success: { productPlacements in
@@ -238,7 +238,7 @@ let playerVC = MobilePlayerViewController(
   prerollViewController: PrerollOverlayViewController())
 playerVC.title = videoTitle
 playerVC.activityItems = [videoURL]
-presentMoviePlayerViewControllerAnimated(playerVC)
+present(playerVC, animated: true, completion: nil)
 ```
 ![example-preroll](http://i.imgur.com/oBV0HCF.png)
 
@@ -249,7 +249,7 @@ let playerVC = MobilePlayerViewController(
   pauseOverlayViewController: PauseOverlayViewController())
 playerVC.title = videoTitle
 playerVC.activityItems = [videoURL]
-presentMoviePlayerViewControllerAnimated(playerVC)
+present(playerVC, animated: true, completion: nil)
 ```
 
 **Result**
@@ -265,7 +265,7 @@ let playerVC = MobilePlayerViewController(
   postrollViewController: PostrollOverlayViewController())
 playerVC.title = videoTitle
 playerVC.activityItems = [videoURL]
-presentMoviePlayerViewControllerAnimated(playerVC)
+present(playerVC, animated: true, completion: nil)
 ```
 
 **Result**
