@@ -25,6 +25,6 @@ class PlainExampleViewController: ExampleViewController {
     let playerVC = MobilePlayerViewController(contentURL: videoURL)
     playerVC.title = "Vanilla Player - \(videoTitle)"
     playerVC.activityItems = [videoURL]
-    presentMoviePlayerViewControllerAnimated(playerVC)
+    present(playerVC, animated: true, completion: nil)
   }
 }

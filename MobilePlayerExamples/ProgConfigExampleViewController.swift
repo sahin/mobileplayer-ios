@@ -28,6 +28,6 @@ class ProgConfigExampleViewController: ExampleViewController {
         dictionary: ["watermark": ["image": "MovielalaLogo"]]))
     playerVC.title = "Watermarked Player - \(videoTitle)"
     playerVC.activityItems = [videoURL]
-    presentMoviePlayerViewControllerAnimated(playerVC)
+    present(playerVC, animated: true, completion: nil)
   }
 }
