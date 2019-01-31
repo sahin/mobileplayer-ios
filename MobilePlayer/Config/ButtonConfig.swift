@@ -47,6 +47,8 @@ public class ButtonConfig: ElementConfig {
         image = UIImage(podResourceNamed: "MLCloseButton.png")?.template
       case "action":
         image = UIImage(podResourceNamed: "MLShareButton")?.template
+      case "rotate":
+        image = UIImage(podResourceNamed: "rotate")?.template
       default:
         image = nil
       }
