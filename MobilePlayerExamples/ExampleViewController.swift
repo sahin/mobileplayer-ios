@@ -10,7 +10,7 @@ import UIKit
 
 class ExampleViewController: UIViewController {
   let codeImageView = UIImageView(frame: CGRect.zero)
-  let videoURL = URL(string: "https://player.vimeo.com/external/186497194.hd.mp4?s=5b9ae54ba4cc6e325e7ad880e3cd795a29426d1d")!
+  let videoURL = URL(string: "https://www.youtube.com/watch?v=sGbxmsDFVnE")!
   let videoTitle = "Star Wars: Episode VII - The Force Awakens - International Trailer"
   let videoID = "1"
 
@@ -38,7 +38,7 @@ class ExampleViewController: UIViewController {
     codeImageView.frame.origin.y = top + (size.height - top - codeImageView.frame.size.height) / 2
   }
 
-  func showButtonDidGetTapped() {
+  @objc func showButtonDidGetTapped() {
     fatalError("showButtonDidGetTapped() has not been implemented")
   }
 }

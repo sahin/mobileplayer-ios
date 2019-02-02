@@ -31,6 +31,6 @@ class AdvancedConfigExampleViewController: ExampleViewController {
       config: config)
     playerVC.title = videoTitle
     playerVC.activityItems = [videoURL]
-    presentMoviePlayerViewControllerAnimated(playerVC)
+    present(playerVC, animated: true, completion: nil)
   }
 }

@@ -31,6 +31,6 @@ class ConfigExampleViewController: ExampleViewController {
       config: config)
     playerVC.title = "Watermarked Player - \(videoTitle)"
     playerVC.activityItems = [videoURL]
-    presentMoviePlayerViewControllerAnimated(playerVC)
+    present(playerVC, animated: true, completion: nil)
   }
 }

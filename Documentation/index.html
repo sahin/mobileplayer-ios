@@ -199,7 +199,7 @@ let playerVC = MobilePlayerViewController(
   config: config)
 playerVC.title = &quot;Watermarked Player - \(videoTitle)&quot;
 playerVC.activityItems = [videoURL]
-presentMoviePlayerViewControllerAnimated(playerVC)
+present(playerVC, animated: true, completion: nil)
 </code></p>
 
 <p><strong>Initialize using remote configuration data</strong>
@@ -210,7 +210,7 @@ let playerVC = MobilePlayerViewController(
   config: MobilePlayerConfig(fileURL: configURL))
 playerVC.title = &quot;Watermarked Player - \(videoTitle)&quot;
 playerVC.activityItems = [videoURL]
-presentMoviePlayerViewControllerAnimated(playerVC)
+present(playerVC, animated: true, completion: nil)
 </code></p>
 
 <p><strong>Configuration data</strong>
@@ -230,7 +230,7 @@ let playerVC = MobilePlayerViewController(
     dictionary: [&quot;watermark&quot;: [&quot;image&quot;: &quot;MovielalaLogo&quot;]]))
 playerVC.title = &quot;Watermarked Player - \(videoTitle)&quot;
 playerVC.activityItems = [videoURL]
-presentMoviePlayerViewControllerAnimated(playerVC)
+present(playerVC, animated: true, completion: nil)
 </code></p>
 
 <p><strong>Result</strong>

@@ -27,6 +27,6 @@ class PostrollExampleViewController: ExampleViewController {
       postrollViewController: PostrollOverlayViewController())
     playerVC.title = videoTitle
     playerVC.activityItems = [videoURL]
-    presentMoviePlayerViewControllerAnimated(playerVC)
+    present(playerVC, animated: true, completion: nil)
   }
 }

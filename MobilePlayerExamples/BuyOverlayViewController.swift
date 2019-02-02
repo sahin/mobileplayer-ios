@@ -25,14 +25,14 @@ class BuyOverlayViewController: MobilePlayerOverlayViewController {
     descriptionLabel.text = product.description
     descriptionLabel.numberOfLines = 2
     descriptionLabel.textColor = UIColor.white
-    descriptionLabel.font = UIFont.systemFont(ofSize: 8, weight: UIFontWeightHeavy)
+    descriptionLabel.font = UIFont.systemFont(ofSize: 8, weight: .heavy)
     containerView.addSubview(descriptionLabel)
     nameLabel.text = product.name
     nameLabel.textColor = UIColor.white
-    nameLabel.font = UIFont.systemFont(ofSize: 7, weight: UIFontWeightUltraLight)
+    nameLabel.font = UIFont.systemFont(ofSize: 7, weight: .ultraLight)
     containerView.addSubview(nameLabel)
     buyButton.setTitle("Get Now", for: .normal)
-    buyButton.titleLabel?.font = UIFont.systemFont(ofSize: 8, weight: UIFontWeightBold)
+    buyButton.titleLabel?.font = UIFont.systemFont(ofSize: 8, weight: .bold)
     buyButton.backgroundColor = UIColor(red: 0.85, green: 0.12, blue: 0.09, alpha: 1)
     buyButton.layer.cornerRadius = 4
     buyButton.addTarget(self, action: #selector(buyButtonDidGetTapped), for: .touchUpInside)
@@ -48,13 +48,13 @@ class BuyOverlayViewController: MobilePlayerOverlayViewController {
     view.addSubview(containerView)
   }
 
-  override func didMove(toParentViewController parent: UIViewController?) {
-    super.didMove(toParentViewController: parent)
+  override func didMove(toParent parent: UIViewController?) {
+    super.didMove(toParent: parent)
     // Update container offset so as not to intersect with other overlays' containers
     containerOffset = CGPoint.zero
     guard let superview = view.superview else { return }
     for (index, overlayView) in superview.subviews.enumerated() {
-      if (parent?.childViewControllers[index] == self)
+      if (parent?.children[index] == self)
         || !overlayView.subviews[0].frame.intersects(view.frame) {
         return
       }
@@ -81,7 +81,7 @@ class BuyOverlayViewController: MobilePlayerOverlayViewController {
     containerView.frame.origin = containerOffset
   }
 
-  func buyButtonDidGetTapped() {
+  @objc func buyButtonDidGetTapped() {
     guard let buyLink = buyLink else { return }
     UIApplication.shared.openURL(buyLink)
   }
