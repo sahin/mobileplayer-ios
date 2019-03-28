@@ -58,14 +58,12 @@ final class MobilePlayerControlsView: UIView {
 
   override func layoutSubviews() {
     let size = bounds.size
-    
     if #available(iOS 11.0, *) {
-        let window = UIApplication.shared.windows[0]
-        let safeFrame = window.safeAreaLayoutGuide.layoutFrame
-        topSafeAreaHeight = safeFrame.minY
-        bottomSafeAreaHeight = window.frame.maxY - safeFrame.maxY
+      let window = UIApplication.shared.windows[0]
+      let safeFrame = window.safeAreaLayoutGuide.layoutFrame
+      topSafeAreaHeight = safeFrame.minY
+      bottomSafeAreaHeight = window.frame.maxY - safeFrame.maxY
     }
-    
     previewImageView.frame = bounds
     activityIndicatorView.sizeToFit()
     activityIndicatorView.frame.origin = CGPoint(
