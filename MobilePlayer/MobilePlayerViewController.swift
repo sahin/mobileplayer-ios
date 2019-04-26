@@ -120,6 +120,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
     edgesForExtendedLayout = []
     moviePlayer.scalingMode = .aspectFit
     moviePlayer.controlStyle = .none
+    moviePlayer.allowsAirPlay = true
     initializeNotificationObservers()
     initializeControlsView()
     parseContentURLIfNeeded()

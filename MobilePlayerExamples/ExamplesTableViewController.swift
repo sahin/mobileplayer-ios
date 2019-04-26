@@ -16,6 +16,7 @@ class ExamplesTableViewController: UITableViewController {
     RemoteConfigExampleViewController(),
     ProgConfigExampleViewController(),
     AdvancedConfigExampleViewController(),
+    AdvancedConfigAirplayExampleViewController(),
     OverlayExampleViewController(),
     TimedOverlayExampleViewController(),
     PrerollExampleViewController(),
