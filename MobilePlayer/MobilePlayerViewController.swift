@@ -460,11 +460,11 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
         overlay: overlayViewController))
     } else if overlayViewController.parent == nil {
       overlayViewController.delegate = self
-      addChild(overlayViewController)
+        addChildViewController(overlayViewController)
       overlayViewController.view.clipsToBounds = true
       overlayViewController.view.frame = controlsView.overlayContainerView.bounds
       controlsView.overlayContainerView.addSubview(overlayViewController.view)
-      overlayViewController.didMove(toParent: self)
+        overlayViewController.didMove(toParentViewController: self)
     }
   }
 
@@ -474,7 +474,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
       timedOverlayInfo.overlay.dismiss()
     }
     timedOverlays.removeAll()
-    for childViewController in children {
+    for childViewController in childViewControllers {
       if childViewController is WatermarkViewController { continue }
       (childViewController as? MobilePlayerOverlayViewController)?.dismiss()
     }
@@ -615,9 +615,9 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
 extension MobilePlayerViewController: MobilePlayerOverlayViewControllerDelegate {
 
   func dismiss(mobilePlayerOverlayViewController overlayViewController: MobilePlayerOverlayViewController) {
-    overlayViewController.willMove(toParent: nil)
+    overlayViewController.willMove(toParentViewController: nil)
     overlayViewController.view.removeFromSuperview()
-    overlayViewController.removeFromParent()
+    overlayViewController.removeFromParentViewController()
     if overlayViewController == prerollViewController {
       play()
     }
