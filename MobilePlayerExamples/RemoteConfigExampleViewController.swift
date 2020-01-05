@@ -23,8 +23,8 @@ class RemoteConfigExampleViewController: ExampleViewController {
 
   override func showButtonDidGetTapped() {
     guard let configURL = URL(string: "https://goo.gl/c73ANK") else { return }
-    let playerVC = MobilePlayerViewController(
-      contentURL: videoURL,
+    let playerVC = MobilePlayerViewController()
+    playerVC.setConfig(contentURL: videoURL,
       config: MobilePlayerConfig(fileURL: configURL))
     playerVC.title = "Watermarked Player - \(videoTitle)"
     playerVC.activityItems = [videoURL]

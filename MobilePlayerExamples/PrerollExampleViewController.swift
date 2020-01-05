@@ -22,7 +22,8 @@ class PrerollExampleViewController: ExampleViewController {
   }
 
   override func showButtonDidGetTapped() {
-    let playerVC = MobilePlayerViewController(
+    let playerVC = MobilePlayerViewController()
+    playerVC.setConfig(
       contentURL: videoURL,
       prerollViewController: PrerollOverlayViewController())
     playerVC.title = videoTitle

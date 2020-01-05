@@ -8,23 +8,29 @@
 
 import UIKit
 import MediaPlayer
+import AVKit
 
 struct StateHelper {
-
-  static func calculateStateUsing(
-    previousState: MobilePlayerViewController.State,
-    andPlaybackState playbackState: MPMoviePlaybackState) -> MobilePlayerViewController.State {
-      switch playbackState {
-      case .stopped:
-        return .idle
-      case .playing:
-        return .playing
-      case .paused:
-        return .paused
-      case .interrupted:
-        return .buffering
-      case .seekingForward, .seekingBackward:
-        return previousState
-      }
-  }
+    static func calculateStateUsing(
+        previousState: MobilePlayerViewController.State,
+        andPlaybackState playbackState: AVPlayer.TimeControlStatus) -> MobilePlayerViewController.State {
+        
+        switch playbackState {
+        case .paused:
+            return .paused
+        case .playing:
+            return .playing
+        case .waitingToPlayAtSpecifiedRate:
+            return .buffering
+            
+        @unknown default:
+            #if DEBUG
+            fatalError("StateHelper: Handle all cases from AVPlayer.TimeControlStatus")
+            #else
+            print("IMPORTANT: Handle all cases from AVPlayer.TimeControlStatus")
+            return .idle
+            #endif
+            
+        }
+    }
 }

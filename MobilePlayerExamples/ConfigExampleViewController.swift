@@ -26,7 +26,8 @@ class ConfigExampleViewController: ExampleViewController {
     let config = MobilePlayerConfig(fileURL: bundle.url(
         forResource: "WatermarkedPlayer",
       withExtension: "json")!)
-    let playerVC = MobilePlayerViewController(
+    let playerVC = MobilePlayerViewController()
+    playerVC.setConfig(
       contentURL: videoURL,
       config: config)
     playerVC.title = "Watermarked Player - \(videoTitle)"

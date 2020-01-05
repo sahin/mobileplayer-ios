@@ -22,7 +22,8 @@ class ProgConfigExampleViewController: ExampleViewController {
   }
 
   override func showButtonDidGetTapped() {
-    let playerVC = MobilePlayerViewController(
+    let playerVC = MobilePlayerViewController()
+    playerVC.setConfig(
       contentURL: videoURL,
       config: MobilePlayerConfig(
         dictionary: ["watermark": ["image": "MovielalaLogo"]]))
