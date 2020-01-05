@@ -10,7 +10,7 @@ import UIKit
 
 class ExampleViewController: UIViewController {
   let codeImageView = UIImageView(frame: CGRect.zero)
-  let videoURL = URL(string: "https://www.youtube.com/watch?v=sGbxmsDFVnE")!
+  let videoURL = URL(string: "https://www.mindmaster.life/priveTutorialNew/all.m3u8")!
   let videoTitle = "Star Wars: Episode VII - The Force Awakens - International Trailer"
   let videoID = "1"
 

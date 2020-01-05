@@ -23,7 +23,8 @@ class TimedOverlayExampleViewController: ExampleViewController {
   }
 
   override func showButtonDidGetTapped() {
-    let playerVC = MobilePlayerViewController(contentURL: videoURL)
+    let playerVC = MobilePlayerViewController()
+    playerVC.setConfig(contentURL: videoURL)
     playerVC.title = videoTitle
     playerVC.activityItems = [videoURL]
     present(playerVC, animated: true, completion: nil)

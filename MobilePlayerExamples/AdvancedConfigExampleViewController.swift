@@ -26,7 +26,8 @@ class AdvancedConfigExampleViewController: ExampleViewController {
     let config = MobilePlayerConfig(fileURL: bundle.url(
         forResource: "MovielalaPlayer",
       withExtension: "json")!)
-    let playerVC = MobilePlayerViewController(
+    let playerVC = MobilePlayerViewController()
+    playerVC.setConfig(
       contentURL: videoURL,
       config: config)
     playerVC.title = videoTitle

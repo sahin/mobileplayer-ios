@@ -22,7 +22,8 @@ class PostrollExampleViewController: ExampleViewController {
   }
 
   override func showButtonDidGetTapped() {
-    let playerVC = MobilePlayerViewController(
+    let playerVC = MobilePlayerViewController()
+    playerVC.setConfig(
       contentURL: videoURL,
       postrollViewController: PostrollOverlayViewController())
     playerVC.title = videoTitle

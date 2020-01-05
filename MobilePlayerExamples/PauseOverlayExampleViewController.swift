@@ -22,7 +22,9 @@ class PauseOverlayExampleViewController: ExampleViewController {
   }
 
   override func showButtonDidGetTapped() {
-    let playerVC = MobilePlayerViewController(
+    let playerVC = MobilePlayerViewController()
+    
+    playerVC.setConfig(
       contentURL: videoURL,
       pauseOverlayViewController: PauseOverlayViewController())
     playerVC.title = videoTitle

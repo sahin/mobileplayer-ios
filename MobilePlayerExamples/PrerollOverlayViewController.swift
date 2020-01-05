@@ -21,7 +21,7 @@ class PrerollOverlayViewController: MobilePlayerOverlayViewController {
 
   @IBAction func visitButtonDidGetTapped() {
     guard let websiteURL = URL(string: "https://movielala.com") else { return }
-    UIApplication.shared.openURL(websiteURL)
+    UIApplication.shared.open(websiteURL)
     dismiss() // or mobilePlayer.play()
   }
 }
