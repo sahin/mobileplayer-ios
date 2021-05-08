@@ -422,7 +422,7 @@ open class MobilePlayerViewController: MPMoviePlayerViewController {
 
   /// Hides/shows controls when content area is tapped once. Overriding this method is recommended if you want to change
   /// this behavior.
-  public func handleContentTap() {
+  open func handleContentTap() {
     controlsHidden = !controlsHidden
   }
 
